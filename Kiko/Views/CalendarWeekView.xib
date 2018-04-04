@@ -28,11 +28,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eae-Tn-AY3" userLabel="Left button" customClass="Calen">
-                    <rect key="frame" x="33" y="9" width="12" height="22"/>
+                    <rect key="frame" x="33" y="19" width="12" height="22"/>
                     <state key="normal" image="leftArrow"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B42-Nb-gPu" userLabel="Right button">
-                    <rect key="frame" x="505" y="9" width="12" height="22"/>
+                    <rect key="frame" x="505" y="19" width="12" height="22"/>
                     <state key="normal" image="rightArrow"/>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-DH-WjH" userLabel="Weekdays stackview">
@@ -159,9 +159,9 @@
                 <constraint firstItem="qgx-Cl-6oi" firstAttribute="top" secondItem="hBY-cG-aNN" secondAttribute="top" id="Yfz-0R-lWK"/>
                 <constraint firstItem="hBY-cG-aNN" firstAttribute="trailing" secondItem="G4X-JP-cgA" secondAttribute="trailing" id="bvl-Y2-x4F"/>
                 <constraint firstItem="Eae-Tn-AY3" firstAttribute="leading" secondItem="hBY-cG-aNN" secondAttribute="leading" constant="33" id="cbY-PD-9ug"/>
-                <constraint firstItem="Eae-Tn-AY3" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" id="hP9-NG-akI"/>
+                <constraint firstItem="Eae-Tn-AY3" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" constant="10" id="hP9-NG-akI"/>
                 <constraint firstItem="G4X-JP-cgA" firstAttribute="top" secondItem="lgG-DH-WjH" secondAttribute="bottom" constant="10" id="oRY-I3-oL9"/>
-                <constraint firstItem="B42-Nb-gPu" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" id="oYJ-Pl-QBl"/>
+                <constraint firstItem="B42-Nb-gPu" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" constant="10" id="oYJ-Pl-QBl"/>
                 <constraint firstItem="lgG-DH-WjH" firstAttribute="top" secondItem="qgx-Cl-6oi" secondAttribute="bottom" id="qmP-od-wZL"/>
                 <constraint firstItem="hBY-cG-aNN" firstAttribute="trailing" secondItem="B42-Nb-gPu" secondAttribute="trailing" constant="33" id="w1K-Ch-qF0"/>
             </constraints>
@@ -180,7 +180,7 @@
                 <outlet property="tuesday" destination="0DS-7j-tgS" id="IGv-cW-N0D"/>
                 <outlet property="wednesday" destination="6Y0-3i-DS3" id="I4N-RG-xkU"/>
             </connections>
-            <point key="canvasLocation" x="-3438" y="-1754"/>
+            <point key="canvasLocation" x="-3636" y="-1970"/>
         </view>
     </objects>
     <resources>
