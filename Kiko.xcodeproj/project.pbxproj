@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */; };
 		9E39196C2070856500492F54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39196B2070856500492F54 /* AppDelegate.swift */; };
 		9E3919732070856500492F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919722070856500492F54 /* Assets.xcassets */; };
 		9E3919762070856500492F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919742070856500492F54 /* LaunchScreen.storyboard */; };
@@ -28,6 +29,7 @@
 		9E391A0E2073110900492F54 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A0D2073110900492F54 /* UIView+Extensions.swift */; };
 		9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A0F2073153800492F54 /* CalendarWeekView.swift */; };
 		9E391A12207324FB00492F54 /* NibIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A11207324FB00492F54 /* NibIdentifiable.swift */; };
+		9E391A1820745ACD00492F54 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A1720745ACD00492F54 /* CalendarManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimalNilCoalescing.swift; sourceTree = "<group>"; };
 		9E3919682070856500492F54 /* Kiko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E39196B2070856500492F54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E3919722070856500492F54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +128,7 @@
 		9E391A0D2073110900492F54 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		9E391A0F2073153800492F54 /* CalendarWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeekView.swift; sourceTree = "<group>"; };
 		9E391A11207324FB00492F54 /* NibIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibIdentifiable.swift; sourceTree = "<group>"; };
+		9E391A1720745ACD00492F54 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,14 +181,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E324FEA20747C1F00C7168B /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
 		9E39195F2070856500492F54 = {
 			isa = PBXGroup;
 			children = (
 				9E39196A2070856500492F54 /* Kiko */,
 				9E39197F2070856500492F54 /* KikoTests */,
 				9E3919E72073072200492F54 /* KikoUIKit */,
-				9E3919F42073072200492F54 /* KikoUIKitTests */,
 				9E3919C2207305F800492F54 /* KikoModels */,
+				9E3919F42073072200492F54 /* KikoUIKitTests */,
 				9E3919CF207305F800492F54 /* KikoModelsTests */,
 				9E3919692070856500492F54 /* Products */,
 			);
@@ -228,8 +240,10 @@
 		9E3919C2207305F800492F54 /* KikoModels */ = {
 			isa = PBXGroup;
 			children = (
+				9E324FEA20747C1F00C7168B /* Misc */,
 				9E3919C3207305F800492F54 /* KikoModels.h */,
 				9E3919C4207305F800492F54 /* Info.plist */,
+				9E391A1720745ACD00492F54 /* CalendarManager.swift */,
 			);
 			path = KikoModels;
 			sourceTree = "<group>";
@@ -453,6 +467,7 @@
 					};
 					9E3919C0207305F800492F54 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					9E3919C8207305F800492F54 = {
@@ -567,6 +582,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */,
+				9E391A1820745ACD00492F54 /* CalendarManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -824,6 +841,7 @@
 		9E3919D9207305F800492F54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -838,6 +856,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.DanningGe.KikoModels;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -848,6 +867,7 @@
 		9E3919DA207305F800492F54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
