@@ -13,5 +13,6 @@ class CalendarWeekView: UIView {
 
         backgroundColor = .clear
         datesCollectionView.backgroundColor = backgroundColor
+        datesCollectionView.collectionViewLayout = CalendarWeekCollectionViewLayout()
     }
 }

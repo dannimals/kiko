@@ -14,6 +14,10 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         configure()
     }
 
+    func configure(date: Int) {
+        dateLabel.text = date.description
+    }
+
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
     override func prepareForReuse() {
@@ -30,22 +34,28 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureDateLabel() {
-        contentView.addSubview(dateLabel)
-        dateLabel.center = contentView.center
+        dateLabel.textAlignment = .center
+        dateLabel.translatesAutoresizingMaskIntoConstraints = false
         dateLabel.textColor = UIColor.textDarkGrey
+        dateLabel.font = UIFont.customFont(ofSize: 14, weight: .medium)
+        contentView.addSubview(dateLabel)
+        NSLayoutConstraint.activate([
+            dateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
     }
 
     private func configureBackgroundCircle() {
         backgroundCircleView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(backgroundCircleView)
-        backgroundCircleView.layer.cornerRadius = 12
-        backgroundCircleView.center = contentView.center
+        backgroundCircleView.layer.cornerRadius = 17
         backgroundCircleView.backgroundColor = UIColor.indicatorGrey
         NSLayoutConstraint.activate([
             backgroundCircleView.heightAnchor.constraint(equalToConstant: 34),
             backgroundCircleView.widthAnchor.constraint(equalToConstant: 34),
+            backgroundCircleView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            backgroundCircleView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
-
     }
 
     private func configureIndicatorCircle() {

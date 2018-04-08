@@ -1,5 +1,6 @@
 
-import UIKit
+import KikoModels
+import KikoUIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,7 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        let moodLogViewController = MoodLogViewController()
+        let calendarManager = CalendarManager()
+        let moodLogViewController = MoodLogViewController(calendarManager: calendarManager)
         let navigationController = UINavigationController(rootViewController: moodLogViewController)
         window?.rootViewController = navigationController
 

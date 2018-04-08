@@ -10,7 +10,7 @@ public extension UIView {
         }
     }
 
-    static func loadFromNib<T: NibIdentifiable>() -> T {
+    static func loadFromNib<T: Identifiable>() -> T {
         guard let view = Bundle.main.loadNibNamed(String(describing: self), owner: self, options: nil)?.first as? T else { fatalError("Error loading nib with name \(identifier)") }
         return view
     }
@@ -27,7 +27,7 @@ public extension UIView {
     }
 }
 
-extension UIView: NibIdentifiable {
+extension UIView: Identifiable {
     public static var identifier: String {
         get {
             return String(describing: self)
@@ -48,7 +48,7 @@ extension UIView {
     public var safeLeadingAnchor: NSLayoutXAxisAnchor {
         if #available(iOS 11.0, *){
             return self.safeAreaLayoutGuide.leadingAnchor
-        }else {
+        } else {
             return self.leadingAnchor
         }
     }

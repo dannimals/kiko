@@ -1,22 +1,9 @@
 
-enum Month: Int {
-    case january = 1
-    case february
-    case march
-    case april
-    case may
-    case june
-    case july
-    case august
-    case september
-    case october
-    case november
-    case december
-}
+import KikoModels
 
 struct CalendarManager {
 
-    public var currentMonth: Month {
+    var currentMonth: Month {
         let date = Date()
         let calendar = Calendar.current
         let currentMonth = calendar.component(.month, from: date)
@@ -24,18 +11,18 @@ struct CalendarManager {
         return month
     }
 
-    public var currentDay: Int {
+    var currentDay: Int {
         let date = Date()
         let calendar = Calendar.current
         return calendar.component(.day, from: date)
     }
 
-    public var daysOfYear: Int {
+    var daysOfYear: Int {
         guard isLeapYear else { return 365 }
         return 366
     }
 
-    public func monthBefore(_ month: Month) -> Month {
+    func monthBefore(_ month: Month) -> Month {
         guard month != .january else { return .december }
 
         let monthBefore = month.rawValue - 1
@@ -43,7 +30,7 @@ struct CalendarManager {
         return month
     }
 
-    public func monthAfter(_ month: Month) -> Month {
+    func monthAfter(_ month: Month) -> Month {
         guard month != .december else { return .january }
 
         let nextMonth = month.rawValue + 1
@@ -51,7 +38,7 @@ struct CalendarManager {
         return month
     }
 
-    public func numberOfDaysIn(_ month: Month) -> Int {
+    func numberOfDaysIn(_ month: Month) -> Int {
         switch month {
         case .january, .march, .may, .july, .august, .october, .december:
             return 31
@@ -73,3 +60,4 @@ struct CalendarManager {
         return (currentYear % 4 == 0) && (currentYear % 100 != 0) || (currentYear % 400 == 0)
     }
 }
+
