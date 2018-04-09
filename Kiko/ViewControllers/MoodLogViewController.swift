@@ -9,6 +9,9 @@ class MoodLogViewController: BaseViewController {
     private let moodImageView = UIImageView()
     private let ringButton = UIButton()
     private let wavesButton = UIButton()
+    private let moodView = UIImageView()
+    private let moodScrollView = UIScrollView()
+    private let greetingLabel = UILabel()
     private let calendarManager: CalendarManager
 
     required init(calendarManager: CalendarManager) {
@@ -56,12 +59,73 @@ class MoodLogViewController: BaseViewController {
         ])
     }
 
+    private func configureGreetingLabel() {
+        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font : UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor : UIColor.salmonPink])
+        let mutableString = NSMutableAttributedString(attributedString: attributedText)
+        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font : UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor : UIColor.salmonPink])
+        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font : UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor : UIColor.salmonPink])
+        mutableString.append(secondAttributedText)
+        mutableString.append(thirdAttributedText)
+        greetingLabel.attributedText = mutableString
+        view.addSubview(greetingLabel)
+        greetingLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            greetingLabel.topAnchor.constraint(equalTo: calendarWeekView.bottomAnchor, constant: 30),
+            greetingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+
+    private func configureMoodScrollView() {
+        let chickImage = UIImageView(image: #imageLiteral(resourceName: "chick"))
+        chickImage.contentMode = .scaleAspectFit
+        let chickShellImage = UIImageView(image: #imageLiteral(resourceName: "chickEgg"))
+        chickShellImage.contentMode = .scaleAspectFit
+        let eggImage = UIImageView(image: #imageLiteral(resourceName: "egg"))
+        eggImage.contentMode = .scaleAspectFit
+        let rottenEggImage = UIImageView(image: #imageLiteral(resourceName: "rottenEgg"))
+        rottenEggImage.contentMode = .center
+        let stackView = UIStackView()
+        stackView.contentMode = .scaleAspectFill
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.addArrangedSubview(chickImage)
+        stackView.addArrangedSubview(chickShellImage)
+        stackView.addArrangedSubview(eggImage)
+        stackView.addArrangedSubview(rottenEggImage)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        moodScrollView.alwaysBounceHorizontal = true
+        moodScrollView.isDirectionalLockEnabled = true
+        moodScrollView.translatesAutoresizingMaskIntoConstraints = false
+        moodScrollView.showsVerticalScrollIndicator = false
+        moodScrollView.showsHorizontalScrollIndicator = false
+        view.addSubview(moodScrollView)
+        NSLayoutConstraint.activate([
+            moodScrollView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 20),
+            moodScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            moodScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            moodScrollView.heightAnchor.constraint(equalToConstant: 260)
+        ])
+
+        moodScrollView.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: moodScrollView.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: moodScrollView.leadingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor),
+            stackView.widthAnchor.constraint(equalToConstant: 4 * view.bounds.width),
+            stackView.trailingAnchor.constraint(equalTo: moodScrollView.trailingAnchor)
+        ])
+        moodScrollView.contentSize = stackView.bounds.size
+    }
+
     private func configureViews() {
         view.backgroundColor = .backgroundYellow
         calendarWeekView.datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
         configureRingButton()
         configureWavesButton()
         configureCalendarView()
+        configureGreetingLabel()
+        configureMoodScrollView()
     }
 }
 

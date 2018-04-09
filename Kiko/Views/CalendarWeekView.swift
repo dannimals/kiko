@@ -11,8 +11,6 @@ class CalendarWeekView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backgroundColor = .clear
         datesCollectionView.backgroundColor = backgroundColor
-        datesCollectionView.collectionViewLayout = CalendarWeekCollectionViewLayout()
     }
 }

@@ -93,7 +93,6 @@
                     <collectionViewLayout key="collectionViewLayout" id="Jbg-71-HQX" customClass="CalendarWeekCollectionViewLayout" customModule="Kiko" customModuleProvider="target"/>
                 </collectionView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="lgG-DH-WjH" firstAttribute="leading" secondItem="hBY-cG-aNN" secondAttribute="leading" id="1R3-6M-Bxa"/>
                 <constraint firstItem="qgx-Cl-6oi" firstAttribute="centerX" secondItem="hBY-cG-aNN" secondAttribute="centerX" id="39I-Gj-KCd"/>
