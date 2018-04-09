@@ -15,7 +15,7 @@ public extension UIView {
         return view
     }
 
-    public func stretchToFill(view: UIView) {
+    public func stretchToFill(_ view: UIView) {
         addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

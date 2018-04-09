@@ -14,6 +14,7 @@
 		9E324FF5207ACA7000C7168B /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FF4207ACA7000C7168B /* CalendarManager.swift */; };
 		9E324FF7207ACCE900C7168B /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */; };
 		9E324FF9207ACCF500C7168B /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */; };
+		9E324FFB207B05F100C7168B /* MoodLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FFA207B05F100C7168B /* MoodLogView.swift */; };
 		9E39196C2070856500492F54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39196B2070856500492F54 /* AppDelegate.swift */; };
 		9E3919732070856500492F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919722070856500492F54 /* Assets.xcassets */; };
 		9E3919762070856500492F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919742070856500492F54 /* LaunchScreen.storyboard */; };
@@ -113,6 +114,7 @@
 		9E324FF4207ACA7000C7168B /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		9E324FFA207B05F100C7168B /* MoodLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogView.swift; sourceTree = "<group>"; };
 		9E3919682070856500492F54 /* Kiko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E39196B2070856500492F54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E3919722070856500492F54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -281,8 +283,8 @@
 		9E3919DE2073061600492F54 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
 				9E391A0620730A3B00492F54 /* BaseViewController.swift */,
+				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -322,10 +324,11 @@
 		9E391A0820730D4200492F54 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9E391A0920730D5D00492F54 /* CalendarWeekView.xib */,
-				9E391A0F2073153800492F54 /* CalendarWeekView.swift */,
 				9E324FF2207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift */,
+				9E391A0F2073153800492F54 /* CalendarWeekView.swift */,
+				9E391A0920730D5D00492F54 /* CalendarWeekView.xib */,
 				9E324FF1207AB2D300C7168B /* Cells */,
+				9E324FFA207B05F100C7168B /* MoodLogView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E324FFB207B05F100C7168B /* MoodLogView.swift in Sources */,
 				9E3919E0207306E400492F54 /* MoodLogViewController.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
