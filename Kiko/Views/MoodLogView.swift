@@ -3,6 +3,7 @@ import KikoUIKit
 import KikoModels
 
 class MoodLogView: UIView {
+
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private let greetingsLabel = UILabel()
     private let logButton = UIButton()
@@ -13,7 +14,7 @@ class MoodLogView: UIView {
     private let greetingLabel = UILabel()
 
     func configure(dataSource: UICollectionViewDataSource) {
-        calendarWeekView.datesCollectionView.dataSource = dataSource
+        calendarWeekView.configure(dataSource: dataSource)
         configure()
     }
 
@@ -59,7 +60,7 @@ class MoodLogView: UIView {
             ])
     }
 
-    func configureMoodScrollView() {
+    private func configureMoodScrollView() {
         let chickImage = UIImageView(image: #imageLiteral(resourceName: "chick"))
         chickImage.contentMode = .center
         let chickShellImage = UIImageView(image: #imageLiteral(resourceName: "chickEgg"))
@@ -78,6 +79,8 @@ class MoodLogView: UIView {
         stackView.addArrangedSubview(rottenEggImage)
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
+        moodScrollView.isPagingEnabled = true
+        moodScrollView.delegate = self
         moodScrollView.alwaysBounceHorizontal = true
         moodScrollView.isDirectionalLockEnabled = true
         moodScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,5 +112,17 @@ class MoodLogView: UIView {
         configureCalendarView()
         configureGreetingLabel()
         configureMoodScrollView()
+    }
+}
+
+extension MoodLogView: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let contentOffSetX = scrollView.contentOffset.x + 150
+        moodScrollView.setContentOffset(CGPoint(x: contentOffSetX, y: 0), animated: true)
     }
 }

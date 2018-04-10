@@ -39,7 +39,7 @@ extension MoodLogViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCollectionViewCell.identifier, for: indexPath) as? CalendarDayCollectionViewCell
             else { return UICollectionViewCell() }
-        let date = calendarManager.currentDay
+        let date = Int(arc4random_uniform(32))
         dayCell.configure(date: date)
         return dayCell
     }
