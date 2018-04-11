@@ -18,6 +18,14 @@ class MoodLogView: UIView {
         configure()
     }
 
+    func reloadCalendarWeekData() {
+        calendarWeekView.datesCollectionView.reloadData()
+    }
+
+    func updateMonth(_ month: Month) {
+        calendarWeekView.monthLabel.text = "\(month)".capitalized
+    }
+
     private func configureRingButton() {
         ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
         ringButton.translatesAutoresizingMaskIntoConstraints = false

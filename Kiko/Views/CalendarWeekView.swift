@@ -32,20 +32,20 @@ class CalendarWeekView: UIView {
 
 extension CalendarWeekView: UICollectionViewDelegate {
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var offsetX = scrollView.contentOffset.x
-        if offsetX < minOffset - 325 / 2 {
-            offsetX = minOffset
-            animateOffsetX(offsetX)
-            scrollView.panGestureRecognizer.isEnabled = false
-            scrollView.panGestureRecognizer.isEnabled = true
-            minOffset -= 325//bounds.width
-        } else if offsetX > minOffset + 325 / 2 {
-            offsetX = maxOffset
-            animateOffsetX(offsetX)
-            scrollView.panGestureRecognizer.isEnabled = false
-            scrollView.panGestureRecognizer.isEnabled = true
-            maxOffset += 325//bounds.width
-        }
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        var offsetX = scrollView.contentOffset.x
+//        if offsetX < minOffset {
+//            offsetX = minOffset
+//            animateOffsetX(offsetX)
+//            scrollView.panGestureRecognizer.isEnabled = false
+//            scrollView.panGestureRecognizer.isEnabled = true
+//            minOffset -= 325//bounds.width
+//        } else if offsetX > minOffset + 325 / 2 {
+//            offsetX = maxOffset
+//            animateOffsetX(offsetX)
+//            scrollView.panGestureRecognizer.isEnabled = false
+//            scrollView.panGestureRecognizer.isEnabled = true
+//            maxOffset += 325//bounds.width
+//        }
+//    }
 }

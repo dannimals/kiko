@@ -1,7 +1,14 @@
 
 import KikoModels
 
-struct CalendarManager {
+final class CalendarManager {
+
+    var beginWeekDate: Int {
+        return endWeekDay - 6
+    }
+    var endWeekDay: Int {
+        return Calendar.current.component(.weekOfYear, from: Date()) - 1
+    }
 
     var currentMonth: Month {
         let date = Date()
@@ -60,4 +67,3 @@ struct CalendarManager {
         return (currentYear % 4 == 0) && (currentYear % 100 != 0) || (currentYear % 400 == 0)
     }
 }
-

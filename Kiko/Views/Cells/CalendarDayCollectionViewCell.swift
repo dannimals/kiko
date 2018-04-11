@@ -14,8 +14,14 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         configure()
     }
 
-    func configure(date: Int) {
-        dateLabel.text = date.description
+    func configure(day: Int, shouldShowBackgroundCircle: Bool = false) {
+        dateLabel.text = day.description
+        backgroundCircleView.isHidden = !shouldShowBackgroundCircle
+    }
+
+    func configureDayLabel(font: UIFont, textColor: UIColor) {
+        dateLabel.font = font
+        dateLabel.textColor = textColor
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }

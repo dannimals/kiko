@@ -17,8 +17,8 @@ class CalendarWeekCollectionViewLayout: UICollectionViewLayout {
         layoutAttributes.removeAll()
         guard let collectionView = collectionView else { return }
 
-        var xOffset: CGFloat = 0
         let itemWidth = collectionView.bounds.width / CGFloat(numberOfColumns)
+        var xOffset: CGFloat = 0
         let itemHeight = collectionView.bounds.height
         for section in 0..<collectionView.numberOfSections {
             let numberOfItems = collectionView.numberOfItems(inSection: section)

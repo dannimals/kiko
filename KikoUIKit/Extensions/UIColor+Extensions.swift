@@ -26,4 +26,8 @@ public extension UIColor {
         return UIColor(hex: 0x889298)
     }
 
+    public static var textLightGrey: UIColor {
+        return UIColor(hex: 0x9DAFBB)
+    }
+
 }
