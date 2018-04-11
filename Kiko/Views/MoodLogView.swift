@@ -5,13 +5,14 @@ import KikoModels
 class MoodLogView: UIView {
 
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
+    private let greetingLabel = UILabel()
     private let greetingsLabel = UILabel()
     private let logButton = UIButton()
     private let moodImageView = UIImageView()
+    private let moodScrollView = UIScrollView()
     private let ringButton = UIButton()
     private let wavesButton = UIButton()
-    private let moodScrollView = UIScrollView()
-    private let greetingLabel = UILabel()
+    private var moodImages = [UIImageView]()
 
     func configure(dataSource: UICollectionViewDataSource) {
         calendarWeekView.configure(dataSource: dataSource)
@@ -77,6 +78,10 @@ class MoodLogView: UIView {
         eggImage.contentMode = .center
         let rottenEggImage = UIImageView(image: #imageLiteral(resourceName: "rottenEgg"))
         rottenEggImage.contentMode = .center
+        moodImages.append(chickImage)
+        moodImages.append(chickShellImage)
+        moodImages.append(eggImage)
+        moodImages.append(rottenEggImage)
         let stackView = UIStackView()
         stackView.contentMode = .scaleAspectFill
         stackView.distribution = .fillEqually
@@ -121,16 +126,24 @@ class MoodLogView: UIView {
         configureGreetingLabel()
         configureMoodScrollView()
     }
+
 }
 
 extension MoodLogView: UIScrollViewDelegate {
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    final func setSelectedIndex(_ index: Int) {
+        guard index < moodImages.count else { return }
 
+        let image = moodImages[index]
+        UIView.animate(withDuration: 0.4, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: [], animations: { [unowned self] in
+            self.moodScrollView.setContentOffset(image.frame.origin, animated: true)
+        })
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let contentOffSetX = scrollView.contentOffset.x + 150
-        moodScrollView.setContentOffset(CGPoint(x: contentOffSetX, y: 0), animated: true)
+        let offSetX = scrollView.contentOffset.x
+        let width = scrollView.bounds.width
+        let index = Int(offSetX / width)
+        setSelectedIndex(index)
     }
 }
