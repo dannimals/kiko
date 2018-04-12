@@ -2,12 +2,19 @@
 import KikoUIKit
 import KikoModels
 
+enum Mood {
+    case chick
+    case chickEgg
+    case crackingEgg
+    case rottenEgg
+    case unknown
+}
+
 class MoodLogView: UIView {
 
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private let greetingLabel = UILabel()
-    private let greetingsLabel = UILabel()
-    private let logButton = UIButton()
+    private let logButton = LogButton()
     private let moodScrollView = UIScrollView()
     private let ringButton = UIButton()
     private let wavesButton = UIButton()
@@ -50,7 +57,7 @@ class MoodLogView: UIView {
         calendarWeekView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(calendarWeekView)
         NSLayoutConstraint.activate([
-            calendarWeekView.topAnchor.constraint(equalTo: ringButton.bottomAnchor, constant: 24),
+            calendarWeekView.topAnchor.constraint(equalTo: ringButton.bottomAnchor, constant: 15),
             calendarWeekView.leadingAnchor.constraint(equalTo: leadingAnchor),
             calendarWeekView.trailingAnchor.constraint(equalTo: trailingAnchor)
             ])
@@ -160,6 +167,22 @@ class MoodLogView: UIView {
         ])
     }
 
+    private func configureLogButton() {
+        logButton.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(logButton)
+        logButton.layer.cornerRadius = 16
+        logButton.normalBackgroundColor = accessoryColor
+        logButton.highlightedBackgroundColor = UIColor.selectedSalmonPink
+        logButton.titleLabel?.font = UIFont.customFont(ofSize: 17, weight: .heavy)
+        logButton.setTitle("Log", for: .normal)
+        NSLayoutConstraint.activate([
+            logButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            logButton.heightAnchor.constraint(equalToConstant: 32),
+            logButton.widthAnchor.constraint(equalToConstant: 74),
+            logButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
+        ])
+    }
+
     private func configure() {
         calendarWeekView.datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
         configureRingButton()
@@ -168,6 +191,7 @@ class MoodLogView: UIView {
         configureGreetingLabel()
         configureMoodScrollView()
         configureScrollIndicator()
+        configureLogButton()
     }
 
 }
@@ -199,5 +223,20 @@ extension MoodLogView: UIScrollViewDelegate {
         let index = Int(offSetX / width)
         scrollToMoodImageForSelectedIndex(index)
         updateScrollIndicatorForSelectedIndex(index)
+    }
+
+    class LogButton: UIButton {
+        var highlightedBackgroundColor: UIColor?
+        var normalBackgroundColor: UIColor? {
+            didSet {
+                backgroundColor = normalBackgroundColor
+            }
+        }
+
+        override var isHighlighted: Bool {
+            didSet {
+                backgroundColor = isHighlighted ? highlightedBackgroundColor : normalBackgroundColor
+            }
+        }
     }
 }

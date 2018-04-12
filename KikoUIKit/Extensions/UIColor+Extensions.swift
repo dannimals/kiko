@@ -18,6 +18,10 @@ public extension UIColor {
         return UIColor(hex: 0xEFADA1)
     }
 
+    public static var selectedSalmonPink: UIColor {
+        return UIColor(hex: 0xAD6A5D)
+    }
+
     public static var indicatorGrey: UIColor {
         return UIColor(hex: 0xF7F5F0).withAlphaComponent(0.97)
     }
