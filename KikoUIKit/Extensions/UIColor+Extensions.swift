@@ -14,12 +14,56 @@ public extension UIColor {
         return UIColor(hex: 0xFFEEB4).withAlphaComponent(0.97)
     }
 
+    public static var backgroundPurple: UIColor {
+        return UIColor(hex: 0xE4E8FD)
+    }
+
+    public static var backgroundRed: UIColor {
+        return UIColor(hex: 0xFFDBC4)
+    }
+
+    public static var backgroundGreen: UIColor {
+        return UIColor(hex: 0xCADFBC)
+    }
+
+    public static var defaultBackground: UIColor {
+        return UIColor(hex: 0xE2E7F0)
+    }
+
     public static var salmonPink: UIColor {
         return UIColor(hex: 0xEFADA1)
     }
 
     public static var selectedSalmonPink: UIColor {
         return UIColor(hex: 0xAD6A5D)
+    }
+
+    public static var tealBlue: UIColor {
+        return UIColor(hex: 0x36BBC6)
+    }
+
+    public static var selectedTeal: UIColor {
+        return UIColor(hex: 0x3A8C93)
+    }
+
+    public static var rouge: UIColor {
+        return UIColor(hex: 0xEB6F57)
+    }
+
+    public static var selectedRouge: UIColor {
+        return UIColor(hex: 0xB15442)
+    }
+
+    public static var mossGreen: UIColor {
+        return UIColor(hex: 0x54A03D)
+    }
+
+    public static var selectedGreen: UIColor {
+        return UIColor(hex: 0x467D36)
+    }
+
+    public static var defaultAccessory: UIColor {
+        return UIColor(hex: 0x9CA4CD)
     }
 
     public static var indicatorGrey: UIColor {

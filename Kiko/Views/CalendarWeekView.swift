@@ -17,9 +17,16 @@ class CalendarWeekView: UIView {
         maxOffset = 326//bounds.width
     }
 
+    func updateViewColor(_ color: UIColor = .salmonPink) {
+        monthLabel.textColor = color
+        leftButton.tintColor = color
+        rightButton.tintColor = color
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        updateViewColor()
         datesCollectionView.backgroundColor = backgroundColor
     }
 

@@ -2,12 +2,57 @@
 import KikoUIKit
 import KikoModels
 
-enum Mood {
+enum MoodUISetting: Int {
     case chick
     case chickEgg
     case crackingEgg
     case rottenEgg
     case unknown
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .chick:
+            return UIColor.backgroundYellow
+        case .chickEgg:
+            return UIColor.backgroundPurple
+        case .crackingEgg:
+            return UIColor.backgroundRed
+        case .rottenEgg:
+            return UIColor.backgroundGreen
+        case .unknown:
+            return UIColor.defaultBackground
+        }
+    }
+
+    var accessoryColor: UIColor {
+        switch self {
+        case .chick:
+            return UIColor.salmonPink
+        case .chickEgg:
+            return UIColor.tealBlue
+        case .crackingEgg:
+            return UIColor.rouge
+        case .rottenEgg:
+            return UIColor.mossGreen
+        case .unknown:
+            return UIColor.defaultAccessory
+        }
+    }
+
+    var selectedAccessoryColor: UIColor {
+        switch self {
+        case .chick:
+            return UIColor.selectedSalmonPink
+        case .chickEgg:
+            return UIColor.selectedTeal
+        case .crackingEgg:
+            return UIColor.selectedRouge
+        case .rottenEgg:
+            return UIColor.selectedGreen
+        case .unknown:
+            return UIColor.clear
+        }
+    }
 }
 
 class MoodLogView: UIView {
@@ -47,6 +92,7 @@ class MoodLogView: UIView {
 
     private func configureWavesButton() {
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
+        wavesButton.tintColor = .salmonPink
         wavesButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wavesButton)
         wavesButton.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -20).isActive = true
@@ -217,12 +263,26 @@ extension MoodLogView: UIScrollViewDelegate {
         allIndicators.forEach {$0.backgroundColor = self.fadedAccessoryColor }
     }
 
+    private func updateViewColorsForSelectedIndex(_ index: Int) {
+        guard let setting = MoodUISetting(rawValue: index) else { return }
+
+        UIView.animate(withDuration: 0.4) {
+            self.calendarWeekView.updateViewColor(setting.accessoryColor)
+            self.backgroundColor = setting.backgroundColor
+            self.greetingLabel.textColor = setting.accessoryColor
+            self.logButton.normalBackgroundColor = setting.accessoryColor
+            self.logButton.highlightedBackgroundColor = setting.selectedAccessoryColor
+            self.wavesButton.tintColor = setting.accessoryColor
+        }
+    }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offSetX = scrollView.contentOffset.x
         let width = scrollView.bounds.width
         let index = Int(offSetX / width)
         scrollToMoodImageForSelectedIndex(index)
         updateScrollIndicatorForSelectedIndex(index)
+        updateViewColorsForSelectedIndex(index)
     }
 
     class LogButton: UIButton {
