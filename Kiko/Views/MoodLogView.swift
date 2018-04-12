@@ -8,11 +8,14 @@ class MoodLogView: UIView {
     private let greetingLabel = UILabel()
     private let greetingsLabel = UILabel()
     private let logButton = UIButton()
-    private let moodImageView = UIImageView()
     private let moodScrollView = UIScrollView()
     private let ringButton = UIButton()
     private let wavesButton = UIButton()
     private var moodImages = [UIImageView]()
+    private var scrollIndicator = UIStackView()
+    private var scrollIndicatorCircles = [UIView]()
+    private var accessoryColor = UIColor.salmonPink
+    private var fadedAccessoryColor = UIColor.salmonPink.withAlphaComponent(0.3)
 
     func configure(dataSource: UICollectionViewDataSource) {
         calendarWeekView.configure(dataSource: dataSource)
@@ -118,6 +121,45 @@ class MoodLogView: UIView {
         moodScrollView.contentSize = stackView.bounds.size
     }
 
+    private func circleViewWith(backgroundColor: UIColor) -> UIView {
+        let circleView = UIView()
+        circleView.translatesAutoresizingMaskIntoConstraints = false
+        circleView.cornerRadius = 11 / 2
+        circleView.backgroundColor = backgroundColor
+        circleView.layer.masksToBounds = true
+        circleView.widthAnchor.constraint(equalToConstant: 11).isActive = true
+        circleView.heightAnchor.constraint(equalToConstant: 11).isActive = true
+        return circleView
+    }
+
+    private func configureScrollIndicator() {
+        let circle1 = circleViewWith(backgroundColor: accessoryColor)
+        let circle2 = circleViewWith(backgroundColor: fadedAccessoryColor)
+        let circle3 = circleViewWith(backgroundColor: fadedAccessoryColor)
+        let circle4 = circleViewWith(backgroundColor: fadedAccessoryColor)
+        scrollIndicator.axis = .horizontal
+        scrollIndicator.distribution = .equalCentering
+        scrollIndicator.spacing = 7
+        scrollIndicator.addArrangedSubview(circle1)
+        scrollIndicator.addArrangedSubview(circle2)
+        scrollIndicator.addArrangedSubview(circle3)
+        scrollIndicator.addArrangedSubview(circle4)
+
+        scrollIndicatorCircles.append(circle1)
+        scrollIndicatorCircles.append(circle2)
+        scrollIndicatorCircles.append(circle3)
+        scrollIndicatorCircles.append(circle4)
+
+        scrollIndicator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(scrollIndicator)
+        NSLayoutConstraint.activate([
+            scrollIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            scrollIndicator.topAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 30),
+            scrollIndicator.widthAnchor.constraint(equalToConstant: 65),
+            scrollIndicator.heightAnchor.constraint(equalToConstant: 11)
+        ])
+    }
+
     private func configure() {
         calendarWeekView.datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
         configureRingButton()
@@ -125,13 +167,14 @@ class MoodLogView: UIView {
         configureCalendarView()
         configureGreetingLabel()
         configureMoodScrollView()
+        configureScrollIndicator()
     }
 
 }
 
 extension MoodLogView: UIScrollViewDelegate {
 
-    final func setSelectedIndex(_ index: Int) {
+    private func scrollToMoodImageForSelectedIndex(_ index: Int) {
         guard index < moodImages.count else { return }
 
         let image = moodImages[index]
@@ -140,10 +183,21 @@ extension MoodLogView: UIScrollViewDelegate {
         })
     }
 
+    private func updateScrollIndicatorForSelectedIndex(_ index: Int) {
+        guard index < scrollIndicatorCircles.count else { return }
+
+        var allIndicators = scrollIndicatorCircles
+        let selectedIndicator = scrollIndicatorCircles[index]
+        allIndicators.remove(at: index)
+        selectedIndicator.backgroundColor = self.accessoryColor
+        allIndicators.forEach {$0.backgroundColor = self.fadedAccessoryColor }
+    }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offSetX = scrollView.contentOffset.x
         let width = scrollView.bounds.width
         let index = Int(offSetX / width)
-        setSelectedIndex(index)
+        scrollToMoodImageForSelectedIndex(index)
+        updateScrollIndicatorForSelectedIndex(index)
     }
 }
