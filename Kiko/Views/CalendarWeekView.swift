@@ -18,9 +18,11 @@ class CalendarWeekView: UIView {
     }
 
     func updateViewColor(_ color: UIColor = .salmonPink) {
-        monthLabel.textColor = color
-        leftButton.tintColor = color
-        rightButton.tintColor = color
+        UIView.animate(withDuration: 0.4) {
+            self.monthLabel.textColor = color
+            self.leftButton.tintColor = color
+            self.rightButton.tintColor = color
+        }
     }
 
     override func awakeFromNib() {

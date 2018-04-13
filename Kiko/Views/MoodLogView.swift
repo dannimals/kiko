@@ -66,8 +66,6 @@ class MoodLogView: UIView {
     private var moodImages = [UIImageView]()
     private var scrollIndicator = UIStackView()
     private var scrollIndicatorCircles = [UIView]()
-    private var accessoryColor = UIColor.salmonPink
-    private var fadedAccessoryColor = UIColor.salmonPink.withAlphaComponent(0.3)
 
     func configure(dataSource: UICollectionViewDataSource) {
         calendarWeekView.configure(dataSource: dataSource)
@@ -174,11 +172,11 @@ class MoodLogView: UIView {
         moodScrollView.contentSize = stackView.bounds.size
     }
 
-    private func circleViewWith(backgroundColor: UIColor) -> UIView {
+    private func circleViewWith(color: UIColor) -> UIView {
         let circleView = UIView()
+        circleView.backgroundColor = color
         circleView.translatesAutoresizingMaskIntoConstraints = false
         circleView.cornerRadius = 11 / 2
-        circleView.backgroundColor = backgroundColor
         circleView.layer.masksToBounds = true
         circleView.widthAnchor.constraint(equalToConstant: 11).isActive = true
         circleView.heightAnchor.constraint(equalToConstant: 11).isActive = true
@@ -186,10 +184,10 @@ class MoodLogView: UIView {
     }
 
     private func configureScrollIndicator() {
-        let circle1 = circleViewWith(backgroundColor: accessoryColor)
-        let circle2 = circleViewWith(backgroundColor: fadedAccessoryColor)
-        let circle3 = circleViewWith(backgroundColor: fadedAccessoryColor)
-        let circle4 = circleViewWith(backgroundColor: fadedAccessoryColor)
+        let circle1 = circleViewWith(color: UIColor.salmonPink)
+        let circle2 = circleViewWith(color: UIColor.salmonPink.faded)
+        let circle3 = circleViewWith(color: UIColor.salmonPink.faded)
+        let circle4 = circleViewWith(color: UIColor.salmonPink.faded)
         scrollIndicator.axis = .horizontal
         scrollIndicator.distribution = .equalCentering
         scrollIndicator.spacing = 7
@@ -217,7 +215,7 @@ class MoodLogView: UIView {
         logButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logButton)
         logButton.layer.cornerRadius = 16
-        logButton.normalBackgroundColor = accessoryColor
+        logButton.normalBackgroundColor = UIColor.salmonPink
         logButton.highlightedBackgroundColor = UIColor.selectedSalmonPink
         logButton.titleLabel?.font = UIFont.customFont(ofSize: 17, weight: .heavy)
         logButton.setTitle("Log", for: .normal)
@@ -254,13 +252,15 @@ extension MoodLogView: UIScrollViewDelegate {
     }
 
     private func updateScrollIndicatorForSelectedIndex(_ index: Int) {
-        guard index < scrollIndicatorCircles.count else { return }
+        guard index < scrollIndicatorCircles.count, let setting = MoodUISetting(rawValue: index) else { return }
 
         var allIndicators = scrollIndicatorCircles
         let selectedIndicator = scrollIndicatorCircles[index]
         allIndicators.remove(at: index)
-        selectedIndicator.backgroundColor = self.accessoryColor
-        allIndicators.forEach {$0.backgroundColor = self.fadedAccessoryColor }
+        UIView.animate(withDuration: 0.4) {
+            selectedIndicator.backgroundColor = setting.accessoryColor
+            allIndicators.forEach {$0.backgroundColor = setting.accessoryColor.faded }
+        }
     }
 
     private func updateViewColorsForSelectedIndex(_ index: Int) {

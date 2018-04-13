@@ -78,4 +78,8 @@ public extension UIColor {
         return UIColor(hex: 0x9DAFBB)
     }
 
+    public var faded: UIColor {
+        return withAlphaComponent(0.3)
+    }
+
 }
