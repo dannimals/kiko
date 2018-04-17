@@ -72,6 +72,7 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
             indicatorCircle.heightAnchor.constraint(equalToConstant: 7),
             indicatorCircle.widthAnchor.constraint(equalToConstant: 7),
             indicatorCircle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            indicatorCircle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             indicatorCircle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2)
         ])
     }

@@ -4,10 +4,17 @@ import KikoModels
 final class CalendarManager {
 
     var beginWeekDate: Int {
-        return endWeekDay - 6
+        guard let startofWeekDate = Date().startOfWeek else { return 0 }
+        let component = Calendar.Component.day
+        let day = Calendar.current.component(component, from: startofWeekDate)
+        return day
     }
+
     var endWeekDay: Int {
-        return Calendar.current.component(.weekOfYear, from: Date()) - 1
+        guard let endOfWeekDate = Date().endOfWeek else { return 0 }
+        let component = Calendar.Component.day
+        let day = Calendar.current.component(component, from: endOfWeekDate)
+        return day
     }
 
     var currentMonth: Month {

@@ -82,6 +82,8 @@ class MoodLogView: UIView {
 
     private func configureRingButton() {
         ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
+        ringButton.setContentCompressionResistancePriority(.required, for: .vertical)
+        ringButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         ringButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(ringButton)
         ringButton.leadingAnchor.constraint(equalTo: safeLeadingAnchor, constant: 20).isActive = true
@@ -100,8 +102,11 @@ class MoodLogView: UIView {
     private func configureCalendarView() {
         calendarWeekView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(calendarWeekView)
+        let topConstraint = calendarWeekView.topAnchor.constraint(equalTo: ringButton.bottomAnchor, constant: 45)
+        topConstraint.priority = UILayoutPriority(rawValue: 750)
         NSLayoutConstraint.activate([
-            calendarWeekView.topAnchor.constraint(equalTo: ringButton.bottomAnchor, constant: 15),
+            topConstraint,
+            calendarWeekView.topAnchor.constraint(greaterThanOrEqualTo: ringButton.bottomAnchor, constant: 15),
             calendarWeekView.leadingAnchor.constraint(equalTo: leadingAnchor),
             calendarWeekView.trailingAnchor.constraint(equalTo: trailingAnchor)
             ])
@@ -115,6 +120,7 @@ class MoodLogView: UIView {
         mutableString.append(secondAttributedText)
         mutableString.append(thirdAttributedText)
         greetingLabel.attributedText = mutableString
+        greetingLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         addSubview(greetingLabel)
         greetingLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -219,11 +225,15 @@ class MoodLogView: UIView {
         logButton.highlightedBackgroundColor = UIColor.selectedSalmonPink
         logButton.titleLabel?.font = UIFont.customFont(ofSize: 17, weight: .heavy)
         logButton.setTitle("Log", for: .normal)
+        let bottomConstraint = logButton.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -35)
+        bottomConstraint.priority = UILayoutPriority(rawValue: 750)
         NSLayoutConstraint.activate([
+            bottomConstraint,
+            logButton.topAnchor.constraint(greaterThanOrEqualTo: scrollIndicator.bottomAnchor, constant: 30),
             logButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             logButton.heightAnchor.constraint(equalToConstant: 32),
             logButton.widthAnchor.constraint(equalToConstant: 74),
-            logButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -30)
+            logButton.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -30)
         ])
     }
 
