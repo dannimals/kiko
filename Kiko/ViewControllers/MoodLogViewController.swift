@@ -19,12 +19,19 @@ class MoodLogViewController: BaseViewController {
         super.viewDidLoad()
 
         configureViews()
+        setupBindings()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         displayCurrentWeek()
+    }
+
+    private func setupBindings() {
+        moodLogView.ringButtonChannel.subscribe(self) { _ in
+            print("tapped ring button")
+        }
     }
 
     private func displayCurrentWeek() {

@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1072085969800CC5444 /* Date+Extensions.swift */; };
+		9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1092086D72000CC5444 /* WavesViewController.swift */; };
+		9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */; };
+		9E10A10F2086D86300CC5444 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10E2086D86300CC5444 /* Channel.swift */; };
+		9E10A1112086D87000CC5444 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1102086D87000CC5444 /* Protected.swift */; };
 		9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */; };
 		9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */; };
 		9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */; };
@@ -109,6 +113,10 @@
 
 /* Begin PBXFileReference section */
 		9E10A1072085969800CC5444 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		9E10A1092086D72000CC5444 /* WavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewController.swift; sourceTree = "<group>"; };
+		9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodUISetting.swift; sourceTree = "<group>"; };
+		9E10A10E2086D86300CC5444 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		9E10A1102086D87000CC5444 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimalNilCoalescing.swift; sourceTree = "<group>"; };
 		9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -197,6 +205,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E10A10D2086D84700CC5444 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		9E10A1122086D87600CC5444 /* Reactive */ = {
+			isa = PBXGroup;
+			children = (
+				9E10A10E2086D86300CC5444 /* Channel.swift */,
+				9E10A1102086D87000CC5444 /* Protected.swift */,
+			);
+			path = Reactive;
+			sourceTree = "<group>";
+		};
 		9E324FEA20747C1F00C7168B /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +272,7 @@
 				9E3919DE2073061600492F54 /* ViewControllers */,
 				9E39196B2070856500492F54 /* AppDelegate.swift */,
 				9E324FF4207ACA7000C7168B /* CalendarManager.swift */,
+				9E10A10D2086D84700CC5444 /* Utility */,
 				9E3919722070856500492F54 /* Assets.xcassets */,
 				9E3919742070856500492F54 /* LaunchScreen.storyboard */,
 				9E3919772070856500492F54 /* Info.plist */,
@@ -266,6 +292,7 @@
 		9E3919C2207305F800492F54 /* KikoModels */ = {
 			isa = PBXGroup;
 			children = (
+				9E10A1122086D87600CC5444 /* Reactive */,
 				9E324FEA20747C1F00C7168B /* Misc */,
 				9E3919C3207305F800492F54 /* KikoModels.h */,
 				9E3919C4207305F800492F54 /* Info.plist */,
@@ -288,6 +315,7 @@
 			children = (
 				9E391A0620730A3B00492F54 /* BaseViewController.swift */,
 				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
+				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -595,14 +623,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E10A1112086D87000CC5444 /* Protected.swift in Sources */,
 				9E324FFB207B05F100C7168B /* MoodLogView.swift in Sources */,
 				9E3919E0207306E400492F54 /* MoodLogViewController.swift in Sources */,
+				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
 				9E324FF5207ACA7000C7168B /* CalendarManager.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
 				9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */,
 				9E391A0720730A3B00492F54 /* BaseViewController.swift in Sources */,
+				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
+				9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
