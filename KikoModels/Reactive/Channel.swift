@@ -45,7 +45,7 @@ public class Channel<Value> {
         }
     }
 
-    public func notify(_ value: Value) {
+    public func broadcast(_ value: Value) {
         subscriptions.write { subscriptions in
             subscriptions = subscriptions.filter { $0.isValid }
             subscriptions.forEach { $0.notify(value) }

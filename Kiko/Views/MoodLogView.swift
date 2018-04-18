@@ -4,7 +4,9 @@ import KikoModels
 
 class MoodLogView: UIView {
 
-    let ringButtonChannel = Channel<UIControlEvents>()
+    let ringButtonTapped = Channel<UIControlEvents>()
+    let wavesButtonTapped = Channel<UIControlEvents>()
+    let logButtonTapped = Channel<UIControlEvents>()
 
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private let greetingLabel = UILabel()
@@ -41,9 +43,11 @@ class MoodLogView: UIView {
     }
 
     @objc
-    private func notifyRingButtonTappedEvent() {
-        ringButtonChannel.notify(UIControlEvents.touchUpInside)
-    }
+    private func notifyRingButtonTappedEvent() { ringButtonTapped.broadcast(UIControlEvents.touchUpInside) }
+    @objc
+    private func notifyWavesButtonTappedEvent() { wavesButtonTapped.broadcast(UIControlEvents.touchUpInside) }
+    @objc
+    private func notifyLogButtonTappedEvent() { logButtonTapped.broadcast(UIControlEvents.touchUpInside) }
 
     private func configureWavesButton() {
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
@@ -52,6 +56,7 @@ class MoodLogView: UIView {
         addSubview(wavesButton)
         wavesButton.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -20).isActive = true
         wavesButton.topAnchor.constraint(equalTo: safeTopAnchor, constant: 20).isActive = true
+        wavesButton.addTarget(self, action: #selector(notifyWavesButtonTappedEvent), for: .touchUpInside)
     }
 
     private func configureCalendarView() {
@@ -190,6 +195,7 @@ class MoodLogView: UIView {
             logButton.widthAnchor.constraint(equalToConstant: 74),
             logButton.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -30)
         ])
+        logButton.addTarget(self, action: #selector(notifyLogButtonTappedEvent), for: .touchUpInside)
     }
 
     private func configure() {

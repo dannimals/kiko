@@ -29,8 +29,20 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func setupBindings() {
-        moodLogView.ringButtonChannel.subscribe(self) { _ in
+        moodLogView
+            .ringButtonTapped
+            .subscribe(self) { _ in
             print("tapped ring button")
+        }
+        moodLogView
+            .wavesButtonTapped
+            .subscribe(self) { _ in
+                print("tapped waves button")
+        }
+        moodLogView
+            .logButtonTapped
+            .subscribe(self) { _ in
+                print("tapped log button")
         }
     }
 
