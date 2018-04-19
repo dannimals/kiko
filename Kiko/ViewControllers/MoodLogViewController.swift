@@ -36,8 +36,9 @@ class MoodLogViewController: BaseViewController {
         }
         moodLogView
             .wavesButtonTapped
-            .subscribe(self) { _ in
-                print("tapped waves button")
+            .subscribe(self) { [weak self] _ in
+                let wavesViewController = WavesViewController()
+                self?.navigationController?.pushViewController(wavesViewController, animated: true)
         }
         moodLogView
             .logButtonTapped

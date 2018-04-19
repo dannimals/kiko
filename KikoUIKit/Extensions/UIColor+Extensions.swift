@@ -10,6 +10,18 @@ public extension UIColor {
         self.init(red: components.r, green: components.g, blue: components.b, alpha: alpha)
     }
 
+    public static var backgroundBlue: UIColor {
+        return UIColor(hex: 0x7CC0EF)
+    }
+
+    public static var paleBlue: UIColor {
+        return UIColor(hex: 0xE3F4FF)
+    }
+
+    public static var waveBlue: UIColor {
+        return UIColor(hex: 0xBBE3FF).withAlphaComponent(0.68)
+    }
+
     public static var backgroundYellow: UIColor {
         return UIColor(hex: 0xFFEEB4).withAlphaComponent(0.97)
     }

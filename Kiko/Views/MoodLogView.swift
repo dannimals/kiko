@@ -42,12 +42,9 @@ class MoodLogView: UIView {
         ringButton.addTarget(self, action: #selector(notifyRingButtonTappedEvent), for: .touchUpInside)
     }
 
-    @objc
-    private func notifyRingButtonTappedEvent() { ringButtonTapped.broadcast(UIControlEvents.touchUpInside) }
-    @objc
-    private func notifyWavesButtonTappedEvent() { wavesButtonTapped.broadcast(UIControlEvents.touchUpInside) }
-    @objc
-    private func notifyLogButtonTappedEvent() { logButtonTapped.broadcast(UIControlEvents.touchUpInside) }
+    @objc private func notifyRingButtonTappedEvent() { ringButtonTapped.broadcast(UIControlEvents.touchUpInside) }
+    @objc private func notifyWavesButtonTappedEvent() { wavesButtonTapped.broadcast(UIControlEvents.touchUpInside) }
+    @objc private func notifyLogButtonTappedEvent() { logButtonTapped.broadcast(UIControlEvents.touchUpInside) }
 
     private func configureWavesButton() {
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
