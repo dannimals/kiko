@@ -15,7 +15,6 @@ class WavesViewController: UIViewController {
         let customView = UIView()
         customView.backgroundColor = UIColor.backgroundBlue
         let wavesView = AnimatedWaveView(frame: view.frame)
-//        wavesView.animateWaves()
         customView.addSubview(wavesView)
         self.view = customView
     }
@@ -39,7 +38,8 @@ final class AnimatedWaveView: UIView {
 
     private let baseRect = CGRect(x: 0, y: 0, width: 25, height: 25)
     private let scaleFactor: CGFloat = 1.25
-    private let waves: [CAShapeLayer] = []
+    private var waveLayers: [CAShapeLayer] = []
+    private var totalDuration: CGFloat = 2.0
 
     public func animateWaves() {
         DispatchQueue.main.async {
@@ -51,9 +51,47 @@ final class AnimatedWaveView: UIView {
         super.init(frame: frame)
 
         createWaves()
+        addWaveAnimations()
     }
 
-    private func createWaves() {
+    func addWaveAnimations() {
+        let countOfWaves = waveLayers.count
+        let div = totalDuration / CGFloat(countOfWaves)
+        for (i, waveLayer) in waveLayers.enumerated() {
+            let delay = Double(totalDuration) - Double(countOfWaves - i) * Double(div)
+            let duration = Double(totalDuration) - delay
+            let animation = createFadeAnimation(delay: delay, duration: duration)
+            waveLayer.add(animation, forKey: nil)
+        }
+    }
+
+    private func createFadeAnimation(delay: Double, duration: Double) -> CABasicAnimation {
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 1
+        fadeAnimation.toValue = 0
+        fadeAnimation.autoreverses = true
+        fadeAnimation.repeatCount = .infinity
+        fadeAnimation.duration = duration
+        fadeAnimation.beginTime = CACurrentMediaTime() + delay
+
+        return fadeAnimation
+    }
+
+    func createWaves() {
+        layer.masksToBounds = true
+        var i = 1.0
+        let baseDiameter = 150.0
+        var rect = CGRect(x: 0, y: 0, width: baseDiameter, height: baseDiameter)
+        while frame.contains(rect) {
+            let waveLayer = createWaveLayer(rect: rect)
+            layer.addSublayer(waveLayer)
+            waveLayers.append(waveLayer)
+            i += 0.15
+            rect = CGRect(x: 0, y: 0, width: baseDiameter * i, height: baseDiameter * i)
+        }
+    }
+
+    private func createReplicatorWaves() {
         let baseRect = CGRect(x: 0, y: 0, width: 200, height: 200)
 
         let waveLayer = CALayer()
@@ -63,18 +101,23 @@ final class AnimatedWaveView: UIView {
         waveLayer.borderWidth = 1.0
         waveLayer.cornerRadius = waveLayer.bounds.height / 2
 
-        let fadeOut = CABasicAnimation(keyPath: "opacity")
-        fadeOut.fromValue = 1
-        fadeOut.toValue = 0
-        fadeOut.duration = 1
-        fadeOut.repeatCount = Float.greatestFiniteMagnitude
-        waveLayer.add(fadeOut, forKey: nil)
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 1
+        fadeAnimation.toValue = 0
+        fadeAnimation.duration = 2
+        fadeAnimation.autoreverses = true
+        fadeAnimation.repeatCount = .infinity
+        waveLayer.add(fadeAnimation, forKey: nil)
 
         let replicatorLayer = CAReplicatorLayer()
         replicatorLayer.addSublayer(waveLayer)
         replicatorLayer.frame = frame
+        replicatorLayer.masksToBounds = true
         replicatorLayer.instanceCount = 13
         replicatorLayer.instanceTransform = CATransform3DMakeScale(1.1, 1.1, 1)
+
+        let delay = TimeInterval(0.1)
+        replicatorLayer.instanceDelay = delay
         layer.addSublayer(replicatorLayer)
     }
 
