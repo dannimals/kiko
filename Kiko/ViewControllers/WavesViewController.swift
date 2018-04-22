@@ -42,37 +42,42 @@ final class AnimatedWaveView: UIView {
     private var totalDuration: CGFloat = 2.0
 
     public func animateWaves() {
-        DispatchQueue.main.async {
-            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.addAnimatedCurve), userInfo: nil, repeats: true)
-        }
+//        DispatchQueue.main.async {
+//            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.addAnimatedCurve), userInfo: nil, repeats: true)
+//        }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         createWaves()
-        addWaveAnimations()
-    }
-
-    func addWaveAnimations() {
-        let countOfWaves = waveLayers.count
-        let div = totalDuration / CGFloat(countOfWaves)
-        for (i, waveLayer) in waveLayers.enumerated() {
-            let delay = Double(totalDuration) - Double(countOfWaves - i) * Double(div)
-            let duration = Double(totalDuration) - delay
-            let animation = createFadeAnimation(delay: delay, duration: duration)
-            waveLayer.add(animation, forKey: nil)
+        let totalDuration = 2.0
+        let waveCount = waveLayers.count
+        let div = totalDuration / Double(waveCount)
+        for (i, wave) in waveLayers.enumerated() {
+            let fadeOutDelay = Double(totalDuration) - Double(waveCount - i) * Double(div)
+            let fadeInDelay = Double(totalDuration) - fadeOutDelay
+            addFadeOutAnimation(to: wave, duration: totalDuration, delay: fadeOutDelay)
         }
     }
 
-    private func createFadeAnimation(delay: Double, duration: Double) -> CABasicAnimation {
+    func addFadeOutAnimation(to wave: CAShapeLayer, duration: Double, delay: Double) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock { wave.opacity = 0 }
+        let fadeAnimation = createFadeOutAnimation(delay: delay, duration: duration)
+        wave.add(fadeAnimation, forKey: "opacity")
+        wave.opacity = 0
+        CATransaction.commit()
+
+    }
+
+    private func createFadeOutAnimation(delay: Double, duration: Double) -> CABasicAnimation {
         let fadeAnimation = CABasicAnimation(keyPath: "opacity")
         fadeAnimation.fromValue = 1
         fadeAnimation.toValue = 0
-        fadeAnimation.autoreverses = true
-        fadeAnimation.repeatCount = .infinity
         fadeAnimation.duration = duration
         fadeAnimation.beginTime = CACurrentMediaTime() + delay
+        fadeAnimation.fillMode = kCAFillModeBackwards
 
         return fadeAnimation
     }
@@ -82,69 +87,13 @@ final class AnimatedWaveView: UIView {
         var i = 1.0
         let baseDiameter = 150.0
         var rect = CGRect(x: 0, y: 0, width: baseDiameter, height: baseDiameter)
-        while frame.contains(rect) {
+        while i < 3 { //frame.contains(rect) {
             let waveLayer = createWaveLayer(rect: rect)
             layer.addSublayer(waveLayer)
             waveLayers.append(waveLayer)
-            i += 0.15
+            i += 1
             rect = CGRect(x: 0, y: 0, width: baseDiameter * i, height: baseDiameter * i)
         }
-    }
-
-    private func createReplicatorWaves() {
-        let baseRect = CGRect(x: 0, y: 0, width: 200, height: 200)
-
-        let waveLayer = CALayer()
-        waveLayer.frame = baseRect
-        waveLayer.position = center
-        waveLayer.borderColor = UIColor.paleBlue.cgColor
-        waveLayer.borderWidth = 1.0
-        waveLayer.cornerRadius = waveLayer.bounds.height / 2
-
-        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeAnimation.fromValue = 1
-        fadeAnimation.toValue = 0
-        fadeAnimation.duration = 2
-        fadeAnimation.autoreverses = true
-        fadeAnimation.repeatCount = .infinity
-        waveLayer.add(fadeAnimation, forKey: nil)
-
-        let replicatorLayer = CAReplicatorLayer()
-        replicatorLayer.addSublayer(waveLayer)
-        replicatorLayer.frame = frame
-        replicatorLayer.masksToBounds = true
-        replicatorLayer.instanceCount = 13
-        replicatorLayer.instanceTransform = CATransform3DMakeScale(1.1, 1.1, 1)
-
-        let delay = TimeInterval(0.1)
-        replicatorLayer.instanceDelay = delay
-        layer.addSublayer(replicatorLayer)
-    }
-
-    @objc private func addAnimatedCurve() {
-        let waveLayer = createWaveLayer(rect: baseRect)
-        layer.addSublayer(waveLayer)
-        animateWaveLayer(waveLayer)
-    }
-
-    private func animateWaveLayer(_ waveLayer: CAShapeLayer) {
-        let finalRect = bounds.applying(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
-        let finalPath = UIBezierPath(ovalIn: finalRect)
-        let pathAnimation = CABasicAnimation(keyPath: "path")
-        pathAnimation.fromValue = waveLayer.path
-        pathAnimation.toValue = finalPath.cgPath
-
-        let positionAnimation = CABasicAnimation(keyPath: "bounds")
-        positionAnimation.fromValue = waveLayer.bounds
-        positionAnimation.toValue = finalRect
-
-        let scaleWave = CAAnimationGroup()
-        scaleWave.animations = [pathAnimation, positionAnimation]
-        scaleWave.duration = 10
-        scaleWave.setValue(waveLayer, forKey: "waveLayer")
-        scaleWave.delegate = self
-        scaleWave.isRemovedOnCompletion = true
-        waveLayer.add(scaleWave, forKey: "scale_wave_animation")
     }
 
     private func createWaveLayer(rect: CGRect) -> CAShapeLayer {
@@ -163,12 +112,4 @@ final class AnimatedWaveView: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-}
-
-extension AnimatedWaveView: CAAnimationDelegate {
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if let waveLayer = anim.value(forKey: "waveLayer") as? CAShapeLayer {
-            waveLayer.removeFromSuperlayer()
-        }
-    }
 }
