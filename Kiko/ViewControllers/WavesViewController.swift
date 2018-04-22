@@ -42,42 +42,58 @@ final class AnimatedWaveView: UIView {
     private var totalDuration: CGFloat = 2.0
 
     public func animateWaves() {
-//        DispatchQueue.main.async {
-//            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(self.addAnimatedCurve), userInfo: nil, repeats: true)
-//        }
+        DispatchQueue.main.async {
+            Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(self.animateCurves), userInfo: nil, repeats: true)
+        }
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         createWaves()
+        animateCurves()
+        animateWaves()
+    }
+
+    @objc func animateCurves() {
         let totalDuration = 2.0
         let waveCount = waveLayers.count
         let div = totalDuration / Double(waveCount)
         for (i, wave) in waveLayers.enumerated() {
             let fadeOutDelay = Double(totalDuration) - Double(waveCount - i) * Double(div)
-            let fadeInDelay = Double(totalDuration) - fadeOutDelay
-            addFadeOutAnimation(to: wave, duration: totalDuration, delay: fadeOutDelay)
+            addFadeOutAnimation(to: wave, duration: totalDuration, fadeOutDelay: fadeOutDelay)
         }
     }
 
-    func addFadeOutAnimation(to wave: CAShapeLayer, duration: Double, delay: Double) {
+    func addFadeOutAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double) {
         CATransaction.begin()
-        CATransaction.setCompletionBlock { wave.opacity = 0 }
-        let fadeAnimation = createFadeOutAnimation(delay: delay, duration: duration)
-        wave.add(fadeAnimation, forKey: "opacity")
+        let fadeOutAnimation = createFadeAnimation(delay: fadeOutDelay, duration: duration, fromValue: 1, toValue: 0)
+        CATransaction.setCompletionBlock {
+            let fadeInDelay = duration - fadeOutDelay
+            self.addFadeInAnimation(to: wave, duration: duration, fadeInDelay: fadeInDelay)
+        }
+        fadeOutAnimation.fillMode = kCAFillModeBackwards
+        wave.add(fadeOutAnimation, forKey: "opacity")
         wave.opacity = 0
         CATransaction.commit()
-
     }
 
-    private func createFadeOutAnimation(delay: Double, duration: Double) -> CABasicAnimation {
+    func addFadeInAnimation(to wave: CAShapeLayer, duration: Double, fadeInDelay: Double) {
+        CATransaction.begin()
+        let fadeInAnimation = createFadeAnimation(delay: fadeInDelay, duration: duration, fromValue: 0, toValue: 1)
+        fadeInAnimation.fillMode = kCAFillModeBackwards
+        wave.add(fadeInAnimation, forKey: "opacity")
+        wave.opacity = 1
+        CATransaction.commit()
+    }
+
+    private func createFadeAnimation(delay: Double, duration: Double, fromValue: Int, toValue: Int) -> CABasicAnimation {
         let fadeAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeAnimation.fromValue = 1
-        fadeAnimation.toValue = 0
+        fadeAnimation.fromValue = fromValue
+        fadeAnimation.toValue = toValue
         fadeAnimation.duration = duration
         fadeAnimation.beginTime = CACurrentMediaTime() + delay
-        fadeAnimation.fillMode = kCAFillModeBackwards
+//        fadeAnimation.repeatCount = Float.infinity
 
         return fadeAnimation
     }
