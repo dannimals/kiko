@@ -41,61 +41,48 @@ final class AnimatedWaveView: UIView {
     private var waveLayers: [CAShapeLayer] = []
     private var totalDuration: CGFloat = 2.0
 
-    public func animateWaves() {
-        DispatchQueue.main.async {
-            Timer.scheduledTimer(timeInterval: 8, target: self, selector: #selector(self.animateCurves), userInfo: nil, repeats: true)
-        }
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         createWaves()
         animateCurves()
-        animateWaves()
     }
 
     @objc func animateCurves() {
-        let totalDuration = 2.0
+        let duration = 2.0
         let waveCount = waveLayers.count
-        let div = totalDuration / Double(waveCount)
+        let div = duration / Double(waveCount)
         for (i, wave) in waveLayers.enumerated() {
-            let fadeOutDelay = Double(totalDuration) - Double(waveCount - i) * Double(div)
-            addFadeOutAnimation(to: wave, duration: totalDuration, fadeOutDelay: fadeOutDelay)
-        }
-    }
-
-    func addFadeOutAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double) {
-        CATransaction.begin()
-        let fadeOutAnimation = createFadeAnimation(delay: fadeOutDelay, duration: duration, fromValue: 1, toValue: 0)
-        CATransaction.setCompletionBlock {
+            let fadeOutDelay = div * Double(i)
             let fadeInDelay = duration - fadeOutDelay
-            self.addFadeInAnimation(to: wave, duration: duration, fadeInDelay: fadeInDelay)
+            addAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
         }
-        fadeOutAnimation.fillMode = kCAFillModeBackwards
-        wave.add(fadeOutAnimation, forKey: "opacity")
-        wave.opacity = 0
-        CATransaction.commit()
     }
 
-    func addFadeInAnimation(to wave: CAShapeLayer, duration: Double, fadeInDelay: Double) {
-        CATransaction.begin()
-        let fadeInAnimation = createFadeAnimation(delay: fadeInDelay, duration: duration, fromValue: 0, toValue: 1)
-        fadeInAnimation.fillMode = kCAFillModeBackwards
-        wave.add(fadeInAnimation, forKey: "opacity")
-        wave.opacity = 1
-        CATransaction.commit()
-    }
+    func addAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
 
-    private func createFadeAnimation(delay: Double, duration: Double, fromValue: Int, toValue: Int) -> CABasicAnimation {
-        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeAnimation.fromValue = fromValue
-        fadeAnimation.toValue = toValue
-        fadeAnimation.duration = duration
-        fadeAnimation.beginTime = CACurrentMediaTime() + delay
-//        fadeAnimation.repeatCount = Float.infinity
+        let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeOutAnimation.fromValue = 1
+        fadeOutAnimation.toValue = 0
+        fadeOutAnimation.duration = duration - fadeOutDelay
+        fadeOutAnimation.beginTime = CACurrentMediaTime() + fadeOutDelay
+        fadeOutAnimation.fillMode = kCAFillModeForwards
+        fadeOutAnimation.isRemovedOnCompletion = false
 
-        return fadeAnimation
+        let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeInAnimation.fromValue = 0
+        fadeInAnimation.toValue = 1
+        fadeInAnimation.duration = duration - fadeInDelay
+        fadeInAnimation.beginTime = duration + fadeInDelay
+        fadeInAnimation.fillMode = kCAFillModeForwards
+        fadeInAnimation.isRemovedOnCompletion = false
+
+        let groupAnimation = CAAnimationGroup()
+        groupAnimation.duration = duration * 2 + 0.1
+        groupAnimation.repeatCount = Float.infinity
+
+        groupAnimation.animations = [fadeOutAnimation, fadeInAnimation]
+        wave.add(groupAnimation, forKey: "animateOpacity")
     }
 
     func createWaves() {
@@ -118,9 +105,9 @@ final class AnimatedWaveView: UIView {
         waveLayer.bounds = rect
         waveLayer.frame = rect
         waveLayer.position = self.center
-        waveLayer.strokeColor = UIColor.waveBlue.cgColor
+        waveLayer.strokeColor = UIColor.blue.cgColor
         waveLayer.fillColor = UIColor.clear.cgColor
-        waveLayer.lineWidth = 1.0
+        waveLayer.lineWidth = 5.0
         waveLayer.path = circlePath.cgPath
         waveLayer.strokeStart = 0
         waveLayer.strokeEnd = 1
