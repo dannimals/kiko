@@ -4,13 +4,11 @@ import KikoUIKit
 
 class MoodLogViewController: BaseViewController {
     
-    private let calendarManager: CalendarManager
+    private let viewModel: MoodLogViewModel
     private var moodLogView: MoodLogView!
-    private var month: Month
 
-    required init(calendarManager: CalendarManager) {
-        self.calendarManager = calendarManager
-        month = calendarManager.currentMonth
+    required init(viewModel: MoodLogViewModel) {
+        self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -48,7 +46,7 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func displayCurrentWeek() {
-        moodLogView.updateMonth(month)
+        moodLogView.updateMonth(viewModel.displayedMonth)
         moodLogView.reloadCalendarWeekData()
     }
 
@@ -74,19 +72,19 @@ extension MoodLogViewController: UICollectionViewDataSource {
         let font: UIFont
         let textColor: UIColor
         if indexPath.row == 0 {
-            let shouldShowCircle = calendarManager.currentDay == calendarManager.beginWeekDate
+            let shouldShowCircle = viewModel.currentDay == viewModel.displayedStartOfWeekDay
             font = shouldShowCircle ? .customFont(ofSize: 16, weight: .heavy) : .customFont(ofSize: 14, weight: .medium)
             textColor = shouldShowCircle ? .salmonPink : .textDarkGrey
-            dayCell.configure(day: calendarManager.beginWeekDate, shouldShowBackgroundCircle: shouldShowCircle)
+            dayCell.configure(day: viewModel.displayedStartOfWeekDay, shouldShowBackgroundCircle: shouldShowCircle)
         } else {
-            let day = calendarManager.beginWeekDate + indexPath.row
-            let shouldShowCircle = day == calendarManager.currentDay
+            let day = viewModel.displayedStartOfWeekDay + indexPath.row
+            let shouldShowCircle = day == viewModel.currentDay
             dayCell.configure(day: day, shouldShowBackgroundCircle: shouldShowCircle)
 
             if shouldShowCircle {
                 font = .customFont(ofSize: 16, weight: .heavy)
                 textColor = .salmonPink
-            } else if day < calendarManager.currentDay {
+            } else if day < viewModel.currentDay {
                 font = .customFont(ofSize: 14, weight: .medium)
                 textColor = .textDarkGrey
             } else {
