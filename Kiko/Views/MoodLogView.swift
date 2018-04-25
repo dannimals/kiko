@@ -23,6 +23,10 @@ class MoodLogView: UIView {
         configure()
     }
 
+    func scrollToIndexPath(_ indexPath: IndexPath) {
+        calendarWeekView.datesCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
+    }
+
     func reloadCalendarWeekData() {
         calendarWeekView.datesCollectionView.reloadData()
     }

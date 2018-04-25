@@ -7,6 +7,8 @@ class MoodLogViewModel {
     private(set) var currentWeekDates: [Date] = []
     private(set) var nextWeekDates: [Date] = []
 
+    var displayedStartOfWeekDate: Date = unwrapOrElse(Date().startOfWeek, fallback: Date())
+
     var displayDates: [Date] {
         return lastWeekDates + currentWeekDates + nextWeekDates
     }
@@ -22,6 +24,11 @@ class MoodLogViewModel {
         self.calendarManager = calendarManager
         self.displayedMonth = calendarManager.currentMonth
         updateWeeksForDate(Date())
+    }
+
+    func index(of date: Date) -> Int{
+        let indexOfDate = unwrapOrElse(displayDates.index(of: date), fallback: 0)
+        return indexOfDate
     }
 
     func updateWeeksForDate(_ date: Date) {

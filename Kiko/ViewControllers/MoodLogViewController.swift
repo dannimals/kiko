@@ -18,12 +18,24 @@ class MoodLogViewController: BaseViewController {
 
         configureViews()
         setupBindings()
+        view.layoutIfNeeded()
+        scrollToCurrentWeek()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    private func scrollToCurrentWeek() {
+        let row = viewModel.index(of: viewModel.displayedStartOfWeekDate)
+        let indexPath = IndexPath(row: row, section: 0)
+        moodLogView.scrollToIndexPath(indexPath)
+    }
 
-        displayCurrentWeek()
+    private func scrollToNextWeek() {
+        let currentDisplayedStartOfWeekDate = viewModel.displayedStartOfWeekDate
+        viewModel.displayedStartOfWeekDate = currentDisplayedStartOfWeekDate.nextStartOfWeek
+        let row = viewModel.index(of: viewModel.displayedStartOfWeekDate)
+        let indexPath = IndexPath(row: row, section: 0)
+        moodLogView.scrollToIndexPath(indexPath)
+        viewModel.updateWeeksForDate(viewModel.displayedStartOfWeekDate)
+//        moodLogView.reloadCalendarWeekData()
     }
 
     private func setupBindings() {
@@ -45,11 +57,6 @@ class MoodLogViewController: BaseViewController {
         }
     }
 
-    private func displayCurrentWeek() {
-        moodLogView.updateMonth(viewModel.displayedMonth)
-        moodLogView.reloadCalendarWeekData()
-    }
-
     private func configureViews() {
         view.backgroundColor = .backgroundYellow
         moodLogView = MoodLogView(frame: view.frame)
@@ -58,6 +65,9 @@ class MoodLogViewController: BaseViewController {
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+
+    var contextOffSetX: CGFloat = 0
+
 }
 
 extension MoodLogViewController: UICollectionViewDataSource {
@@ -78,7 +88,15 @@ extension MoodLogViewController: UICollectionViewDataSource {
 
 extension MoodLogViewController: UICollectionViewDelegate {
 
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offSetX = scrollView.contentOffset.x
+            scrollToNextWeek()
+
+    }
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offSetX = scrollView.contentOffset.x
+        if offSetX > contextOffSetX {
+            scrollToNextWeek()
+        }
     }
 }

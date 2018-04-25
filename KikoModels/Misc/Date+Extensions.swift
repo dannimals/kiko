@@ -27,11 +27,11 @@ public extension Date {
         return lastSunday
     }
 
-    public var nextStartOfWeek: Date? {
+    public var nextStartOfWeek: Date {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
         dateComponents.day = 7
-        guard let startOfWeek = self.startOfWeek, let lastSunday = gregorianCalendar.date(byAdding: dateComponents, to: startOfWeek) else { return nil }
+        guard let startOfWeek = self.startOfWeek, let lastSunday = gregorianCalendar.date(byAdding: dateComponents, to: startOfWeek) else { return Date() }
         return lastSunday
     }
 
