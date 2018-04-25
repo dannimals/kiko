@@ -63,37 +63,22 @@ class MoodLogViewController: BaseViewController {
 extension MoodLogViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return viewModel.displayDates.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCollectionViewCell.identifier, for: indexPath) as? CalendarDayCollectionViewCell
             else { return UICollectionViewCell() }
-        let font: UIFont
-        let textColor: UIColor
-        if indexPath.row == 0 {
-            let shouldShowCircle = viewModel.currentDay == viewModel.displayedStartOfWeekDay
-            font = shouldShowCircle ? .customFont(ofSize: 16, weight: .heavy) : .customFont(ofSize: 14, weight: .medium)
-            textColor = shouldShowCircle ? .salmonPink : .textDarkGrey
-            dayCell.configure(day: viewModel.displayedStartOfWeekDay, shouldShowBackgroundCircle: shouldShowCircle)
-        } else {
-            let day = viewModel.displayedStartOfWeekDay + indexPath.row
-            let shouldShowCircle = day == viewModel.currentDay
-            dayCell.configure(day: day, shouldShowBackgroundCircle: shouldShowCircle)
 
-            if shouldShowCircle {
-                font = .customFont(ofSize: 16, weight: .heavy)
-                textColor = .salmonPink
-            } else if day < viewModel.currentDay {
-                font = .customFont(ofSize: 14, weight: .medium)
-                textColor = .textDarkGrey
-            } else {
-                font = .customFont(ofSize: 14, weight: .light)
-                textColor = .textLightGrey
-            }
-        }
-        dayCell.configureDayLabel(font: font, textColor: textColor)
-
+        let day = viewModel.dayForIndexPath(indexPath)
+        dayCell.configure(day: day)
         return dayCell
+    }
+}
+
+extension MoodLogViewController: UICollectionViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
     }
 }

@@ -2,10 +2,15 @@
 import KikoModels
 
 class MoodLogViewModel {
+    
+    private(set) var lastWeekDates: [Date] = []
+    private(set) var currentWeekDates: [Date] = []
+    private(set) var nextWeekDates: [Date] = []
 
-//    private(set) var lastStartOfWeekDay: Int
-//    private(set) var nextStartOfWeekDay: Int
-    private(set) var displayedStartOfWeekDay: Int
+    var displayDates: [Date] {
+        return lastWeekDates + currentWeekDates + nextWeekDates
+    }
+
     var currentDay: Int {
         return calendarManager.currentDay
     }
@@ -16,7 +21,47 @@ class MoodLogViewModel {
     init(calendarManager: CalendarManager) {
         self.calendarManager = calendarManager
         self.displayedMonth = calendarManager.currentMonth
-        self.displayedStartOfWeekDay = calendarManager.startOfWeekDay
-//        self.lastStartOfWeekDay = calendarManager.
+        updateWeeksForDate(Date())
     }
+
+    func updateWeeksForDate(_ date: Date) {
+        lastWeekDates = lastWeekDatesFrom(date)
+        currentWeekDates = currentWeekDatesFrom(date)
+        nextWeekDates = nextWeekDatesFrom(date)
+    }
+
+    func dayForIndexPath(_ indexPath: IndexPath) -> Int {
+        return displayDates[indexPath.row].day
+    }
+
+    func currentWeekDatesFrom(_ date: Date) -> [Date] {
+        var dates: [Date] = []
+        let startOfWeek = unwrapOrElse(date.startOfWeek, fallback: Date())
+        for i in 0..<7 {
+            let day = startOfWeek.dateFromAddingDays(i)
+            dates.append(day)
+        }
+        return dates
+    }
+
+    private func lastWeekDatesFrom(_ date: Date) -> [Date] {
+        var dates: [Date] = []
+        let startOfWeek = unwrapOrElse(date.lastStartOfWeek, fallback: Date())
+        for i in 0..<7 {
+            let day = startOfWeek.dateFromAddingDays(i)
+            dates.append(day)
+        }
+        return dates
+    }
+
+    private func nextWeekDatesFrom(_ date: Date) -> [Date] {
+        var dates: [Date] = []
+        let startOfWeek = unwrapOrElse(date.nextStartOfWeek, fallback: Date())
+        for i in 0..<7 {
+            let day = startOfWeek.dateFromAddingDays(i)
+            dates.append(day)
+        }
+        return dates
+    }
+
 }

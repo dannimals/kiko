@@ -36,6 +36,13 @@ final class CalendarManager {
         return 366
     }
 
+    func lastStartOfWeekDay(date: Date) -> Int {
+        guard let startofWeekDate = date.startOfWeek else { return 0 }
+        let component = Calendar.Component.day
+        let day = Calendar.current.component(component, from: startofWeekDate)
+        return day
+    }
+
     func monthBefore(_ month: Month) -> Month {
         guard month != .january else { return .december }
 

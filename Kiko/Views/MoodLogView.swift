@@ -18,7 +18,7 @@ class MoodLogView: UIView {
     private var scrollIndicator = UIStackView()
     private var scrollIndicatorCircles = [UIView]()
 
-    func configure(dataSource: UICollectionViewDataSource) {
+    func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
         calendarWeekView.configure(dataSource: dataSource)
         configure()
     }
