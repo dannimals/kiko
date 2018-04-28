@@ -11,8 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        let calendarManager = CalendarManager()
-        let moodLogViewModel = MoodLogViewModel(calendarManager: calendarManager)
+        let moodLogViewModel = MoodLogViewModel()
         let moodLogViewController = MoodLogViewController(viewModel: moodLogViewModel)
         let navigationController = UINavigationController(rootViewController: moodLogViewController)
         window?.rootViewController = navigationController

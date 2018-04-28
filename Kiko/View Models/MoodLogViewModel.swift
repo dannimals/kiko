@@ -10,13 +10,9 @@ class MoodLogViewModel {
     static let offset = 7
 
     var displayedStartOfWeekDate: Date = unwrapOrElse(Date().startOfWeek, fallback: Date())
-    var currentDay: Int { return calendarManager.currentDay }
     var displayedMonth: Month { return displayedStartOfWeekDate.month }
 
-    private let calendarManager: CalendarManager
-
-    init(calendarManager: CalendarManager) {
-        self.calendarManager = calendarManager
+    init() {
         updateWeeksForDate(Date())
         update(dates: lastWeekDates, offset: -7)
         update(dates: currentWeekDates, offset: 0)

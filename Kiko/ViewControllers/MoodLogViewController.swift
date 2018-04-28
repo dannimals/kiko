@@ -90,9 +90,10 @@ extension MoodLogViewController: UICollectionViewDelegate {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offSetX = scrollView.contentOffset.x
-            scrollToNextWeek()
+        scrollToNextWeek()
 
     }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offSetX = scrollView.contentOffset.x
         if offSetX > contextOffSetX {
