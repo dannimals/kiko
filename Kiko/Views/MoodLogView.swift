@@ -27,8 +27,9 @@ class MoodLogView: UIView {
         calendarWeekView.datesCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
 
-    func reloadCalendarWeekData() {
-        calendarWeekView.datesCollectionView.reloadData()
+    func insertItemsAt(_ indexes: [Int]) {
+        let indexPaths = indexes.map { IndexPath(row: $0, section: 0) }
+        calendarWeekView.datesCollectionView.insertItems(at: indexPaths)
     }
 
     func updateMonth(_ month: Month) {

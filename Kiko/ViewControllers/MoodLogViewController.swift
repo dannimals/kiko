@@ -23,19 +23,19 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func scrollToCurrentWeek() {
-        let row = viewModel.index(of: viewModel.displayedStartOfWeekDate)
+        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate) 
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
+        moodLogView.updateMonth(viewModel.displayedStartOfWeekDate.month)
     }
 
     private func scrollToNextWeek() {
-        let currentDisplayedStartOfWeekDate = viewModel.displayedStartOfWeekDate
-        viewModel.displayedStartOfWeekDate = currentDisplayedStartOfWeekDate.nextStartOfWeek
-        let row = viewModel.index(of: viewModel.displayedStartOfWeekDate)
+        viewModel.scrollToNextWeek()
+        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)
         let indexPath = IndexPath(row: row, section: 0)
+        moodLogView.insertItemsAt(viewModel.indexes(of: viewModel.nextWeekDates))
         moodLogView.scrollToIndexPath(indexPath)
-        viewModel.updateWeeksForDate(viewModel.displayedStartOfWeekDate)
-//        moodLogView.reloadCalendarWeekData()
+        moodLogView.updateMonth(viewModel.displayedMonth)
     }
 
     private func setupBindings() {
@@ -73,14 +73,14 @@ class MoodLogViewController: BaseViewController {
 extension MoodLogViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.displayDates.count
+        return viewModel.datesIndexesDict.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCollectionViewCell.identifier, for: indexPath) as? CalendarDayCollectionViewCell
             else { return UICollectionViewCell() }
 
-        let day = viewModel.dayForIndexPath(indexPath)
+        let day = viewModel.day(for: indexPath)
         dayCell.configure(day: day)
         return dayCell
     }

@@ -6,9 +6,11 @@ public extension Date {
         return gregorianCalendar.component(.day, from: self)
     }
 
-    public var month: Int {
+    public var month: Month {
         let gregorianCalendar = Calendar(identifier: .gregorian)
-        return gregorianCalendar.component(.month, from: self)
+        let monthRaw = gregorianCalendar.component(.month, from: self)
+        guard let month = Month(rawValue: monthRaw) else { return .january }
+        return month
     }
 
     public func dateFromAddingDays(_ days: Int) -> Date {

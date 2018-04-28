@@ -17,14 +17,6 @@ final class CalendarManager {
         return day
     }
 
-    var currentMonth: Month {
-        let date = Date()
-        let calendar = Calendar.current
-        let currentMonth = calendar.component(.month, from: date)
-        guard let month = Month(rawValue: currentMonth) else { return .january }
-        return month
-    }
-
     var currentDay: Int {
         let date = Date()
         let calendar = Calendar.current
