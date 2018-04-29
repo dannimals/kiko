@@ -215,6 +215,15 @@ class MoodLogView: UIView {
 
 extension MoodLogView: UIScrollViewDelegate {
 
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offSetX = scrollView.contentOffset.x
+        let width = scrollView.bounds.width
+        let index = Int(offSetX / width)
+        scrollToMoodImageForSelectedIndex(index)
+        updateScrollIndicatorForSelectedIndex(index)
+        updateViewColorsForSelectedIndex(index)
+    }
+
     private func scrollToMoodImageForSelectedIndex(_ index: Int) {
         guard index < moodImages.count else { return }
 
@@ -247,15 +256,6 @@ extension MoodLogView: UIScrollViewDelegate {
             self.logButton.highlightedBackgroundColor = setting.selectedAccessoryColor
             self.wavesButton.tintColor = setting.accessoryColor
         }
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let offSetX = scrollView.contentOffset.x
-        let width = scrollView.bounds.width
-        let index = Int(offSetX / width)
-        scrollToMoodImageForSelectedIndex(index)
-        updateScrollIndicatorForSelectedIndex(index)
-        updateViewColorsForSelectedIndex(index)
     }
 
     class LogButton: UIButton {

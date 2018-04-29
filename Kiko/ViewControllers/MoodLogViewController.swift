@@ -6,6 +6,7 @@ class MoodLogViewController: BaseViewController {
     
     private let viewModel: MoodLogViewModel
     private var moodLogView: MoodLogView!
+    private var isUserScrolled = false
 
     required init(viewModel: MoodLogViewModel) {
         self.viewModel = viewModel
@@ -27,6 +28,7 @@ class MoodLogViewController: BaseViewController {
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
         moodLogView.updateMonth(viewModel.displayedStartOfWeekDate.month)
+        isUserScrolled = true
     }
 
     private func scrollToNextWeek() {
@@ -66,7 +68,7 @@ class MoodLogViewController: BaseViewController {
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 
-    var contextOffSetX: CGFloat = 0
+    var contentOffSetX: CGFloat = 0
 
 }
 
@@ -88,16 +90,20 @@ extension MoodLogViewController: UICollectionViewDataSource {
 
 extension MoodLogViewController: UICollectionViewDelegate {
 
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let offSetX = scrollView.contentOffset.x
-        scrollToNextWeek()
-
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard isUserScrolled else { return }
+        contentOffSetX = scrollView.contentOffset.x
     }
 
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let offSetX = scrollView.contentOffset.x
-        if offSetX > contextOffSetX {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard isUserScrolled && scrollView.panGestureRecognizer.isEnabled else { return }
+        if scrollView.contentOffset.x > contentOffSetX { // + scrollView.bounds.width / 4 {
+            scrollView.panGestureRecognizer.isEnabled = false
             scrollToNextWeek()
         }
+    }
+
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        scrollView.panGestureRecognizer.isEnabled = true
     }
 }
