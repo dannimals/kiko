@@ -24,7 +24,7 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func scrollToCurrentWeek() {
-        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate) 
+        guard let row = viewModel.index(for: viewModel.displayedStartOfWeekDate) else { return }
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
         moodLogView.updateMonth(viewModel.displayedStartOfWeekDate.month)
@@ -32,10 +32,23 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func scrollToNextWeek() {
-        viewModel.scrollToNextWeek()
-        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)
+        viewModel.loadNextWeek()
+        if viewModel.hasNewDates {
+            moodLogView.insertItemsAt(viewModel.indexes(of: viewModel.nextWeekDates))
+        }
+        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)!
         let indexPath = IndexPath(row: row, section: 0)
-        moodLogView.insertItemsAt(viewModel.indexes(of: viewModel.nextWeekDates))
+        moodLogView.scrollToIndexPath(indexPath)
+        moodLogView.updateMonth(viewModel.displayedMonth)
+    }
+
+    private func scrollToLastWeek() {
+        viewModel.loadLastWeek()
+        if viewModel.hasNewDates {
+            moodLogView.insertItemsAt(viewModel.indexes(of: viewModel.lastWeekDates))
+        }
+        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)!
+        let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
         moodLogView.updateMonth(viewModel.displayedMonth)
     }
@@ -100,6 +113,9 @@ extension MoodLogViewController: UICollectionViewDelegate {
         if scrollView.contentOffset.x > contentOffSetX { // + scrollView.bounds.width / 4 {
             scrollView.panGestureRecognizer.isEnabled = false
             scrollToNextWeek()
+        } else {
+            scrollView.panGestureRecognizer.isEnabled = false
+            scrollToLastWeek()
         }
     }
 
