@@ -7,6 +7,7 @@ class MoodLogViewModel {
     private(set) var currentWeekDates: [Date] = []
     private(set) var nextWeekDates: [Date] = []
     private(set) var datesIndexesDict: [Date: Int] = [:]
+    private(set) var earliestDate = Date()
     static let offset = 7
 
     private(set) var displayedStartOfWeekDate: Date = unwrapOrElse(Date().startOfWeek, fallback: Date())
@@ -21,20 +22,22 @@ class MoodLogViewModel {
     }
 
     func index(for date: Date) -> Int? {
-        guard let index = datesIndexesDict[date], let firstIndex = datesIndexesDict[date.startOfWeek!] else { return nil }
-        return mappedIndex(index, firstIndex: firstIndex)
+        guard let index = datesIndexesDict[date], let firstIndex = datesIndexesDict[earliestDate] else { return nil }
+        return index - firstIndex
     }
 
     func day(for indexPath: IndexPath) -> Int {
-        let indexPathWithOffset = IndexPath(row: indexPath.row - 7, section: 0)
-        guard let dateIndex = datesIndexesDict.first(where: { $0.value == indexPathWithOffset.row }) else { return 0 }
-        return dateIndex.key.day
+        let dateForIndexPath = earliestDate.dateFromAddingDays(indexPath.row)
+        return dateForIndexPath.day
     }
 
     private func updateWeeksForDate(_ date: Date) {
         lastWeekDates = lastWeekDatesFrom(date)
         currentWeekDates = currentWeekDatesFrom(date)
         nextWeekDates = nextWeekDatesFrom(date)
+        if let lastWeekDate = lastWeekDates.first, lastWeekDate < earliestDate {
+            earliestDate = lastWeekDate
+        }
     }
 
     func loadNextWeek() {
@@ -55,32 +58,23 @@ class MoodLogViewModel {
         displayedStartOfWeekDate = date
     }
 
-    func indexes(of dates: [Date]) -> [Int] {
-        var indexes: [Int] = []
-        for date in dates {
-            guard let index = datesIndexesDict[date] else { continue }
-            indexes.append(mappedIndex(index, firstIndex: datesIndexesDict[dates.first!]!))
-        }
-        return indexes
-    }
-
-    private func mappedIndex(_ index: Int, firstIndex: Int) -> Int {
-        if index >= 0 {
-            return index + MoodLogViewModel.offset
-        }
-        return index - firstIndex + MoodLogViewModel.offset - 1
-    }
-
     private func updateDatesIndexes(dates: [Date], offset: Int) {
         hasNewDates = false
 
-        for (i, date) in dates.enumerated() {
-            guard datesIndexesDict[date] == nil else { continue }
-            if offset > 0 {
-                datesIndexesDict[date] = i + offset
-            } else {
-                datesIndexesDict[date] = i - MoodLogViewModel.offset + offset
+        var i = -7
+        let initialDates = lastWeekDates + currentWeekDates + nextWeekDates
+        if datesIndexesDict.count == 0 {
+            for date in initialDates {
+                datesIndexesDict[date] = i
+                i += 1
             }
+        }
+        for date in dates {
+            guard datesIndexesDict[date] == nil else { return }
+            let indexOfEarliestDate = datesIndexesDict[earliestDate] ?? 0
+            //TODO there's a bug
+            let offset = earliestDate.daysSince(date)
+            datesIndexesDict[date] = indexOfEarliestDate + offset
             hasNewDates = true
         }
     }

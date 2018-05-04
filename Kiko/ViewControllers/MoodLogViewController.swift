@@ -34,7 +34,7 @@ class MoodLogViewController: BaseViewController {
     private func scrollToNextWeek() {
         viewModel.loadNextWeek()
         if viewModel.hasNewDates {
-            moodLogView.insertItemsAt(viewModel.indexes(of: viewModel.nextWeekDates))
+            moodLogView.insertItemsAt(lastSevenIndexPaths)
         }
         let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)!
         let indexPath = IndexPath(row: row, section: 0)
@@ -42,10 +42,27 @@ class MoodLogViewController: BaseViewController {
         moodLogView.updateMonth(viewModel.displayedMonth)
     }
 
+    private lazy var firstSevenIndexPaths: [IndexPath] = {
+        var indexPaths = [IndexPath]()
+        for i in 0..<7 {
+            indexPaths.append(IndexPath(row: i, section: 0))
+        }
+        return indexPaths
+    }()
+
+    private lazy var lastSevenIndexPaths: [IndexPath] = {
+        var indexPaths = [IndexPath]()
+        let itemCount = viewModel.datesIndexesDict.count - 7
+        for i in 0..<7 {
+            indexPaths.append(IndexPath(row: i + itemCount, section: 0))
+        }
+        return indexPaths
+    }()
+
     private func scrollToLastWeek() {
         viewModel.loadLastWeek()
         if viewModel.hasNewDates {
-            moodLogView.insertItemsAt(viewModel.indexes(of: viewModel.lastWeekDates))
+            moodLogView.insertItemsAt(firstSevenIndexPaths)
         }
         let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)!
         let indexPath = IndexPath(row: row, section: 0)

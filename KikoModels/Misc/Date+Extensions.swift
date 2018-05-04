@@ -13,6 +13,11 @@ public extension Date {
         return month
     }
 
+    public func daysSince(_ date: Date) -> Int {
+        let gregorianCalendar = Calendar(identifier: .gregorian)
+        return gregorianCalendar.dateComponents([.day], from: self, to: date).day ?? 0
+    }
+
     public func dateFromAddingDays(_ days: Int) -> Date {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
