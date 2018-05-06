@@ -22,7 +22,7 @@
 		9E39196C2070856500492F54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39196B2070856500492F54 /* AppDelegate.swift */; };
 		9E3919732070856500492F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919722070856500492F54 /* Assets.xcassets */; };
 		9E3919762070856500492F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919742070856500492F54 /* LaunchScreen.storyboard */; };
-		9E3919812070856500492F54 /* KikoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3919802070856500492F54 /* KikoTests.swift */; };
+		9E3919812070856500492F54 /* MoodLogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3919802070856500492F54 /* MoodLogViewModelTests.swift */; };
 		9E3919CA207305F800492F54 /* KikoModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3919C1207305F800492F54 /* KikoModels.framework */; };
 		9E3919D1207305F800492F54 /* KikoModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3919D0207305F800492F54 /* KikoModelsTests.swift */; };
 		9E3919D3207305F800492F54 /* KikoModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E3919C3207305F800492F54 /* KikoModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,7 +130,7 @@
 		9E3919752070856500492F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E3919772070856500492F54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E39197C2070856500492F54 /* KikoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KikoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E3919802070856500492F54 /* KikoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KikoTests.swift; sourceTree = "<group>"; };
+		9E3919802070856500492F54 /* MoodLogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogViewModelTests.swift; sourceTree = "<group>"; };
 		9E3919822070856500492F54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E3919C1207305F800492F54 /* KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3919C3207305F800492F54 /* KikoModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KikoModels.h; sourceTree = "<group>"; };
@@ -283,7 +283,7 @@
 		9E39197F2070856500492F54 /* KikoTests */ = {
 			isa = PBXGroup;
 			children = (
-				9E3919802070856500492F54 /* KikoTests.swift */,
+				9E3919802070856500492F54 /* MoodLogViewModelTests.swift */,
 				9E3919822070856500492F54 /* Info.plist */,
 			);
 			path = KikoTests;
@@ -650,7 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E3919812070856500492F54 /* KikoTests.swift in Sources */,
+				9E3919812070856500492F54 /* MoodLogViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

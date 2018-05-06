@@ -13,7 +13,7 @@ public extension Date {
         return month
     }
 
-    public func daysSince(_ date: Date) -> Int {
+    public func numberOfDaysSince(_ date: Date) -> Int {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         return gregorianCalendar.dateComponents([.day], from: self, to: date).day ?? 0
     }
@@ -30,7 +30,7 @@ public extension Date {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
         dateComponents.day = -7
-        guard let startOfWeek = self.startOfWeek, let lastSunday = gregorianCalendar.date(byAdding: dateComponents, to: startOfWeek) else { return Date() }
+        guard let lastSunday = gregorianCalendar.date(byAdding: dateComponents, to: startOfWeek) else { return Date() }
         return lastSunday
     }
 
@@ -38,13 +38,13 @@ public extension Date {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
         dateComponents.day = 7
-        guard let startOfWeek = self.startOfWeek, let lastSunday = gregorianCalendar.date(byAdding: dateComponents, to: startOfWeek) else { return Date() }
+        guard let lastSunday = gregorianCalendar.date(byAdding: dateComponents, to: startOfWeek) else { return Date() }
         return lastSunday
     }
 
-    public var startOfWeek: Date? {
+    public var startOfWeek: Date {
         let gregorianCalendar = Calendar(identifier: .gregorian)
-        guard let sunday = gregorianCalendar.date(from: gregorianCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
+        guard let sunday = gregorianCalendar.date(from: gregorianCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return Date() }
         return sunday
     }
 
