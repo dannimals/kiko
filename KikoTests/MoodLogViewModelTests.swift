@@ -41,10 +41,20 @@ class MoodLogViewModelTests: XCTestCase {
         XCTAssertEqual(moodLogViewModel!.currentWeekDates, currentWeekDates)
         XCTAssertEqual(moodLogViewModel!.nextWeekDates, nextWeekDates)
         XCTAssertEqual(moodLogViewModel?.earliestDate, lastWeekDates.first!)
+        XCTAssertEqual(moodLogViewModel!.displayedStartOfWeekDate, currentWeekDates.first!)
+        XCTAssertFalse(moodLogViewModel!.hasNewDates)
+
+    }
+
+    func testComputedDates() {
+        XCTAssertEqual(moodLogViewModel!.displayedStartOfWeekDate.month, moodLogViewModel!.displayedMonth)
     }
 
     func testSetupDatesIndexes() {
-        
+        let datesIndexesDict = moodLogViewModel!.datesIndexesDict
+        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.earliestDate], -7)
+        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.lastWeekDates.first!], -7)
+        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.currentWeekDates.first!], 0)
+        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.nextWeekDates.last!], 13)
     }
-
 }

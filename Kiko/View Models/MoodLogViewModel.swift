@@ -9,11 +9,11 @@ class MoodLogViewModel {
     private(set) var datesIndexesDict: [Date: Int] = [:]
     private(set) var earliestDate = Date()
 
-    private(set) var displayedStartOfWeekDate: Date = unwrapOrElse(Date().startOfWeek, fallback: Date())
+    private(set) var displayedStartOfWeekDate = Date()
     var displayedMonth: Month { return displayedStartOfWeekDate.month }
     var hasNewDates = false
 
-    public required init(date: Date) {
+    required init(date: Date) {
         setup(with: date)
     }
 
@@ -55,7 +55,8 @@ class MoodLogViewModel {
     private func setup(with date: Date) {
         setupDatesFor(date)
         setupDatesIndexes()
-        earliestDate = unwrapOrElse(lastWeekDates.first, fallback: Date()) 
+        earliestDate = unwrapOrElse(lastWeekDates.first, fallback: Date())
+        displayedStartOfWeekDate = unwrapOrElse(currentWeekDates.first, fallback: Date())
     }
 
     private func setupDatesIndexes() {
