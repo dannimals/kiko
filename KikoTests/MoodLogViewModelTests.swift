@@ -52,6 +52,9 @@ class MoodLogViewModelTests: XCTestCase {
         XCTAssertEqual(moodLogViewModel!.nextWeekDates, nextWeekDates)
         XCTAssertEqual(moodLogViewModel?.earliestDate, lastWeekDates.first!)
         XCTAssertEqual(moodLogViewModel!.displayedStartOfWeekDate, currentWeekDates.first!)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.count, 7)
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.count, 7)
+        XCTAssertEqual(moodLogViewModel!.nextWeekDates.count, 7)
         XCTAssertFalse(moodLogViewModel!.hasNewDates)
     }
 
@@ -76,9 +79,12 @@ class MoodLogViewModelTests: XCTestCase {
         XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
         XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
         moodLogViewModel!.loadNextWeek()
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!.nextStartOfWeek, moodLogViewModel!.displayedStartOfWeekDate)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.last!.lastStartOfWeek, currentEarliestDate)
         XCTAssertEqual(moodLogViewModel!.datesIndexesDict.count, originalDatesIndexesCount + 7)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.count, 7)
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.count, 7)
+        XCTAssertEqual(moodLogViewModel!.nextWeekDates.count, 7)
         XCTAssertEqual(moodLogViewModel!.datesIndexesDict[date], originalDateIndex)
         XCTAssertTrue(moodLogViewModel!.hasNewDates)
     }
@@ -91,10 +97,13 @@ class MoodLogViewModelTests: XCTestCase {
         XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
         XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
         moodLogViewModel!.loadLastWeek()
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!.lastStartOfWeek, moodLogViewModel!.displayedStartOfWeekDate)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.last!.startOfWeek, moodLogViewModel!.earliestDate)
         XCTAssertEqual(moodLogViewModel!.datesIndexesDict.count, originalDatesIndexesCount + 7)
         XCTAssertEqual(moodLogViewModel!.datesIndexesDict[date], originalDateIndex)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.count, 7)
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.count, 7)
+        XCTAssertEqual(moodLogViewModel!.nextWeekDates.count, 7)
         XCTAssertTrue(moodLogViewModel!.hasNewDates)
     }
 }
