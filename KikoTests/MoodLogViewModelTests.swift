@@ -43,7 +43,6 @@ class MoodLogViewModelTests: XCTestCase {
         XCTAssertEqual(moodLogViewModel?.earliestDate, lastWeekDates.first!)
         XCTAssertEqual(moodLogViewModel!.displayedStartOfWeekDate, currentWeekDates.first!)
         XCTAssertFalse(moodLogViewModel!.hasNewDates)
-
     }
 
     func testComputedDates() {

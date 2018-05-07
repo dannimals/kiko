@@ -27,33 +27,30 @@ class MoodLogViewModel {
         return dateForIndexPath.day
     }
 
-    private func updateWeeksForDate(_ date: Date) {
-        lastWeekDates = lastWeekDatesFrom(date)
-        currentWeekDates = currentWeekDatesFrom(date)
-        nextWeekDates = nextWeekDatesFrom(date)
+    private func updateEarliestDate() {
         if let lastWeekDate = lastWeekDates.first, lastWeekDate < earliestDate {
             earliestDate = lastWeekDate
         }
     }
 
     func loadNextWeek() {
-        setDisplayStartOfWeekDate(displayedStartOfWeekDate.nextStartOfWeek)
-        updateWeeksForDate(displayedStartOfWeekDate)
+        let newDisplayDate = displayedStartOfWeekDate.nextStartOfWeek
+        displayedStartOfWeekDate = newDisplayDate
+        updateDatesFor(newDisplayDate)
+        updateEarliestDate()
         updateDatesIndexes(dates: nextWeekDates)
     }
 
     func loadLastWeek() {
-        setDisplayStartOfWeekDate(displayedStartOfWeekDate.lastStartOfWeek)
-        updateWeeksForDate(displayedStartOfWeekDate)
+        let newDisplayDate = displayedStartOfWeekDate.lastStartOfWeek
+        displayedStartOfWeekDate = newDisplayDate
+        updateDatesFor(newDisplayDate)
+        updateEarliestDate()
         updateDatesIndexes(dates: lastWeekDates)
     }
 
-    private func setDisplayStartOfWeekDate(_ date: Date) {
-        displayedStartOfWeekDate = date
-    }
-
     private func setup(with date: Date) {
-        setupDatesFor(date)
+        updateDatesFor(date)
         setupDatesIndexes()
         earliestDate = unwrapOrElse(lastWeekDates.first, fallback: Date())
         displayedStartOfWeekDate = unwrapOrElse(currentWeekDates.first, fallback: Date())
@@ -70,7 +67,7 @@ class MoodLogViewModel {
         }
     }
 
-    private func setupDatesFor(_ date: Date) {
+    private func updateDatesFor(_ date: Date) {
         let startOfLastWeek = date.lastStartOfWeek
         let startOfCurrentWeek = date.startOfWeek
         let startOfNextweek = date.nextStartOfWeek
@@ -96,35 +93,5 @@ class MoodLogViewModel {
             datesIndexesDict[date] = indexOfEarliestDate - offset
             hasNewDates = true
         }
-    }
-
-    private func currentWeekDatesFrom(_ date: Date) -> [Date] {
-        var dates: [Date] = []
-        let startOfWeek = unwrapOrElse(date.startOfWeek, fallback: Date())
-        for i in 0..<7 {
-            let day = startOfWeek.dateFromAddingDays(i)
-            dates.append(day)
-        }
-        return dates
-    }
-
-    private func lastWeekDatesFrom(_ date: Date) -> [Date] {
-        var dates: [Date] = []
-        let startOfWeek = unwrapOrElse(date.lastStartOfWeek, fallback: Date())
-        for i in 0..<7 {
-            let day = startOfWeek.dateFromAddingDays(i)
-            dates.append(day)
-        }
-        return dates
-    }
-
-    private func nextWeekDatesFrom(_ date: Date) -> [Date] {
-        var dates: [Date] = []
-        let startOfWeek = unwrapOrElse(date.nextStartOfWeek, fallback: Date())
-        for i in 0..<7 {
-            let day = startOfWeek.dateFromAddingDays(i)
-            dates.append(day)
-        }
-        return dates
     }
 }
