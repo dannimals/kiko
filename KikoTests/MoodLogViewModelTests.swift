@@ -83,18 +83,18 @@ class MoodLogViewModelTests: XCTestCase {
         XCTAssertTrue(moodLogViewModel!.hasNewDates)
     }
 
-//    func testLoadLastWeek() {
-//        let currentEarliestDate = moodLogViewModel!.earliestDate
-//        let originalDatesIndexesCount = moodLogViewModel!.datesIndexesDict.count
-//        let originalDateIndex = moodLogViewModel!.datesIndexesDict[date]!
-//
-//        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
-//        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
-//        moodLogViewModel!.loadNextWeek()
-//        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!.nextStartOfWeek, moodLogViewModel!.displayedStartOfWeekDate)
-//        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
-//        XCTAssertEqual(moodLogViewModel!.datesIndexesDict.count, originalDatesIndexesCount + 7)
-//        XCTAssertEqual(moodLogViewModel!.datesIndexesDict[date], originalDateIndex)
-//        XCTAssertTrue(moodLogViewModel!.hasNewDates)
-//    }
-//}
+    func testLoadLastWeek() {
+        let currentEarliestDate = moodLogViewModel!.earliestDate
+        let originalDatesIndexesCount = moodLogViewModel!.datesIndexesDict.count
+        let originalDateIndex = moodLogViewModel!.datesIndexesDict[date]!
+
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
+        moodLogViewModel!.loadLastWeek()
+        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!.lastStartOfWeek, moodLogViewModel!.displayedStartOfWeekDate)
+        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
+        XCTAssertEqual(moodLogViewModel!.datesIndexesDict.count, originalDatesIndexesCount + 7)
+        XCTAssertEqual(moodLogViewModel!.datesIndexesDict[date], originalDateIndex)
+        XCTAssertTrue(moodLogViewModel!.hasNewDates)
+    }
+}
