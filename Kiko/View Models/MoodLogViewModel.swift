@@ -86,9 +86,8 @@ class MoodLogViewModel {
         hasNewDates = false
 
         for date in dates {
-            guard datesIndexesDict[date] == nil else { return }
+            guard datesIndexesDict[date] == nil else { continue }
             let indexOfEarliestDate = datesIndexesDict[earliestDate] ?? 0
-            //TODO there's a bug
             let offset = date.numberOfDaysSince(earliestDate)
             datesIndexesDict[date] = indexOfEarliestDate - offset
             hasNewDates = true
