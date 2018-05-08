@@ -4,9 +4,10 @@ import KikoUIKit
 
 class MoodLogViewController: BaseViewController {
     
-    private let viewModel: MoodLogViewModel
-    private var moodLogView: MoodLogView!
+    private var contentOffSetX: CGFloat = 0
     private var isUserScrolled = false
+    private var moodLogView: MoodLogView!
+    private let viewModel: MoodLogViewModel
 
     required init(viewModel: MoodLogViewModel) {
         self.viewModel = viewModel
@@ -50,14 +51,14 @@ class MoodLogViewController: BaseViewController {
         return indexPaths
     }()
 
-    private lazy var lastSevenIndexPaths: [IndexPath] = {
+    private var lastSevenIndexPaths: [IndexPath] {
         var indexPaths = [IndexPath]()
         let itemCount = viewModel.datesIndexesDict.count - 7
         for i in 0..<7 {
             indexPaths.append(IndexPath(row: i + itemCount, section: 0))
         }
         return indexPaths
-    }()
+    }
 
     private func scrollToLastWeek() {
         viewModel.loadLastWeek()
@@ -97,9 +98,6 @@ class MoodLogViewController: BaseViewController {
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-
-    var contentOffSetX: CGFloat = 0
-
 }
 
 extension MoodLogViewController: UICollectionViewDataSource {
