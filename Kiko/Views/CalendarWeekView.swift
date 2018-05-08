@@ -8,13 +8,22 @@ class CalendarWeekView: UIView {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var datesCollectionView: UICollectionView!
 
-    private var maxOffset: CGFloat = 0
-    private var minOffset: CGFloat = 0
+    let leftButtonTapped = Channel<UIControlEvents>()
+    let rightButtonTapped = Channel<UIControlEvents>()
+
+    @objc private func notifyLeftButtonTappedEvent() { leftButtonTapped.broadcast(UIControlEvents.touchUpInside) }
+    @objc private func notifyRightButtonTappedEvent() { rightButtonTapped.broadcast(UIControlEvents.touchUpInside) }
 
     func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
         datesCollectionView.dataSource = dataSource
         datesCollectionView.delegate = dataSource
-        maxOffset = 326//bounds.width
+
+        setupEvents()
+    }
+
+    private func setupEvents() {
+        leftButton.addTarget(self, action: #selector(notifyLeftButtonTappedEvent), for: .touchUpInside)
+        rightButton.addTarget(self, action: #selector(notifyRightButtonTappedEvent), for: .touchUpInside)
     }
 
     func updateViewColor(_ color: UIColor = .salmonPink) {
@@ -30,11 +39,5 @@ class CalendarWeekView: UIView {
 
         updateViewColor()
         datesCollectionView.backgroundColor = backgroundColor
-    }
-
-    private func animateOffsetX(_ offsetX: CGFloat) {
-        UIView.animate(withDuration: 0.0) {
-            self.datesCollectionView.contentOffset.x = offsetX
-        }
     }
 }

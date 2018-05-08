@@ -7,6 +7,8 @@ class MoodLogView: UIView {
     let ringButtonTapped = Channel<UIControlEvents>()
     let wavesButtonTapped = Channel<UIControlEvents>()
     let logButtonTapped = Channel<UIControlEvents>()
+    var leftButtonTapped: Channel<UIControlEvents> { return calendarWeekView.leftButtonTapped }
+    var rightButtonTapped: Channel<UIControlEvents> { return calendarWeekView.rightButtonTapped }
 
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private let greetingLabel = UILabel()
