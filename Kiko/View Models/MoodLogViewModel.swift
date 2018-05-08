@@ -23,9 +23,8 @@ class MoodLogViewModel {
         return index - firstIndex
     }
 
-    func day(for indexPath: IndexPath) -> Int {
-        let dateForIndexPath = earliestDate.dateFromAddingDays(indexPath.row)
-        return dateForIndexPath.day
+    func dateForIndexPath(_ indexPath: IndexPath) -> Date {
+        return earliestDate.dateFromAddingDays(indexPath.row)
     }
 
     private func updateEarliestDate() {

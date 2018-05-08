@@ -42,6 +42,7 @@
 		9E391A12207324FB00492F54 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A11207324FB00492F54 /* Identifiable.swift */; };
 		9E391A1820745ACD00492F54 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A1720745ACD00492F54 /* Month.swift */; };
 		9E3D38BC208EC4D900E38BE6 /* MoodLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */; };
+		9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +154,7 @@
 		9E391A11207324FB00492F54 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		9E391A1720745ACD00492F54 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogViewModel.swift; sourceTree = "<group>"; };
+		9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,6 +299,7 @@
 				9E3919C3207305F800492F54 /* KikoModels.h */,
 				9E3919C4207305F800492F54 /* Info.plist */,
 				9E391A1720745ACD00492F54 /* Month.swift */,
+				9E3D38BF20A1414500E38BE6 /* Protocols */,
 			);
 			path = KikoModels;
 			sourceTree = "<group>";
@@ -378,6 +381,14 @@
 				9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */,
 			);
 			path = "View Models";
+			sourceTree = "<group>";
+		};
+		9E3D38BF20A1414500E38BE6 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -658,6 +669,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */,
 				9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */,
 				9E391A1820745ACD00492F54 /* Month.swift in Sources */,
 				9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */,

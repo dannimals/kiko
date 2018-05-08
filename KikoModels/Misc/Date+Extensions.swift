@@ -53,5 +53,15 @@ public extension Date {
         guard let sunday = gregorianCalendar.date(from: gregorianCalendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: self)) else { return nil }
         return gregorianCalendar.date(byAdding: .day, value: 6, to: sunday)
     }
+}
 
+extension Date: AlmostEquatable {
+
+    public static func ≈≈ (lhs: Date, rhs: Date) -> Bool {
+        let gregorianCalendar = Calendar(identifier: .gregorian)
+        let calendarUnitFlags: Set<Calendar.Component> = [.year, .month, .day]
+        let lhsComponents = gregorianCalendar.dateComponents(calendarUnitFlags, from: lhs)
+        let rhsComponents = gregorianCalendar.dateComponents(calendarUnitFlags, from: rhs)
+        return lhsComponents.day == rhsComponents.day && lhsComponents.month == rhsComponents.month && lhsComponents.year == rhsComponents.year
+    }
 }
