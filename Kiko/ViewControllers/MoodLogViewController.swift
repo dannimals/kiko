@@ -88,18 +88,24 @@ class MoodLogViewController: BaseViewController {
             .subscribe(self) { _ in
                 print("tapped log button")
         }
-//        moodLogView
-//            .rightButtonTapped
-//            .subscribe(self) { [unowned self] _ in
-////                self.isUserScrolled = false
-//                self.scrollToNextWeek()
-//        }
-//        moodLogView
-//            .leftButtonTapped
-//            .subscribe(self) { [unowned self] _ in
-////                self.isUserScrolled = false
-//                self.scrollToLastWeek()
-//        }
+        moodLogView
+            .rightButtonTapped
+            .subscribe(self) { [unowned self] _ in
+                self.isUserScrolled = false
+                self.scrollToNextWeek()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    self.isUserScrolled = true
+                }
+        }
+        moodLogView
+            .leftButtonTapped
+            .subscribe(self) { [unowned self] _ in
+                self.isUserScrolled = false
+                self.scrollToLastWeek()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    self.isUserScrolled = true
+                }
+        }
     }
 
     private func configureViews() {
