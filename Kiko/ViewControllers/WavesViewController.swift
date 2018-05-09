@@ -64,22 +64,19 @@ final class AnimatedWaveView: UIView {
         let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
         fadeOutAnimation.fromValue = 1
         fadeOutAnimation.toValue = 0
-        fadeOutAnimation.duration = duration - fadeOutDelay
-        fadeOutAnimation.beginTime = CACurrentMediaTime() + fadeOutDelay
+        fadeOutAnimation.duration = max(duration - fadeOutDelay, 0.1)
+        fadeOutAnimation.beginTime = fadeOutDelay
         fadeOutAnimation.fillMode = kCAFillModeForwards
-        fadeOutAnimation.isRemovedOnCompletion = false
 
         let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
         fadeInAnimation.fromValue = 0
         fadeInAnimation.toValue = 1
-        fadeInAnimation.duration = duration - fadeInDelay
-        fadeInAnimation.beginTime = duration + fadeInDelay
+        fadeInAnimation.duration = max(duration - fadeOutAnimation.duration, 0.1)
+        fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay
         fadeInAnimation.fillMode = kCAFillModeForwards
-        fadeInAnimation.isRemovedOnCompletion = false
 
         let groupAnimation = CAAnimationGroup()
-        groupAnimation.duration = duration * 2 + 0.1
-        groupAnimation.repeatCount = Float.infinity
+        groupAnimation.duration = fadeInAnimation.beginTime + fadeInAnimation.duration
 
         groupAnimation.animations = [fadeOutAnimation, fadeInAnimation]
         wave.add(groupAnimation, forKey: "animateOpacity")
@@ -90,7 +87,7 @@ final class AnimatedWaveView: UIView {
         var i = 1.0
         let baseDiameter = 150.0
         var rect = CGRect(x: 0, y: 0, width: baseDiameter, height: baseDiameter)
-        while i < 3 { //frame.contains(rect) {
+        while i < 4 { //frame.contains(rect) {
             let waveLayer = createWaveLayer(rect: rect)
             layer.addSublayer(waveLayer)
             waveLayers.append(waveLayer)
