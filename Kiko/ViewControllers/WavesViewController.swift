@@ -2,6 +2,7 @@
 import KikoUIKit
 
 class WavesViewController: UIViewController {
+    var wavesView: AnimatedWaveView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,7 +15,7 @@ class WavesViewController: UIViewController {
 
         let customView = UIView()
         customView.backgroundColor = UIColor.backgroundBlue
-        let wavesView = AnimatedWaveView(frame: view.frame)
+        wavesView = AnimatedWaveView(frame: view.frame)
         customView.addSubview(wavesView)
         self.view = customView
     }
@@ -46,6 +47,8 @@ final class AnimatedWaveView: UIView {
 
         createWaves()
         animateCurves()
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(animateCurves),
+                                               userInfo: nil, repeats: true)
     }
 
     @objc func animateCurves() {
@@ -60,19 +63,20 @@ final class AnimatedWaveView: UIView {
     }
 
     func addAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
-
         let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
         fadeOutAnimation.fromValue = 1
         fadeOutAnimation.toValue = 0
         fadeOutAnimation.duration = max(duration - fadeOutDelay, 0.1)
         fadeOutAnimation.beginTime = fadeOutDelay
         fadeOutAnimation.fillMode = kCAFillModeForwards
+        fadeOutAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
 
         let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
         fadeInAnimation.fromValue = 0
         fadeInAnimation.toValue = 1
-        fadeInAnimation.duration = max(duration - fadeOutAnimation.duration, 0.1)
+        fadeInAnimation.duration = 2
         fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay
+        fadeInAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         fadeInAnimation.fillMode = kCAFillModeForwards
 
         let groupAnimation = CAAnimationGroup()
@@ -87,12 +91,12 @@ final class AnimatedWaveView: UIView {
         var i = 1.0
         let baseDiameter = 150.0
         var rect = CGRect(x: 0, y: 0, width: baseDiameter, height: baseDiameter)
-        while i < 4 { //frame.contains(rect) {
+        while i < 100 && frame.contains(rect) {
             let waveLayer = createWaveLayer(rect: rect)
             layer.addSublayer(waveLayer)
             waveLayers.append(waveLayer)
             i += 1
-            rect = CGRect(x: 0, y: 0, width: baseDiameter * i, height: baseDiameter * i)
+            rect = CGRect(x: 0, y: 0, width: baseDiameter + i * 10, height: baseDiameter + 10 * i)
         }
     }
 
@@ -102,9 +106,9 @@ final class AnimatedWaveView: UIView {
         waveLayer.bounds = rect
         waveLayer.frame = rect
         waveLayer.position = self.center
-        waveLayer.strokeColor = UIColor.blue.cgColor
+        waveLayer.strokeColor = UIColor.waveBlue.cgColor
         waveLayer.fillColor = UIColor.clear.cgColor
-        waveLayer.lineWidth = 5.0
+        waveLayer.lineWidth = 1.0
         waveLayer.path = circlePath.cgPath
         waveLayer.strokeStart = 0
         waveLayer.strokeEnd = 1
