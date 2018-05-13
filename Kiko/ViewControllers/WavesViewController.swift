@@ -21,7 +21,7 @@ class WavesViewController: UIViewController {
     }
 
     private func configureBackButton() {
-        let backButton = UIButton()
+        let backButton = TappableButton()
         let image = #imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate)
         backButton.setImage(image, for: .normal)
         backButton.tintColor = UIColor.paleBlue
@@ -36,7 +36,7 @@ class WavesViewController: UIViewController {
 }
 
 final class AnimatedWaveView: UIView {
-
+    private let gradientLayer = CAGradientLayer()
     private let baseRect = CGRect(x: 0, y: 0, width: 25, height: 25)
     private let scaleFactor: CGFloat = 1.25
     private var waveLayers: [CAShapeLayer] = []
@@ -45,10 +45,15 @@ final class AnimatedWaveView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        setupGradientLayer()
         createWaves()
         animateCurves()
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(animateCurves),
                                                userInfo: nil, repeats: true)
+    }
+
+    private func setupGradientLayer() {
+
     }
 
     @objc func animateCurves() {
@@ -62,7 +67,7 @@ final class AnimatedWaveView: UIView {
         }
     }
 
-    func addAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
+    private func addAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
         let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
         fadeOutAnimation.fromValue = 1
         fadeOutAnimation.toValue = 0
