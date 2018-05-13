@@ -27,7 +27,7 @@ class WavesViewController: UIViewController {
         backButton.tintColor = UIColor.paleBlue
         backButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(backButton)
-        backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15).isActive = true
+        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
         backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
         backButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
     }

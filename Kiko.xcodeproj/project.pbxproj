@@ -45,6 +45,9 @@
 		9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */; };
 		9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */; };
 		9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */; };
+		9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */; };
+		9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */; };
+		9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -159,6 +162,9 @@
 		9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButton.swift; sourceTree = "<group>"; };
 		9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWaveView.swift; sourceTree = "<group>"; };
+		9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewController.swift; sourceTree = "<group>"; };
+		9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewModel.swift; sourceTree = "<group>"; };
+		9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,6 +329,7 @@
 				9E391A0620730A3B00492F54 /* BaseViewController.swift */,
 				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
 				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
+				9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -356,6 +363,7 @@
 				9E391A0D2073110900492F54 /* UIView+Extensions.swift */,
 				9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */,
 				9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */,
+				9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -385,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */,
+				9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -649,10 +658,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E10A1112086D87000CC5444 /* Protected.swift in Sources */,
+				9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */,
 				9E324FFB207B05F100C7168B /* MoodLogView.swift in Sources */,
 				9E3919E0207306E400492F54 /* MoodLogViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
+				9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
 				9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */,
@@ -699,6 +710,7 @@
 				9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */,
 				9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */,
 				9E324FF9207ACCF500C7168B /* UICollectionView+Extensions.swift in Sources */,
+				9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */,
 				9E391A12207324FB00492F54 /* Identifiable.swift in Sources */,
 				9E391A0E2073110900492F54 /* UIView+Extensions.swift in Sources */,
 				9E391A052073093C00492F54 /* UIColor+Extensions.swift in Sources */,

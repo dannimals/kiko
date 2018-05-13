@@ -74,14 +74,16 @@ class MoodLogViewController: BaseViewController {
     private func setupBindings() {
         moodLogView
             .ringButtonTapped
-            .subscribe(self) { _ in
-            print("tapped ring button")
+            .subscribe(self) { [unowned self] _ in
+                let viewModel = MoodListViewModel()
+                let moodListViewController = MoodListViewController(viewModel: viewModel)
+                self.navigationController?.pushViewController(moodListViewController, animated: true)
         }
         moodLogView
             .wavesButtonTapped
-            .subscribe(self) { [weak self] _ in
+            .subscribe(self) { [unowned self] _ in
                 let wavesViewController = WavesViewController()
-                self?.navigationController?.pushViewController(wavesViewController, animated: true)
+                self.navigationController?.pushViewController(wavesViewController, animated: true)
         }
         moodLogView
             .logButtonTapped

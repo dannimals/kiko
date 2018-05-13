@@ -1,0 +1,6 @@
+
+import KikoModels
+
+class MoodListViewModel {
+    
+}
