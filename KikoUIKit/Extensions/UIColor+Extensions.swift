@@ -14,12 +14,20 @@ public extension UIColor {
         return UIColor(hex: 0x7CC0EF)
     }
 
+    public static var lightBackgroundBlue: UIColor {
+        return UIColor(hex: 0x8CD7F9)
+    }
+
+    public static var darkBackgroundBlue: UIColor {
+        return UIColor(hex: 0x4799D2)
+    }
+
     public static var paleBlue: UIColor {
         return UIColor(hex: 0xE3F4FF)
     }
 
     public static var waveBlue: UIColor {
-        return UIColor(hex: 0xBBE3FF).withAlphaComponent(0.68)
+        return UIColor(hex: 0xBBE3FF)
     }
 
     public static var backgroundYellow: UIColor {
