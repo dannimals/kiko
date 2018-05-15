@@ -48,6 +48,7 @@
 		9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */; };
 		9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */; };
 		9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */; };
+		9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD920AA71CF00A18E9A /* Mood.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewController.swift; sourceTree = "<group>"; };
 		9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewModel.swift; sourceTree = "<group>"; };
 		9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		9E41DDD920AA71CF00A18E9A /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 		9E3919C2207305F800492F54 /* KikoModels */ = {
 			isa = PBXGroup;
 			children = (
+				9E41DDD820AA71C600A18E9A /* Models */,
 				9E10A1122086D87600CC5444 /* Reactive */,
 				9E324FEA20747C1F00C7168B /* Misc */,
 				9E3919C3207305F800492F54 /* KikoModels.h */,
@@ -404,6 +407,14 @@
 				9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		9E41DDD820AA71C600A18E9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9E41DDD920AA71CF00A18E9A /* Mood.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -687,6 +698,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */,
 				9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */,
 				9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */,
 				9E391A1820745ACD00492F54 /* Month.swift in Sources */,
