@@ -340,10 +340,10 @@
 		9E3919E72073072200492F54 /* KikoUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				9E391A132073250000492F54 /* Protocols */,
 				9E391A032073092400492F54 /* Extensions */,
-				9E3919E82073072200492F54 /* KikoUIKit.h */,
 				9E3919E92073072200492F54 /* Info.plist */,
+				9E3919E82073072200492F54 /* KikoUIKit.h */,
+				9E391A132073250000492F54 /* Protocols */,
 				9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */,
 			);
 			path = KikoUIKit;
