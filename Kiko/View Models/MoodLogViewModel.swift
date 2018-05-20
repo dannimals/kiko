@@ -27,14 +27,6 @@ class MoodLogViewModel {
         return earliestDate.dateFromAddingDays(indexPath.row)
     }
 
-    private func updateEarliestDate() {
-        guard let offset = datesIndexesDict[earliestDate] else { return }
-        if let lastWeekDate = lastWeekDates.first, lastWeekDate < earliestDate {
-            earliestDate = lastWeekDate
-            datesIndexesDict[lastWeekDate] = offset - 7
-        }
-    }
-
     func loadNextWeek() {
         let newDisplayDate = displayedStartOfWeekDate.nextStartOfWeek
         displayedStartOfWeekDate = newDisplayDate
@@ -49,6 +41,14 @@ class MoodLogViewModel {
         updateDatesFor(newDisplayDate)
         updateEarliestDate()
         updateDatesIndexes(dates: lastWeekDates)
+    }
+
+    private func updateEarliestDate() {
+        guard let offset = datesIndexesDict[earliestDate] else { return }
+        if let lastWeekDate = lastWeekDates.first, lastWeekDate < earliestDate {
+            earliestDate = lastWeekDate
+            datesIndexesDict[lastWeekDate] = offset - 7
+        }
     }
 
     private func setup(with date: Date) {
