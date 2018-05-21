@@ -21,7 +21,7 @@ import RealmSwift
         return Mood.Property.id.rawValue
     }
 
-    public convenience init(date: Date, type: MoodType) {
+    public convenience init(type: MoodType, date: Date) {
         self.init()
 
         self.date = date
@@ -33,5 +33,24 @@ import RealmSwift
 
 public extension Mood {
 
+    public static func all() throws -> Results<Mood> {
+        guard let realm = try? Realm() else { throw KikoModelError.realm("Failed to init Realm") }
+        return realm.objects(Mood.self).sorted(byKeyPath: Mood.Property.date.rawValue)
+    }
 
+    @discardableResult
+    public static func add(type: MoodType, date: Date) throws -> Mood {
+        guard let realm = try? Realm() else { throw KikoModelError.realm("Failed to init Realm") }
+
+        let mood = Mood(type: type, date: date)
+        do {
+            try realm.write {
+                realm.add(mood)
+            }
+        } catch {
+            throw KikoModelError.realm("Failed to write Mood instance to Realm")
+        }
+
+        return mood
+    }
 }
