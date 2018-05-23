@@ -13,7 +13,7 @@ import RealmSwift
         case id, date, type
     }
 
-    public dynamic let id = UUID().uuidString
+    public dynamic var id = UUID().uuidString
     public private(set) dynamic var date: Date = Date()
     public private(set) dynamic var type: MoodType  = .chick
 
@@ -52,5 +52,17 @@ public extension Mood {
         }
 
         return mood
+    }
+
+    static func deleteAll() throws {
+        guard let realm = try? Realm() else { throw KikoModelError.realm("Failed to init Realm") }
+
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            throw KikoModelError.realm("Failed to delete Mood instances in Realm")
+        }
     }
 }
