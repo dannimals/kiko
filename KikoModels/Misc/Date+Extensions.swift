@@ -6,6 +6,11 @@ public extension Date {
         return gregorianCalendar.component(.day, from: self)
     }
 
+    public var year: Int {
+        let gregorianCalendar = Calendar(identifier: .gregorian)
+        return gregorianCalendar.component(.year, from: self)
+    }
+
     public var month: Month {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         let monthRaw = gregorianCalendar.component(.month, from: self)

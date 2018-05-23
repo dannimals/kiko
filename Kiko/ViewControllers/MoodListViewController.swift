@@ -4,7 +4,9 @@ import KikoModels
 
 class MoodListViewController: BaseViewController {
     private let viewModel: MoodListViewModel
-    private let emptyStateView = UIView()
+    private var emptyStateView: MoodListEmptyStateView?
+//    private let collectionView = UICollectionView()
+    private var moodManager: MoodManager?
 
     required init(viewModel: MoodListViewModel) {
         self.viewModel = viewModel
@@ -18,6 +20,12 @@ class MoodListViewController: BaseViewController {
         configureBackButton()
         setupEmptyStateView()
         view.backgroundColor = .paleBlue
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
+    }
+
+    func configure(_ moodManager: MoodManager?) {
+        self.moodManager = moodManager
     }
 
     private func configureBackButton() {
@@ -33,32 +41,47 @@ class MoodListViewController: BaseViewController {
     }
 
     private func setupEmptyStateView() {
-        view.addSubview(emptyStateView)
         let frame = CGRect(x: 0, y: 40, width: view.bounds.width, height: view.bounds.height)
-        emptyStateView.frame = frame
-        let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "chickPainting")
-        imageView.sizeToFit()
-        imageView.center = CGPoint(x: view.center.x, y: view.center.y - 80)
-        emptyStateView.addSubview(imageView)
-
-        let logButton = UIButton()
-        logButton.translatesAutoresizingMaskIntoConstraints = false
-        emptyStateView.addSubview(logButton)
-        logButton.layer.cornerRadius = 16
-        logButton.backgroundColor = UIColor.backgroundBlue
-        logButton.titleLabel?.font = UIFont.customFont(ofSize: 17, weight: .heavy)
-        logButton.setTitle("Log a Mood", for: .normal)
-        NSLayoutConstraint.activate([
-            logButton.centerXAnchor.constraint(equalTo: emptyStateView.centerXAnchor),
-            logButton.heightAnchor.constraint(equalToConstant: 32),
-            logButton.widthAnchor.constraint(equalToConstant: 135),
-            logButton.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 35)
-            ])
-        logButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
+        emptyStateView = MoodListEmptyStateView(frame: frame)
+        view.addSubview(emptyStateView!)
+        emptyStateView?
+            .logButtonTapped
+            .subscribe(self) { [unowned self] _ in
+                self.dismissViewController()
+        }
     }
 
     @objc private func dismissViewController() { navigationController?.popViewController(animated: true) }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+}
+
+extension MoodListViewController: MoodManagerDelegate {
+
+    func didReceiveInitialChanges() {
+//        collectionView.reloadData()
+    }
+
+    func didReceiveUpdate(deletions: [Int], insertions: [Int], updates: [Int]) {
+
+    }
+}
+
+extension MoodListViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1 // count of dates sorted by year, sorted by month
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1 // dates sorted by year
+    }
+}
+
+extension MoodListViewController: UICollectionViewDelegate {
+
 }

@@ -77,6 +77,8 @@ class MoodLogViewController: BaseViewController {
             .subscribe(self) { [unowned self] _ in
                 let viewModel = MoodListViewModel()
                 let moodListViewController = MoodListViewController(viewModel: viewModel)
+                let moodManager = try? MoodManager(delegate: moodListViewController)
+                moodListViewController.configure(moodManager)
                 self.navigationController?.pushViewController(moodListViewController, animated: true)
         }
         moodLogView
