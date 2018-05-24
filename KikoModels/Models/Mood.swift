@@ -10,12 +10,13 @@ import RealmSwift
 
 @objcMembers public class Mood: Object {
     enum Property: String {
-        case id, date, type
+        case id, date, type, year
     }
 
     public dynamic var id = UUID().uuidString
     public private(set) dynamic var date: Date = Date()
     public private(set) dynamic var type: MoodType  = .chick
+    public private(set) dynamic var year: Int = 0
 
     override public static func primaryKey() -> String? {
         return Mood.Property.id.rawValue
@@ -26,6 +27,7 @@ import RealmSwift
 
         self.date = date
         self.type = type
+        self.year = date.year
     }
 }
 

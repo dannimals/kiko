@@ -4,12 +4,15 @@ import XCTest
 
 class MoodTests: XCTestCase {
     var mood: Mood!
-    let date = Date()
+    var date = Date()
     let type = MoodType.chick
-    
+    let dateFormatter = DateFormatter()
+
     override func setUp() {
         super.setUp()
 
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        date = dateFormatter.date(from: "2018-04-21")
         mood = Mood(type: type, date: date)
     }
     
@@ -17,6 +20,7 @@ class MoodTests: XCTestCase {
         super.tearDown()
 
         mood = nil
+//        date = nil
         try! Mood.deleteAll()
     }
 
@@ -41,5 +45,15 @@ class MoodTests: XCTestCase {
         try! Mood.deleteAll()
         allMoods = try! Mood.all()
         XCTAssertTrue(allMoods.isEmpty)
+    }
+
+    func testDistinctYear() {
+        try! Mood.add(type: type, date: date)
+        try! Mood.add(type: type, date: dateFormatter.date(from: "1995-04-21")!)
+        let allMoods = try! Mood.all()
+        let distinctYearMoods = allMoods.distinct(by: ["year"])
+        XCTAssertEqual(distinctYearMoods.count, 2)
+        XCTAssertEqual(distinctYearMoods.first!.year, 1995)
+        XCTAssertEqual(distinctYearMoods.last!.year, 2018)
     }
 }

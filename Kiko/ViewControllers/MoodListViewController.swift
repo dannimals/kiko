@@ -78,10 +78,7 @@ extension MoodListViewController: UICollectionViewDataSource {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1 // dates sorted by year
+        guard let years = moodManager?.moods.distinct(by: ["year"]) else { return 0 }
+        return years.count
     }
-}
-
-extension MoodListViewController: UICollectionViewDelegate {
-
 }
