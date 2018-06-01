@@ -54,6 +54,8 @@
 		9E435E7520B24328003822BB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7420B24328003822BB /* Error.swift */; };
 		9E435E7720B4F35D003822BB /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7620B4F35D003822BB /* MoodManager.swift */; };
 		9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */; };
+		9E453C2C20C0D3580041C219 /* MonthResultsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E453C2B20C0D3580041C219 /* MonthResultsCollectionViewCell.xib */; };
+		9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */; };
 		DBDA56C3A0C0E5DF53F4A05B /* Pods_KikoModelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */; };
 		F559DD005182564866BBEA82 /* Pods_KikoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D61D10CEB00794464B027 /* Pods_KikoTests.framework */; };
 /* End PBXBuildFile section */
@@ -183,6 +185,8 @@
 		9E435E7420B24328003822BB /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		9E435E7620B4F35D003822BB /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListEmptyStateView.swift; sourceTree = "<group>"; };
+		9E453C2B20C0D3580041C219 /* MonthResultsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthResultsCollectionViewCell.xib; sourceTree = "<group>"; };
+		9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		ACADB0625A0A637F5BAB649C /* Pods-Kiko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiko.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiko/Pods-Kiko.debug.xcconfig"; sourceTree = "<group>"; };
 		B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B902ED13E324BC87F32E0CCF /* Pods-KikoModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModels.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModels/Pods-KikoModels.release.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 		9E324FF1207AB2D300C7168B /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9E453C2B20C0D3580041C219 /* MonthResultsCollectionViewCell.xib */,
+				9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */,
 				9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -685,6 +691,7 @@
 			files = (
 				9E3919762070856500492F54 /* LaunchScreen.storyboard in Resources */,
 				9E391A0A20730D5D00492F54 /* CalendarWeekView.xib in Resources */,
+				9E453C2C20C0D3580041C219 /* MonthResultsCollectionViewCell.xib in Resources */,
 				9E3919732070856500492F54 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -848,6 +855,7 @@
 			files = (
 				9E10A1112086D87000CC5444 /* Protected.swift in Sources */,
 				9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */,
+				9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */,
 				9E324FFB207B05F100C7168B /* MoodLogView.swift in Sources */,
 				9E3919E0207306E400492F54 /* MoodLogViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,

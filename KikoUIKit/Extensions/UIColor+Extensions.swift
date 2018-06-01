@@ -98,6 +98,10 @@ public extension UIColor {
         return UIColor(hex: 0x9DAFBB)
     }
 
+    public static var lightGreyBlue: UIColor {
+        return UIColor(hex: 0x92B8D2)
+    }
+
     public var faded: UIColor {
         return withAlphaComponent(0.3)
     }
