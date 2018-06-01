@@ -81,4 +81,20 @@ extension MoodListViewController: UICollectionViewDataSource {
         guard let years = moodManager?.moods.distinct(by: ["year"]) else { return 0 }
         return years.count
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                             withReuseIdentifier: MonthResultHeaderCell.reuseIdentifier,
+                                                                             for: indexPath) as? MonthResultHeaderCell else { fatalError("Could not dequeue MonthResultHeaderCell") }
+            headerView.configure(year: 6)
+            return headerView
+        default:
+            assertionFailure("Unexpected MoodList collection view error")
+        }
+
+        return MonthResultHeaderCell()
+    }
+
 }

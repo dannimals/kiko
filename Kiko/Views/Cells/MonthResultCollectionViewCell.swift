@@ -13,4 +13,11 @@ class MonthResultCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         
     }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        monthLabel.text = nil
+        meditationCount.text = nil
+    }
 }
