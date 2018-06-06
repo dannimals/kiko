@@ -122,6 +122,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="Ll7-Ta-Ge6"/>
             <size key="customSize" width="370" height="132"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="circleView" destination="kSo-s4-LZl" id="nMY-Vi-ywe"/>
                 <outlet property="meditationCount" destination="7FY-Zd-uD1" id="zBw-qt-iV0"/>

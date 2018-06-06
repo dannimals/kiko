@@ -5,7 +5,7 @@ import KikoModels
 class MoodListViewController: BaseViewController {
     private let viewModel: MoodListViewModel
     private var emptyStateView: MoodListEmptyStateView?
-//    private let collectionView = UICollectionView()
+    private var collectionView: UICollectionView!
     private var moodManager: MoodManager?
 
     required init(viewModel: MoodListViewModel) {
@@ -14,14 +14,27 @@ class MoodListViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
     }
 
+    override func loadView() {
+        super.loadView()
+
+        let layout = MoodListCollectionViewLayout()
+        collectionView = UICollectionView(frame: view.frame, collectionViewLayout:
+            layout)
+        configureCollectionView()
+        view = collectionView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureBackButton()
         setupEmptyStateView()
-        view.backgroundColor = .paleBlue
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
+    }
+
+    private func configureCollectionView() {
+        //        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.backgroundColor = .paleBlue
     }
 
     func configure(_ moodManager: MoodManager?) {
