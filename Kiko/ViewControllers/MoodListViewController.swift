@@ -20,19 +20,20 @@ class MoodListViewController: BaseViewController {
         let layout = MoodListCollectionViewLayout()
         collectionView = UICollectionView(frame: view.frame, collectionViewLayout:
             layout)
-        configureCollectionView()
+        setupCollectionView()
         view = collectionView
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureBackButton()
-        setupEmptyStateView()
+//        configureBackButton()
+//        setupEmptyStateView()
     }
 
-    private func configureCollectionView() {
-        //        collectionView.delegate = self
+    private func setupCollectionView() {
+        collectionView.register(UINib(nibName: MonthResultCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MonthResultCollectionViewCell.identifier)
+        collectionView.register(MonthResultHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MonthResultHeaderCell.identifier)
         collectionView.dataSource = self
         collectionView.backgroundColor = .paleBlue
     }
@@ -83,7 +84,10 @@ extension MoodListViewController: MoodManagerDelegate {
 extension MoodListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let monthResultsCell = collectionView.dequeueReusableCell(withReuseIdentifier: MonthResultCollectionViewCell.identifier, for: indexPath) as? MonthResultCollectionViewCell else { fatalError("Could not dequeue MonthResultsCollectionViewCell") }
+
+        monthResultsCell.backgroundColor = .monthResultBackground
+        return monthResultsCell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -92,7 +96,8 @@ extension MoodListViewController: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         guard let years = moodManager?.moods.distinct(by: ["year"]) else { return 0 }
-        return years.count
+        return 5
+        //        return years.count
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

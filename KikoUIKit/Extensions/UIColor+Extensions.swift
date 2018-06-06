@@ -18,6 +18,10 @@ public extension UIColor {
         return UIColor(hex: 0x8CD7F9)
     }
 
+    public static var monthResultBackground: UIColor {
+        return UIColor(hex: 0xFFFFFF).withAlphaComponent(0.46)
+    }
+
     public static var darkBackgroundBlue: UIColor {
         return UIColor(hex: 0x4799D2)
     }
