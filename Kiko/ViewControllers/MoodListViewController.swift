@@ -5,8 +5,8 @@ import KikoModels
 class MoodListViewController: BaseViewController {
     private let viewModel: MoodListViewModel
     private var emptyStateView: MoodListEmptyStateView?
-    private var collectionView: UICollectionView!
     private var moodManager: MoodManager?
+    private let moodListView: MoodListView = MoodListView.loadFromNib()
 
     required init(viewModel: MoodListViewModel) {
         self.viewModel = viewModel
@@ -17,25 +17,22 @@ class MoodListViewController: BaseViewController {
     override func loadView() {
         super.loadView()
 
-        let layout = MoodListCollectionViewLayout()
-        collectionView = UICollectionView(frame: view.frame, collectionViewLayout:
-            layout)
-        setupCollectionView()
-        view = collectionView
+        view = moodListView
+        moodListView.configure(dataSource: self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        configureBackButton()
-//        setupEmptyStateView()
+        setupBindings()
     }
 
-    private func setupCollectionView() {
-        collectionView.register(UINib(nibName: MonthResultCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MonthResultCollectionViewCell.identifier)
-        collectionView.register(MonthResultHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MonthResultHeaderCell.identifier)
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .paleBlue
+    private func setupBindings() {
+        moodListView
+            .closeButtonTapped
+            .subscribe(self) { [unowned self] _ in
+                self.dismissViewController()
+        }
     }
 
     func configure(_ moodManager: MoodManager?) {
@@ -65,7 +62,7 @@ class MoodListViewController: BaseViewController {
         }
     }
 
-    @objc private func dismissViewController() { navigationController?.popViewController(animated: true) }
+    @objc private func dismissViewController() { dismiss(animated: true, completion: nil) }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }

@@ -79,7 +79,7 @@ class MoodLogViewController: BaseViewController {
                 let moodListViewController = MoodListViewController(viewModel: viewModel)
                 let moodManager = try? MoodManager(delegate: moodListViewController)
                 moodListViewController.configure(moodManager)
-                self.navigationController?.pushViewController(moodListViewController, animated: true)
+                self.present(moodListViewController, animated: true, completion: nil)
         }
         moodLogView
             .wavesButtonTapped
