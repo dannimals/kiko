@@ -10,6 +10,8 @@
 		8F2893D5DAEDC5C14E6DBFA9 /* Pods_Kiko.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E884C575FF61AA7C9D39F4D4 /* Pods_Kiko.framework */; };
 		926F1986B38428F4AA6ECCD5 /* Pods_KikoModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */; };
 		9E00B28820CCC2E200C2FD17 /* MoodListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E00B28720CCC2E200C2FD17 /* MoodListView.xib */; };
+		9E00B28C20CF551800C2FD17 /* DismissViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00B28B20CF551800C2FD17 /* DismissViewControllerAnimator.swift */; };
+		9E00B28E20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E00B28D20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift */; };
 		9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1072085969800CC5444 /* Date+Extensions.swift */; };
 		9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1092086D72000CC5444 /* WavesViewController.swift */; };
 		9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */; };
@@ -139,6 +141,8 @@
 		5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModelsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AEB12078975DC02B78CB8FF /* Pods-KikoModelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModelsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModelsTests/Pods-KikoModelsTests.release.xcconfig"; sourceTree = "<group>"; };
 		9E00B28720CCC2E200C2FD17 /* MoodListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodListView.xib; sourceTree = "<group>"; };
+		9E00B28B20CF551800C2FD17 /* DismissViewControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissViewControllerAnimator.swift; sourceTree = "<group>"; };
+		9E00B28D20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissViewControllerPercentInteractor.swift; sourceTree = "<group>"; };
 		9E10A1072085969800CC5444 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		9E10A1092086D72000CC5444 /* WavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewController.swift; sourceTree = "<group>"; };
 		9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodUISetting.swift; sourceTree = "<group>"; };
@@ -401,8 +405,10 @@
 			children = (
 				9E391A0620730A3B00492F54 /* BaseViewController.swift */,
 				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
+				9E00B28D20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift */,
 				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
 				9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */,
+				9E00B28B20CF551800C2FD17 /* DismissViewControllerAnimator.swift */,
 				9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */,
 			);
 			path = ViewControllers;
@@ -872,6 +878,7 @@
 				9E324FFB207B05F100C7168B /* MoodLogView.swift in Sources */,
 				9E3919E0207306E400492F54 /* MoodLogViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
+				9E00B28E20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift in Sources */,
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,
 				9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
@@ -884,6 +891,7 @@
 				9E3D38BC208EC4D900E38BE6 /* MoodLogViewModel.swift in Sources */,
 				9E391A0720730A3B00492F54 /* BaseViewController.swift in Sources */,
 				9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */,
+				9E00B28C20CF551800C2FD17 /* DismissViewControllerAnimator.swift in Sources */,
 				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
 				9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */,
 			);

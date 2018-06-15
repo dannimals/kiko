@@ -19,6 +19,7 @@ class MoodLogView: UIView {
     private var moodImages = [UIImageView]()
     private var scrollIndicator = UIStackView()
     private var scrollIndicatorCircles = [UIView]()
+    private let stackView = UIStackView()
 
     func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
         calendarWeekView.configure(dataSource: dataSource)
@@ -92,7 +93,7 @@ class MoodLogView: UIView {
             ])
     }
 
-    private func configureMoodScrollView() {
+    private func configureMoodStackView() {
         let chickImage = UIImageView(image: #imageLiteral(resourceName: "chick"))
         chickImage.contentMode = .center
         let chickShellImage = UIImageView(image: #imageLiteral(resourceName: "chickEgg"))
@@ -105,7 +106,6 @@ class MoodLogView: UIView {
         moodImages.append(chickShellImage)
         moodImages.append(eggImage)
         moodImages.append(rottenEggImage)
-        let stackView = UIStackView()
         stackView.contentMode = .scaleAspectFill
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
@@ -114,7 +114,9 @@ class MoodLogView: UIView {
         stackView.addArrangedSubview(eggImage)
         stackView.addArrangedSubview(rottenEggImage)
         stackView.translatesAutoresizingMaskIntoConstraints = false
+    }
 
+    private func configureMoodScrollView() {
         moodScrollView.isPagingEnabled = true
         moodScrollView.delegate = self
         moodScrollView.alwaysBounceHorizontal = true
@@ -207,6 +209,7 @@ class MoodLogView: UIView {
         configureWavesButton()
         configureCalendarView()
         configureGreetingLabel()
+        configureMoodStackView()
         configureMoodScrollView()
         configureScrollIndicator()
         configureLogButton()

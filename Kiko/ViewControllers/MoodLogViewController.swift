@@ -8,6 +8,7 @@ class MoodLogViewController: BaseViewController {
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!
     private let viewModel: MoodLogViewModel
+    private let dismissInteractor = DismissViewControllerInteractor()
 
     required init(viewModel: MoodLogViewModel) {
         self.viewModel = viewModel
@@ -78,7 +79,8 @@ class MoodLogViewController: BaseViewController {
                 let viewModel = MoodListViewModel()
                 let moodListViewController = MoodListViewController(viewModel: viewModel)
                 let moodManager = try? MoodManager(delegate: moodListViewController)
-                moodListViewController.configure(moodManager)
+                moodListViewController.configure(moodManager, dismissInteractor: self.dismissInteractor)
+                moodListViewController.transitioningDelegate = self
                 self.present(moodListViewController, animated: true, completion: nil)
         }
         moodLogView
@@ -120,6 +122,22 @@ class MoodLogViewController: BaseViewController {
     }
 
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+}
+
+extension MoodLogViewController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissViewControllerAnimator()
+    }
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return dismissInteractor.hasStartedDismissing ? dismissInteractor : nil
+    }
+
 }
 
 extension MoodLogViewController: UICollectionViewDataSource {

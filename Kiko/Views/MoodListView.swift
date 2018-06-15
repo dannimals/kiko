@@ -10,6 +10,8 @@ class MoodListView: UIView {
 
     func configure(dataSource: UICollectionViewDataSource) {
         collectionView.dataSource = dataSource
+        backgroundColor = .clear
+        collectionView.backgroundColor = .lightGreyBlue
         setupCollectionView()
         setupCloseButton()
     }
