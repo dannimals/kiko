@@ -62,6 +62,7 @@
 		9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */; };
 		9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */; };
 		9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3520CCBDD10041C219 /* MoodListView.swift */; };
+		9E88CE9D20D73D1E007C28BF /* PresentViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CE9C20D73D1E007C28BF /* PresentViewControllerAnimator.swift */; };
 		DBDA56C3A0C0E5DF53F4A05B /* Pods_KikoModelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */; };
 		F559DD005182564866BBEA82 /* Pods_KikoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D61D10CEB00794464B027 /* Pods_KikoTests.framework */; };
 /* End PBXBuildFile section */
@@ -199,6 +200,7 @@
 		9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultsHeaderCell.swift; sourceTree = "<group>"; };
 		9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9E453C3520CCBDD10041C219 /* MoodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListView.swift; sourceTree = "<group>"; };
+		9E88CE9C20D73D1E007C28BF /* PresentViewControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentViewControllerAnimator.swift; sourceTree = "<group>"; };
 		ACADB0625A0A637F5BAB649C /* Pods-Kiko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiko.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiko/Pods-Kiko.debug.xcconfig"; sourceTree = "<group>"; };
 		B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B902ED13E324BC87F32E0CCF /* Pods-KikoModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModels.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModels/Pods-KikoModels.release.xcconfig"; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
 				9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */,
 				9E00B28B20CF551800C2FD17 /* DismissViewControllerAnimator.swift */,
+				9E88CE9C20D73D1E007C28BF /* PresentViewControllerAnimator.swift */,
 				9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */,
 			);
 			path = ViewControllers;
@@ -886,6 +889,7 @@
 				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
+				9E88CE9D20D73D1E007C28BF /* PresentViewControllerAnimator.swift in Sources */,
 				9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */,
 				9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */,
 				9E3D38BC208EC4D900E38BE6 /* MoodLogViewModel.swift in Sources */,

@@ -131,7 +131,7 @@ extension MoodLogViewController: UIViewControllerTransitioningDelegate {
     }
 
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
+        return PresentViewControllerAnimator()
     }
 
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
