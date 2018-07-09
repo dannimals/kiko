@@ -13,27 +13,10 @@ class HalfModalPresentationController: UIPresentationController {
         case downward
     }
 
-    var dimmingView: UIView?
-    var isPresentedViewFullScreen = false
-    var presentedViewPanGesture = UIPanGestureRecognizer()
+    lazy var dimmingView: UIView? = {
+        guard let containerView = containerView else { return nil }
 
-    private var modalScaleState: ModalScaleState = .normal
-    private var panDirection: PanDirection = .none
-
-    override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
-        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
-
-        setupDimmingView()
-        setupPresentedViewPanGesture()
-    }
-
-    private func setupPresentedViewPanGesture() {
-        presentedViewPanGesture.addTarget(self, action: #selector(handlePresentedViewPan(_:)))
-        presentedViewController.view.addGestureRecognizer(presentedViewPanGesture)
-    }
-
-    private func setupDimmingView() {
-        let dimmingView = UIView(frame: CGRect(x: 0, y: 0, width: containerView!.bounds.width, height: containerView!.bounds.height))
+        let dimmingView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.bounds.width, height: containerView.bounds.height))
 
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
@@ -48,7 +31,24 @@ class HalfModalPresentationController: UIPresentationController {
         let tapToDismissRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapToDismiss(_:)))
         dimmingView.addGestureRecognizer(tapToDismissRecognizer)
 
-        self.dimmingView = dimmingView
+        return dimmingView
+    }()
+
+    var isPresentedViewFullScreen = false
+    var presentedViewPanGesture = UIPanGestureRecognizer()
+
+    private var modalScaleState: ModalScaleState = .normal
+    private var panDirection: PanDirection = .none
+
+    override init(presentedViewController: UIViewController, presenting presentingViewController: UIViewController?) {
+        super.init(presentedViewController: presentedViewController, presenting: presentingViewController)
+
+        setupPresentedViewPanGesture()
+    }
+
+    private func setupPresentedViewPanGesture() {
+        presentedViewPanGesture.addTarget(self, action: #selector(handlePresentedViewPan(_:)))
+        presentedViewController.view.addGestureRecognizer(presentedViewPanGesture)
     }
 
     @objc

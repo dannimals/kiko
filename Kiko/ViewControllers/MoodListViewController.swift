@@ -7,7 +7,6 @@ class MoodListViewController: BaseViewController {
     private var emptyStateView: MoodListEmptyStateView?
     private var moodManager: MoodManager?
     private let moodListView: MoodListView = MoodListView.loadFromNib()
-    private var dismissInteractor: DismissViewControllerInteractor?
 
     required init(viewModel: MoodListViewModel) {
         self.viewModel = viewModel
@@ -26,42 +25,6 @@ class MoodListViewController: BaseViewController {
         super.viewDidLoad()
 
         setupBindings()
-        setupDismissGestureRecognizer()
-    }
-
-    private func setupDismissGestureRecognizer() {
-        let dismissGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDismiss))
-        view.addGestureRecognizer(dismissGestureRecognizer)
-    }
-
-    @objc private func handleDismiss(sender: UIPanGestureRecognizer) {
-        guard let dismissInteractor = dismissInteractor else { return }
-
-        let percentThreshold: CGFloat = 0.3
-        let translation = sender.translation(in: view)
-        let verticalMovement = translation.y / view.bounds.height
-        let downwardMovement = fmaxf(Float(verticalMovement), 0.0)
-        let downwardMovementPercent = fminf(downwardMovement, 1.0)
-        let progress = CGFloat(downwardMovementPercent)
-
-        switch sender.state {
-        case .began:
-            dismissInteractor.hasStartedDismissing = true
-            dismiss(animated: true, completion: nil)
-        case .changed:
-            dismissInteractor.shouldFinishDismissing = progress > percentThreshold
-            dismissInteractor.update(progress)
-        case .cancelled:
-            dismissInteractor.hasStartedDismissing = false
-            dismissInteractor.cancel()
-        case .ended:
-            dismissInteractor.hasStartedDismissing = false
-            dismissInteractor.shouldFinishDismissing
-                ? dismissInteractor.finish()
-                : dismissInteractor.cancel()
-        default:
-            break
-        }
     }
 
     private func setupBindings() {
@@ -72,9 +35,8 @@ class MoodListViewController: BaseViewController {
         }
     }
 
-    func configure(_ moodManager: MoodManager?, dismissInteractor: DismissViewControllerInteractor) {
+    func configure(_ moodManager: MoodManager?) {
         self.moodManager = moodManager
-        self.dismissInteractor = dismissInteractor
     }
 
     private func configureBackButton() {

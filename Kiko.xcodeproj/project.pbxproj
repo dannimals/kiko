@@ -64,6 +64,9 @@
 		9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3520CCBDD10041C219 /* MoodListView.swift */; };
 		9E88CE9D20D73D1E007C28BF /* PresentViewControllerAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CE9C20D73D1E007C28BF /* PresentViewControllerAnimator.swift */; };
 		9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */; };
+		9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */; };
+		9E88CEA520F2F5CB007C28BF /* HalfModalInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA420F2F5CB007C28BF /* HalfModalInteractiveTransition.swift */; };
+		9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */; };
 		DBDA56C3A0C0E5DF53F4A05B /* Pods_KikoModelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */; };
 		F559DD005182564866BBEA82 /* Pods_KikoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D61D10CEB00794464B027 /* Pods_KikoTests.framework */; };
 /* End PBXBuildFile section */
@@ -203,6 +206,9 @@
 		9E453C3520CCBDD10041C219 /* MoodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListView.swift; sourceTree = "<group>"; };
 		9E88CE9C20D73D1E007C28BF /* PresentViewControllerAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentViewControllerAnimator.swift; sourceTree = "<group>"; };
 		9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
+		9E88CEA420F2F5CB007C28BF /* HalfModalInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalInteractiveTransition.swift; sourceTree = "<group>"; };
+		9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
 		ACADB0625A0A637F5BAB649C /* Pods-Kiko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiko.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiko/Pods-Kiko.debug.xcconfig"; sourceTree = "<group>"; };
 		B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B902ED13E324BC87F32E0CCF /* Pods-KikoModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModels.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModels/Pods-KikoModels.release.xcconfig"; sourceTree = "<group>"; };
@@ -516,6 +522,9 @@
 				9E00B28B20CF551800C2FD17 /* DismissViewControllerAnimator.swift */,
 				9E88CE9C20D73D1E007C28BF /* PresentViewControllerAnimator.swift */,
 				9E00B28D20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift */,
+				9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */,
+				9E88CEA420F2F5CB007C28BF /* HalfModalInteractiveTransition.swift */,
+				9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */,
 			);
 			path = AnimationControllers;
 			sourceTree = "<group>";
@@ -902,8 +911,10 @@
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E00B28E20CF590300C2FD17 /* DismissViewControllerPercentInteractor.swift in Sources */,
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,
+				9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */,
 				9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
+				9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */,
 				9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */,
 				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
@@ -913,6 +924,7 @@
 				9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */,
 				9E3D38BC208EC4D900E38BE6 /* MoodLogViewModel.swift in Sources */,
 				9E391A0720730A3B00492F54 /* BaseViewController.swift in Sources */,
+				9E88CEA520F2F5CB007C28BF /* HalfModalInteractiveTransition.swift in Sources */,
 				9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */,
 				9E00B28C20CF551800C2FD17 /* DismissViewControllerAnimator.swift in Sources */,
 				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
