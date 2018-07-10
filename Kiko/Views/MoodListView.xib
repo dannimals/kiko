@@ -20,26 +20,35 @@
                     <rect key="frame" x="0.0" y="0.0" width="368" height="65"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K13-OD-u9R" userLabel="closeButton">
-                            <rect key="frame" x="12" y="15" width="24" height="24"/>
+                            <rect key="frame" x="12" y="15" width="42" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="0Ry-0e-Q75"/>
-                                <constraint firstAttribute="width" constant="24" id="ZHQ-PY-tcg"/>
+                                <constraint firstAttribute="width" constant="42" id="ZHQ-PY-tcg"/>
                             </constraints>
-                            <state key="normal" image="xClose"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="Close"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Kiko" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E6D-KT-ShR">
-                            <rect key="frame" x="154" y="15" width="60.5" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.53333333333333333" green="0.5725490196078431" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtO-Lp-8Vn">
+                            <rect key="frame" x="144" y="24.5" width="80" height="5"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="WEz-hl-aZ9"/>
+                                <constraint firstAttribute="height" constant="5" id="jWj-mI-zCG"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="81m-Up-NoG"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.5725490196078431" green="0.72156862745098038" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="E6D-KT-ShR" firstAttribute="centerX" secondItem="OJd-gK-inp" secondAttribute="centerX" id="IP6-1d-bGs"/>
+                        <constraint firstItem="XtO-Lp-8Vn" firstAttribute="centerX" secondItem="OJd-gK-inp" secondAttribute="centerX" id="BZd-Qm-pHH"/>
+                        <constraint firstItem="XtO-Lp-8Vn" firstAttribute="centerY" secondItem="K13-OD-u9R" secondAttribute="centerY" id="UMn-6I-kdg"/>
                         <constraint firstItem="K13-OD-u9R" firstAttribute="top" secondItem="OJd-gK-inp" secondAttribute="top" constant="15" id="VRO-QM-GSP"/>
                         <constraint firstItem="K13-OD-u9R" firstAttribute="leading" secondItem="OJd-gK-inp" secondAttribute="leading" constant="12" id="oZ6-QB-0ep"/>
-                        <constraint firstItem="E6D-KT-ShR" firstAttribute="top" secondItem="K13-OD-u9R" secondAttribute="top" id="od3-r2-erj"/>
                         <constraint firstAttribute="height" constant="65" id="rS6-BE-yri"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -49,14 +58,14 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="g8v-JR-vZz">
-                    <rect key="frame" x="0.0" y="57" width="368" height="582"/>
+                    <rect key="frame" x="0.0" y="54" width="368" height="585"/>
                     <collectionViewLayout key="collectionViewLayout" id="qjl-Pn-8ib" customClass="MoodListCollectionViewLayout" customModule="Kiko" customModuleProvider="target"/>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="GGL-3t-5W2" firstAttribute="trailing" secondItem="g8v-JR-vZz" secondAttribute="trailing" id="83A-SO-JH4"/>
-                <constraint firstItem="g8v-JR-vZz" firstAttribute="top" secondItem="OJd-gK-inp" secondAttribute="bottom" constant="-8" id="9aF-YR-0Ty"/>
+                <constraint firstItem="g8v-JR-vZz" firstAttribute="top" secondItem="OJd-gK-inp" secondAttribute="bottom" constant="-11" id="9aF-YR-0Ty"/>
                 <constraint firstItem="OJd-gK-inp" firstAttribute="top" secondItem="g9V-K9-BLJ" secondAttribute="top" id="A34-U7-ekR"/>
                 <constraint firstItem="g8v-JR-vZz" firstAttribute="leading" secondItem="GGL-3t-5W2" secondAttribute="leading" id="LO8-dY-XI9"/>
                 <constraint firstItem="GGL-3t-5W2" firstAttribute="trailing" secondItem="OJd-gK-inp" secondAttribute="trailing" id="VZj-0g-Tgd"/>
@@ -68,6 +77,7 @@
             <connections>
                 <outlet property="closeButton" destination="K13-OD-u9R" id="L0M-ff-tIm"/>
                 <outlet property="collectionView" destination="g8v-JR-vZz" id="kCi-sU-VB4"/>
+                <outlet property="headerView" destination="OJd-gK-inp" id="Q6g-gv-dgU"/>
             </connections>
             <point key="canvasLocation" x="237" y="-97.5"/>
         </view>
@@ -80,7 +90,4 @@
             <point key="canvasLocation" x="237" y="-381"/>
         </label>
     </objects>
-    <resources>
-        <image name="xClose" width="30" height="30"/>
-    </resources>
 </document>

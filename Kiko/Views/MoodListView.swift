@@ -5,15 +5,21 @@ class MoodListView: UIView {
 
     let closeButtonTapped = Channel<UIControlEvents>()
 
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
 
     func configure(dataSource: UICollectionViewDataSource) {
         collectionView.dataSource = dataSource
-        backgroundColor = .clear
-        collectionView.backgroundColor = .lightGreyBlue
         setupCollectionView()
         setupCloseButton()
+        setupColors()
+    }
+
+    private func setupColors() {
+        backgroundColor = .clear
+        collectionView.backgroundColor = .lightBlue
+        headerView.backgroundColor = .lightBlue
     }
 
     private func setupCloseButton() {
