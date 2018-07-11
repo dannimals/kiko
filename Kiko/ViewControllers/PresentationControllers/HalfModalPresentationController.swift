@@ -12,11 +12,22 @@ class HalfModalPresentationController : UIPresentationController {
     private var direction: CGFloat = 0
     private var state: ModalScaleState = .halfScreen
 
+    private lazy var safeBottomInset: CGFloat = {
+        return presentingViewController.view.safeAreaInsets.bottom
+    }()
+
     private lazy var halfContainerViewFrame: CGRect = {
         guard let containerFrame = containerView?.frame else { return CGRect.zero }
-        let halfFrame = CGRect(origin: CGPoint(x: 0, y: containerFrame.height / 2),
-                               size: CGSize(width: containerFrame.width, height: containerFrame.height / 2))
+        let halfFrame = CGRect(origin: CGPoint(x: 0, y: (containerFrame.height + safeBottomInset) / 2),
+                               size: CGSize(width: containerFrame.width, height: (containerFrame.height + safeBottomInset) / 2))
         return halfFrame
+    }()
+
+    private lazy var fullContainerViewFrame: CGRect = {
+        guard let containerFrame = containerView?.frame else { return CGRect.zero }
+        let frame = CGRect(origin: containerFrame.origin,
+                               size: CGSize(width: containerFrame.width, height: containerFrame.height + safeBottomInset))
+        return frame
     }()
 
     private lazy var blurView: UIView = {
@@ -67,11 +78,10 @@ class HalfModalPresentationController : UIPresentationController {
     }
 
     private func updateModalForState(_ state: ModalScaleState) {
-        guard let presentedView = presentedView,
-            let containerView = self.containerView else { return }
+        guard let presentedView = presentedView else { return }
 
         UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseInOut, animations: { () -> Void in
-            let frame = state == .fullScreen ? containerView.frame : self.halfContainerViewFrame
+            let frame = state == .fullScreen ? self.fullContainerViewFrame : self.halfContainerViewFrame
             presentedView.frame = frame
         }, completion: { _ in
             self.state = state
@@ -92,7 +102,7 @@ class HalfModalPresentationController : UIPresentationController {
 
         coordinator.animate(alongsideTransition: { (context) -> Void in
             self.blurView.alpha = 1
-            self.presentingViewController.view.transform = CGAffineTransform(scaleX: 0.98, y: 0.98)
+            self.presentingViewController.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }, completion: nil)
     }
 
