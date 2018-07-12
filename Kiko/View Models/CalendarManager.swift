@@ -1,7 +1,7 @@
 
 import KikoModels
 
-class MoodLogViewModel {
+class CalendarManager {
 
     private(set) var lastWeekDates: [Date] = []
     private(set) var currentWeekDates: [Date] = []

@@ -7,10 +7,10 @@ class MoodLogViewController: BaseViewController {
     private var contentOffSetX: CGFloat = 0
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!
-    private let viewModel: MoodLogViewModel
+    private let calendarManager: CalendarManager
 
-    required init(viewModel: MoodLogViewModel) {
-        self.viewModel = viewModel
+    required init(calendarManager: CalendarManager) {
+        self.calendarManager = calendarManager
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -25,22 +25,22 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func scrollToCurrentWeek() {
-        guard let row = viewModel.index(for: viewModel.displayedStartOfWeekDate) else { return }
+        guard let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate) else { return }
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
-        moodLogView.updateMonth(viewModel.displayedStartOfWeekDate.month)
+        moodLogView.updateMonth(calendarManager.displayedStartOfWeekDate.month)
         isUserScrolled = true
     }
 
     private func scrollToNextWeek() {
-        viewModel.loadNextWeek()
-        if viewModel.hasNewDates {
+        calendarManager.loadNextWeek()
+        if calendarManager.hasNewDates {
             moodLogView.insertItemsAt(lastSevenIndexPaths)
         }
-        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)!
+        let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate)!
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
-        moodLogView.updateMonth(viewModel.displayedMonth)
+        moodLogView.updateMonth(calendarManager.displayedMonth)
     }
 
     private lazy var firstSevenIndexPaths: [IndexPath] = {
@@ -53,7 +53,7 @@ class MoodLogViewController: BaseViewController {
 
     private var lastSevenIndexPaths: [IndexPath] {
         var indexPaths = [IndexPath]()
-        let itemCount = viewModel.datesIndexesDict.count - 7
+        let itemCount = calendarManager.datesIndexesDict.count - 7
         for i in 0..<7 {
             indexPaths.append(IndexPath(row: i + itemCount, section: 0))
         }
@@ -61,14 +61,14 @@ class MoodLogViewController: BaseViewController {
     }
 
     private func scrollToLastWeek() {
-        viewModel.loadLastWeek()
-        if viewModel.hasNewDates {
+        calendarManager.loadLastWeek()
+        if calendarManager.hasNewDates {
             moodLogView.insertItemsAt(firstSevenIndexPaths)
         }
-        let row = viewModel.index(for: viewModel.displayedStartOfWeekDate)!
+        let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate)!
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
-        moodLogView.updateMonth(viewModel.displayedMonth)
+        moodLogView.updateMonth(calendarManager.displayedMonth)
     }
 
     private func setupBindings() {
@@ -93,7 +93,7 @@ class MoodLogViewController: BaseViewController {
         moodLogView
             .logButtonTapped
             .subscribe(self) { _ in
-                print("tapped log button")
+                
         }
         moodLogView
             .rightButtonTapped
@@ -128,7 +128,7 @@ class MoodLogViewController: BaseViewController {
 extension MoodLogViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.datesIndexesDict.count
+        return calendarManager.datesIndexesDict.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -136,7 +136,7 @@ extension MoodLogViewController: UICollectionViewDataSource {
             else { return UICollectionViewCell() }
         let font: UIFont
         let textColor: UIColor
-        let date = viewModel.dateForIndexPath(indexPath)
+        let date = calendarManager.dateForIndexPath(indexPath)
         let shouldShowCircle = date ≈≈ Date()
         if shouldShowCircle {
             font = .customFont(ofSize: 16, weight: .heavy)

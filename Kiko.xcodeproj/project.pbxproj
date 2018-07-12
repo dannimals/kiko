@@ -44,7 +44,7 @@
 		9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A0F2073153800492F54 /* CalendarWeekView.swift */; };
 		9E391A12207324FB00492F54 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A11207324FB00492F54 /* Identifiable.swift */; };
 		9E391A1820745ACD00492F54 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A1720745ACD00492F54 /* Month.swift */; };
-		9E3D38BC208EC4D900E38BE6 /* MoodLogViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */; };
+		9E3D38BC208EC4D900E38BE6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */; };
 		9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */; };
 		9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */; };
 		9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */; };
@@ -182,7 +182,7 @@
 		9E391A0F2073153800492F54 /* CalendarWeekView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeekView.swift; sourceTree = "<group>"; };
 		9E391A11207324FB00492F54 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		9E391A1720745ACD00492F54 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
-		9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogViewModel.swift; sourceTree = "<group>"; };
+		9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButton.swift; sourceTree = "<group>"; };
 		9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWaveView.swift; sourceTree = "<group>"; };
@@ -477,7 +477,7 @@
 		9E3D38BA208EC47A00E38BE6 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
-				9E3D38BB208EC4D900E38BE6 /* MoodLogViewModel.swift */,
+				9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */,
 				9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */,
 			);
 			path = "View Models";
@@ -908,7 +908,7 @@
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
 				9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */,
 				9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */,
-				9E3D38BC208EC4D900E38BE6 /* MoodLogViewModel.swift in Sources */,
+				9E3D38BC208EC4D900E38BE6 /* CalendarManager.swift in Sources */,
 				9E391A0720730A3B00492F54 /* BaseViewController.swift in Sources */,
 				9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */,
 				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
