@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="368" height="65"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K13-OD-u9R" userLabel="closeButton">
-                            <rect key="frame" x="12" y="15" width="42" height="24"/>
+                            <rect key="frame" x="18" y="15" width="42" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="0Ry-0e-Q75"/>
                                 <constraint firstAttribute="width" constant="42" id="ZHQ-PY-tcg"/>
@@ -48,7 +48,7 @@
                         <constraint firstItem="XtO-Lp-8Vn" firstAttribute="centerX" secondItem="OJd-gK-inp" secondAttribute="centerX" id="BZd-Qm-pHH"/>
                         <constraint firstItem="XtO-Lp-8Vn" firstAttribute="centerY" secondItem="K13-OD-u9R" secondAttribute="centerY" id="UMn-6I-kdg"/>
                         <constraint firstItem="K13-OD-u9R" firstAttribute="top" secondItem="OJd-gK-inp" secondAttribute="top" constant="15" id="VRO-QM-GSP"/>
-                        <constraint firstItem="K13-OD-u9R" firstAttribute="leading" secondItem="OJd-gK-inp" secondAttribute="leading" constant="12" id="oZ6-QB-0ep"/>
+                        <constraint firstItem="K13-OD-u9R" firstAttribute="leading" secondItem="OJd-gK-inp" secondAttribute="leading" constant="18" id="oZ6-QB-0ep"/>
                         <constraint firstAttribute="height" constant="65" id="rS6-BE-yri"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>

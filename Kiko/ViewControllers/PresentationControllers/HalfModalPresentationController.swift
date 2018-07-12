@@ -12,21 +12,22 @@ class HalfModalPresentationController : UIPresentationController {
     private var direction: CGFloat = 0
     private var state: ModalScaleState = .halfScreen
 
-    private lazy var safeBottomInset: CGFloat = {
-        return presentingViewController.view.safeAreaInsets.bottom
+    private lazy var safeArea: UIEdgeInsets = {
+        return presentingViewController.view.safeAreaInsets
     }()
 
     private lazy var halfContainerViewFrame: CGRect = {
         guard let containerFrame = containerView?.frame else { return CGRect.zero }
-        let halfFrame = CGRect(origin: CGPoint(x: 0, y: (containerFrame.height + safeBottomInset) / 2),
-                               size: CGSize(width: containerFrame.width, height: (containerFrame.height + safeBottomInset) / 2))
+        let halfFrame = CGRect(origin: CGPoint(x: 0, y: (containerFrame.height + safeArea.bottom) / 2),
+                               size: CGSize(width: containerFrame.width, height: (containerFrame.height + safeArea.bottom) / 2))
         return halfFrame
     }()
 
     private lazy var fullContainerViewFrame: CGRect = {
         guard let containerFrame = containerView?.frame else { return CGRect.zero }
-        let frame = CGRect(origin: containerFrame.origin,
-                               size: CGSize(width: containerFrame.width, height: containerFrame.height + safeBottomInset))
+        let origin = CGPoint(x: 0, y: safeArea.top)
+        let frame = CGRect(origin: origin,
+                               size: CGSize(width: containerFrame.width, height: containerFrame.height + safeArea.bottom))
         return frame
     }()
 
