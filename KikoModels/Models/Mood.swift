@@ -41,7 +41,22 @@ public extension Mood {
     }
 
     @discardableResult
-    public static func add(type: MoodType, date: Date) throws -> Mood {
+    public static func create(_ mood: Mood) throws -> Mood {
+        guard let realm = try? Realm() else { throw KikoModelError.realm("Failed to init Realm") }
+
+        do {
+            try realm.write {
+                realm.add(mood)
+            }
+        } catch {
+            throw KikoModelError.realm("Failed to write Mood instance to Realm")
+        }
+
+        return mood
+    }
+
+    @discardableResult
+    public static func create(type: MoodType, date: Date) throws -> Mood {
         guard let realm = try? Realm() else { throw KikoModelError.realm("Failed to init Realm") }
 
         let mood = Mood(type: type, date: date)
