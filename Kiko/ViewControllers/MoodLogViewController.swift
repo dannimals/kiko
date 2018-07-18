@@ -79,11 +79,10 @@ class MoodLogViewController: BaseViewController {
         moodLogView
             .ringButtonTapped
             .subscribe(self) { [unowned self] _ in
-                let viewModel = MoodListViewModel()
+                guard let moodManager = try? MoodManager() else { return }
+                let viewModel = MoodListViewModel(moodManager: moodManager)
                 let moodListViewController = MoodListViewController(viewModel: viewModel)
-                let moodManager = try? MoodManager()
-                moodManager?.configure(delegate: moodListViewController)
-                moodListViewController.configure(moodManager)
+                moodManager.configure(delegate: moodListViewController)
                 let halfModalTransitioningDelegate = HalfModalTransitioningDelegate()
                 moodListViewController.modalPresentationStyle = .custom
                 moodListViewController.transitioningDelegate = halfModalTransitioningDelegate

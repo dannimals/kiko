@@ -5,7 +5,6 @@ import KikoModels
 class MoodListViewController: BaseViewController {
     private let viewModel: MoodListViewModel
     private var emptyStateView: MoodListEmptyStateView?
-    private var moodManager: MoodManager?
     private let moodListView: MoodListView = MoodListView.loadFromNib()
 
     required init(viewModel: MoodListViewModel) {
@@ -33,10 +32,6 @@ class MoodListViewController: BaseViewController {
             .subscribe(self) { [unowned self] _ in
                 self.dismissViewController()
         }
-    }
-
-    func configure(_ moodManager: MoodManager?) {
-        self.moodManager = moodManager
     }
 
     private func setupEmptyStateView() {
@@ -82,9 +77,7 @@ extension MoodListViewController: UICollectionViewDataSource {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        guard let years = moodManager?.moods.distinct(by: ["year"]) else { return 0 }
-        return 5
-        //        return years.count
+        return viewModel.numberOfSections()
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
