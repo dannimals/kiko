@@ -4,6 +4,8 @@ import KikoModels
 
 class MoodLogView: UIView {
 
+    let moodChanged = Channel<MoodUISetting>()
+
     let ringButtonTapped = Channel<UIControlEvents>()
     let wavesButtonTapped = Channel<UIControlEvents>()
     let logButtonTapped = Channel<UIControlEvents>()
@@ -252,6 +254,7 @@ extension MoodLogView: UIScrollViewDelegate {
     private func updateViewColorsForSelectedIndex(_ index: Int) {
         guard let setting = MoodUISetting(rawValue: index) else { return }
 
+        moodChanged.broadcast(setting)
         UIView.animate(withDuration: 0.4) {
             self.calendarWeekView.updateViewColor(setting.accessoryColor)
             self.backgroundColor = setting.backgroundColor

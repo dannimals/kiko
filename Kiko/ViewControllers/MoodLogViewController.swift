@@ -8,9 +8,13 @@ class MoodLogViewController: BaseViewController {
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!
     private let calendarManager: CalendarManager
+    private let moodManager: MoodManager
 
-    required init(calendarManager: CalendarManager) {
+    private var currentMoodType: MoodType = .chick
+
+    required init(calendarManager: CalendarManager, moodManager: MoodManager) {
         self.calendarManager = calendarManager
+        self.moodManager = moodManager
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -77,12 +81,18 @@ class MoodLogViewController: BaseViewController {
             .subscribe(self) { [unowned self] _ in
                 let viewModel = MoodListViewModel()
                 let moodListViewController = MoodListViewController(viewModel: viewModel)
-                let moodManager = try? MoodManager(delegate: moodListViewController)
+                let moodManager = try? MoodManager()
+                moodManager?.configure(delegate: moodListViewController)
                 moodListViewController.configure(moodManager)
                 let halfModalTransitioningDelegate = HalfModalTransitioningDelegate()
                 moodListViewController.modalPresentationStyle = .custom
                 moodListViewController.transitioningDelegate = halfModalTransitioningDelegate
                 self.present(moodListViewController, animated: true, completion: nil)
+        }
+        moodLogView
+            .moodChanged
+            .subscribe(self) { [unowned self] moodSetting in
+                self.currentMoodType = self.moodType(from: moodSetting)
         }
         moodLogView
             .wavesButtonTapped
@@ -93,7 +103,7 @@ class MoodLogViewController: BaseViewController {
         moodLogView
             .logButtonTapped
             .subscribe(self) { _ in
-                
+                self.saveMood()
         }
         moodLogView
             .rightButtonTapped
@@ -113,6 +123,17 @@ class MoodLogViewController: BaseViewController {
                     self.isUserScrolled = true
                 }
         }
+    }
+
+    private func moodType(from setting: MoodUISetting) -> MoodType {
+        guard let moodType = MoodType(rawValue: setting.rawValue) else { return MoodType.chick }
+
+        return  moodType
+    }
+
+    private func saveMood() {
+        let mood = Mood(type: currentMoodType, date: Date())
+        try? moodManager.save(mood)
     }
 
     private func configureViews() {

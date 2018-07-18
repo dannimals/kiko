@@ -12,7 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         let calendarManager = CalendarManager(date: Date())
-        let moodLogViewController = MoodLogViewController(calendarManager: calendarManager)
+        guard let moodManager = try? MoodManager() else { return true }
+        let moodLogViewController = MoodLogViewController(calendarManager: calendarManager, moodManager: moodManager)
         let navigationController = UINavigationController(rootViewController: moodLogViewController)
         window?.rootViewController = navigationController
 

@@ -39,18 +39,6 @@ class MoodListViewController: BaseViewController {
         self.moodManager = moodManager
     }
 
-    private func configureBackButton() {
-        let backButton = TappableButton()
-        let image = #imageLiteral(resourceName: "back").withRenderingMode(.alwaysTemplate)
-        backButton.setImage(image, for: .normal)
-        backButton.tintColor = UIColor.backgroundBlue
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(backButton)
-        backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15).isActive = true
-        backButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 15).isActive = true
-        backButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
-    }
-
     private func setupEmptyStateView() {
         let frame = CGRect(x: 0, y: 40, width: view.bounds.width, height: view.bounds.height)
         emptyStateView = MoodListEmptyStateView(frame: frame)
