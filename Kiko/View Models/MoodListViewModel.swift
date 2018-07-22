@@ -13,4 +13,8 @@ class MoodListViewModel {
 //        return distinctYears.count
         return 2
     }
+
+    func numberOfItemsInSection(_ section: Int) -> Int {
+        return 2
+    }
 }

@@ -16,6 +16,7 @@ class MoodListViewController: BaseViewController {
         super.loadView()
 
         view = moodListView
+        moodListView.collectionView.contentInset.bottom = 100
         moodListView.configure(dataSource: self)
     }
 
@@ -65,14 +66,15 @@ extension MoodListViewController: MoodManagerDelegate {
 extension MoodListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let monthResultsCell = collectionView.dequeueReusableCell(withReuseIdentifier: MonthResultCollectionViewCell.identifier, for: indexPath) as? MonthResultCollectionViewCell else { fatalError("Could not dequeue MonthResultsCollectionViewCell") }
+        guard let monthCell = collectionView.dequeueReusableCell(withReuseIdentifier: MonthResultCollectionViewCell.identifier, for: indexPath) as? MonthResultCollectionViewCell
+            else { fatalError("Could not dequeue MonthResultsCollectionViewCell") }
 
-        monthResultsCell.backgroundColor = .monthResultBackground
-        return monthResultsCell
+        monthCell.backgroundColor = .monthResultBackground
+        return monthCell
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1 // count of dates sorted by year, sorted by month
+        return viewModel.numberOfItemsInSection(section) // count of dates sorted by year, sorted by month
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -85,7 +87,7 @@ extension MoodListViewController: UICollectionViewDataSource {
             guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                              withReuseIdentifier: MonthResultHeaderCell.reuseIdentifier,
                                                                              for: indexPath) as? MonthResultHeaderCell else { fatalError("Could not dequeue MonthResultHeaderCell") }
-            headerView.configure(year: 6)
+            headerView.configure(year: 2018)
             return headerView
         default:
             assertionFailure("Unexpected MoodList collection view error")

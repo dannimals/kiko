@@ -25,7 +25,7 @@
                                 <constraint firstAttribute="height" constant="24" id="0Ry-0e-Q75"/>
                                 <constraint firstAttribute="width" constant="42" id="ZHQ-PY-tcg"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                             <state key="normal" title="Close"/>
                         </button>
                         <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtO-Lp-8Vn">
@@ -59,7 +59,7 @@
                 </view>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="g8v-JR-vZz">
                     <rect key="frame" x="0.0" y="54" width="368" height="585"/>
-                    <collectionViewLayout key="collectionViewLayout" id="qjl-Pn-8ib" customClass="MoodListCollectionViewLayout" customModule="Kiko" customModuleProvider="target"/>
+                    <collectionViewLayout key="collectionViewLayout" id="qjl-Pn-8ib"/>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

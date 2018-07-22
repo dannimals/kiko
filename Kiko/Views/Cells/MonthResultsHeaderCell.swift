@@ -19,7 +19,11 @@ class MonthResultHeaderCell: UICollectionReusableView {
 
     private func setup() {
         yearLabel.font = UIFont.customFont(ofSize: 25, weight: .medium)
-        yearLabel.textColor = UIColor.lightGreyBlue
+        yearLabel.textColor = .white
+        addSubview(yearLabel)
+        yearLabel.translatesAutoresizingMaskIntoConstraints = false
+        yearLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18).isActive = true
+        yearLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 
     override func prepareForReuse() {
