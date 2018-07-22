@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 enum MoodUISetting: Int {

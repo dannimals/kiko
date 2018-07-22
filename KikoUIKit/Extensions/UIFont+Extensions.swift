@@ -1,4 +1,3 @@
-
 extension UIFont {
 
     public static func customFont(ofSize size: CGFloat, weight: UIFont.Weight) -> UIFont {

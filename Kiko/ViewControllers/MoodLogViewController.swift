@@ -1,9 +1,8 @@
-
 import KikoModels
 import KikoUIKit
 
 class MoodLogViewController: BaseViewController {
-    
+
     private var contentOffSetX: CGFloat = 0
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!

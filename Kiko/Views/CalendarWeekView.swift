@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class CalendarWeekView: UIView {

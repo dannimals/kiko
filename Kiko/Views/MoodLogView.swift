@@ -1,4 +1,3 @@
-
 import KikoUIKit
 import KikoModels
 
@@ -79,10 +78,10 @@ class MoodLogView: UIView {
     }
 
     private func configureGreetingLabel() {
-        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font : UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor : UIColor.salmonPink])
+        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.salmonPink])
         let mutableString = NSMutableAttributedString(attributedString: attributedText)
-        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font : UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor : UIColor.salmonPink])
-        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font : UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor : UIColor.salmonPink])
+        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: UIColor.salmonPink])
+        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.salmonPink])
         mutableString.append(secondAttributedText)
         mutableString.append(thirdAttributedText)
         greetingLabel.attributedText = mutableString

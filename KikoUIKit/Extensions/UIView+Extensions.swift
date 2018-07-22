@@ -1,4 +1,3 @@
-
 public extension UIView {
 
     @IBInspectable public var cornerRadius: CGFloat {
@@ -46,7 +45,7 @@ extension UIView {
     }
 
     public var safeLeadingAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *){
+        if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide.leadingAnchor
         } else {
             return self.leadingAnchor
@@ -54,9 +53,9 @@ extension UIView {
     }
 
     public var safeTrailingAnchor: NSLayoutXAxisAnchor {
-        if #available(iOS 11.0, *){
+        if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide.trailingAnchor
-        }else {
+        } else {
             return self.trailingAnchor
         }
     }

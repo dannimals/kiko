@@ -1,4 +1,3 @@
-
 import KikoModels
 
 class MoodListViewModel {

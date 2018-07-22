@@ -544,6 +544,7 @@
 			buildConfigurationList = 9E3919902070856500492F54 /* Build configuration list for PBXNativeTarget "Kiko" */;
 			buildPhases = (
 				22FF803DA919FC81F4B9CBEB /* [CP] Check Pods Manifest.lock */,
+				9E9E50022104E9FD00B4F32A /* Run SwiftLint */,
 				9E3919642070856500492F54 /* Sources */,
 				9E3919652070856500492F54 /* Frameworks */,
 				9E3919662070856500492F54 /* Resources */,
@@ -585,6 +586,7 @@
 			buildConfigurationList = 9E3919D8207305F800492F54 /* Build configuration list for PBXNativeTarget "KikoModels" */;
 			buildPhases = (
 				7F83F50450151ECA5828CC95 /* [CP] Check Pods Manifest.lock */,
+				9E9E50032104F3F300B4F32A /* ShellScript */,
 				9E3919BC207305F800492F54 /* Sources */,
 				9E3919BD207305F800492F54 /* Frameworks */,
 				9E3919BE207305F800492F54 /* Headers */,
@@ -865,6 +867,33 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9E9E50022104E9FD00B4F32A /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
+		9E9E50032104F3F300B4F32A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		B10D99F1ECD4A64D76E729A3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

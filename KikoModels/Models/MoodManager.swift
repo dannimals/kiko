@@ -1,4 +1,3 @@
-
 import RealmSwift
 
 public protocol MoodManagerDelegate: class {
@@ -27,11 +26,10 @@ public class MoodManager {
     func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
         guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
 
-
         let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)
         let yearPredicate = NSPredicate(format: "year == %@", year)
         let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, yearPredicate])
-        
+
         return moods.filter(query).count
     }
 

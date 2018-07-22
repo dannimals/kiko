@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class HalfModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {

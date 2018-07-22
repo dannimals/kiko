@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 final class AnimatedWaveView: UIView {

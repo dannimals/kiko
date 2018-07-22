@@ -1,4 +1,3 @@
-
 // https://medium.com/@RobertGummesson/regarding-swift-build-time-optimizations-fc92cdd91e31#.jaggt72x1
 public func unwrapOrEmpty(_ optional: String?) -> String {
     guard let opt = optional else { return "" }

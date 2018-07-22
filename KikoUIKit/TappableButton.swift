@@ -1,4 +1,3 @@
-
 public class TappableButton: UIButton {
 
     override public func point(inside point: CGPoint, with event: UIEvent?) -> Bool {

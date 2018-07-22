@@ -1,0 +1,15 @@
+disabled_rules:
+  - identifier_name
+  - force_cast
+
+line_length:
+  - 200 # warning
+  - 300 # error
+force_try:
+  severity: warning # explicitly
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+  - Source/ExcludedFolder
+  - Source/ExcludedFile.swift

@@ -1,4 +1,3 @@
-
 import Foundation
 
 final public class Protected<Value> {

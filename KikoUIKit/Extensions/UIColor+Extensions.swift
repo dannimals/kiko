@@ -1,4 +1,3 @@
-
 public extension UIColor {
 
     public convenience init(hex: Int, alpha: CGFloat = 1) {

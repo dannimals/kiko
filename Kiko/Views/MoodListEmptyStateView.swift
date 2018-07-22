@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class MoodListEmptyStateView: UIView {
@@ -47,4 +46,3 @@ class MoodListEmptyStateView: UIView {
         addSubview(imageView)
     }
 }
-

@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class HalfModalTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {

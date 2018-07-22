@@ -1,4 +1,3 @@
-
 infix operator ≈≈ : ComparisonPrecedence
 
 public protocol AlmostEquatable {

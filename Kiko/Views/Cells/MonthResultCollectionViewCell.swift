@@ -1,4 +1,3 @@
-
 import KikoModels
 import KikoUIKit
 
@@ -11,7 +10,7 @@ class MonthResultCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
     }
 
     override func prepareForReuse() {

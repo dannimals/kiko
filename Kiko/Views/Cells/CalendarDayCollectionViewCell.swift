@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class CalendarDayCollectionViewCell: UICollectionViewCell {
@@ -48,7 +47,7 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(dateLabel)
         NSLayoutConstraint.activate([
             dateLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            dateLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
 

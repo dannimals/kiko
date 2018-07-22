@@ -1,4 +1,3 @@
-
 import XCTest
 import Foundation
 import KikoModels
@@ -23,7 +22,7 @@ class MoodLogViewModelTests: XCTestCase {
 
         moodLogViewModel = MoodLogViewModel(date: date)
     }
-    
+
     override func tearDown() {
         super.tearDown()
 

@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class CalendarWeekCollectionViewLayout: UICollectionViewLayout {
@@ -28,7 +27,7 @@ class CalendarWeekCollectionViewLayout: UICollectionViewLayout {
                 let itemSize = CGSize(width: itemWidth, height: itemHeight)
                 attributes.frame = CGRect(x: xOffset, y: 0, width: itemWidth, height: itemHeight)
                 layoutAttributes.append(attributes)
-                xOffset = xOffset + itemSize.width
+                xOffset += itemSize.width
             }
         }
 

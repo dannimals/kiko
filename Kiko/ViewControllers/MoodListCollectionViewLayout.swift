@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 class MoodListCollectionViewLayout: UICollectionViewLayout {
@@ -9,10 +8,10 @@ class MoodListCollectionViewLayout: UICollectionViewLayout {
     private var verticalInset: CGFloat =  18.0
     private var itemWidth: CGFloat = 0.0
     private var itemHeight: CGFloat = 150.0
-    private var layoutAttributes = [String : UICollectionViewLayoutAttributes]()
+    private var layoutAttributes = [String: UICollectionViewLayoutAttributes]()
     private let numberOfColumns = 1
 
-    override var collectionViewContentSize : CGSize {
+    override var collectionViewContentSize: CGSize {
         return contentSize
     }
 
@@ -41,14 +40,14 @@ class MoodListCollectionViewLayout: UICollectionViewLayout {
                 }
 
                 if increaseRow {
-                    yOffset = yOffset + verticalInset + itemSize.height
+                    yOffset += verticalInset + itemSize.height
                     xOffset = horizontalPadding
                 }
 
                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: itemSize.height).integral
                 layoutAttributes[layoutKeyforIndexPath(indexPath)] = attributes
 
-                xOffset = xOffset + itemSize.width
+                xOffset += itemSize.width
             }
         }
 
@@ -61,7 +60,7 @@ class MoodListCollectionViewLayout: UICollectionViewLayout {
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
 
-        let predicate = NSPredicate {  [unowned self] (evaluatedObject, bindings) -> Bool in
+        let predicate = NSPredicate {  [unowned self] (evaluatedObject, _) -> Bool in
             let layoutAttribute = self.layoutAttributes[evaluatedObject as! String]
             return rect.intersects(layoutAttribute!.frame)
         }

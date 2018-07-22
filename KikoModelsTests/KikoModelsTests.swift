@@ -1,4 +1,3 @@
-
 import XCTest
 @testable import KikoModels
 
@@ -15,7 +14,7 @@ class MoodTests: XCTestCase {
 //        date = dateFormatter.date(from: "2018-04-21")
         mood = Mood(type: type, date: date)
     }
-    
+
     override func tearDown() {
         super.tearDown()
 

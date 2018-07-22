@@ -1,4 +1,3 @@
-
 public enum Month: Int {
     case january = 1
     case february

@@ -1,4 +1,3 @@
-
 import KikoUIKit
 
 enum ModalScaleState {
@@ -6,7 +5,7 @@ enum ModalScaleState {
     case halfScreen
 }
 
-class HalfModalPresentationController : UIPresentationController {
+class HalfModalPresentationController: UIPresentationController {
 
     private let panGestureRecognizer = UIPanGestureRecognizer()
     private var direction: CGFloat = 0
@@ -101,7 +100,7 @@ class HalfModalPresentationController : UIPresentationController {
         containerView.addSubview(blurView)
         containerView.addSubview(presentedViewController.view)
 
-        coordinator.animate(alongsideTransition: { (context) -> Void in
+        coordinator.animate(alongsideTransition: { (_) -> Void in
             self.blurView.alpha = 1
             self.presentingViewController.view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
         }, completion: nil)
@@ -110,7 +109,7 @@ class HalfModalPresentationController : UIPresentationController {
     override func dismissalTransitionWillBegin() {
         guard let coordinator = presentingViewController.transitionCoordinator else { return }
 
-        coordinator.animate(alongsideTransition: { context in
+        coordinator.animate(alongsideTransition: { _ in
             self.blurView.alpha = 0
             self.presentingViewController.view.transform = CGAffineTransform.identity
         }) { _ in self.blurView.removeFromSuperview() }
