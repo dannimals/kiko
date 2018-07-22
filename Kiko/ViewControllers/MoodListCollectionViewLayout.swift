@@ -8,7 +8,7 @@ class MoodListCollectionViewLayout: UICollectionViewLayout {
     private var verticalInset: CGFloat =  18.0
     private var itemWidth: CGFloat = 0.0
     private var itemHeight: CGFloat = 150.0
-    private var layoutAttributes = [String: UICollectionViewLayoutAttributes]()
+    private var layoutAttributes = [UICollectionViewLayoutAttributes]()
     private let numberOfColumns = 1
 
     override var collectionViewContentSize: CGSize {
@@ -45,7 +45,7 @@ class MoodListCollectionViewLayout: UICollectionViewLayout {
                 }
 
                 attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: itemSize.height).integral
-                layoutAttributes[layoutKeyforIndexPath(indexPath)] = attributes
+                layoutAttributes.append(attributes)
 
                 xOffset += itemSize.width
             }
@@ -55,24 +55,11 @@ class MoodListCollectionViewLayout: UICollectionViewLayout {
     }
 
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        return layoutAttributes[layoutKeyforIndexPath(indexPath)]
+        return layoutAttributes.filter { $0.indexPath == indexPath }.first
     }
 
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
-        let predicate = NSPredicate {  [unowned self] (evaluatedObject, _) -> Bool in
-            let layoutAttribute = self.layoutAttributes[evaluatedObject as! String]
-            return rect.intersects(layoutAttribute!.frame)
-        }
-
-        let dict = layoutAttributes as NSDictionary
-        let keys = dict.allKeys as NSArray
-        let matchingKeys = keys.filtered(using: predicate)
-
-        return dict.objects(forKeys: matchingKeys, notFoundMarker: NSNull()) as? [UICollectionViewLayoutAttributes]
+        return layoutAttributes.filter { $0.frame.intersects(rect) }
     }
 
-    private func layoutKeyforIndexPath(_ indexPath: IndexPath) -> String {
-        return "\(indexPath.section)_\(indexPath.row)"
-    }
 }
