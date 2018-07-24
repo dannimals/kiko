@@ -24,7 +24,7 @@ class MoodTests: XCTestCase {
     }
 
     func testAdd() {
-        let otherMood = try! Mood.add(type: type, date: date)
+        let otherMood = try! Mood.create(type: type, date: date)
         XCTAssertEqual(otherMood.date, date)
         XCTAssertEqual(otherMood.type, type)
     }
@@ -32,13 +32,13 @@ class MoodTests: XCTestCase {
     func testAll() {
         var allMoods = try! Mood.all()
         XCTAssertTrue(allMoods.isEmpty)
-        try! Mood.add(type: type, date: date)
+        try! Mood.create(type: type, date: date)
         allMoods = try! Mood.all()
         XCTAssertEqual(allMoods.count, 1)
     }
 
     func testDeleteAll() {
-        try! Mood.add(type: type, date: date)
+        try! Mood.create(type: type, date: date)
         var allMoods = try! Mood.all()
         XCTAssertEqual(allMoods.count, 1)
         try! Mood.deleteAll()
@@ -47,8 +47,8 @@ class MoodTests: XCTestCase {
     }
 
     func testDistinctYear() {
-        try! Mood.add(type: type, date: date)
-        try! Mood.add(type: type, date: dateFormatter.date(from: "1995-04-21")!)
+        try! Mood.create(type: type, date: date)
+        try! Mood.create(type: type, date: dateFormatter.date(from: "1995-04-21")!)
         let allMoods = try! Mood.all()
         let distinctYearMoods = allMoods.distinct(by: ["year"])
         XCTAssertEqual(distinctYearMoods.count, 2)

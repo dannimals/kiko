@@ -69,7 +69,8 @@ extension MoodListViewController: UICollectionViewDataSource {
         guard let monthCell = collectionView.dequeueReusableCell(withReuseIdentifier: MonthResultCollectionViewCell.identifier, for: indexPath) as? MonthResultCollectionViewCell
             else { fatalError("Could not dequeue MonthResultsCollectionViewCell") }
 
-        monthCell.backgroundColor = .monthResultBackground
+        let monthData = viewModel.dataForItemAt(indexPath)
+        monthCell.configure(with: monthData)
         return monthCell
     }
 
