@@ -19,33 +19,36 @@ class MoodListViewModel {
         return 2
     }
 
+    var randomInt: Int {
+        return Int(arc4random_uniform(5))
+    }
     func dataForItemAt(_ indexPath: IndexPath) -> MonthData {
         var countOfMon: MonthData.MoodCount = [:]
-        countOfMon[.chickEgg] = 2
-        countOfMon[.egg] = 1
-        countOfMon[.rottenEgg] = 2
+        countOfMon[.chickEgg] = randomInt
+        countOfMon[.egg] = 4 - countOfMon[.chickEgg]!
+        countOfMon[.rottenEgg] = 4 - countOfMon[.chickEgg]! - countOfMon[.egg]!
 
         var countOfTues: MonthData.MoodCount = [:]
-        countOfTues[.egg] = 1
-        countOfTues[.rottenEgg] = 2
+        countOfTues[.egg] = randomInt
+        countOfTues[.rottenEgg] = 4 - countOfTues[.egg]!
 
         var countOfWed: MonthData.MoodCount = [:]
-        countOfWed[.chick] = 1
-        countOfWed[.chickEgg] = 2
-        countOfWed[.egg] = 1
+        countOfWed[.chick] = randomInt
+        countOfWed[.chickEgg] = 4 - countOfWed[.chick]!
+        countOfWed[.egg] = 4 - countOfWed[.chick]! - countOfWed[.chickEgg]!
 
         var countOfThurs: MonthData.MoodCount = [:]
-        countOfThurs[.chick] = 1
+        countOfThurs[.chick] = randomInt
 
         var countOfFri: MonthData.MoodCount = [:]
-        countOfFri[.chick] = 3
-        countOfFri[.egg] = 1
+        countOfFri[.chick] = randomInt
+        countOfFri[.egg] = 4 - countOfFri[.chick]!
 
         var countOfSat: MonthData.MoodCount = [:]
-        countOfSat[.chickEgg] = 2
+        countOfSat[.chickEgg] = randomInt
 
         var countOfSun: MonthData.MoodCount = [:]
-        countOfSun[.rottenEgg] = 2
+        countOfSun[.rottenEgg] = randomInt
 
         let monthData = MonthData(countOfMon: countOfMon,
                                   countOfTues: countOfTues,

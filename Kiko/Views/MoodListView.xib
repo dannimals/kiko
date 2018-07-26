@@ -20,35 +20,28 @@
                     <rect key="frame" x="0.0" y="0.0" width="368" height="65"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K13-OD-u9R" userLabel="closeButton">
-                            <rect key="frame" x="18" y="15" width="42" height="24"/>
+                            <rect key="frame" x="18" y="15" width="50" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="0Ry-0e-Q75"/>
-                                <constraint firstAttribute="width" constant="42" id="ZHQ-PY-tcg"/>
+                                <constraint firstAttribute="width" constant="50" id="ZHQ-PY-tcg"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                             <state key="normal" title="Close"/>
                         </button>
-                        <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XtO-Lp-8Vn">
-                            <rect key="frame" x="144" y="24.5" width="80" height="5"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downArrow" translatesAutoresizingMaskIntoConstraints="NO" id="SKE-AH-PdO">
+                            <rect key="frame" x="164" y="-3" width="40" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="WEz-hl-aZ9"/>
-                                <constraint firstAttribute="height" constant="5" id="jWj-mI-zCG"/>
+                                <constraint firstAttribute="width" constant="40" id="MrD-kb-vLG"/>
+                                <constraint firstAttribute="height" constant="60" id="ah1-RZ-hwV"/>
                             </constraints>
-                            <viewLayoutGuide key="safeArea" id="81m-Up-NoG"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="3"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </view>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.5725490196078431" green="0.72156862745098038" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="XtO-Lp-8Vn" firstAttribute="centerX" secondItem="OJd-gK-inp" secondAttribute="centerX" id="BZd-Qm-pHH"/>
-                        <constraint firstItem="XtO-Lp-8Vn" firstAttribute="centerY" secondItem="K13-OD-u9R" secondAttribute="centerY" id="UMn-6I-kdg"/>
+                        <constraint firstItem="SKE-AH-PdO" firstAttribute="centerY" secondItem="K13-OD-u9R" secondAttribute="centerY" id="TLv-0M-p2y"/>
                         <constraint firstItem="K13-OD-u9R" firstAttribute="top" secondItem="OJd-gK-inp" secondAttribute="top" constant="15" id="VRO-QM-GSP"/>
                         <constraint firstItem="K13-OD-u9R" firstAttribute="leading" secondItem="OJd-gK-inp" secondAttribute="leading" constant="18" id="oZ6-QB-0ep"/>
+                        <constraint firstItem="SKE-AH-PdO" firstAttribute="centerX" secondItem="OJd-gK-inp" secondAttribute="centerX" id="pep-XR-PYv"/>
                         <constraint firstAttribute="height" constant="65" id="rS6-BE-yri"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -90,4 +83,7 @@
             <point key="canvasLocation" x="237" y="-381"/>
         </label>
     </objects>
+    <resources>
+        <image name="downArrow" width="76" height="24"/>
+    </resources>
 </document>
