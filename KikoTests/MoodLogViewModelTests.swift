@@ -3,8 +3,8 @@ import Foundation
 import KikoModels
 @testable import Kiko
 
-class MoodLogViewModelTests: XCTestCase {
-    var moodLogViewModel: MoodLogViewModel?
+class CalendarManagerTests: XCTestCase {
+    var calendarManager: CalendarManager?
     lazy var date: Date = {
         let dateString = dateFormatter.string(from: Date())
         let date = dateFormatter.date(from: dateString)
@@ -20,13 +20,13 @@ class MoodLogViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        moodLogViewModel = MoodLogViewModel(date: date)
+        calendarManager = CalendarManager(date: date)
     }
 
     override func tearDown() {
         super.tearDown()
 
-        moodLogViewModel = nil
+        calendarManager = nil
     }
 
     func testSetupDates() {
@@ -46,63 +46,63 @@ class MoodLogViewModelTests: XCTestCase {
             nextWeekDates.append(dayForNextWeek)
         }
 
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates, lastWeekDates)
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates, currentWeekDates)
-        XCTAssertEqual(moodLogViewModel!.nextWeekDates, nextWeekDates)
-        XCTAssertEqual(moodLogViewModel?.earliestDate, lastWeekDates.first!)
-        XCTAssertEqual(moodLogViewModel!.displayedStartOfWeekDate, currentWeekDates.first!)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.nextWeekDates.count, 7)
-        XCTAssertFalse(moodLogViewModel!.hasNewDates)
+        XCTAssertEqual(calendarManager!.lastWeekDates, lastWeekDates)
+        XCTAssertEqual(calendarManager!.currentWeekDates, currentWeekDates)
+        XCTAssertEqual(nextWeekDates, calendarManager!.nextWeekDates)
+        XCTAssertEqual(calendarManager?.earliestDate, lastWeekDates.first!)
+        XCTAssertEqual(currentWeekDates.first!, calendarManager!.currentWeekDates.first!)
+        XCTAssertEqual(calendarManager!.lastWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.currentWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.nextWeekDates.count, 7)
+        XCTAssertFalse(calendarManager!.hasNewDates)
     }
 
     func testComputedDates() {
-        XCTAssertEqual(moodLogViewModel!.displayedStartOfWeekDate.month, moodLogViewModel!.displayedMonth)
+        XCTAssertEqual(calendarManager!.displayedStartOfWeekDate.month, calendarManager!.displayedMonth)
     }
 
     func testSetupDatesIndexes() {
-        let datesIndexesDict = moodLogViewModel!.datesIndexesDict
-        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.earliestDate], -7)
-        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.lastWeekDates.first!], -7)
-        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.currentWeekDates.first!], 0)
-        XCTAssertEqual(datesIndexesDict[moodLogViewModel!.nextWeekDates.last!], 13)
+        let datesIndexesDict = calendarManager!.datesIndexesDict
+        XCTAssertEqual(datesIndexesDict[calendarManager!.earliestDate], -7)
+        XCTAssertEqual(datesIndexesDict[calendarManager!.lastWeekDates.first!], -7)
+        XCTAssertEqual(datesIndexesDict[calendarManager!.currentWeekDates.first!], 0)
+        XCTAssertEqual(datesIndexesDict[calendarManager!.nextWeekDates.last!], 13)
         XCTAssertEqual(datesIndexesDict.count, 21)
     }
 
     func testLoadNextWeek() {
-        let currentEarliestDate = moodLogViewModel!.earliestDate
-        let originalDatesIndexesCount = moodLogViewModel!.datesIndexesDict.count
-        let originalDateIndex = moodLogViewModel!.datesIndexesDict[date]!
+        let currentEarliestDate = calendarManager!.earliestDate
+        let originalDatesIndexesCount = calendarManager!.datesIndexesDict.count
+        let originalDateIndex = calendarManager!.datesIndexesDict[date]!
 
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
-        moodLogViewModel!.loadNextWeek()
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.last!.lastStartOfWeek, currentEarliestDate)
-        XCTAssertEqual(moodLogViewModel!.datesIndexesDict.count, originalDatesIndexesCount + 7)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.nextWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.datesIndexesDict[date], originalDateIndex)
-        XCTAssertTrue(moodLogViewModel!.hasNewDates)
+        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
+        XCTAssertEqual(calendarManager!.lastWeekDates.first!, currentEarliestDate)
+        calendarManager!.loadNextWeek()
+        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
+        XCTAssertEqual(calendarManager!.lastWeekDates.last!.lastStartOfWeek, currentEarliestDate)
+        XCTAssertEqual(calendarManager!.datesIndexesDict.count, originalDatesIndexesCount + 7)
+        XCTAssertEqual(calendarManager!.lastWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.currentWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.nextWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.datesIndexesDict[date], originalDateIndex)
+        XCTAssertTrue(calendarManager!.hasNewDates)
     }
 
     func testLoadLastWeek() {
-        let currentEarliestDate = moodLogViewModel!.earliestDate
-        let originalDatesIndexesCount = moodLogViewModel!.datesIndexesDict.count
-        let originalDateIndex = moodLogViewModel!.datesIndexesDict[date]!
+        let currentEarliestDate = calendarManager!.earliestDate
+        let originalDatesIndexesCount = calendarManager!.datesIndexesDict.count
+        let originalDateIndex = calendarManager!.datesIndexesDict[date]!
 
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.first!, currentEarliestDate)
-        moodLogViewModel!.loadLastWeek()
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.first!, moodLogViewModel!.displayedStartOfWeekDate)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.last!.startOfWeek, moodLogViewModel!.earliestDate)
-        XCTAssertEqual(moodLogViewModel!.datesIndexesDict.count, originalDatesIndexesCount + 7)
-        XCTAssertEqual(moodLogViewModel!.datesIndexesDict[date], originalDateIndex)
-        XCTAssertEqual(moodLogViewModel!.lastWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.currentWeekDates.count, 7)
-        XCTAssertEqual(moodLogViewModel!.nextWeekDates.count, 7)
-        XCTAssertTrue(moodLogViewModel!.hasNewDates)
+        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
+        XCTAssertEqual(calendarManager!.lastWeekDates.first!, currentEarliestDate)
+        calendarManager!.loadLastWeek()
+        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
+        XCTAssertEqual(calendarManager!.lastWeekDates.last!.startOfWeek, calendarManager!.earliestDate)
+        XCTAssertEqual(calendarManager!.datesIndexesDict.count, originalDatesIndexesCount + 7)
+        XCTAssertEqual(calendarManager!.datesIndexesDict[date], originalDateIndex)
+        XCTAssertEqual(calendarManager!.lastWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.currentWeekDates.count, 7)
+        XCTAssertEqual(calendarManager!.nextWeekDates.count, 7)
+        XCTAssertTrue(calendarManager!.hasNewDates)
     }
 }

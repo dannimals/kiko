@@ -16,6 +16,11 @@
 		9E10A10F2086D86300CC5444 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10E2086D86300CC5444 /* Channel.swift */; };
 		9E10A1112086D87000CC5444 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1102086D87000CC5444 /* Protected.swift */; };
 		9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E14130C2109594D006CD78D /* ArcDrawingView.swift */; };
+		9E14130F210E6BB5006CD78D /* LineDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E14130E210E6BB5006CD78D /* LineDrawingView.swift */; };
+		9E141311210E6E52006CD78D /* MonthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141310210E6E52006CD78D /* MonthData.swift */; };
+		9E141313210E7196006CD78D /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141312210E7196006CD78D /* DateManager.swift */; };
+		9E141315210E71E7006CD78D /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141314210E71E7006CD78D /* Day.swift */; };
+		9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141316210E7C1C006CD78D /* DateManagerTests.swift */; };
 		9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */; };
 		9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */; };
 		9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */; };
@@ -149,6 +154,11 @@
 		9E10A10E2086D86300CC5444 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		9E10A1102086D87000CC5444 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		9E14130C2109594D006CD78D /* ArcDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcDrawingView.swift; sourceTree = "<group>"; };
+		9E14130E210E6BB5006CD78D /* LineDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineDrawingView.swift; sourceTree = "<group>"; };
+		9E141310210E6E52006CD78D /* MonthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthData.swift; sourceTree = "<group>"; };
+		9E141312210E7196006CD78D /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		9E141314210E71E7006CD78D /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		9E141316210E7C1C006CD78D /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
 		9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimalNilCoalescing.swift; sourceTree = "<group>"; };
 		9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -322,7 +332,6 @@
 			children = (
 				9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */,
 				9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */,
-				9E14130C2109594D006CD78D /* ArcDrawingView.swift */,
 				9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */,
 				9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */,
 			);
@@ -375,6 +384,7 @@
 		9E39197F2070856500492F54 /* KikoTests */ = {
 			isa = PBXGroup;
 			children = (
+				9E141316210E7C1C006CD78D /* DateManagerTests.swift */,
 				9E3919802070856500492F54 /* MoodLogViewModelTests.swift */,
 				9E3919822070856500492F54 /* Info.plist */,
 			);
@@ -390,6 +400,7 @@
 				9E3919C3207305F800492F54 /* KikoModels.h */,
 				9E3919C4207305F800492F54 /* Info.plist */,
 				9E391A1720745ACD00492F54 /* Month.swift */,
+				9E141314210E71E7006CD78D /* Day.swift */,
 				9E3D38BF20A1414500E38BE6 /* Protocols */,
 				9E435E7420B24328003822BB /* Error.swift */,
 			);
@@ -457,9 +468,11 @@
 			isa = PBXGroup;
 			children = (
 				9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */,
+				9E14130C2109594D006CD78D /* ArcDrawingView.swift */,
 				9E324FF2207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift */,
 				9E391A0F2073153800492F54 /* CalendarWeekView.swift */,
 				9E391A0920730D5D00492F54 /* CalendarWeekView.xib */,
+				9E14130E210E6BB5006CD78D /* LineDrawingView.swift */,
 				9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */,
 				9E324FFA207B05F100C7168B /* MoodLogView.swift */,
 				9E453C3520CCBDD10041C219 /* MoodListView.swift */,
@@ -482,6 +495,8 @@
 			children = (
 				9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */,
 				9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */,
+				9E141310210E6E52006CD78D /* MonthData.swift */,
+				9E141312210E7196006CD78D /* DateManager.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -933,6 +948,9 @@
 				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
 				9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */,
 				9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */,
+				9E141311210E6E52006CD78D /* MonthData.swift in Sources */,
+				9E141313210E7196006CD78D /* DateManager.swift in Sources */,
+				9E14130F210E6BB5006CD78D /* LineDrawingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -941,6 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E3919812070856500492F54 /* MoodLogViewModelTests.swift in Sources */,
+				9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -950,6 +969,7 @@
 			files = (
 				9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */,
 				9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */,
+				9E141315210E71E7006CD78D /* Day.swift in Sources */,
 				9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */,
 				9E391A1820745ACD00492F54 /* Month.swift in Sources */,
 				9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */,

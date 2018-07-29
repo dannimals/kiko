@@ -57,7 +57,7 @@ class MoodListViewModel {
                                   countOfFri: countOfFri,
                                   countOfSat: countOfSat,
                                   countOfSun: countOfSun,
-                                  totalDays: 31)
+                                  totalDays: 31, month: .june)
         return monthData
     }
 }
