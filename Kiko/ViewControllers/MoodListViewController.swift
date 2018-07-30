@@ -42,7 +42,7 @@ class MoodListViewController: BaseViewController {
             .logButtonTapped
             .subscribe(self) { [unowned self] _ in
                 self.dismissViewController()
-        }
+        }     
     }
 
     @objc private func dismissViewController() {

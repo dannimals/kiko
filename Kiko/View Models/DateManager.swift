@@ -18,13 +18,21 @@ class DateManager: DateManageable {
         return dateFormatter
     }()
 
-    lazy var numberOfDays: Int = {
+    var numberOfDays: Int {
         let range = calendar.range(of: .day, in: .month, for: date)
         return unwrapOrEmpty(range?.count)
-    }()
+    }
 
     init(date: Date) {
         self.date = date
+    }
+
+    convenience init(month: Month, year: Int) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let date = dateFormatter.date(from: "01-\(month)-\(year)") ?? Date()
+
+        self.init(date: date)
     }
 
     func numberOf(day: Day) -> Int {

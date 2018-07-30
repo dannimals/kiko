@@ -50,14 +50,15 @@ class MoodListViewModel {
         var countOfSun: MonthData.MoodCount = [:]
         countOfSun[.rottenEgg] = randomInt
 
-        let monthData = MonthData(countOfMon: countOfMon,
+        let dateManager = DateManager(month: .june, year: 2018)
+        let monthData = MonthData(dateManager: dateManager,
+                                  countOfMon: countOfMon,
                                   countOfTues: countOfTues,
                                   countOfWed: countOfWed,
                                   countOfThurs: countOfThurs,
                                   countOfFri: countOfFri,
                                   countOfSat: countOfSat,
-                                  countOfSun: countOfSun,
-                                  totalDays: 31, month: .june)
+                                  countOfSun: countOfSun)
         return monthData
     }
 }

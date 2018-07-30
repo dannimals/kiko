@@ -5,16 +5,11 @@ import KikoModels
 
 class DateManagerTests: XCTestCase {
     var dateManager: DateManageable?
-    lazy var date: Date = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-        return dateFormatter.date(from: "22-02-2017")!
-    }()
 
     override func setUp() {
         super.setUp()
 
-        dateManager = DateManager(date: date)
+        dateManager = DateManager(month: Month.february, year: 2018)
     }
 
     override func tearDown() {
@@ -28,12 +23,12 @@ class DateManagerTests: XCTestCase {
     }
 
     func testNumberOfDay() {
-        XCTAssertEqual(dateManager!.numberOf(day: .Monday), 4)
-        XCTAssertEqual(dateManager!.numberOf(day: .Tuesday), 4)
-        XCTAssertEqual(dateManager!.numberOf(day: .Wednesday), 4)
-        XCTAssertEqual(dateManager!.numberOf(day: .Thursday), 4)
-        XCTAssertEqual(dateManager!.numberOf(day: .Friday), 4)
-        XCTAssertEqual(dateManager!.numberOf(day: .Saturday), 4)
-        XCTAssertEqual(dateManager!.numberOf(day: .Sunday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .monday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .tuesday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .wednesday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .thursday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .friday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .saturday), 4)
+        XCTAssertEqual(dateManager!.numberOf(day: .sunday), 4)
     }
 }
