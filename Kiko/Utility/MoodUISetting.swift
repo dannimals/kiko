@@ -25,11 +25,11 @@ enum MoodUISetting: Int {
     var accessoryColor: UIColor {
         switch self {
         case .chick:
-            return UIColor.salmonPink
+            return UIColor.cornflowerYellow
         case .chickEgg:
             return UIColor.tealBlue
         case .crackingEgg:
-            return UIColor.rouge
+            return UIColor.salmonPink
         case .rottenEgg:
             return UIColor.mossGreen
         case .unknown:

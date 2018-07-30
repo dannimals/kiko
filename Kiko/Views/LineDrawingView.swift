@@ -25,11 +25,11 @@ class LineDrawingView: UIView {
             let moodType = unwrapOrElse(MoodType(rawValue: i), fallback: MoodType.chick)
             let countOfDaysWithMood = unwrapOrEmpty(moodCount[moodType])
             let dayPercentage = CGFloat(countOfDaysWithMood) / CGFloat(unwrapOrElse(totalDays, fallback: 1))
-            let strokeColor = unwrapOrElse(MoodUISetting(rawValue: i)?.backgroundColor, fallback: UIColor.backgroundYellow)
+            let strokeColor = unwrapOrElse(MoodUISetting(rawValue: i)?.accessoryColor, fallback: UIColor.backgroundYellow)
             let shouldCap = i == 0 || i == 3
             currentPercentage += dayPercentage
-            x += currentPercentage * bounds.width
             drawPath(x: x, width: currentPercentage * bounds.width, height: strokeHeight, strokeColor: strokeColor, shouldCap: shouldCap)
+            x += currentPercentage * bounds.width
         }
     }
 

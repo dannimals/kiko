@@ -37,6 +37,10 @@ public extension UIColor {
         return UIColor(hex: 0xFFEEB4).withAlphaComponent(0.97)
     }
 
+    public static var cornflowerYellow: UIColor {
+        return UIColor(hex: 0xFFCF30)
+    }
+
     public static var backgroundPurple: UIColor {
         return UIColor(hex: 0xE4E8FD)
     }

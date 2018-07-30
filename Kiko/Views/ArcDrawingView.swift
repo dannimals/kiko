@@ -23,7 +23,7 @@ class ArcDrawingView: UIView {
             let oldAngle = currentEndAngle
             let moodType = unwrapOrElse(MoodType(rawValue: i), fallback: MoodType.chick)
             let monthPercentage = CGFloat(monthData.countOf(moodType: moodType)) / CGFloat(monthData.totalDays)
-            let strokeColor = unwrapOrElse(MoodUISetting(rawValue: i)?.backgroundColor, fallback: UIColor.backgroundYellow)
+            let strokeColor = unwrapOrElse(MoodUISetting(rawValue: i)?.accessoryColor, fallback: UIColor.backgroundYellow)
             currentEndAngle += 2 * CGFloat.pi * monthPercentage
             drawPath(arcCenter: arcCenter, radius: radius, startAngle: oldAngle, endAngle: currentEndAngle, strokeWidth: strokeWidth, strokeColor: strokeColor)
         }
