@@ -5,6 +5,10 @@ class MonthData {
 
     let dateManager: DateManager
 
+    var month: Month {
+        return dateManager.month
+    }
+
     let countOfMon: MoodCount
     let countOfTues: MoodCount
     let countOfWed: MoodCount

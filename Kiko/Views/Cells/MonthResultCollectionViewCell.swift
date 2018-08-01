@@ -37,7 +37,7 @@ class MonthResultCollectionViewCell: UICollectionViewCell {
 
     func configure(with monthData: MonthData) {
         self.monthData = monthData
-        monthLabel.text = "June"
+        monthLabel.text = monthData.month.description
         circleView.update(monthData: monthData)
         sundayBar.update(monthData: monthData, day: .sunday)
         mondayBar.update(monthData: monthData, day: .monday)

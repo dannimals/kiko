@@ -19,17 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="370" height="132"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="June" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEd-Ca-bja">
-                        <rect key="frame" x="51" y="18" width="40" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="June" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEd-Ca-bja">
+                        <rect key="frame" x="52" y="18" width="40" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
                         <color key="textColor" red="0.61568627450980395" green="0.68627450980392157" blue="0.73333333333333328" alpha="0.46000000000000002" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYp-Rn-MvR" userLabel="Circle Container View">
-                        <rect key="frame" x="0.0" y="47.5" width="155.5" height="84.5"/>
+                        <rect key="frame" x="0.0" y="47.5" width="156" height="84.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSo-s4-LZl" customClass="ArcDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="31.5" y="-13.5" width="80" height="80"/>
+                                <rect key="frame" x="32" y="-13.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="VAJ-Wx-XbZ"/>
                                     <constraint firstAttribute="width" constant="80" id="YXj-xY-Ys4"/>
@@ -37,11 +37,13 @@
                             </view>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="kSo-s4-LZl" firstAttribute="leading" secondItem="JYp-Rn-MvR" secondAttribute="leading" constant="32" id="HCa-ZH-wHg"/>
                             <constraint firstAttribute="bottom" secondItem="kSo-s4-LZl" secondAttribute="bottom" constant="18" id="ucU-06-Tmk"/>
+                            <constraint firstAttribute="trailing" secondItem="kSo-s4-LZl" secondAttribute="trailing" constant="44" id="wU7-4Z-D3T"/>
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="cur-zb-Pkd">
-                        <rect key="frame" x="140" y="0.0" width="15.5" height="132"/>
+                        <rect key="frame" x="140.5" y="0.0" width="15.5" height="132"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkY-tX-vdt">
                                 <rect key="frame" x="4" y="0.0" width="8" height="19"/>
@@ -96,58 +98,58 @@
                         </constraints>
                     </imageView>
                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7FY-Zd-uD1">
-                        <rect key="frame" x="320.5" y="84.5" width="20.5" height="20.5"/>
+                        <rect key="frame" x="320" y="84" width="20.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                         <color key="textColor" red="0.61568627450980395" green="0.68627450980392157" blue="0.73333333333333328" alpha="0.46000000000000002" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="zOb-RX-Sla">
-                        <rect key="frame" x="175.5" y="6" width="174.5" height="121"/>
+                        <rect key="frame" x="176" y="6" width="174" height="121"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yuO-mc-uN6" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="0.0" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="YJW-JB-9sc"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xq7-vS-DQq" userLabel="Monday Bar" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="18.5" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="18.5" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="C4u-MU-5Ng"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="laD-X5-3Rq" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="37" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="37" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="1bw-8C-s20"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6x-e0-zXZ" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="55.5" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="iZU-TS-Bio"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqS-Lr-7JJ" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="74" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="74" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="KCj-hT-wnv"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PVY-RQ-N7T" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92.5" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="92.5" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="Mcg-0j-Wg6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DA-ej-6GM" customClass="LineDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="111" width="174.5" height="10"/>
+                                <rect key="frame" x="0.0" y="111" width="174" height="10"/>
                                 <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="10" id="vyl-cy-G2f"/>
@@ -162,7 +164,6 @@
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="top" secondItem="zOb-RX-Sla" secondAttribute="top" constant="-6" id="BT4-sH-XiC"/>
                 <constraint firstItem="7FY-Zd-uD1" firstAttribute="centerY" secondItem="9k4-8V-X7J" secondAttribute="centerY" constant="-3" id="Bk6-9N-UwJ"/>
                 <constraint firstItem="JYp-Rn-MvR" firstAttribute="top" secondItem="PEd-Ca-bja" secondAttribute="bottom" constant="10" id="Dfm-04-GzH"/>
-                <constraint firstItem="PEd-Ca-bja" firstAttribute="leading" secondItem="LQB-fu-dvJ" secondAttribute="leading" constant="51" id="DqG-eC-JTX"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="bottom" secondItem="9k4-8V-X7J" secondAttribute="bottom" constant="10" id="GFj-Qb-Bci"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="bottom" secondItem="zOb-RX-Sla" secondAttribute="bottom" constant="5" id="GJs-ZQ-h6W"/>
                 <constraint firstItem="JYp-Rn-MvR" firstAttribute="trailing" secondItem="cur-zb-Pkd" secondAttribute="trailing" id="JiF-H3-cIe"/>
@@ -174,7 +175,7 @@
                 <constraint firstItem="kSo-s4-LZl" firstAttribute="centerX" secondItem="PEd-Ca-bja" secondAttribute="centerX" id="VNZ-05-TcQ"/>
                 <constraint firstItem="cpq-QE-wQa" firstAttribute="leading" secondItem="Ll7-Ta-Ge6" secondAttribute="leading" constant="142.5" id="c44-Oo-Alr"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="trailing" secondItem="zOb-RX-Sla" secondAttribute="trailing" constant="20" id="ecY-80-1H0"/>
-                <constraint firstItem="cur-zb-Pkd" firstAttribute="leading" secondItem="PEd-Ca-bja" secondAttribute="trailing" constant="49" id="fRK-Zs-fCS"/>
+                <constraint firstItem="cur-zb-Pkd" firstAttribute="leading" relation="lessThanOrEqual" secondItem="PEd-Ca-bja" secondAttribute="trailing" constant="49" id="hpG-1t-0nh"/>
                 <constraint firstItem="cur-zb-Pkd" firstAttribute="bottom" secondItem="Ll7-Ta-Ge6" secondAttribute="bottom" id="j3n-N0-Wzr"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="leading" secondItem="JYp-Rn-MvR" secondAttribute="leading" id="kQX-4a-7gs"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="bottom" secondItem="JYp-Rn-MvR" secondAttribute="bottom" id="yhV-OO-Bsf"/>

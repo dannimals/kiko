@@ -2,11 +2,16 @@ import KikoModels
 import KikoUIKit
 
 protocol DateManageable {
+
     func numberOf(day: Day) -> Int
     var numberOfDays: Int { get }
+    var month: Month { get }
+
 }
 
 class DateManager: DateManageable {
+
+    var month: Month
     private let date: Date
     private lazy var calendar: Calendar = {
         let gregorianCalendar = Calendar(identifier: .gregorian)
@@ -25,14 +30,15 @@ class DateManager: DateManageable {
 
     init(date: Date) {
         self.date = date
+        self.month = date.month
     }
 
     convenience init(month: Month, year: Int) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let date = dateFormatter.date(from: "01-\(month)-\(year)") ?? Date()
-
         self.init(date: date)
+        self.month = month
     }
 
     func numberOf(day: Day) -> Int {

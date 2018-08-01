@@ -22,6 +22,10 @@ class DateManagerTests: XCTestCase {
         XCTAssertEqual(dateManager!.numberOfDays, 28)
     }
 
+    func testMonth() {
+        XCTAssertEqual(dateManager!.month, Month.february)
+    }
+
     func testNumberOfDay() {
         XCTAssertEqual(dateManager!.numberOf(day: .monday), 4)
         XCTAssertEqual(dateManager!.numberOf(day: .tuesday), 4)

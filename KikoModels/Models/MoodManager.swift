@@ -23,12 +23,23 @@ public class MoodManager {
         self.delegate = delegate
     }
 
+    public var countOfDistinctYears: Int {
+        return moods.distinct(by: ["year"]).count
+    }
+
+    public var distinctYears: [Int] {
+        guard let years = moods.value(forKey: "year") as? [Int] else { return [] }
+        let distinctYears = Set(years)
+        return Array(distinctYears.sorted())
+    }
+
     func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
         guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
 
         let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)
         let yearPredicate = NSPredicate(format: "year == %@", year)
-        let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, yearPredicate])
+        let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
+        let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, yearPredicate, monthPredicate])
 
         return moods.filter(query).count
     }
