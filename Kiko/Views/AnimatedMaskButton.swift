@@ -1,30 +1,38 @@
+import KikoModels
 import KikoUIKit
 
 class AnimatedMaskButton: UIButton {
+
+    var mainColor: UIColor? {
+        didSet {
+            needsUpdate()
+        }
+    }
 
     let gradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        let colors = [
-            UIColor.backgroundBlue.cgColor,
-            UIColor.white.cgColor,
-            UIColor.backgroundBlue.cgColor
-        ]
-        gradientLayer.colors = colors
         let locations: [NSNumber] = [0.25, 0.5, 0.75]
         gradientLayer.locations = locations
         return gradientLayer
     }()
 
     func needsUpdate() {
-        setNeedsDisplay()
         guard let image = imageView?.image else { return }
+        let colors = [
+            unwrapOrElse(mainColor, fallback: UIColor.lightBlue).cgColor,
+            UIColor.white.cgColor,
+            unwrapOrElse(mainColor, fallback: UIColor.lightBlue).cgColor
+        ]
+        gradientLayer.colors = colors
+        gradientLayer.colors = colors
         let maskLayer = CALayer()
         maskLayer.backgroundColor = UIColor.clear.cgColor
         maskLayer.frame = bounds.offsetBy(dx: bounds.size.width, dy: 0)
         maskLayer.contents = image.cgImage
         gradientLayer.mask = maskLayer
+        setNeedsDisplay()
     }
 
     override func layoutSubviews() {

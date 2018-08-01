@@ -56,7 +56,7 @@ class MoodLogView: UIView {
 
     private func configureWavesButton() {
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
-        wavesButton.tintColor = .salmonPink
+        wavesButton.mainColor = .cornflowerYellow
         wavesButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(wavesButton)
         wavesButton.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -20).isActive = true
@@ -79,10 +79,10 @@ class MoodLogView: UIView {
     }
 
     private func configureGreetingLabel() {
-        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.salmonPink])
+        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.cornflowerYellow])
         let mutableString = NSMutableAttributedString(attributedString: attributedText)
-        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: UIColor.salmonPink])
-        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.salmonPink])
+        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: UIColor.cornflowerYellow])
+        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.cornflowerYellow])
         mutableString.append(secondAttributedText)
         mutableString.append(thirdAttributedText)
         greetingLabel.attributedText = mutableString
@@ -157,10 +157,10 @@ class MoodLogView: UIView {
     }
 
     private func configureScrollIndicator() {
-        let circle1 = circleViewWith(color: UIColor.salmonPink)
-        let circle2 = circleViewWith(color: UIColor.salmonPink.faded)
-        let circle3 = circleViewWith(color: UIColor.salmonPink.faded)
-        let circle4 = circleViewWith(color: UIColor.salmonPink.faded)
+        let circle1 = circleViewWith(color: UIColor.cornflowerYellow)
+        let circle2 = circleViewWith(color: UIColor.cornflowerYellow.faded)
+        let circle3 = circleViewWith(color: UIColor.cornflowerYellow.faded)
+        let circle4 = circleViewWith(color: UIColor.cornflowerYellow.faded)
         scrollIndicator.axis = .horizontal
         scrollIndicator.distribution = .equalCentering
         scrollIndicator.spacing = 7
@@ -188,8 +188,8 @@ class MoodLogView: UIView {
         logButton.translatesAutoresizingMaskIntoConstraints = false
         addSubview(logButton)
         logButton.layer.cornerRadius = 16
-        logButton.normalBackgroundColor = UIColor.salmonPink
-        logButton.highlightedBackgroundColor = UIColor.selectedSalmonPink
+        logButton.normalBackgroundColor = UIColor.cornflowerYellow
+        logButton.highlightedBackgroundColor = UIColor.selectedCornflowerYellow
         logButton.titleLabel?.font = UIFont.customFont(ofSize: 17, weight: .heavy)
         logButton.setTitle("Log", for: .normal)
         let bottomConstraint = logButton.bottomAnchor.constraint(equalTo: safeBottomAnchor, constant: -35)
@@ -261,7 +261,7 @@ extension MoodLogView: UIScrollViewDelegate {
             self.greetingLabel.textColor = setting.accessoryColor
             self.logButton.normalBackgroundColor = setting.accessoryColor
             self.logButton.highlightedBackgroundColor = setting.selectedAccessoryColor
-            self.wavesButton.tintColor = setting.accessoryColor
+            self.wavesButton.mainColor = setting.accessoryColor
         }
     }
 
