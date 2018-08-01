@@ -16,7 +16,7 @@ class MoodLogView: UIView {
     private let logButton = LogButton()
     private let moodScrollView = UIScrollView()
     private let ringButton = UIButton()
-    private let wavesButton = UIButton()
+    private let wavesButton = AnimatedMaskButton()
     private var moodImages = [UIImageView]()
     private var scrollIndicator = UIStackView()
     private var scrollIndicatorCircles = [UIView]()
@@ -62,6 +62,7 @@ class MoodLogView: UIView {
         wavesButton.trailingAnchor.constraint(equalTo: safeTrailingAnchor, constant: -20).isActive = true
         wavesButton.topAnchor.constraint(equalTo: safeTopAnchor, constant: 20).isActive = true
         wavesButton.addTarget(self, action: #selector(notifyWavesButtonTappedEvent), for: .touchUpInside)
+        wavesButton.needsUpdate()
     }
 
     private func configureCalendarView() {

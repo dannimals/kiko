@@ -21,6 +21,7 @@
 		9E141313210E7196006CD78D /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141312210E7196006CD78D /* DateManager.swift */; };
 		9E141315210E71E7006CD78D /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141314210E71E7006CD78D /* Day.swift */; };
 		9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141316210E7C1C006CD78D /* DateManagerTests.swift */; };
+		9E1413192111324D006CD78D /* AnimatedMaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1413182111324D006CD78D /* AnimatedMaskButton.swift */; };
 		9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */; };
 		9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */; };
 		9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */; };
@@ -159,6 +160,7 @@
 		9E141312210E7196006CD78D /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		9E141314210E71E7006CD78D /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		9E141316210E7C1C006CD78D /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
+		9E1413182111324D006CD78D /* AnimatedMaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMaskButton.swift; sourceTree = "<group>"; };
 		9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimalNilCoalescing.swift; sourceTree = "<group>"; };
 		9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -475,6 +477,7 @@
 				9E14130E210E6BB5006CD78D /* LineDrawingView.swift */,
 				9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */,
 				9E324FFA207B05F100C7168B /* MoodLogView.swift */,
+				9E1413182111324D006CD78D /* AnimatedMaskButton.swift */,
 				9E453C3520CCBDD10041C219 /* MoodListView.swift */,
 				9E00B28720CCC2E200C2FD17 /* MoodListView.xib */,
 				9E324FF1207AB2D300C7168B /* Cells */,
@@ -936,6 +939,7 @@
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */,
 				9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */,
+				9E1413192111324D006CD78D /* AnimatedMaskButton.swift in Sources */,
 				9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */,
 				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
