@@ -22,6 +22,7 @@
 		9E141315210E71E7006CD78D /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141314210E71E7006CD78D /* Day.swift */; };
 		9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E141316210E7C1C006CD78D /* DateManagerTests.swift */; };
 		9E1413192111324D006CD78D /* AnimatedMaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1413182111324D006CD78D /* AnimatedMaskButton.swift */; };
+		9E14131D2113EB0E006CD78D /* MoodListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E14131C2113EB0E006CD78D /* MoodListViewModelTests.swift */; };
 		9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */; };
 		9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */; };
 		9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */; };
@@ -161,6 +162,7 @@
 		9E141314210E71E7006CD78D /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		9E141316210E7C1C006CD78D /* DateManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManagerTests.swift; sourceTree = "<group>"; };
 		9E1413182111324D006CD78D /* AnimatedMaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedMaskButton.swift; sourceTree = "<group>"; };
+		9E14131C2113EB0E006CD78D /* MoodListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewModelTests.swift; sourceTree = "<group>"; };
 		9E324FEB20747C3600C7168B /* OptimalNilCoalescing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptimalNilCoalescing.swift; sourceTree = "<group>"; };
 		9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		9E324FEF2075BFFD00C7168B /* CalendarDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDayCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -320,6 +322,23 @@
 			path = Reactive;
 			sourceTree = "<group>";
 		};
+		9E14131A2113EAE2006CD78D /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E3919802070856500492F54 /* MoodLogViewModelTests.swift */,
+				9E14131C2113EB0E006CD78D /* MoodListViewModelTests.swift */,
+			);
+			path = ViewModelTests;
+			sourceTree = "<group>";
+		};
+		9E14131B2113EAF1006CD78D /* ManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E141316210E7C1C006CD78D /* DateManagerTests.swift */,
+			);
+			path = ManagerTests;
+			sourceTree = "<group>";
+		};
 		9E324FEA20747C1F00C7168B /* Misc */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,8 +405,8 @@
 		9E39197F2070856500492F54 /* KikoTests */ = {
 			isa = PBXGroup;
 			children = (
-				9E141316210E7C1C006CD78D /* DateManagerTests.swift */,
-				9E3919802070856500492F54 /* MoodLogViewModelTests.swift */,
+				9E14131B2113EAF1006CD78D /* ManagerTests */,
+				9E14131A2113EAE2006CD78D /* ViewModelTests */,
 				9E3919822070856500492F54 /* Info.plist */,
 			);
 			path = KikoTests;
@@ -962,6 +981,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E14131D2113EB0E006CD78D /* MoodListViewModelTests.swift in Sources */,
 				9E3919812070856500492F54 /* MoodLogViewModelTests.swift in Sources */,
 				9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */,
 			);

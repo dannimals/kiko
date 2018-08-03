@@ -5,7 +5,16 @@ public protocol MoodManagerDelegate: class {
     func didReceiveUpdate(deletions: [Int], insertions: [Int], updates: [Int])
 }
 
-public class MoodManager {
+public protocol MoodManaging {
+    func save(_ mood: Mood) throws
+    func deleteAll() throws
+    func moodCountFor(type: MoodType, month: Month, year: Int) -> Int
+    var countOfDistinctYears: Int { get }
+    var distinctYears: [Int] { get }
+    var moods: Results<Mood> { get }
+}
+
+public class MoodManager: MoodManaging {
 
     weak var delegate: MoodManagerDelegate?
     public private(set) var moods: Results<Mood>
@@ -15,7 +24,7 @@ public class MoodManager {
         try Mood.create(mood)
     }
 
-    func deleteAll() throws {
+    public func deleteAll() throws {
         try Mood.deleteAll()
     }
 
@@ -33,7 +42,7 @@ public class MoodManager {
         return Array(distinctYears.sorted())
     }
 
-    func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
+    public func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
         guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
 
         let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)

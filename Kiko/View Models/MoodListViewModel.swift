@@ -2,9 +2,9 @@ import KikoModels
 
 class MoodListViewModel {
 
-    let moodManager: MoodManager
+    let moodManager: MoodManaging
 
-    init(moodManager: MoodManager) {
+    init(moodManager: MoodManaging) {
         self.moodManager = moodManager
     }
 

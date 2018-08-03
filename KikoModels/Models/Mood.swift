@@ -8,7 +8,7 @@ import RealmSwift
 }
 
 @objcMembers public class Mood: Object {
-    enum Property: String {
+    public enum Property: String {
         case id, date, type, year, month
     }
 
