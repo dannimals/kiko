@@ -6,15 +6,10 @@ import KikoModels
 class CalendarManagerTests: XCTestCase {
     var calendarManager: CalendarManager?
     lazy var date: Date = {
-        let dateString = dateFormatter.string(from: Date())
-        let date = dateFormatter.date(from: dateString)
-        return date!
-    }()
-    lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.none
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        return dateFormatter
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        let date = dateFormatter.date(from: "02-08-2018") ?? Date()
+        return date
     }()
 
     override func setUp() {
@@ -58,7 +53,7 @@ class CalendarManagerTests: XCTestCase {
     }
 
     func testComputedDates() {
-        XCTAssertEqual(calendarManager!.displayedStartOfWeekDate.month, calendarManager!.displayedMonth)
+        XCTAssertEqual(Month.august, calendarManager!.displayedMonth)
     }
 
     func testSetupDatesIndexes() {
