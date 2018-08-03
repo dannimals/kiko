@@ -48,14 +48,32 @@ class MoodListViewModelTests: XCTestCase {
     }
 
     func testSetup() {
-        guard let moodManager = try? MockMoodManager() else { XCTFail("moodManager fail")}
-
-        XCTAssertNotNil(moodListViewModel!)
-        XCTAssertNotNil(moodManager)
+        guard let _ = moodListViewModel, let moodManager = moodManager else { XCTFail("moodListViewModel is nil"); return }
         XCTAssertEqual(4, moodManager.moods.count)
     }
 
+    func testComputedProperties() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual(2, moodListViewModel.distinctYears.count)
+        XCTAssertEqual([2017, 2018], moodListViewModel.distinctYears)
+    }
 
+    func testNumberOfSections() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual(moodListViewModel.numberOfSections(), 2)
+    }
+
+    func testNumberOfItemsInSection() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual(moodListViewModel.numberOfItemsInSection(0), 1)
+        XCTAssertEqual(moodListViewModel.numberOfItemsInSection(1), 2)
+    }
+
+    func testMonthOfItemAtIndexPath() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        let indexPath = IndexPath(row: 0, section: 0)
+        XCTAssertEqual(moodListViewModel.monthOfItem(at: indexPath), Month.january)
+    }
 
 }
 

@@ -1,4 +1,5 @@
 import XCTest
+import RealmSwift
 @testable import KikoModels
 
 class MoodTests: XCTestCase {
@@ -10,6 +11,7 @@ class MoodTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
+        Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "MoodTestsDatabase"
         dateFormatter.dateFormat = "yyyy-MM-dd"
 //        date = dateFormatter.date(from: "2018-04-21")
         mood = Mood(type: type, date: date)
