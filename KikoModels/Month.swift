@@ -30,3 +30,9 @@ public enum Month: Int, CustomStringConvertible {
         }
     }
 }
+
+extension Month: Comparable {
+    public static func < (lhs: Month, rhs: Month) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+}

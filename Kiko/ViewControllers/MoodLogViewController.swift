@@ -31,7 +31,7 @@ class MoodLogViewController: BaseViewController {
         guard let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate) else { return }
         let indexPath = IndexPath(row: row, section: 0)
         moodLogView.scrollToIndexPath(indexPath)
-        moodLogView.updateMonth(calendarManager.displayedStartOfWeekDate.month)
+        moodLogView.updateMonth(calendarManager.displayedMonth)
         isUserScrolled = true
     }
 

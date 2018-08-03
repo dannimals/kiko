@@ -9,8 +9,11 @@ class CalendarManager {
     private(set) var earliestDate = Date()
 
     private(set) var displayedStartOfWeekDate = Date()
-    var displayedMonth: Month { return displayedStartOfWeekDate.month }
+    var displayedMonth: Month { return max(displayedStartOfWeekDate.month, today.month) }
     var hasNewDates = false
+    var today: Date {
+        return Date()
+    }
 
     required init(date: Date) {
         setup(with: date)
