@@ -52,17 +52,6 @@ class MoodListViewController: BaseViewController {
     required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
 
-extension MoodListViewController: MoodManagerDelegate {
-
-    func didReceiveInitialChanges() {
-//        collectionView.reloadData()
-    }
-
-    func didReceiveUpdate(deletions: [Int], insertions: [Int], updates: [Int]) {
-
-    }
-}
-
 extension MoodListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
