@@ -40,16 +40,17 @@ public class MoodManager: MoodManaging {
         var monthData = [Weekday: [MoodType: Int]]()
 
         for i in 1...7 {
-            guard let weekDay = Weekday(rawValue: i) else { break }
+            var moodTypes = [MoodType: Int]()
+            guard let weekday = Weekday(rawValue: i) else { break }
             let weekdayPredicate = NSPredicate(format: "weekday = \(i)")
             for j in 0...3 {
                 guard let moodType = MoodType(rawValue: j) else { break }
                 let moodPredicate = NSPredicate(format: "type = \(j)")
                 let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, weekdayPredicate])
                 let moodsOnWeekdayCount = filteredMoods.filter(query).count
-                monthData[weekDay] = [moodType: moodsOnWeekdayCount]
+                moodTypes[moodType] = moodsOnWeekdayCount
             }
-
+            monthData[weekday] = moodTypes
         }
 
         return monthData
