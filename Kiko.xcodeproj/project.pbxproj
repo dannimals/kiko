@@ -54,6 +54,7 @@
 		9E391A1820745ACD00492F54 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A1720745ACD00492F54 /* Month.swift */; };
 		9E3D38BC208EC4D900E38BE6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */; };
 		9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */; };
+		9E3EC97F2117981800185D62 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3EC97E2117981800185D62 /* Weekday.swift */; };
 		9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */; };
 		9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */; };
 		9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */; };
@@ -200,6 +201,7 @@
 		9E391A1720745ACD00492F54 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
+		9E3EC97E2117981800185D62 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButton.swift; sourceTree = "<group>"; };
 		9E41DDD020A8CBD200A18E9A /* AnimatedWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWaveView.swift; sourceTree = "<group>"; };
 		9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				9E3919C4207305F800492F54 /* Info.plist */,
 				9E391A1720745ACD00492F54 /* Month.swift */,
 				9E141314210E71E7006CD78D /* Day.swift */,
+				9E3EC97E2117981800185D62 /* Weekday.swift */,
 				9E3D38BF20A1414500E38BE6 /* Protocols */,
 				9E435E7420B24328003822BB /* Error.swift */,
 			);
@@ -993,6 +996,7 @@
 			files = (
 				9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */,
 				9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */,
+				9E3EC97F2117981800185D62 /* Weekday.swift in Sources */,
 				9E141315210E71E7006CD78D /* Day.swift in Sources */,
 				9E324FEC20747C3600C7168B /* OptimalNilCoalescing.swift in Sources */,
 				9E391A1820745ACD00492F54 /* Month.swift in Sources */,

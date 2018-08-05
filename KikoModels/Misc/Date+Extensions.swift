@@ -5,6 +5,11 @@ public extension Date {
         return gregorianCalendar.component(.day, from: self)
     }
 
+    public var weekday: Int {
+        let gregorianCalendar = Calendar(identifier: .gregorian)
+        return gregorianCalendar.component(.weekday, from: self)
+    }
+
     public var year: Int {
         let gregorianCalendar = Calendar(identifier: .gregorian)
         return gregorianCalendar.component(.year, from: self)
