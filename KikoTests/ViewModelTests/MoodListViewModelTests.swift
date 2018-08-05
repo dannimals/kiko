@@ -75,9 +75,15 @@ class MoodListViewModelTests: XCTestCase {
         XCTAssertEqual(moodListViewModel.monthOfItem(at: indexPath), Month.january)
     }
 
+    func testMoodTypes() {
+        guard let moodManager = moodManager else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual([:], moodManager.moodTypes(month: .august, year: 2018))
+    }
+
 }
 
 class MockMoodManager: MoodManaging {
+
     let realm: Realm
 
     init() {
@@ -96,15 +102,27 @@ class MockMoodManager: MoodManaging {
         }
     }
 
-    func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
-        guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
-
-        let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)
+    func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
         let yearPredicate = NSPredicate(format: "year == %@", year)
         let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
-        let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, yearPredicate, monthPredicate])
+        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate])
+        let filteredMoods = moods.filter(query)
+        var monthData = [Weekday: [MoodType: Int]]()
 
-        return moods.filter(query).count
+        for i in 1...7 {
+            guard let weekDay = Weekday(rawValue: i) else { break }
+            let weekdayPredicate = NSPredicate(format: "weekday == %@", i)
+            for j in 0...3 {
+                guard let moodType = MoodType(rawValue: j) else { break }
+                let moodPredicate = NSPredicate(format: "type == %@", j)
+                let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, weekdayPredicate])
+                let moodsOnWeekdayCount = filteredMoods.filter(query).count
+                monthData[weekDay] = [moodType: moodsOnWeekdayCount]
+            }
+
+        }
+
+        return monthData
     }
 
     var countOfDistinctYears: Int {

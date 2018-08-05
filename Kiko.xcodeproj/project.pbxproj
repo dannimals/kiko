@@ -586,8 +586,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9E3919902070856500492F54 /* Build configuration list for PBXNativeTarget "Kiko" */;
 			buildPhases = (
-				9E9E50022104E9FD00B4F32A /* Run SwiftLint */,
 				22FF803DA919FC81F4B9CBEB /* [CP] Check Pods Manifest.lock */,
+				9E9E50022104E9FD00B4F32A /* Run SwiftLint */,
 				9E3919642070856500492F54 /* Sources */,
 				9E3919652070856500492F54 /* Frameworks */,
 				9E3919662070856500492F54 /* Resources */,

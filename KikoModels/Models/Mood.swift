@@ -14,7 +14,7 @@ import RealmSwift
 
     public dynamic var id = UUID().uuidString
     public private(set) dynamic var date: Date = Date()
-    public private(set) dynamic var type: MoodType  = .chick
+    public private(set) dynamic var type: Int = 0
     public private(set) dynamic var year: Int = 0
     public private(set) dynamic var month: Int = 0
     public private(set) dynamic var weekday: Int = 0
@@ -27,7 +27,7 @@ import RealmSwift
         self.init()
 
         self.date = date
-        self.type = type
+        self.type = type.rawValue
         self.year = date.year
         self.weekday = date.weekday
         self.month = date.month.rawValue

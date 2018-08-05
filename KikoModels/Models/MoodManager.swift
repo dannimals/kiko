@@ -1,14 +1,10 @@
 import RealmSwift
 
-public protocol MoodManagerDelegate: class {
-    func didReceiveInitialChanges()
-    func didReceiveUpdate(deletions: [Int], insertions: [Int], updates: [Int])
-}
-
 public protocol MoodManaging {
     func save(_ mood: Mood) throws
     func deleteAll() throws
-    func countOfMood(_ type: MoodType, month: Month, year: Int) -> Int
+    func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]]
+
     var countOfDistinctYears: Int { get }
     var distinctYears: [Int] { get }
     var moods: Results<Mood> { get }
@@ -16,9 +12,7 @@ public protocol MoodManaging {
 
 public class MoodManager: MoodManaging {
 
-    weak var delegate: MoodManagerDelegate?
     public private(set) var moods: Results<Mood>
-    var moodsNotificationToken: NotificationToken?
 
     public func save(_ mood: Mood) throws {
         try Mood.create(mood)
@@ -26,10 +20,6 @@ public class MoodManager: MoodManaging {
 
     public func deleteAll() throws {
         try Mood.deleteAll()
-    }
-
-    public func configure(delegate: MoodManagerDelegate) {
-        self.delegate = delegate
     }
 
     public var countOfDistinctYears: Int {
@@ -42,42 +32,30 @@ public class MoodManager: MoodManaging {
         return Array(distinctYears.sorted())
     }
 
-//    public func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
-//        let yearPredicate = NSPredicate(format: "year == %@", year)
-//        let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
-//        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate])
-//        let filteredMoods = moods.filter(query)
-//        var monthData: [Weekday: [MoodType: Int]]
-//        let moodsOnMon = filteredMoods.filter("weekday == %@", Weekday.monday.rawValue)
-////        monthData[.monday] = moodsOnMon
-//
-//        return [:]
-//    }
+    public func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
+        let yearPredicate = NSPredicate(format: "year = \(year)")
+        let monthPredicate = NSPredicate(format: "month = \(month.rawValue)")
+        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate])
+        let filteredMoods = moods.filter(query)
+        var monthData = [Weekday: [MoodType: Int]]()
 
-    public func countOfMood(_ type: MoodType, month: Month, year: Int) -> Int {
-        guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
+        for i in 1...7 {
+            guard let weekDay = Weekday(rawValue: i) else { break }
+            let weekdayPredicate = NSPredicate(format: "weekday = \(i)")
+            for j in 0...3 {
+                guard let moodType = MoodType(rawValue: j) else { break }
+                let moodPredicate = NSPredicate(format: "type = \(j)")
+                let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, weekdayPredicate])
+                let moodsOnWeekdayCount = filteredMoods.filter(query).count
+                monthData[weekDay] = [moodType: moodsOnWeekdayCount]
+            }
 
-        let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)
-        let yearPredicate = NSPredicate(format: "year == %@", year)
-        let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
-        let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, yearPredicate, monthPredicate])
+        }
 
-        return moods.filter(query).count
+        return monthData
     }
 
     required public init() throws {
         self.moods = try Mood.all()
-        self.moodsNotificationToken = moods.observe { changes in
-            switch changes {
-            case .initial:
-                break
-//                self.delegate?.didReceiveInitialChanges()
-            case let .update(_, deletions, insertions, updates):
-                break
-//                self.delegate?.didReceiveUpdate(deletions: deletions, insertions: insertions, updates: updates)
-            case .error:
-                break
-            }
-        }
     }
 }
