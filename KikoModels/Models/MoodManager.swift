@@ -8,7 +8,7 @@ public protocol MoodManagerDelegate: class {
 public protocol MoodManaging {
     func save(_ mood: Mood) throws
     func deleteAll() throws
-    func moodCountFor(type: MoodType, month: Month, year: Int) -> Int
+    func countOfMood(_ type: MoodType, month: Month, year: Int) -> Int
     var countOfDistinctYears: Int { get }
     var distinctYears: [Int] { get }
     var moods: Results<Mood> { get }
@@ -42,7 +42,19 @@ public class MoodManager: MoodManaging {
         return Array(distinctYears.sorted())
     }
 
-    public func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
+    public func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
+        let yearPredicate = NSPredicate(format: "year == %@", year)
+        let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
+        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate])
+        let filteredMoods = moods.filter(query)
+        var monthData: [Weekday: [MoodType: Int]]
+        let moodsOnMon = filteredMoods.filter("weekday == %@", Weekday.monday.rawValue)
+//        monthData[.monday] = moodsOnMon
+
+        return [:]
+    }
+
+    public func countOfMood(_ type: MoodType, month: Month, year: Int) -> Int {
         guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
 
         let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)
