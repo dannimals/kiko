@@ -48,18 +48,42 @@ class MoodListViewModelTests: XCTestCase {
     }
 
     func testSetup() {
-        guard let moodManager = try? MockMoodManager() else { XCTFail("moodManager fail")}
-
-        XCTAssertNotNil(moodListViewModel!)
-        XCTAssertNotNil(moodManager)
+        guard let _ = moodListViewModel, let moodManager = moodManager else { XCTFail("moodListViewModel is nil"); return }
         XCTAssertEqual(4, moodManager.moods.count)
     }
 
+    func testComputedProperties() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual(2, moodListViewModel.distinctYears.count)
+        XCTAssertEqual([2017, 2018], moodListViewModel.distinctYears)
+    }
 
+    func testNumberOfSections() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual(moodListViewModel.numberOfSections(), 2)
+    }
+
+    func testNumberOfItemsInSection() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual(moodListViewModel.numberOfItemsInSection(0), 1)
+        XCTAssertEqual(moodListViewModel.numberOfItemsInSection(1), 2)
+    }
+
+    func testMonthOfItemAtIndexPath() {
+        guard let moodListViewModel = moodListViewModel else { XCTFail("moodListViewModel is nil"); return }
+        let indexPath = IndexPath(row: 0, section: 0)
+        XCTAssertEqual(moodListViewModel.monthOfItem(at: indexPath), Month.january)
+    }
+
+    func testMoodTypes() {
+        guard let moodManager = moodManager else { XCTFail("moodListViewModel is nil"); return }
+        XCTAssertEqual([:], moodManager.moodTypes(month: .august, year: 2018))
+    }
 
 }
 
 class MockMoodManager: MoodManaging {
+
     let realm: Realm
 
     init() {
@@ -78,15 +102,27 @@ class MockMoodManager: MoodManaging {
         }
     }
 
-    func moodCountFor(type: MoodType, month: Month, year: Int) -> Int {
-        guard let moods = try? Mood.all(), moods.count > 0 else { return 0 }
-
-        let moodPredicate = NSPredicate(format: "type == %@", type.rawValue)
+    func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
         let yearPredicate = NSPredicate(format: "year == %@", year)
         let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
-        let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, yearPredicate, monthPredicate])
+        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate])
+        let filteredMoods = moods.filter(query)
+        var monthData = [Weekday: [MoodType: Int]]()
 
-        return moods.filter(query).count
+        for i in 1...7 {
+            guard let weekDay = Weekday(rawValue: i) else { break }
+            let weekdayPredicate = NSPredicate(format: "weekday == %@", i)
+            for j in 0...3 {
+                guard let moodType = MoodType(rawValue: j) else { break }
+                let moodPredicate = NSPredicate(format: "type == %@", j)
+                let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, weekdayPredicate])
+                let moodsOnWeekdayCount = filteredMoods.filter(query).count
+                monthData[weekDay] = [moodType: moodsOnWeekdayCount]
+            }
+
+        }
+
+        return monthData
     }
 
     var countOfDistinctYears: Int {

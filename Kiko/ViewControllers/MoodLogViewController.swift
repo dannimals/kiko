@@ -81,7 +81,6 @@ class MoodLogViewController: BaseViewController {
                 guard let moodManager = try? MoodManager() else { return }
                 let viewModel = MoodListViewModel(moodManager: moodManager)
                 let moodListViewController = MoodListViewController(viewModel: viewModel)
-                moodManager.configure(delegate: moodListViewController)
                 let halfModalTransitioningDelegate = HalfModalTransitioningDelegate()
                 moodListViewController.modalPresentationStyle = .custom
                 moodListViewController.transitioningDelegate = halfModalTransitioningDelegate
