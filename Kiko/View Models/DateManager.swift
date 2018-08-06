@@ -44,9 +44,10 @@ class DateManager: DateManageable {
     func numberOf(day: Day) -> Int {
         var countOfDays = 0
         var dateComponents = DateComponents()
-
         for currentDay in 1...numberOfDays {
             dateComponents.day = currentDay
+            dateComponents.month = month.rawValue
+            dateComponents.year = date.year
             guard let date = calendar.date(from: dateComponents) else { continue }
             let dayOfWeek = dateFormatter.string(from: date)
             if dayOfWeek == day.rawValue {
