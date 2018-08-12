@@ -9,10 +9,10 @@ class MoodListViewModelTests: XCTestCase {
     var moodListViewModel: MoodListViewModel?
     var moodManager: MoodManaging?
     lazy var testMood1: Mood = {
-        Mood(type: MoodType.chick, date: date(from: "2018-08-02"))
+        Mood(type: MoodType.chick, date: date(from: "2018-08-02")) // Thursday
     }()
     lazy var testMood2: Mood = {
-        Mood(type: MoodType.chickEgg, date: date(from: "2018-08-1"))
+        Mood(type: MoodType.chickEgg, date: date(from: "2018-08-1")) // Wednesday
     }()
     lazy var testMood3: Mood = {
         Mood(type: MoodType.rottenEgg, date: date(from: "2018-07-02"))
@@ -22,7 +22,9 @@ class MoodListViewModelTests: XCTestCase {
     }()
 
     func date(from dateString: String) -> Date {
+        let gregorianCalendar = Calendar(identifier: .gregorian)
         let dateFormatter = DateFormatter()
+        dateFormatter.calendar = gregorianCalendar
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: dateString)!
     }
@@ -33,10 +35,10 @@ class MoodListViewModelTests: XCTestCase {
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "MoodListViewmodelTestsDatabase"
         self.moodManager = MockMoodManager()
         moodListViewModel = MoodListViewModel(moodManager: moodManager!)
-        try! moodManager!.save(testMood1)
-        try! moodManager!.save(testMood2)
-        try! moodManager!.save(testMood3)
-        try! moodManager!.save(testMood4)
+        try? moodManager!.save(testMood1)
+        try? moodManager!.save(testMood2)
+        try? moodManager!.save(testMood3)
+        try? moodManager!.save(testMood4)
     }
 
     override func tearDown() {
@@ -77,7 +79,43 @@ class MoodListViewModelTests: XCTestCase {
 
     func testMoodTypes() {
         guard let moodManager = moodManager else { XCTFail("moodListViewModel is nil"); return }
-        XCTAssertEqual([:], moodManager.moodTypes(month: .august, year: 2018))
+        let moodTypes: [Weekday: [MoodType: Int]] =
+            [Weekday.monday:
+                [MoodType.chick: 0,
+                MoodType.chickEgg: 0,
+                MoodType.egg: 0,
+                MoodType.rottenEgg: 0],
+             Weekday.tuesday:
+                [MoodType.chick: 0,
+                 MoodType.chickEgg: 0,
+                 MoodType.egg: 0,
+                 MoodType.rottenEgg: 0],
+             Weekday.wednesday:
+                [MoodType.chick: 0,
+                 MoodType.chickEgg: 1,
+                 MoodType.egg: 0,
+                 MoodType.rottenEgg: 0],
+             Weekday.thursday:
+                [MoodType.chick: 1,
+                 MoodType.chickEgg: 0,
+                 MoodType.egg: 0,
+                 MoodType.rottenEgg: 0],
+             Weekday.friday:
+                [MoodType.chick: 0,
+                 MoodType.chickEgg: 0,
+                 MoodType.egg: 0,
+                 MoodType.rottenEgg: 0],
+             Weekday.saturday:
+                [MoodType.chick: 0,
+                 MoodType.chickEgg: 0,
+                 MoodType.egg: 0,
+                 MoodType.rottenEgg: 0],
+             Weekday.sunday:
+                [MoodType.chick: 0,
+                 MoodType.chickEgg: 0,
+                 MoodType.egg: 0,
+                 MoodType.rottenEgg: 0]]
+        XCTAssertEqual(moodTypes, moodManager.moodTypes(month: .august, year: 2018))
     }
 
 }
@@ -91,35 +129,36 @@ class MockMoodManager: MoodManaging {
     }
 
     func save(_ mood: Mood) throws {
-        try! realm.write {
+        try? realm.write {
             realm.add(mood)
         }
     }
 
     func deleteAll() throws {
-        try! realm.write {
+        try? realm.write {
             realm.deleteAll()
         }
     }
 
-    func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
-        let yearPredicate = NSPredicate(format: "year == %@", year)
-        let monthPredicate = NSPredicate(format: "month == %@", month.rawValue)
+    public func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
+        let yearPredicate = NSPredicate(format: "year = \(year)")
+        let monthPredicate = NSPredicate(format: "month = \(month.rawValue)")
         let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate])
         let filteredMoods = moods.filter(query)
         var monthData = [Weekday: [MoodType: Int]]()
 
         for i in 1...7 {
-            guard let weekDay = Weekday(rawValue: i) else { break }
-            let weekdayPredicate = NSPredicate(format: "weekday == %@", i)
+            var moodTypes = [MoodType: Int]()
+            guard let weekday = Weekday(rawValue: i) else { break }
+            let weekdayPredicate = NSPredicate(format: "weekday = \(i)")
             for j in 0...3 {
                 guard let moodType = MoodType(rawValue: j) else { break }
-                let moodPredicate = NSPredicate(format: "type == %@", j)
+                let moodPredicate = NSPredicate(format: "type = \(j)")
                 let query = NSCompoundPredicate(type: .and, subpredicates: [moodPredicate, weekdayPredicate])
                 let moodsOnWeekdayCount = filteredMoods.filter(query).count
-                monthData[weekDay] = [moodType: moodsOnWeekdayCount]
+                moodTypes[moodType] = moodsOnWeekdayCount
             }
-
+            monthData[weekday] = moodTypes
         }
 
         return monthData

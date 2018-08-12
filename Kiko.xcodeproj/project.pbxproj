@@ -33,7 +33,7 @@
 		9E39196C2070856500492F54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39196B2070856500492F54 /* AppDelegate.swift */; };
 		9E3919732070856500492F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919722070856500492F54 /* Assets.xcassets */; };
 		9E3919762070856500492F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919742070856500492F54 /* LaunchScreen.storyboard */; };
-		9E3919812070856500492F54 /* MoodLogViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3919802070856500492F54 /* MoodLogViewModelTests.swift */; };
+		9E3919812070856500492F54 /* CalendarManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3919802070856500492F54 /* CalendarManagerTests.swift */; };
 		9E3919CA207305F800492F54 /* KikoModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E3919C1207305F800492F54 /* KikoModels.framework */; };
 		9E3919D1207305F800492F54 /* KikoModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3919D0207305F800492F54 /* KikoModelsTests.swift */; };
 		9E3919D3207305F800492F54 /* KikoModels.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E3919C3207305F800492F54 /* KikoModels.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,6 +64,7 @@
 		9E435E7520B24328003822BB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7420B24328003822BB /* Error.swift */; };
 		9E435E7720B4F35D003822BB /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7620B4F35D003822BB /* MoodManager.swift */; };
 		9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */; };
+		9E43B39D211FCC3A0046E4F1 /* MoodManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B39C211FCC3A0046E4F1 /* MoodManagerTests.swift */; };
 		9E453C2C20C0D3580041C219 /* MonthResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */; };
 		9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */; };
 		9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */; };
@@ -177,7 +178,7 @@
 		9E3919752070856500492F54 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E3919772070856500492F54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E39197C2070856500492F54 /* KikoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KikoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9E3919802070856500492F54 /* MoodLogViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogViewModelTests.swift; sourceTree = "<group>"; };
+		9E3919802070856500492F54 /* CalendarManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerTests.swift; sourceTree = "<group>"; };
 		9E3919822070856500492F54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E3919C1207305F800492F54 /* KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E3919C3207305F800492F54 /* KikoModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KikoModels.h; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		9E435E7420B24328003822BB /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		9E435E7620B4F35D003822BB /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListEmptyStateView.swift; sourceTree = "<group>"; };
+		9E43B39C211FCC3A0046E4F1 /* MoodManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerTests.swift; sourceTree = "<group>"; };
 		9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultsHeaderCell.swift; sourceTree = "<group>"; };
@@ -327,7 +329,7 @@
 		9E14131A2113EAE2006CD78D /* ViewModelTests */ = {
 			isa = PBXGroup;
 			children = (
-				9E3919802070856500492F54 /* MoodLogViewModelTests.swift */,
+				9E3919802070856500492F54 /* CalendarManagerTests.swift */,
 				9E14131C2113EB0E006CD78D /* MoodListViewModelTests.swift */,
 			);
 			path = ViewModelTests;
@@ -337,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				9E141316210E7C1C006CD78D /* DateManagerTests.swift */,
+				9E43B39C211FCC3A0046E4F1 /* MoodManagerTests.swift */,
 			);
 			path = ManagerTests;
 			sourceTree = "<group>";
@@ -985,7 +988,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E14131D2113EB0E006CD78D /* MoodListViewModelTests.swift in Sources */,
-				9E3919812070856500492F54 /* MoodLogViewModelTests.swift in Sources */,
+				9E3919812070856500492F54 /* CalendarManagerTests.swift in Sources */,
+				9E43B39D211FCC3A0046E4F1 /* MoodManagerTests.swift in Sources */,
 				9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

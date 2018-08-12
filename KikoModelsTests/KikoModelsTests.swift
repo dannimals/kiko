@@ -28,7 +28,7 @@ class MoodTests: XCTestCase {
     func testAdd() {
         let otherMood = try! Mood.create(type: type, date: date)
         XCTAssertEqual(otherMood.date, date)
-        XCTAssertEqual(otherMood.type, type)
+        XCTAssertEqual(otherMood.type, type.rawValue)
     }
 
     func testAll() {
