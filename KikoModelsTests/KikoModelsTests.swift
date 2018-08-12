@@ -13,7 +13,6 @@ class MoodTests: XCTestCase {
 
         Realm.Configuration.defaultConfiguration.inMemoryIdentifier = "MoodTestsDatabase"
         dateFormatter.dateFormat = "yyyy-MM-dd"
-//        date = dateFormatter.date(from: "2018-04-21")
         mood = Mood(type: type, date: date)
     }
 
@@ -21,12 +20,11 @@ class MoodTests: XCTestCase {
         super.tearDown()
 
         mood = nil
-//        date = nil
         try! Mood.deleteAll()
     }
 
     func testAdd() {
-        let otherMood = try! Mood.create(type: type, date: date)
+        guard let otherMood = try? Mood.create(type: type, date: date) else { XCTFail(); return }
         XCTAssertEqual(otherMood.date, date)
         XCTAssertEqual(otherMood.type, type.rawValue)
     }
