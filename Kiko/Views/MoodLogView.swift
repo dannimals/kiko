@@ -39,6 +39,10 @@ class MoodLogView: UIView {
         calendarWeekView.monthLabel.text = "\(month)".capitalized
     }
 
+    func reloadDatesCollectionView() {
+        calendarWeekView.datesCollectionView.reloadData()
+    }
+
     private func configureRingButton() {
         ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
         ringButton.setContentCompressionResistancePriority(.required, for: .vertical)

@@ -101,6 +101,7 @@ class MoodLogViewController: BaseViewController {
             .logButtonTapped
             .subscribe(self) { _ in
                 self.saveMood()
+                self.moodLogView.reloadDatesCollectionView()
         }
         moodLogView
             .rightButtonTapped
