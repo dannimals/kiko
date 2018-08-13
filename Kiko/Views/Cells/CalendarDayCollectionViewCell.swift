@@ -17,7 +17,19 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         dateLabel.text = day.description
         backgroundCircleView.isHidden = !shouldShowBackgroundCircle
         configureDayLabel(font: font, textColor: textColor)
-        indicatorCircle.backgroundColor = UIColor.red
+        if let moodColor = moodColor {
+            configureBackgroundCircleView(isHidden: !shouldShowBackgroundCircle, moodColor: moodColor)
+        }
+    }
+
+    private func configureBackgroundCircleView(isHidden: Bool, moodColor: UIColor) {
+        guard isHidden else {
+            backgroundCircleView.layer.borderWidth = 2
+            backgroundCircleView.layer.borderColor = moodColor.cgColor
+            return
+        }
+        indicatorCircle.backgroundColor = moodColor
+        indicatorCircle.isHidden = false
     }
 
     private func configureDayLabel(font: UIFont, textColor: UIColor) {
@@ -73,8 +85,7 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
             indicatorCircle.heightAnchor.constraint(equalToConstant: 7),
             indicatorCircle.widthAnchor.constraint(equalToConstant: 7),
             indicatorCircle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            indicatorCircle.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            indicatorCircle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2)
+            indicatorCircle.topAnchor.constraint(equalTo: contentView.topAnchor)
         ])
     }
 
