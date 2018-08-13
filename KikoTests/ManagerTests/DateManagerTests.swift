@@ -4,12 +4,8 @@ import KikoModels
 @testable import Kiko
 
 class DateManagerTests: XCTestCase {
-    lazy var augustDateManager: DateManageable = {
-        return DateManager(month: Month.august, year: 2018)
-    }()
-    lazy var febDateManager: DateManageable = {
-        return DateManager(month: Month.february, year: 2018)
-    }()
+    let augustDateManager = DateManager(month: Month.august, year: 2018)
+    let febDateManager = DateManager(month: Month.february, year: 2018)
 
     func testNumberOfDays() {
         XCTAssertEqual(augustDateManager.numberOfDays, 31)
