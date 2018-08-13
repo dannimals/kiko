@@ -166,11 +166,16 @@ extension MoodLogViewController: UICollectionViewDataSource {
             font = .customFont(ofSize: 14, weight: .light)
             textColor = .textLightGrey
         }
+        var moodColor: UIColor? = nil
+        if let mood = moodManager.mood(forDate: date) {
+            moodColor = MoodUISetting(rawValue: mood.type)?.accessoryColor
+        }
 
         dayCell.configure(day: date.day,
                           shouldShowBackgroundCircle: shouldShowCircle,
                           font: font,
-                          textColor: textColor)
+                          textColor: textColor,
+                          moodColor: moodColor)
         return dayCell
     }
 }

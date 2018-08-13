@@ -32,6 +32,14 @@ public class MoodManager: MoodManaging {
         return Array(distinctYears.sorted())
     }
 
+    public func mood(forDate date: Date) -> Mood? {
+        let yearPredicate = NSPredicate(format: "year = \(date.year)")
+        let monthPredicate = NSPredicate(format: "month = \(date.month.rawValue)")
+        let dayPredicate = NSPredicate(format: "day = \(date.day)")
+        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate, dayPredicate])
+        return moods.filter(query).first
+    }
+
     public func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
         let yearPredicate = NSPredicate(format: "year = \(year)")
         let monthPredicate = NSPredicate(format: "month = \(month.rawValue)")

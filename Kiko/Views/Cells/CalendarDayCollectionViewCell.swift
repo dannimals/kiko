@@ -13,10 +13,11 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         configure()
     }
 
-    func configure(day: Int, shouldShowBackgroundCircle: Bool, font: UIFont, textColor: UIColor) {
+    func configure(day: Int, shouldShowBackgroundCircle: Bool, font: UIFont, textColor: UIColor, moodColor: UIColor?) {
         dateLabel.text = day.description
         backgroundCircleView.isHidden = !shouldShowBackgroundCircle
         configureDayLabel(font: font, textColor: textColor)
+        indicatorCircle.backgroundColor = UIColor.red
     }
 
     private func configureDayLabel(font: UIFont, textColor: UIColor) {

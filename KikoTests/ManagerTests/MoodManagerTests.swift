@@ -64,6 +64,15 @@ class MoodManagerTests: XCTestCase {
         XCTAssertEqual(moodManager.distinctYears, [2016, 2017, 2018])
     }
 
+    func testMoodForDate() {
+        let testDate1 = date(from: "2018-08-02")
+        let mood = moodManager.mood(forDate: testDate1)
+        XCTAssertEqual(mood, testMood2)
+        let testDate2 = date(from: "2017-08-04")
+        let mood2 = moodManager.mood(forDate: testDate2)
+        XCTAssertEqual(mood2, testMood4)
+    }
+
     func testMoodTypes() {
         let moodTypes: [Weekday: [MoodType: Int]] =
             [Weekday.monday:

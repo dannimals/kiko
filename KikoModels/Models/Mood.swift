@@ -9,7 +9,7 @@ import RealmSwift
 
 @objcMembers public class Mood: Object {
     public enum Property: String {
-        case id, date, type, year, month, weekday
+        case id, date, type, year, month, weekday, day
     }
 
     public dynamic var id = UUID().uuidString
@@ -18,6 +18,7 @@ import RealmSwift
     public private(set) dynamic var year: Int = 0
     public private(set) dynamic var month: Int = 0
     public private(set) dynamic var weekday: Int = 0
+    public private(set) dynamic var day: Int = 0
 
     override public static func primaryKey() -> String? {
         return Mood.Property.id.rawValue
@@ -27,10 +28,11 @@ import RealmSwift
         self.init()
 
         self.date = date
+        self.day = date.day
+        self.month = date.month.rawValue
         self.type = type.rawValue
         self.year = date.year
         self.weekday = date.weekday
-        self.month = date.month.rawValue
     }
 }
 
