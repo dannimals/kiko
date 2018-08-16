@@ -4,12 +4,12 @@ import KikoUIKit
 class MoodLogViewController: BaseViewController {
 
     private var contentOffSetX: CGFloat = 0
+    private var currentMoodType: MoodType = .chick
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!
     private let calendarManager: CalendarManaging
     private let moodManager: MoodManaging
     private let moodNavigationCoordinator: MoodCoordinating
-
     private var currentMoodType: MoodType = .chick
 
     required init(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
@@ -126,7 +126,13 @@ class MoodLogViewController: BaseViewController {
 
     private func saveMood() {
         let mood = Mood(type: currentMoodType, date: Date())
-        try? moodManager.save(mood)
+        guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
+        do {
+            try moodManager.save(mood)
+            presentModalForSuccess(imageColor: color)
+        } catch {
+
+        }
     }
 
     private func configureViews() {

@@ -65,6 +65,10 @@
 		9E435E7720B4F35D003822BB /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7620B4F35D003822BB /* MoodManager.swift */; };
 		9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */; };
 		9E43B39D211FCC3A0046E4F1 /* MoodManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B39C211FCC3A0046E4F1 /* MoodManagerTests.swift */; };
+		9E43B3A2212505D20046E4F1 /* UIViewControllerAlertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B3A1212505D20046E4F1 /* UIViewControllerAlertable.swift */; };
+		9E43B3A4212506F60046E4F1 /* MoodLogCompletionStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B3A3212506F60046E4F1 /* MoodLogCompletionStateViewController.swift */; };
+		9E43B3A62125081C0046E4F1 /* MoodLogCompletionStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E43B3A52125081C0046E4F1 /* MoodLogCompletionStateViewController.xib */; };
+		9E43B3A821250CF20046E4F1 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B3A721250CF20046E4F1 /* UIViewController+Extensions.swift */; };
 		9E453C2C20C0D3580041C219 /* MonthResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */; };
 		9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */; };
 		9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */; };
@@ -221,6 +225,10 @@
 		9E435E7620B4F35D003822BB /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListEmptyStateView.swift; sourceTree = "<group>"; };
 		9E43B39C211FCC3A0046E4F1 /* MoodManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManagerTests.swift; sourceTree = "<group>"; };
+		9E43B3A1212505D20046E4F1 /* UIViewControllerAlertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerAlertable.swift; sourceTree = "<group>"; };
+		9E43B3A3212506F60046E4F1 /* MoodLogCompletionStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogCompletionStateViewController.swift; sourceTree = "<group>"; };
+		9E43B3A52125081C0046E4F1 /* MoodLogCompletionStateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodLogCompletionStateViewController.xib; sourceTree = "<group>"; };
+		9E43B3A721250CF20046E4F1 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthResultCollectionViewCell.xib; sourceTree = "<group>"; };
 		9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultCollectionViewCell.swift; sourceTree = "<group>"; };
 		9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultsHeaderCell.swift; sourceTree = "<group>"; };
@@ -412,6 +420,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB538452129F54F00BB6A7A /* Coordinators */,
+				9E43B3A0212505990046E4F1 /* Protocols */,
 				9E3D38BA208EC47A00E38BE6 /* View Models */,
 				9E391A0820730D4200492F54 /* Views */,
 				9E3919DE2073061600492F54 /* ViewControllers */,
@@ -466,12 +475,14 @@
 			isa = PBXGroup;
 			children = (
 				9E88CE9F20EEBD4D007C28BF /* AnimationControllers */,
-				9E88CE9E20EEBD41007C28BF /* PresentationControllers */,
 				9E391A0620730A3B00492F54 /* BaseViewController.swift */,
-				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
-				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
-				9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */,
+				9E43B3A3212506F60046E4F1 /* MoodLogCompletionStateViewController.swift */,
+				9E43B3A52125081C0046E4F1 /* MoodLogCompletionStateViewController.xib */,
 				9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */,
+				9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */,
+				9E3919DF207306E400492F54 /* MoodLogViewController.swift */,
+				9E88CE9E20EEBD41007C28BF /* PresentationControllers */,
+				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -500,12 +511,13 @@
 		9E391A032073092400492F54 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */,
-				9E391A042073093C00492F54 /* UIColor+Extensions.swift */,
-				9E391A0D2073110900492F54 /* UIView+Extensions.swift */,
-				9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */,
-				9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */,
 				9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */,
+				9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */,
+				9E391A042073093C00492F54 /* UIColor+Extensions.swift */,
+				9E324FED2075B8F300C7168B /* UIFont+Extensions.swift */,
+				9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */,
+				9E391A0D2073110900492F54 /* UIView+Extensions.swift */,
+				9E43B3A721250CF20046E4F1 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -563,6 +575,14 @@
 				9E435E7620B4F35D003822BB /* MoodManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		9E43B3A0212505990046E4F1 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9E43B3A1212505D20046E4F1 /* UIViewControllerAlertable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		9E88CE9E20EEBD41007C28BF /* PresentationControllers */ = {
@@ -825,6 +845,7 @@
 				9E00B28820CCC2E200C2FD17 /* MoodListView.xib in Resources */,
 				9E391A0A20730D5D00492F54 /* CalendarWeekView.xib in Resources */,
 				9E453C2C20C0D3580041C219 /* MonthResultCollectionViewCell.xib in Resources */,
+				9E43B3A62125081C0046E4F1 /* MoodLogCompletionStateViewController.xib in Resources */,
 				9E3919732070856500492F54 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1014,8 +1035,10 @@
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */,
 				9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */,
+				9E43B3A4212506F60046E4F1 /* MoodLogCompletionStateViewController.swift in Sources */,
 				9E1413192111324D006CD78D /* AnimatedMaskButton.swift in Sources */,
 				9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */,
+				9E43B3A2212505D20046E4F1 /* UIViewControllerAlertable.swift in Sources */,
 				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
@@ -1082,6 +1105,7 @@
 				9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */,
 				9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */,
 				9E324FF9207ACCF500C7168B /* UICollectionView+Extensions.swift in Sources */,
+				9E43B3A821250CF20046E4F1 /* UIViewController+Extensions.swift in Sources */,
 				9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */,
 				9E391A12207324FB00492F54 /* Identifiable.swift in Sources */,
 				9E391A0E2073110900492F54 /* UIView+Extensions.swift in Sources */,
