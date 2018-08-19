@@ -1,7 +1,7 @@
 import KikoModels
 import KikoUIKit
 
-protocol DateManageable {
+public protocol DateManaging {
 
     var month: Month { get }
     var numberOfDays: Int { get }
@@ -9,7 +9,7 @@ protocol DateManageable {
 
 }
 
-class DateManager: DateManageable {
+class DateManager: DateManaging {
 
     var month: Month
     private let date: Date

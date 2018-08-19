@@ -1,6 +1,6 @@
 import KikoModels
 
-protocol CalendarManaging {
+public protocol CalendarManaging {
     var currentWeekDates: [Date] { get }
     var datesIndexesDict: [Date: Int] { get }
     var displayedMonth: Month { get }

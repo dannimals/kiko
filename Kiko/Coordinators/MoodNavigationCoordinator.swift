@@ -1,17 +1,17 @@
 import KikoUIKit
 import KikoModels
 
-protocol MoodNavigationCoordinating {
+public protocol MoodNavigationCoordinating {
     func showWavesViewController()
     func configure(rootViewController: UINavigationController, moodManager: MoodManaging)
 }
 
-typealias MoodCoordinating = AppCoordinating & MoodNavigationCoordinating
+public typealias MoodCoordinating = AppCoordinating & MoodNavigationCoordinating
 
 class MoodNavigationCoordinator: MoodCoordinating {
 
-    private var rootViewController: UINavigationController!
-    private var moodManager: MoodManaging!
+    private(set) var rootViewController: UINavigationController!
+    private(set) var moodManager: MoodManaging!
 
     func configure(rootViewController: UINavigationController, moodManager: MoodManaging) {
         self.rootViewController = rootViewController
