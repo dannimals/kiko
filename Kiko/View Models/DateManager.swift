@@ -1,15 +1,15 @@
 import KikoModels
 import KikoUIKit
 
-protocol DateManageable {
+public protocol DateManaging {
 
-    func numberOf(day: Day) -> Int
-    var numberOfDays: Int { get }
     var month: Month { get }
+    var numberOfDays: Int { get }
+    func numberOf(day: Day) -> Int
 
 }
 
-class DateManager: DateManageable {
+class DateManager: DateManaging {
 
     var month: Month
     private let date: Date
