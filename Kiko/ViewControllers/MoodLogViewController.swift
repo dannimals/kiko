@@ -6,12 +6,12 @@ class MoodLogViewController: BaseViewController {
     private var contentOffSetX: CGFloat = 0
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!
-    private let calendarManager: CalendarManager
-    private let moodManager: MoodManager
+    private let calendarManager: CalendarManaging
+    private let moodManager: MoodManaging
 
     private var currentMoodType: MoodType = .chick
 
-    required init(calendarManager: CalendarManager, moodManager: MoodManager) {
+    required init(calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
         self.moodManager = moodManager
 

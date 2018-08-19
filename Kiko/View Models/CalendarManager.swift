@@ -1,14 +1,30 @@
 import KikoModels
 
-class CalendarManager {
+protocol CalendarManaging {
+    var currentWeekDates: [Date] { get }
+    var datesIndexesDict: [Date: Int] { get }
+    var displayedMonth: Month { get }
+    var displayedStartOfWeekDate: Date { get }
+    var earliestDate: Date { get }
+    var hasNewDates: Bool { get set }
+    var lastWeekDates: [Date] { get }
+    var nextWeekDates: [Date] { get }
+    var today: Date { get }
 
-    private(set) var lastWeekDates: [Date] = []
+    func dateForIndexPath(_ indexPath: IndexPath) -> Date
+    func index(for date: Date) -> Int?
+    func loadLastWeek()
+    func loadNextWeek()
+}
+
+class CalendarManager: CalendarManaging {
+
     private(set) var currentWeekDates: [Date] = []
-    private(set) var nextWeekDates: [Date] = []
     private(set) var datesIndexesDict: [Date: Int] = [:]
-    private(set) var earliestDate = Date()
-
     private(set) var displayedStartOfWeekDate = Date()
+    private(set) var earliestDate = Date()
+    private(set) var lastWeekDates: [Date] = []
+    private(set) var nextWeekDates: [Date] = []
     var displayedMonth: Month { return max(displayedStartOfWeekDate.month, today.month) }
     var hasNewDates = false
     var today: Date {

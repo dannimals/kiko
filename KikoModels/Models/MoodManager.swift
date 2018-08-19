@@ -3,6 +3,7 @@ import RealmSwift
 public protocol MoodManaging {
     func save(_ mood: Mood) throws
     func deleteAll() throws
+    func mood(forDate date: Date) -> Mood?
     func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]]
 
     var countOfDistinctYears: Int { get }

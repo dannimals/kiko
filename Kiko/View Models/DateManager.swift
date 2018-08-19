@@ -3,9 +3,9 @@ import KikoUIKit
 
 protocol DateManageable {
 
-    func numberOf(day: Day) -> Int
-    var numberOfDays: Int { get }
     var month: Month { get }
+    var numberOfDays: Int { get }
+    func numberOf(day: Day) -> Int
 
 }
 
