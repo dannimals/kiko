@@ -7,20 +7,23 @@ protocol AppCoordinating {
 
 class MainNavigationCoordinator: AppCoordinating {
 
-    private var viewControllers: [UIViewController] = []
-
     private let calendarManager: CalendarManaging
-    private lazy var mainViewController: UINavigationController = {
-        let moodLogViewController = MoodLogViewController(calendarManager: calendarManager, moodManager: moodManager)
-        return UINavigationController(rootViewController: moodLogViewController)
-    }()
+    private let moodNavigationCoordinator: MoodCoordinating
     private let moodManager: MoodManaging
     private let window: UIWindow?
 
-    init(window: UIWindow?, calendarManager: CalendarManaging, moodManager: MoodManaging) {
+    private lazy var mainViewController: UINavigationController = {
+        let moodLogViewController = MoodLogViewController(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
+        let navigationController = UINavigationController(rootViewController: moodLogViewController)
+        moodNavigationCoordinator.configure(rootViewController: navigationController, moodManager: moodManager)
+        return navigationController
+    }()
+
+    init(window: UIWindow?, calendarManager: CalendarManaging, moodManager: MoodManaging, moodNavigationCoordinator: MoodCoordinating = MoodNavigationCoordinator()) {
         self.window = window
         self.calendarManager = calendarManager
         self.moodManager = moodManager
+        self.moodNavigationCoordinator = moodNavigationCoordinator
     }
 
     func start() {

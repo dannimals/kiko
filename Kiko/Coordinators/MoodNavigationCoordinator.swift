@@ -3,21 +3,24 @@ import KikoModels
 
 protocol MoodNavigationCoordinating {
     func showWavesViewController()
+    func configure(rootViewController: UINavigationController, moodManager: MoodManaging)
 }
 
 typealias MoodCoordinating = AppCoordinating & MoodNavigationCoordinating
 
 class MoodNavigationCoordinator: MoodCoordinating {
 
-    private let rootViewController: UIViewController
-    private let moodManager: MoodManaging
+    private var rootViewController: UINavigationController!
+    private var moodManager: MoodManaging!
 
-    init(rootViewController: UIViewController, moodManager: MoodManaging) {
+    func configure(rootViewController: UINavigationController, moodManager: MoodManaging) {
         self.rootViewController = rootViewController
         self.moodManager = moodManager
     }
 
     func start() {
+        guard let rootViewController = rootViewController else { return }
+
         let viewModel = MoodListViewModel(moodManager: moodManager)
         let moodListViewController = MoodListViewController(viewModel: viewModel)
         let halfModalTransitioningDelegate = HalfModalTransitioningDelegate()
@@ -27,7 +30,9 @@ class MoodNavigationCoordinator: MoodCoordinating {
     }
 
     func showWavesViewController() {
+        guard let rootViewController = rootViewController else { return }
+
         let wavesViewController = WavesViewController()
-        rootViewController.navigationController?.pushViewController(wavesViewController, animated: true)
+        rootViewController.pushViewController(wavesViewController, animated: true)
     }
 }
