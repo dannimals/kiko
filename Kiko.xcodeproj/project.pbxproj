@@ -73,6 +73,14 @@
 		9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */; };
 		9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */; };
 		9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */; };
+		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
+		9EB538492129FE2300BB6A7A /* MoodNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */; };
+		9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */; };
+		9EB5384E212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */; };
+		9EB53851212A052B00BB6A7A /* MockCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */; };
+		9EB53853212A053300BB6A7A /* MockDateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53852212A053300BB6A7A /* MockDateManager.swift */; };
+		9EB53855212A055D00BB6A7A /* MockMoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53854212A055D00BB6A7A /* MockMoodManager.swift */; };
+		9EB53857212A0C0C00BB6A7A /* MockNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53856212A0C0C00BB6A7A /* MockNavigationCoordinator.swift */; };
 		DBDA56C3A0C0E5DF53F4A05B /* Pods_KikoModelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */; };
 		F559DD005182564866BBEA82 /* Pods_KikoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D61D10CEB00794464B027 /* Pods_KikoTests.framework */; };
 /* End PBXBuildFile section */
@@ -221,6 +229,14 @@
 		9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
+		9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinator.swift; sourceTree = "<group>"; };
+		9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
+		9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
+		9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCalendarManager.swift; sourceTree = "<group>"; };
+		9EB53852212A053300BB6A7A /* MockDateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateManager.swift; sourceTree = "<group>"; };
+		9EB53854212A055D00BB6A7A /* MockMoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoodManager.swift; sourceTree = "<group>"; };
+		9EB53856212A0C0C00BB6A7A /* MockNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationCoordinator.swift; sourceTree = "<group>"; };
 		ACADB0625A0A637F5BAB649C /* Pods-Kiko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiko.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiko/Pods-Kiko.debug.xcconfig"; sourceTree = "<group>"; };
 		B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B902ED13E324BC87F32E0CCF /* Pods-KikoModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModels.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModels/Pods-KikoModels.release.xcconfig"; sourceTree = "<group>"; };
@@ -395,6 +411,7 @@
 		9E39196A2070856500492F54 /* Kiko */ = {
 			isa = PBXGroup;
 			children = (
+				9EB538452129F54F00BB6A7A /* Coordinators */,
 				9E3D38BA208EC47A00E38BE6 /* View Models */,
 				9E391A0820730D4200492F54 /* Views */,
 				9E3919DE2073061600492F54 /* ViewControllers */,
@@ -410,6 +427,8 @@
 		9E39197F2070856500492F54 /* KikoTests */ = {
 			isa = PBXGroup;
 			children = (
+				9EB5384F212A052200BB6A7A /* Mocks */,
+				9EB5384A212A045D00BB6A7A /* CoordinatorTests */,
 				9E14131B2113EAF1006CD78D /* ManagerTests */,
 				9E14131A2113EAE2006CD78D /* ViewModelTests */,
 				9E3919822070856500492F54 /* Info.plist */,
@@ -561,6 +580,35 @@
 				9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */,
 			);
 			path = AnimationControllers;
+			sourceTree = "<group>";
+		};
+		9EB538452129F54F00BB6A7A /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */,
+				9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		9EB5384A212A045D00BB6A7A /* CoordinatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */,
+				9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */,
+			);
+			path = CoordinatorTests;
+			sourceTree = "<group>";
+		};
+		9EB5384F212A052200BB6A7A /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */,
+				9EB53852212A053300BB6A7A /* MockDateManager.swift */,
+				9EB53854212A055D00BB6A7A /* MockMoodManager.swift */,
+				9EB53856212A0C0C00BB6A7A /* MockNavigationCoordinator.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -960,6 +1008,8 @@
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,
 				9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */,
+				9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */,
+				9EB538492129FE2300BB6A7A /* MoodNavigationCoordinator.swift in Sources */,
 				9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */,
@@ -987,10 +1037,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EB53855212A055D00BB6A7A /* MockMoodManager.swift in Sources */,
 				9E14131D2113EB0E006CD78D /* MoodListViewModelTests.swift in Sources */,
+				9EB5384E212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift in Sources */,
 				9E3919812070856500492F54 /* CalendarManagerTests.swift in Sources */,
+				9EB53853212A053300BB6A7A /* MockDateManager.swift in Sources */,
 				9E43B39D211FCC3A0046E4F1 /* MoodManagerTests.swift in Sources */,
+				9EB53857212A0C0C00BB6A7A /* MockNavigationCoordinator.swift in Sources */,
 				9E141317210E7C1C006CD78D /* DateManagerTests.swift in Sources */,
+				9EB53851212A052B00BB6A7A /* MockCalendarManager.swift in Sources */,
+				9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

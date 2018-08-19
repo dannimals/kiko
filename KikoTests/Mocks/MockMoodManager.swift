@@ -1,44 +1,33 @@
+import KikoModels
+import KikoUIKit
 import RealmSwift
 
-public protocol MoodManaging {
-    func save(_ mood: Mood) throws
-    func deleteAll() throws
-    func mood(forDate date: Date) -> Mood?
-    func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]]
+class MockMoodManager: MoodManaging {
 
-    var countOfDistinctYears: Int { get }
-    var distinctYears: [Int] { get }
-    var moods: Results<Mood> { get }
-}
+    let realm: Realm
 
-public class MoodManager: MoodManaging {
-
-    public private(set) var moods: Results<Mood>
-
-    public func save(_ mood: Mood) throws {
-        try Mood.create(mood)
+    init() {
+        self.realm = try! Realm()
     }
 
-    public func deleteAll() throws {
-        try Mood.deleteAll()
-    }
-
-    public var countOfDistinctYears: Int {
-        return moods.distinct(by: ["year"]).count
-    }
-
-    public var distinctYears: [Int] {
-        guard let years = moods.value(forKey: "year") as? [Int] else { return [] }
-        let distinctYears = Set(years)
-        return Array(distinctYears.sorted())
-    }
-
-    public func mood(forDate date: Date) -> Mood? {
+    func mood(forDate date: Date) -> Mood? {
         let yearPredicate = NSPredicate(format: "year = \(date.year)")
         let monthPredicate = NSPredicate(format: "month = \(date.month.rawValue)")
         let dayPredicate = NSPredicate(format: "day = \(date.day)")
         let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate, dayPredicate])
         return moods.filter(query).first
+    }
+
+    func save(_ mood: Mood) throws {
+        try? realm.write {
+            realm.add(mood)
+        }
+    }
+
+    func deleteAll() throws {
+        try? realm.write {
+            realm.deleteAll()
+        }
     }
 
     public func moodTypes(month: Month, year: Int) -> [Weekday: [MoodType: Int]] {
@@ -65,7 +54,17 @@ public class MoodManager: MoodManaging {
         return monthData
     }
 
-    required public init() throws {
-        self.moods = try Mood.all()
+    var countOfDistinctYears: Int {
+        return moods.distinct(by: ["year"]).count
+    }
+
+    var distinctYears: [Int] {
+        guard let years = moods.value(forKey: "year") as? [Int] else { return [] }
+        let distinctYears = Set(years)
+        return Array(distinctYears.sorted())
+    }
+
+    var moods: Results<Mood> {
+        return realm.objects(Mood.self).sorted(byKeyPath: Mood.Property.date.rawValue)
     }
 }
