@@ -128,6 +128,14 @@ class MockMoodManager: MoodManaging {
         self.realm = try! Realm()
     }
 
+    func mood(forDate date: Date) -> Mood? {
+        let yearPredicate = NSPredicate(format: "year = \(date.year)")
+        let monthPredicate = NSPredicate(format: "month = \(date.month.rawValue)")
+        let dayPredicate = NSPredicate(format: "day = \(date.day)")
+        let query = NSCompoundPredicate(type: .and, subpredicates: [yearPredicate, monthPredicate, dayPredicate])
+        return moods.filter(query).first
+    }
+
     func save(_ mood: Mood) throws {
         try? realm.write {
             realm.add(mood)
