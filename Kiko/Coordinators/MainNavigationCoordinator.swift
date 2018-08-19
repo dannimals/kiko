@@ -5,7 +5,7 @@ protocol AppCoordinating {
     func start()
 }
 
-class AppCoordinator: AppCoordinating {
+class MainNavigationCoordinator: AppCoordinating {
 
     private var viewControllers: [UIViewController] = []
 
