@@ -8,12 +8,14 @@ class MoodLogViewController: BaseViewController {
     private var moodLogView: MoodLogView!
     private let calendarManager: CalendarManaging
     private let moodManager: MoodManaging
+    private let moodNavigationCoordinator: MoodCoordinating
 
     private var currentMoodType: MoodType = .chick
 
-    required init(calendarManager: CalendarManaging, moodManager: MoodManaging) {
+    required init(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
         self.moodManager = moodManager
+        self.moodNavigationCoordinator = moodNavigationCoordinator
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -78,13 +80,7 @@ class MoodLogViewController: BaseViewController {
         moodLogView
             .ringButtonTapped
             .subscribe(self) { [unowned self] _ in
-                guard let moodManager = try? MoodManager() else { return }
-                let viewModel = MoodListViewModel(moodManager: moodManager)
-                let moodListViewController = MoodListViewController(viewModel: viewModel)
-                let halfModalTransitioningDelegate = HalfModalTransitioningDelegate()
-                moodListViewController.modalPresentationStyle = .custom
-                moodListViewController.transitioningDelegate = halfModalTransitioningDelegate
-                self.present(moodListViewController, animated: true, completion: nil)
+                self.moodNavigationCoordinator.start()
         }
         moodLogView
             .moodChanged
@@ -94,8 +90,7 @@ class MoodLogViewController: BaseViewController {
         moodLogView
             .wavesButtonTapped
             .subscribe(self) { [unowned self] _ in
-                let wavesViewController = WavesViewController()
-                self.navigationController?.pushViewController(wavesViewController, animated: true)
+                self.moodNavigationCoordinator.showWavesViewController()
         }
         moodLogView
             .logButtonTapped
