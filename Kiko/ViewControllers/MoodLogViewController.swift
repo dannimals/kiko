@@ -10,7 +10,6 @@ class MoodLogViewController: BaseViewController {
     private let calendarManager: CalendarManaging
     private let moodManager: MoodManaging
     private let moodNavigationCoordinator: MoodCoordinating
-    private var currentMoodType: MoodType = .chick
 
     required init(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
