@@ -1,18 +1,18 @@
 import KikoUIKit
 import KikoModels
 
-protocol AppCoordinating {
+public protocol AppCoordinating {
     func start()
 }
 
 class MainNavigationCoordinator: AppCoordinating {
 
-    private let calendarManager: CalendarManaging
-    private let moodNavigationCoordinator: MoodCoordinating
-    private let moodManager: MoodManaging
-    private let window: UIWindow?
+    let calendarManager: CalendarManaging
+    let moodNavigationCoordinator: MoodCoordinating
+    let moodManager: MoodManaging
+    let window: UIWindow?
 
-    private lazy var mainViewController: UINavigationController = {
+    lazy var mainViewController: UINavigationController = {
         let moodLogViewController = MoodLogViewController(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
         let navigationController = UINavigationController(rootViewController: moodLogViewController)
         moodNavigationCoordinator.configure(rootViewController: navigationController, moodManager: moodManager)
@@ -28,6 +28,7 @@ class MainNavigationCoordinator: AppCoordinating {
 
     func start() {
         guard let window = window else { return }
+
         window.rootViewController = mainViewController
         window.makeKeyAndVisible()
     }
