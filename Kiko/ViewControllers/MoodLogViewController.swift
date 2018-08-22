@@ -4,13 +4,12 @@ import KikoUIKit
 class MoodLogViewController: BaseViewController {
 
     private var contentOffSetX: CGFloat = 0
+    private var currentMoodType: MoodType = .chick
     private var isUserScrolled = false
     private var moodLogView: MoodLogView!
     private let calendarManager: CalendarManaging
     private let moodManager: MoodManaging
     private let moodNavigationCoordinator: MoodCoordinating
-
-    private var currentMoodType: MoodType = .chick
 
     required init(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
@@ -27,6 +26,13 @@ class MoodLogViewController: BaseViewController {
         setupBindings()
         view.layoutIfNeeded()
         scrollToCurrentWeek()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        guard !moodManager.hasTodayMood else { return }
+        moodLogView.reset()
     }
 
     private func scrollToCurrentWeek() {
@@ -120,13 +126,25 @@ class MoodLogViewController: BaseViewController {
 
     private func moodType(from setting: MoodUISetting) -> MoodType {
         guard let moodType = MoodType(rawValue: setting.rawValue) else { return MoodType.chick }
-
         return  moodType
+    }
+
+    private func updateViewForSavedMood(_ mood: Mood) {
+        moodLogView.updateViewForMood(mood)
     }
 
     private func saveMood() {
         let mood = Mood(type: currentMoodType, date: Date())
-        try? moodManager.save(mood)
+        guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
+        do {
+            try moodManager.save(mood)
+            presentModalForSuccess(imageColor: color)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.updateViewForSavedMood(mood)
+            }
+        } catch {
+            presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage.rawValue)
+        }
     }
 
     private func configureViews() {
