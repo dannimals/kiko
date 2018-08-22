@@ -33,15 +33,16 @@ class MoodLogView: UIView {
         scrollIndicator.isHidden = false
         scrollToMoodImageForSelectedIndex(0)
         moodScrollView.isScrollEnabled = true
+        updateViewColorsForSelectedIndex(0)
     }
 
     func updateViewForMood(_ mood: Mood) {
         greetingLabel.isHidden = true
         logButton.isHidden = true
         scrollIndicator.isHidden = true
-        let indexOfMood = indexOfCurrentMoodImage()
-        scrollToMoodImageForSelectedIndex(indexOfMood)
+        scrollToMoodImageForSelectedIndex(mood.type)
         moodScrollView.isScrollEnabled = false
+        updateViewColorsForSelectedIndex(mood.type)
     }
 
     func scrollToIndexPath(_ indexPath: IndexPath) {

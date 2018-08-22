@@ -9,7 +9,7 @@ public protocol MoodManaging {
     var countOfDistinctYears: Int { get }
     var distinctYears: [Int] { get }
     var moods: Results<Mood> { get }
-    var hasTodayMood: Bool { get }
+    var hasMoodForToday: Bool { get }
 }
 
 public class MoodManager: MoodManaging {
@@ -28,7 +28,7 @@ public class MoodManager: MoodManaging {
         return moods.distinct(by: ["year"]).count
     }
 
-    public var hasTodayMood: Bool {
+    public var hasMoodForToday: Bool {
         return mood(forDate: Date()) != nil
     }
 
