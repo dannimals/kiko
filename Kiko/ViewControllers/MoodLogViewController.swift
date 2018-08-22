@@ -22,17 +22,19 @@ class MoodLogViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureViews()
+        setupViews()
         setupBindings()
         view.layoutIfNeeded()
+        updateViewForCurrentMood()
         scrollToCurrentWeek()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        guard !moodManager.hasTodayMood else { return }
-        moodLogView.reset()
+    private func updateViewForCurrentMood() {
+        guard let todayMood = moodManager.mood(forDate: Date()) else {
+            moodLogView.reset()
+            return
+        }
+        moodLogView.updateViewForMood(todayMood)
     }
 
     private func scrollToCurrentWeek() {
@@ -147,7 +149,7 @@ class MoodLogViewController: BaseViewController {
         }
     }
 
-    private func configureViews() {
+    private func setupViews() {
         view.backgroundColor = .backgroundYellow
         moodLogView = MoodLogView(frame: view.frame)
         moodLogView.configure(dataSource: self)
