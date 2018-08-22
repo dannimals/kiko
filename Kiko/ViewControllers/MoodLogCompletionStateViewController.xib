@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splatter" translatesAutoresizingMaskIntoConstraints="NO" id="Bz4-mP-F4d" userLabel="imageView">
-                        <rect key="frame" x="122" y="278.5" width="130" height="130"/>
+                        <rect key="frame" x="87" y="243.5" width="200" height="200"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="130" id="ZXN-7B-mER"/>
-                            <constraint firstAttribute="height" constant="130" id="v15-XZ-gw2"/>
+                            <constraint firstAttribute="width" constant="200" id="ZXN-7B-mER"/>
+                            <constraint firstAttribute="height" constant="200" id="v15-XZ-gw2"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -39,6 +39,6 @@
         </viewController>
     </objects>
     <resources>
-        <image name="splatter" width="154" height="151"/>
+        <image name="splatter" width="101" height="114"/>
     </resources>
 </document>
