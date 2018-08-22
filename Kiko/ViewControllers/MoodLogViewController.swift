@@ -130,7 +130,7 @@ class MoodLogViewController: BaseViewController {
             try moodManager.save(mood)
             presentModalForSuccess(imageColor: color)
         } catch {
-
+            presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage.rawValue)
         }
     }
 

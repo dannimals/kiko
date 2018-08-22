@@ -26,12 +26,20 @@ class MoodLogCompletionStateViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        animateImageView()
+        showBlurEffectView()
+        animateImageViewScale()
+    }
 
+    private func showBlurEffectView() {
         blurEffectView.frame = view.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(blurEffectView)
         view.insertSubview(blurEffectView, belowSubview: imageView)
+    }
+
+    func prepareForDismissal() {
+        animateDismissImageView()
+        animateHideBlurView()
     }
 
     private func setup() {
@@ -39,7 +47,29 @@ class MoodLogCompletionStateViewController: UIViewController {
         imageView.transform = imageView.transform.scaledBy(x: 0, y: 0)
     }
 
-    private func animateImageView() {
+    private func animateDismissImageView() {
+        let finalPoint = view.bounds.height + imageView.bounds.height
+        let positionAnimation = CABasicAnimation(keyPath: "position.y")
+        positionAnimation.fromValue = view.center.y
+        positionAnimation.toValue = finalPoint
+        positionAnimation.duration = 0.2
+        positionAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        imageView.layer.add(positionAnimation, forKey: nil)
+        imageView.layer.position.y = finalPoint
+    }
+
+    private func animateHideBlurView() {
+        let fadeAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeAnimation.fromValue = 1.0
+        fadeAnimation.toValue = 0.0
+        fadeAnimation.duration = 0.2
+        fadeAnimation.setValue(blurEffectView.layer, forKey: "blurEffectLayer")
+        fadeAnimation.delegate = self
+        blurEffectView.layer.add(fadeAnimation, forKey: nil)
+        blurEffectView.alpha = 0.0
+    }
+
+    private func animateImageViewScale() {
         let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
         scaleAnimation.fromValue = 0
         scaleAnimation.toValue = 1
@@ -48,10 +78,13 @@ class MoodLogCompletionStateViewController: UIViewController {
         imageView.transform = .identity
         imageView.layer.add(scaleAnimation, forKey: nil)
     }
+}
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+extension MoodLogCompletionStateViewController: CAAnimationDelegate {
 
-        blurEffectView.removeFromSuperview()
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard let _ = anim.value(forKey: "blurEffectLayer") as? CALayer else { return }
+        imageView.removeFromSuperview()
+        dismiss(animated: true, completion: nil)
     }
 }
