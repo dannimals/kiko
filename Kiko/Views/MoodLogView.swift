@@ -27,6 +27,23 @@ class MoodLogView: UIView {
         configure()
     }
 
+    func reset() {
+        greetingLabel.isHidden = false
+        logButton.isHidden = false
+        scrollIndicator.isHidden = false
+        scrollToMoodImageForSelectedIndex(0)
+        moodScrollView.isScrollEnabled = true
+    }
+
+    func updateViewForMood(_ mood: Mood) {
+        greetingLabel.isHidden = true
+        logButton.isHidden = true
+        scrollIndicator.isHidden = true
+        let indexOfMood = indexOfCurrentMoodImage()
+        scrollToMoodImageForSelectedIndex(indexOfMood)
+        moodScrollView.isScrollEnabled = false
+    }
+
     func scrollToIndexPath(_ indexPath: IndexPath) {
         calendarWeekView.datesCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
     }
@@ -221,14 +238,19 @@ class MoodLogView: UIView {
         configureLogButton()
     }
 
+    private func indexOfCurrentMoodImage() -> Int {
+        let offSetX = moodScrollView.contentOffset.x
+        let width = moodScrollView.bounds.width
+        let index = Int(offSetX / width)
+        return index
+    }
+
 }
 
 extension MoodLogView: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let offSetX = scrollView.contentOffset.x
-        let width = scrollView.bounds.width
-        let index = Int(offSetX / width)
+        let index = indexOfCurrentMoodImage()
         scrollToMoodImageForSelectedIndex(index)
         updateScrollIndicatorForSelectedIndex(index)
         updateViewColorsForSelectedIndex(index)
