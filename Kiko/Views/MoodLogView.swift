@@ -228,7 +228,6 @@ class MoodLogView: UIView {
     }
 
     private func configure() {
-        calendarWeekView.datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
         configureRingButton()
         configureWavesButton()
         configureCalendarView()
