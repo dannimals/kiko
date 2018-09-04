@@ -25,7 +25,8 @@ class CalendarManager: CalendarManaging {
     private(set) var earliestDate = Date()
     private(set) var lastWeekDates: [Date] = []
     private(set) var nextWeekDates: [Date] = []
-    var displayedMonth: Month { return max(displayedStartOfWeekDate.month, today.month) }
+    var displayedMonth: Month { return min(displayedStartOfWeekDate.month, displayedStartOfWeekDate.dateFromAddingDays(6).month)
+    }
     var hasNewDates = false
     var today: Date {
         return Date()

@@ -10,6 +10,8 @@ class MockMoodManager: MoodManaging {
         self.realm = try! Realm()
     }
 
+    var hasMoodForToday = true
+
     func mood(forDate date: Date) -> Mood? {
         let yearPredicate = NSPredicate(format: "year = \(date.year)")
         let monthPredicate = NSPredicate(format: "month = \(date.month.rawValue)")

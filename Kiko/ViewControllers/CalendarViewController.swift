@@ -3,7 +3,7 @@ import KikoUIKit
 
 class CalendarViewController: BaseViewController {
 
-    var calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
+    let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
 
     private(set) var isUserScrolled = false
     private(set) var contentOffSetX: CGFloat = 0
@@ -37,8 +37,9 @@ class CalendarViewController: BaseViewController {
         super.viewDidLoad()
 
         configureViews()
-        scrollToCurrentWeek()
         setupBindings()
+        view.layoutIfNeeded()
+        scrollToCurrentWeek()
     }
 
     private func setupBindings() {
@@ -135,7 +136,7 @@ extension CalendarViewController: UICollectionViewDelegate {
         let indexPath = IndexPath(row: row, section: 0)
         scrollToIndexPath(indexPath)
         updateMonth(calendarManager.displayedMonth)
-        isUserScrolled = true
+//        isUserScrolled = true
     }
 
     private func updateMonth(_ month: Month) {
