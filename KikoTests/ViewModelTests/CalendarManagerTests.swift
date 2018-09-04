@@ -53,7 +53,7 @@ class CalendarManagerTests: XCTestCase {
     }
 
     func testComputedDates() {
-        XCTAssertEqual(Month.august, calendarManager!.displayedMonth)
+        XCTAssertEqual(Month.july, calendarManager!.displayedMonth)
     }
 
     func testSetupDatesIndexes() {
