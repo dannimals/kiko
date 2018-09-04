@@ -16,6 +16,7 @@ class CalendarWeekView: UIView {
     func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
         datesCollectionView.dataSource = dataSource
         datesCollectionView.delegate = dataSource
+        datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
 
         setupEvents()
     }
