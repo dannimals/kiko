@@ -23,7 +23,7 @@ class MoodLogView: UIView {
     private let stackView = UIStackView()
 
     func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
-        calendarWeekView.configure(dataSource: dataSource)
+//        calendarWeekView.configure(dataSource: dataSource)
         configure()
     }
 

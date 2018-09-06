@@ -74,6 +74,8 @@
 		9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */; };
 		9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */; };
 		9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3520CCBDD10041C219 /* MoodListView.swift */; };
+		9E49A57C2140B48C0045709D /* InfiniteScrollCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49A57B2140B48C0045709D /* InfiniteScrollCollectionView.swift */; };
+		9E49A57E2140B9130045709D /* WeekCalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */; };
 		9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */; };
 		9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */; };
 		9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */; };
@@ -238,6 +240,8 @@
 		9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultsHeaderCell.swift; sourceTree = "<group>"; };
 		9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9E453C3520CCBDD10041C219 /* MoodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListView.swift; sourceTree = "<group>"; };
+		9E49A57B2140B48C0045709D /* InfiniteScrollCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollCollectionView.swift; sourceTree = "<group>"; };
+		9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalendarCollectionView.swift; sourceTree = "<group>"; };
 		9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -540,6 +544,8 @@
 				9E14130C2109594D006CD78D /* ArcDrawingView.swift */,
 				9E324FF2207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift */,
 				9E391A0F2073153800492F54 /* CalendarWeekView.swift */,
+				9E49A57B2140B48C0045709D /* InfiniteScrollCollectionView.swift */,
+				9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */,
 				9E391A0920730D5D00492F54 /* CalendarWeekView.xib */,
 				9E14130E210E6BB5006CD78D /* LineDrawingView.swift */,
 				9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */,
@@ -1053,6 +1059,8 @@
 				9EB53867213DE72E00BB6A7A /* StoryboardName.swift in Sources */,
 				9E1413192111324D006CD78D /* AnimatedMaskButton.swift in Sources */,
 				9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */,
+				9E49A57E2140B9130045709D /* WeekCalendarCollectionView.swift in Sources */,
+				9E49A57C2140B48C0045709D /* InfiniteScrollCollectionView.swift in Sources */,
 				9E43B3A2212505D20046E4F1 /* UIViewControllerAlertable.swift in Sources */,
 				9EB5385B212CF84F00BB6A7A /* Glossary.swift in Sources */,
 				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,

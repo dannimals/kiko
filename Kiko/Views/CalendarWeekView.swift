@@ -5,7 +5,7 @@ class CalendarWeekView: UIView {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
-    @IBOutlet weak var datesCollectionView: UICollectionView!
+    @IBOutlet weak var datesCollectionView: WeekCalendarCollectionView!
 
     let leftButtonTapped = Channel<UIControlEvents>()
     let rightButtonTapped = Channel<UIControlEvents>()
@@ -13,10 +13,11 @@ class CalendarWeekView: UIView {
     @objc private func notifyLeftButtonTappedEvent() { leftButtonTapped.broadcast(UIControlEvents.touchUpInside) }
     @objc private func notifyRightButtonTappedEvent() { rightButtonTapped.broadcast(UIControlEvents.touchUpInside) }
 
-    func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
+    func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate & InfiniteScrollableDelegate) {
         datesCollectionView.dataSource = dataSource
         datesCollectionView.delegate = dataSource
         datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
+        datesCollectionView.configure(delegate: dataSource)
 
         setupEvents()
     }
