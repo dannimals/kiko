@@ -5,14 +5,14 @@ class InfiniteScrollCollectionView: UICollectionView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
 
-        contentSize = CGSize(width: 1000, height: 500)
+        contentSize = CGSize(width: 3 * bounds.width, height: 500)
         showsHorizontalScrollIndicator = false
         showsVerticalScrollIndicator = false
     }
 
-    func updateVisibleContent(offset: CGFloat) {}
     func didScrollToLeft() {}
     func didScrollToRight() {}
+    func updateVisibleContent(offset: CGFloat) {}
 
     private func recenterIfNecessary() {
         let currentOffset = contentOffset

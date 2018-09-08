@@ -27,6 +27,10 @@ class CalendarWeekView: UIView {
         rightButton.addTarget(self, action: #selector(notifyRightButtonTappedEvent), for: .touchUpInside)
     }
 
+    func set(contentOffset: CGPoint) {
+        datesCollectionView.contentOffset = contentOffset
+    }
+
     func updateViewColor(_ color: UIColor = .cornflowerYellow) {
         UIView.animate(withDuration: 0.4) {
             self.monthLabel.textColor = color

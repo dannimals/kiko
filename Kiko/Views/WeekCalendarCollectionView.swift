@@ -1,8 +1,8 @@
 import KikoUIKit
 
 protocol InfiniteScrollableDelegate: class {
-    func scrollViewDidScrollToLeft(_ scrollView: UIScrollView)
-    func scrollViewDidScrollToRight(_ scrollView: UIScrollView)
+    func scrollViewDidScrollToLeft(_ scrollView: UICollectionView)
+    func scrollViewDidScrollToRight(_ scrollView: UICollectionView)
 }
 
 class WeekCalendarCollectionView: InfiniteScrollCollectionView {
@@ -12,6 +12,7 @@ class WeekCalendarCollectionView: InfiniteScrollCollectionView {
     func configure(delegate: InfiniteScrollableDelegate) {
         self.scrollableDelegate = delegate
     }
+
     override func didScrollToLeft() {
         scrollableDelegate?.scrollViewDidScrollToLeft(self)
     }
