@@ -73,10 +73,6 @@ class MockCalendarManager: CalendarManaging {
         return lastWeekDates.first!
     }
 
-    func index(for date: Date) -> Int? {
-        return datesIndexesDict[date] ?? 0
-    }
-
     var isLastWeekLoaded = false
     func loadLastWeek() {
         isLastWeekLoaded = true

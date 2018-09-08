@@ -5,27 +5,9 @@ class CalendarViewController: BaseViewController {
 
     let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
 
-//    private(set) var isUserScrolled = false
-//    private(set) var contentOffSetX: CGFloat = 0
-//    lazy var firstSevenIndexPaths: [IndexPath] = {
-//        var indexPaths = [IndexPath]()
-//        for i in 0..<7 {
-//            indexPaths.append(IndexPath(row: i, section: 0))
-//        }
-//        return indexPaths
-//    }()
-//
-//    var lastSevenIndexPaths: [IndexPath] {
-//        var indexPaths = [IndexPath]()
-//        let itemCount = calendarManager.datesIndexesDict.count - 7
-//        for i in 0..<7 {
-//            indexPaths.append(IndexPath(row: i + itemCount, section: 0))
-//        }
-//        return indexPaths
-//    }
-
     private var calendarManager: CalendarManaging!
     private var moodManager: MoodManaging!
+    private var userDidScroll = false
 
     func configure(calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
@@ -39,7 +21,7 @@ class CalendarViewController: BaseViewController {
         configureViews()
         setupBindings()
         view.layoutIfNeeded()
-//        scrollToCurrentWeek()
+        scrollToCurrentWeek()
     }
 
     private func setupBindings() {
@@ -70,20 +52,21 @@ class CalendarViewController: BaseViewController {
         calendarWeekView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         calendarWeekView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
+
+    private func scrollToCurrentWeek() {
+        let offset = CGPoint(x: view.bounds.width, y: 0)
+        calendarWeekView.set(contentOffset: offset)
+    }
 }
 
 extension CalendarViewController: InfiniteScrollableDelegate {
 
-    func scrollViewDidScrollToLeft(_ scrollView: UIScrollView) {
+    func scrollViewDidScrollToLeft(_ collectionView: UICollectionView) {
         calendarManager.loadLastWeek()
-        scrollView.panGestureRecognizer.isEnabled = false
-        scrollView.panGestureRecognizer.isEnabled = true
     }
 
-    func scrollViewDidScrollToRight(_ scrollView: UIScrollView) {
+    func scrollViewDidScrollToRight(_ collectionView: UICollectionView) {
         calendarManager.loadNextWeek()
-        scrollView.panGestureRecognizer.isEnabled = false
-        scrollView.panGestureRecognizer.isEnabled = true
     }
 
 }
@@ -91,7 +74,7 @@ extension CalendarViewController: InfiniteScrollableDelegate {
 extension CalendarViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return calendarManager.datesIndexesDict.count
+        return 21
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -126,67 +109,4 @@ extension CalendarViewController: UICollectionViewDataSource {
 }
 
 extension CalendarViewController: UICollectionViewDelegate {
-
-//    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-//        guard isUserScrolled else { return }
-//        contentOffSetX = scrollView.contentOffset.x
-//    }
-//
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        guard isUserScrolled && scrollView.panGestureRecognizer.isEnabled else { return }
-//        if scrollView.contentOffset.x > contentOffSetX {
-//            scrollView.panGestureRecognizer.isEnabled = false
-//            scrollToNextWeek()
-//        } else {
-//            scrollView.panGestureRecognizer.isEnabled = false
-//            scrollToLastWeek()
-//        }
-//    }
-//
-//    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-//        scrollView.panGestureRecognizer.isEnabled = true
-//    }
-//
-//    private func scrollToCurrentWeek() {
-//        guard let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate) else { return }
-//        let indexPath = IndexPath(row: row, section: 0)
-//        scrollToIndexPath(indexPath)
-//        updateMonth(calendarManager.displayedMonth)
-////        isUserScrolled = true
-//    }
-//
-//    private func updateMonth(_ month: Month) {
-//        calendarWeekView.monthLabel.text = "\(month)".capitalized
-//    }
-//
-//    private func insertItemsAt(_ indexPaths: [IndexPath]) {
-//        calendarWeekView.datesCollectionView.insertItems(at: indexPaths)
-//    }
-//
-//    private func scrollToIndexPath(_ indexPath: IndexPath) {
-//        calendarWeekView.datesCollectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-//    }
-//
-//    private func scrollToNextWeek() {
-//        calendarManager.loadNextWeek()
-//        if calendarManager.hasNewDates {
-//            insertItemsAt(lastSevenIndexPaths)
-//        }
-//        let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate)!
-//        let indexPath = IndexPath(row: row, section: 0)
-//        scrollToIndexPath(indexPath)
-//        updateMonth(calendarManager.displayedMonth)
-//    }
-//
-//    private func scrollToLastWeek() {
-//        calendarManager.loadLastWeek()
-//        if calendarManager.hasNewDates {
-//            insertItemsAt(firstSevenIndexPaths)
-//        }
-//        let row = calendarManager.index(for: calendarManager.displayedStartOfWeekDate)!
-//        let indexPath = IndexPath(row: row, section: 0)
-//        scrollToIndexPath(indexPath)
-//        updateMonth(calendarManager.displayedMonth)
-//    }
-
 }
