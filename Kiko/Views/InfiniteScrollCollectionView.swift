@@ -22,7 +22,7 @@ class InfiniteScrollCollectionView: UICollectionView {
         let currentCenterOffset = currentOffset.x - centerOffsetX
         let distanceFromCenter = fabs(currentOffset.x - centerOffsetX)
 
-        if distanceFromCenter > bounds.width {
+        if distanceFromCenter > bounds.width / 2 {
             contentOffset = CGPoint(x: centerOffsetX, y: currentOffset.y)
             updateVisibleContent(offset: centerOffsetX - currentOffset.x)
             currentCenterOffset > 0 ? didScrollToRight() : didScrollToLeft()

@@ -7,15 +7,16 @@ class CalendarWeekView: UIView {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var datesCollectionView: WeekCalendarCollectionView!
 
+    var userDidScroll = false
     let leftButtonTapped = Channel<UIControlEvents>()
     let rightButtonTapped = Channel<UIControlEvents>()
 
     @objc private func notifyLeftButtonTappedEvent() { leftButtonTapped.broadcast(UIControlEvents.touchUpInside) }
     @objc private func notifyRightButtonTappedEvent() { rightButtonTapped.broadcast(UIControlEvents.touchUpInside) }
 
-    func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate & InfiniteScrollableDelegate) {
+    func configure(dataSource: UICollectionViewDataSource & InfiniteScrollableDelegate) {
         datesCollectionView.dataSource = dataSource
-        datesCollectionView.delegate = dataSource
+        datesCollectionView.delegate = self
         datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
         datesCollectionView.configure(delegate: dataSource)
 
@@ -45,4 +46,14 @@ class CalendarWeekView: UIView {
         updateViewColor()
         datesCollectionView.backgroundColor = backgroundColor
     }
+}
+
+extension CalendarWeekView: UICollectionViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard userDidScroll else { return }
+        userDidScroll = false
+        datesCollectionView.recenterIfNecessary()
+    }
+
 }
