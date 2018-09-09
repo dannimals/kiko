@@ -7,7 +7,6 @@ class CalendarViewController: BaseViewController {
 
     private var calendarManager: CalendarManaging!
     private var moodManager: MoodManaging!
-    private var userDidScroll = false
 
     func configure(calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
@@ -56,6 +55,7 @@ class CalendarViewController: BaseViewController {
     private func scrollToCurrentWeek() {
         let offset = CGPoint(x: view.bounds.width, y: 0)
         calendarWeekView.set(contentOffset: offset)
+        calendarWeekView.userDidScroll = true
     }
 }
 
@@ -63,10 +63,16 @@ extension CalendarViewController: InfiniteScrollableDelegate {
 
     func scrollViewDidScrollToLeft(_ collectionView: UICollectionView) {
         calendarManager.loadLastWeek()
+        calendarWeekView.datesCollectionView.panGestureRecognizer.isEnabled = true
+        calendarWeekView.userDidScroll = true
+//        calendarWeekView.datesCollectionView.reloadData()
     }
 
     func scrollViewDidScrollToRight(_ collectionView: UICollectionView) {
         calendarManager.loadNextWeek()
+        calendarWeekView.datesCollectionView.panGestureRecognizer.isEnabled = true
+        calendarWeekView.userDidScroll = true
+//        calendarWeekView.datesCollectionView.reloadData()
     }
 
 }
@@ -106,7 +112,4 @@ extension CalendarViewController: UICollectionViewDataSource {
                           moodColor: moodColor)
         return dayCell
     }
-}
-
-extension CalendarViewController: UICollectionViewDelegate {
 }
