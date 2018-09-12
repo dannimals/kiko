@@ -65,31 +65,32 @@ extension CalendarWeekView: UICollectionViewDelegate {
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         userDidScroll = true
-        beginOffsetX =  scrollView.contentOffset.x / screenWidth
+        beginOffsetX =  CGFloat(Int(scrollView.contentOffset.x / screenWidth)) * screenWidth
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard userDidScroll && scrollView.panGestureRecognizer.isEnabled else { return }
         contentOffsetX = scrollView.contentOffset.x
         scrollDirection = contentOffsetX > beginOffsetX ? .right : .left
-//        if fabs(contentOffsetX) - fabs(beginOffsetX) >= 0.3 * screenWidth {
-//            print(Int(beginOffsetX / screenWidth))
-//            let count =  Int(beginOffsetX / screenWidth) + scrollDirection.rawValue
-//            let maxScrollOffset =  screenWidth * CGFloat(count)
-//            capScrollView(scrollView, withOffset: maxScrollOffset, direction: scrollDirection)
-//        }
+        let distanceScrolled = fabs(contentOffsetX) - fabs(beginOffsetX)
+        let scrollThreshold = 0.3 * screenWidth
+
+        if fabs(distanceScrolled) >= scrollThreshold {
+            let count = Int(beginOffsetX / screenWidth) + scrollDirection.rawValue
+            let maxScrollOffset =  screenWidth * CGFloat(count)
+            capScrollView(scrollView, withOffset: maxScrollOffset, direction: scrollDirection)
+        }
 
         //        datesCollectionView.recenterIfNecessary()
     }
 
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        capScrollView(scrollView, withOffset: contentOffsetX, direction: scrollDirection)
-    }
-
     private func capScrollView(_ scrollView: UIScrollView, withOffset offset: CGFloat, direction: ScrollDirection) {
         userDidScroll = false
-        let scrollToOffset = cappedCurrentOffset(offset, direction: direction)
-        UIView.animate(withDuration: 0.2) { scrollView.contentOffset.x = scrollToOffset }
+        let cappedOffsetX = cappedCurrentOffset(offset, direction: direction)
+        let contentOffset = CGPoint(x: cappedOffsetX, y: scrollView.contentOffset.y)
+        scrollView.setContentOffset(contentOffset, animated: true)
+        scrollView.panGestureRecognizer.isEnabled = false
+        scrollView.panGestureRecognizer.isEnabled = true
     }
 
     private func cappedCurrentOffset(_ currentOffset: CGFloat, direction: ScrollDirection) -> CGFloat {
