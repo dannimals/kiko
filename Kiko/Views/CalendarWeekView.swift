@@ -5,6 +5,11 @@ enum ScrollDirection: Int {
     case right = 1
 }
 
+protocol CalendarWeekViewDelegate: class {
+    func calendarDidScrollLeft(_ calendarView: CalendarWeekView)
+    func calendarDidScrollRight(_ calendarView: CalendarWeekView)
+}
+
 class CalendarWeekView: UIView {
 
     @IBOutlet weak var monthLabel: UILabel!
@@ -20,15 +25,17 @@ class CalendarWeekView: UIView {
     private var contentOffsetX: CGFloat = 0
     private var beginOffsetX: CGFloat = 0
 
+    private weak var calendarDelegate: CalendarWeekViewDelegate?
+
     @objc private func notifyLeftButtonTappedEvent() { leftButtonTapped.broadcast(UIControlEvents.touchUpInside) }
     @objc private func notifyRightButtonTappedEvent() { rightButtonTapped.broadcast(UIControlEvents.touchUpInside) }
 
-    func configure(dataSource: UICollectionViewDataSource & InfiniteScrollableDelegate) {
+    func configure(dataSource: UICollectionViewDataSource, delegate: CalendarWeekViewDelegate) {
         datesCollectionView.dataSource = dataSource
         datesCollectionView.delegate = self
         datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
-        datesCollectionView.configure(delegate: dataSource)
         datesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        calendarDelegate = delegate
         setupEvents()
     }
 
@@ -77,25 +84,34 @@ extension CalendarWeekView: UICollectionViewDelegate {
 
         if fabs(distanceScrolled) >= scrollThreshold {
             let count = Int(beginOffsetX / screenWidth) + scrollDirection.rawValue
-            let maxScrollOffset =  screenWidth * CGFloat(count)
+            let maxScrollOffset = screenWidth * CGFloat(count)
             capScrollView(scrollView, withOffset: maxScrollOffset, direction: scrollDirection)
+            switch scrollDirection {
+            case .left:
+                calendarDelegate?.calendarDidScrollLeft(self)
+            case .right:
+                calendarDelegate?.calendarDidScrollRight(self)
+            }
         }
-
-        //        datesCollectionView.recenterIfNecessary()
     }
+
 
     private func capScrollView(_ scrollView: UIScrollView, withOffset offset: CGFloat, direction: ScrollDirection) {
         userDidScroll = false
-        let cappedOffsetX = cappedCurrentOffset(offset, direction: direction)
-        let contentOffset = CGPoint(x: cappedOffsetX, y: scrollView.contentOffset.y)
+        let (collectionViewOffset, cellOffset) = cappedCurrentOffset(offset, direction: direction)
+        let contentOffset = CGPoint(x: cellOffset, y: scrollView.contentOffset.y)
         scrollView.setContentOffset(contentOffset, animated: true)
         scrollView.panGestureRecognizer.isEnabled = false
         scrollView.panGestureRecognizer.isEnabled = true
     }
 
-    private func cappedCurrentOffset(_ currentOffset: CGFloat, direction: ScrollDirection) -> CGFloat {
+    typealias ContentOffsets = (collectionViewOffset: CGFloat, cellOffset: CGFloat)
+
+    private func cappedCurrentOffset(_ currentOffset: CGFloat, direction: ScrollDirection) -> ContentOffsets {
         let roundWidths = round(currentOffset / screenWidth)
-        return roundWidths * screenWidth
+        let cellOffset = roundWidths * screenWidth
+        let collectionViewOffset = roundWidths * screenWidth - (CGFloat(direction.rawValue) * screenWidth)
+        return (collectionViewOffset, cellOffset)
     }
 
 }
