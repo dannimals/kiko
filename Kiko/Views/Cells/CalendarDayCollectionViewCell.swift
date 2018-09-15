@@ -3,7 +3,7 @@ import KikoUIKit
 class CalendarDayCollectionViewCell: UICollectionViewCell {
 
     var isDaySelected = false
-    private let dateLabel = UILabel()
+    let dateLabel = UILabel()
     private let backgroundCircleView = UIView()
     private let indicatorCircle = UIView()
 

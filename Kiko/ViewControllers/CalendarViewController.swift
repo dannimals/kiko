@@ -11,7 +11,7 @@ class CalendarViewController: BaseViewController {
     func configure(calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
         self.moodManager = moodManager
-        calendarWeekView.configure(dataSource: self)
+        calendarWeekView.configure(dataSource: self, delegate: self)
     }
 
     override func viewDidLoad() {
@@ -59,20 +59,20 @@ class CalendarViewController: BaseViewController {
     }
 }
 
-extension CalendarViewController: InfiniteScrollableDelegate {
+extension CalendarViewController: CalendarWeekViewDelegate {
 
-    func scrollViewDidScrollToLeft(_ collectionView: UICollectionView) {
+    func calendarDidScrollLeft(_ calendarView: CalendarWeekView) {
         calendarManager.loadLastWeek()
-        calendarWeekView.datesCollectionView.panGestureRecognizer.isEnabled = true
-        calendarWeekView.userDidScroll = true
-//        calendarWeekView.datesCollectionView.reloadData()
+        calendarWeekView.datesCollectionView.reloadData()
+        let offset = CGPoint(x: view.bounds.width, y: 0)
+        calendarWeekView.datesCollectionView.setContentOffset(offset, animated: true)
     }
 
-    func scrollViewDidScrollToRight(_ collectionView: UICollectionView) {
+    func calendarDidScrollRight(_ calendarView: CalendarWeekView) {
         calendarManager.loadNextWeek()
-        calendarWeekView.datesCollectionView.panGestureRecognizer.isEnabled = true
-        calendarWeekView.userDidScroll = true
-//        calendarWeekView.datesCollectionView.reloadData()
+        calendarWeekView.datesCollectionView.reloadData()
+        let offset = CGPoint(x: view.bounds.width, y: 0)
+        calendarWeekView.datesCollectionView.setContentOffset(offset, animated: true)
     }
 
 }
