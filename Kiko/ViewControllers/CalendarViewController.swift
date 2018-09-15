@@ -56,6 +56,7 @@ class CalendarViewController: BaseViewController {
         let offset = CGPoint(x: view.bounds.width, y: 0)
         calendarWeekView.set(contentOffset: offset)
         calendarWeekView.userDidScroll = true
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 }
 
@@ -66,6 +67,7 @@ extension CalendarViewController: CalendarWeekViewDelegate {
         calendarWeekView.datesCollectionView.reloadData()
         let offset = CGPoint(x: view.bounds.width, y: 0)
         calendarWeekView.datesCollectionView.setContentOffset(offset, animated: true)
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
     func calendarDidScrollRight(_ calendarView: CalendarWeekView) {
@@ -73,6 +75,7 @@ extension CalendarViewController: CalendarWeekViewDelegate {
         calendarWeekView.datesCollectionView.reloadData()
         let offset = CGPoint(x: view.bounds.width, y: 0)
         calendarWeekView.datesCollectionView.setContentOffset(offset, animated: true)
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
 }
