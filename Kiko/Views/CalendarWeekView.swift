@@ -17,7 +17,6 @@ class CalendarWeekView: UIView {
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var datesCollectionView: UICollectionView!
 
-    var scrollDirection: ScrollDirection = .right
     var userDidScroll = false
     let leftButtonTapped = Channel<UIControlEvents>()
     let rightButtonTapped = Channel<UIControlEvents>()
@@ -42,10 +41,6 @@ class CalendarWeekView: UIView {
     private func setupEvents() {
         leftButton.addTarget(self, action: #selector(notifyLeftButtonTappedEvent), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(notifyRightButtonTappedEvent), for: .touchUpInside)
-    }
-
-    func set(contentOffset: CGPoint) {
-        datesCollectionView.contentOffset = contentOffset
     }
 
     func updateViewColor(_ color: UIColor = .cornflowerYellow) {
@@ -78,7 +73,7 @@ extension CalendarWeekView: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard userDidScroll && scrollView.panGestureRecognizer.isEnabled else { return }
         contentOffsetX = scrollView.contentOffset.x
-        scrollDirection = contentOffsetX > beginOffsetX ? .right : .left
+        let scrollDirection: ScrollDirection = contentOffsetX > beginOffsetX ? .right : .left
         let distanceScrolled = fabs(contentOffsetX) - fabs(beginOffsetX)
         let scrollThreshold = 0.3 * screenWidth
 
@@ -87,38 +82,52 @@ extension CalendarWeekView: UICollectionViewDelegate {
             let maxScrollOffset = screenWidth * CGFloat(count)
             capScrollView(scrollView, withOffset: maxScrollOffset, direction: scrollDirection)
             let delayTime = DispatchTime.now() + 0.3
-                DispatchQueue.main.asyncAfter(deadline: delayTime) {
-                switch self.scrollDirection {
+            DispatchQueue.main.asyncAfter(deadline: delayTime) {
+                switch scrollDirection {
                 case .left:
                     self.calendarDelegate?.calendarDidScrollLeft(self)
                 case .right:
                     self.calendarDelegate?.calendarDidScrollRight(self)
                 }
                 let offset = CGPoint(x: self.bounds.width, y: 0)
-                self.datesCollectionView.setContentOffset(offset, animated: false)
+                self.setContentOffset(offset)
             }
         }
     }
 
+    func setContentOffset(_ offset: CGPoint, animated: Bool = false) {
+        self.datesCollectionView.setContentOffset(offset, animated: animated)
+    }
+
 //    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        contentOffsetX = scrollView.contentOffset.x
-//        scrollDirection = contentOffsetX > beginOffsetX ? .right : .left
-//        let distanceScrolled = fabs(contentOffsetX) - fabs(beginOffsetX)
-//        let scrollThreshold = 0.3 * screenWidth
+//        let delayTime = DispatchTime.now() + 0.4
+//        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+//            self.contentOffsetX = scrollView.contentOffset.x
 //
-//        if fabs(distanceScrolled) >= scrollThreshold {
-//            let count = Int(beginOffsetX / screenWidth) + scrollDirection.rawValue
-//            let maxScrollOffset = screenWidth * CGFloat(count)
-//            capScrollView(scrollView, withOffset: maxScrollOffset, direction: scrollDirection)
-//            switch scrollDirection {
-//            case .left:
-//                calendarDelegate?.calendarDidScrollLeft(self)
-//            case .right:
-//                calendarDelegate?.calendarDidScrollRight(self)
+//            guard Int(self.contentOffsetX / self.bounds.width) != 0 else { return }
+//            self.userDidScroll = false
+//            let scrollDirection: ScrollDirection = self.contentOffsetX > self.beginOffsetX ? .right : .left
+//            let distanceScrolled = fabs(self.contentOffsetX) - fabs(self.beginOffsetX)
+//            let scrollThreshold = 0.3 * self.screenWidth
+//
+//            if fabs(distanceScrolled) >= scrollThreshold {
+//                let count = Int(self.beginOffsetX / self.screenWidth) + scrollDirection.rawValue
+//                let maxScrollOffset = self.screenWidth * CGFloat(count)
+//                self.capScrollView(scrollView, withOffset: maxScrollOffset, direction: scrollDirection)
+//                let delayTime = DispatchTime.now() + 0.3
+//                DispatchQueue.main.asyncAfter(deadline: delayTime) {
+//                    switch scrollDirection {
+//                    case .left:
+//                        self.calendarDelegate?.calendarDidScrollLeft(self)
+//                    case .right:
+//                        self.calendarDelegate?.calendarDidScrollRight(self)
+//                    }
+//                    let offset = CGPoint(x: self.bounds.width, y: 0)
+//                    self.datesCollectionView.setContentOffset(offset, animated: false)
+//                }
 //            }
 //        }
 //    }
-
 
     private func capScrollView(_ scrollView: UIScrollView, withOffset offset: CGFloat, direction: ScrollDirection) {
         userDidScroll = false
