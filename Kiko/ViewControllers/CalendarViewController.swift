@@ -34,11 +34,11 @@ class CalendarViewController: BaseViewController {
 
     private func reloadDates() {
         calendarWeekView.userDidScroll = false
-        calendarWeekView.datesCollectionView.reloadData()
-        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
         let width = view.bounds.width
         calendarWeekView.setContentOffset(CGPoint(x: -width, y: 0))
+        calendarWeekView.datesCollectionView.reloadData()
         calendarWeekView.setContentOffset(CGPoint(x: width, y: 0), animated: true)
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
     private func scrollToNextWeek() {
