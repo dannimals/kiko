@@ -17,7 +17,7 @@ class CalendarManager: CalendarManaging {
     private(set) var currentWeekDates: [Date] = []
     private(set) var lastWeekDates: [Date] = []
     private(set) var nextWeekDates: [Date] = []
-    private(set) var datesIndexesDict: [Date: Int] = [:]
+
     var displayedMonth: Month { return min(currentWeekDates.first!.month, currentWeekDates.last!.month)
     }
     var today: Date {
