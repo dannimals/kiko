@@ -3,8 +3,7 @@ import KikoUIKit
 
 class CalendarViewController: BaseViewController {
 
-    let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
-
+    private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private var calendarManager: CalendarManaging!
     private var moodManager: MoodManaging!
 
@@ -20,28 +19,36 @@ class CalendarViewController: BaseViewController {
         configureViews()
         setupBindings()
         view.layoutIfNeeded()
-        scrollToCurrentWeek()
+        reloadDates()
     }
 
     private func setupBindings() {
-//        calendarWeekView
-//            .rightButtonTapped
-//            .subscribe(self) { [unowned self] _ in
-//                self.isUserScrolled = false
-//                self.scrollToNextWeek()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-//                    self.isUserScrolled = true
-//                }
-//        }
-//        calendarWeekView
-//            .leftButtonTapped
-//            .subscribe(self) { [unowned self] _ in
-//                self.isUserScrolled = false
-//                self.scrollToLastWeek()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-//                    self.isUserScrolled = true
-//                }
-//        }
+        calendarWeekView
+            .rightButtonTapped
+            .subscribe(self) { [unowned self] _ in self.scrollToNextWeek() }
+
+        calendarWeekView
+            .leftButtonTapped
+            .subscribe(self) { [unowned self] _ in self.scrollToLastWeek() }
+    }
+
+    private func reloadDates() {
+        calendarWeekView.userDidScroll = false
+        calendarWeekView.datesCollectionView.reloadData()
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
+        let width = view.bounds.width
+        calendarWeekView.setContentOffset(CGPoint(x: -width, y: 0))
+        calendarWeekView.setContentOffset(CGPoint(x: width, y: 0), animated: true)
+    }
+
+    private func scrollToNextWeek() {
+        calendarManager.loadNextWeek()
+        reloadDates()
+    }
+
+    private func scrollToLastWeek() {
+        calendarManager.loadLastWeek()
+        reloadDates()
     }
 
     private func configureViews() {
@@ -52,26 +59,16 @@ class CalendarViewController: BaseViewController {
         calendarWeekView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
     }
 
-    private func scrollToCurrentWeek() {
-        let offset = CGPoint(x: view.bounds.width, y: 0)
-        calendarWeekView.set(contentOffset: offset)
-        calendarWeekView.userDidScroll = true
-        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
-    }
 }
 
 extension CalendarViewController: CalendarWeekViewDelegate {
 
     func calendarDidScrollLeft(_ calendarView: CalendarWeekView) {
-        calendarManager.loadLastWeek()
-        calendarWeekView.datesCollectionView.reloadData()
-        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
+        scrollToLastWeek()
     }
 
     func calendarDidScrollRight(_ calendarView: CalendarWeekView) {
-        calendarManager.loadNextWeek()
-        calendarWeekView.datesCollectionView.reloadData()
-        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
+        scrollToNextWeek()
     }
 
 }
