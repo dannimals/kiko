@@ -82,30 +82,12 @@ extension CalendarViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCollectionViewCell.identifier, for: indexPath) as? CalendarDayCollectionViewCell
             else { return UICollectionViewCell() }
-        let font: UIFont
-        let textColor: UIColor
         let date = calendarManager.dateForIndexPath(indexPath)
-        let shouldShowCircle = date ≈≈ Date()
-        if shouldShowCircle {
-            font = .customFont(ofSize: 16, weight: .heavy)
-            textColor = .salmonPink
-        } else if date < Date() {
-            font = .customFont(ofSize: 14, weight: .medium)
-            textColor = .textDarkGrey
-        } else {
-            font = .customFont(ofSize: 14, weight: .light)
-            textColor = .textLightGrey
-        }
-        var moodColor: UIColor? = nil
+        var moodColor: UIColor?
         if let mood = moodManager.mood(forDate: date) {
             moodColor = MoodUISetting(rawValue: mood.type)?.accessoryColor
         }
-
-        dayCell.configure(day: date.day,
-                          shouldShowBackgroundCircle: shouldShowCircle,
-                          font: font,
-                          textColor: textColor,
-                          moodColor: moodColor)
+        dayCell.configure(date: date, today: Date(), moodColor: moodColor)
         return dayCell
     }
 }
