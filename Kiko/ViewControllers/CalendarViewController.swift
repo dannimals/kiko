@@ -65,16 +65,12 @@ extension CalendarViewController: CalendarWeekViewDelegate {
     func calendarDidScrollLeft(_ calendarView: CalendarWeekView) {
         calendarManager.loadLastWeek()
         calendarWeekView.datesCollectionView.reloadData()
-        let offset = CGPoint(x: view.bounds.width, y: 0)
-        calendarWeekView.datesCollectionView.setContentOffset(offset, animated: true)
         calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
     func calendarDidScrollRight(_ calendarView: CalendarWeekView) {
         calendarManager.loadNextWeek()
         calendarWeekView.datesCollectionView.reloadData()
-        let offset = CGPoint(x: view.bounds.width, y: 0)
-        calendarWeekView.datesCollectionView.setContentOffset(offset, animated: true)
         calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
