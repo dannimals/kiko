@@ -3,6 +3,7 @@ import KikoUIKit
 
 class CalendarDayCollectionViewCell: UICollectionViewCell {
 
+    var isToday = false
     var isDaySelected = false
     let dateLabel = UILabel()
     private let backgroundCircleView = UIView()
@@ -14,11 +15,12 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         configure()
     }
 
-    func configure(date: Date, today: Date, moodColor: UIColor?) {
+    func configure(date: Date, today: Date, moodColor: UIColor?, todayColor: UIColor?) {
         let isToday = date ≈≈ today
+        self.isToday = isToday
         configureCircleViews(isToday: isToday, moodColor: moodColor)
         if isToday {
-            configureDateLabel(font: .customFont(ofSize: 16, weight: .heavy), textColor: .salmonPink)
+            configureDateLabel(font: .customFont(ofSize: 16, weight: .heavy), textColor: unwrapOrElse(todayColor, fallback: .cornflowerYellow))
         } else if date < today {
             configureDateLabel(font: .customFont(ofSize: 14, weight: .medium), textColor: .textDarkGrey)
         } else {

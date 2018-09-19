@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73J-gV-52F">
-                                <rect key="frame" x="0.0" y="74" width="375" height="122"/>
+                                <rect key="frame" x="0.0" y="89" width="375" height="122"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="122" id="PFS-Vt-zOD"/>
                                 </constraints>
@@ -44,17 +44,27 @@
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-ZE-FpR">
-                                <rect key="frame" x="0.0" y="196" width="375" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="OiO-WI-tam"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="236" width="375" height="356"/>
+                                <connections>
+                                    <segue destination="SdK-2U-8TD" kind="embed" id="xZC-Bt-yIb"/>
+                                </connections>
                             </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ue-J9-dA6">
+                                <rect key="frame" x="0.0" y="592" width="375" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="qHe-wO-R6x"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uV4-ZE-FpR" firstAttribute="top" secondItem="73J-gV-52F" secondAttribute="bottom" id="DHd-gs-u2M"/>
-                            <constraint firstItem="73J-gV-52F" firstAttribute="top" secondItem="0xG-XK-012" secondAttribute="top" constant="10" id="Ic4-WO-Cah"/>
+                            <constraint firstItem="0Ue-J9-dA6" firstAttribute="top" secondItem="uV4-ZE-FpR" secondAttribute="bottom" id="05b-DS-io7"/>
+                            <constraint firstAttribute="bottom" secondItem="0Ue-J9-dA6" secondAttribute="bottom" id="4DI-Dx-A8N"/>
+                            <constraint firstItem="uV4-ZE-FpR" firstAttribute="top" secondItem="73J-gV-52F" secondAttribute="bottom" constant="25" id="DHd-gs-u2M"/>
+                            <constraint firstItem="0Ue-J9-dA6" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="IZT-O2-oy1"/>
+                            <constraint firstItem="73J-gV-52F" firstAttribute="top" secondItem="0xG-XK-012" secondAttribute="top" constant="25" id="Ic4-WO-Cah"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="uV4-ZE-FpR" secondAttribute="trailing" id="Uen-RA-z0c"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="0Ue-J9-dA6" secondAttribute="trailing" id="aAD-Ut-FYt"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="aKJ-G7-8ir"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="73J-gV-52F" secondAttribute="trailing" id="laL-Ba-xdE"/>
                             <constraint firstItem="uV4-ZE-FpR" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="ldI-cy-WPh"/>
@@ -73,7 +83,15 @@
                 <viewController id="8ci-Wa-UXR" customClass="CalendarViewController" customModule="Kiko" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vUi-wt-TSt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="399" y="-226"/>
+            <point key="canvasLocation" x="364" y="-405"/>
+        </scene>
+        <!--Mood Paging View Controller-->
+        <scene sceneID="sFv-n3-2eh">
+            <objects>
+                <viewController id="SdK-2U-8TD" customClass="MoodPagingViewController" customModule="Kiko" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UkL-DY-a8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="364" y="-99"/>
         </scene>
     </scenes>
 </document>

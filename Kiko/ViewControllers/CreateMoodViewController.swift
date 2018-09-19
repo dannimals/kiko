@@ -7,6 +7,7 @@ class CreateMoodViewController: BaseViewController {
     private var moodManager: MoodManaging!
     private var moodNavigationCoordinator: MoodCoordinating!
     private var calendarManager: CalendarManaging!
+    private var calendarViewController: CalendarViewController?
 
     func configure(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
 
@@ -17,8 +18,13 @@ class CreateMoodViewController: BaseViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
-        if let calendarViewController = destination as? CalendarViewController {
-            calendarViewController.configure(calendarManager: calendarManager, moodManager: moodManager)
+        switch destination {
+        case let destination as CalendarViewController:
+            destination.configure(calendarManager: calendarManager, moodManager: moodManager)
+            calendarViewController = destination
+        case let destination as MoodPagingViewController:
+            destination.configure(delegate: self)
+        default: break
         }
     }
 
@@ -90,5 +96,14 @@ class CreateMoodViewController: BaseViewController {
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
     }
+}
 
+extension CreateMoodViewController: MoodPagingDelegate {
+
+    func pagingViewDidScroll(_ pagingView: MoodPagingViewController, page: MoodPageDisplayable) {
+        calendarViewController?.updateColor(page.accessoryColor)
+        UIView.animate(withDuration: 0.4) {
+            self.view.backgroundColor = page.primaryColor
+        }
+    }
 }
