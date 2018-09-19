@@ -1,4 +1,4 @@
 
 enum StoryboardName: String {
-    case moodLogView = "MoodLogView"
+    case createMoodView = "CreateMoodView"
 }

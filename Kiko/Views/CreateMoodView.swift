@@ -1,7 +1,7 @@
 import KikoUIKit
 import KikoModels
 
-class MoodLogView: UIView {
+class CreateMoodView: UIView {
 
     let moodChanged = Channel<MoodUISetting>()
 
@@ -247,7 +247,7 @@ class MoodLogView: UIView {
 
 }
 
-extension MoodLogView: UIScrollViewDelegate {
+extension CreateMoodView: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = indexOfCurrentMoodImage()

@@ -1,7 +1,7 @@
 import KikoModels
 import KikoUIKit
 
-class MoodLogViewController: BaseViewController {
+class CreateMoodViewController: BaseViewController {
 
     private var currentMoodType: MoodType = .chick
     private var moodManager: MoodManaging!
