@@ -13,10 +13,10 @@ class MainNavigationCoordinator: AppCoordinating {
     let window: UIWindow?
 
     lazy var mainViewController: UINavigationController? = {
-        let moodLogViewStoryboard = UIStoryboard(name: StoryboardName.moodLogView.rawValue, bundle: nil)
-        guard let navigationController = moodLogViewStoryboard.instantiateInitialViewController() as? UINavigationController,
-            let moodLogViewController = navigationController.childViewControllers.first as? MoodLogViewController else { return nil }
-        moodLogViewController.configure(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
+        let createMoodViewStoryboard = UIStoryboard(name: StoryboardName.createMoodView.rawValue, bundle: nil)
+        guard let navigationController = createMoodViewStoryboard.instantiateInitialViewController() as? UINavigationController,
+            let createMoodViewController = navigationController.childViewControllers.first as? CreateMoodViewController else { return nil }
+        createMoodViewController.configure(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
         moodNavigationCoordinator.configure(rootViewController: navigationController, moodManager: moodManager)
 
         return navigationController
