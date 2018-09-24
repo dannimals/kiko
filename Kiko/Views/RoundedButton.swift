@@ -24,5 +24,4 @@ class RoundedButton: UIButton {
 
         setup()
     }
-
 }

@@ -9,6 +9,7 @@ class CreateMoodViewController: BaseViewController {
     private var calendarManager: CalendarManaging!
     private var calendarViewController: CalendarViewController?
     @IBOutlet weak var logButton: RoundedButton!
+
     func configure(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
 
         self.moodManager = moodManager
@@ -61,13 +62,12 @@ class CreateMoodViewController: BaseViewController {
 //            .subscribe(self) { [unowned self] _ in
 //                self.moodNavigationCoordinator.showWavesViewController()
 //        }
-//        moodLogView
-//            .logButtonTapped
-//            .subscribe(self) { _ in
-//                self.saveMood()
-//                self.moodLogView.reloadDatesCollectionView()
-//        }
 
+    }
+
+    @IBAction func logButtonTapped(_ sender: Any) {
+        saveMood()
+        calendarViewController?.reloadDates(animated: false)
     }
 
     private func moodType(from setting: MoodUISetting) -> MoodType {
