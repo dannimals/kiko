@@ -291,7 +291,9 @@ extension CreateMoodView: UIScrollViewDelegate {
         }
     }
 
+
     class LogButton: UIButton {
+
         var highlightedBackgroundColor: UIColor?
         var normalBackgroundColor: UIColor? {
             didSet {

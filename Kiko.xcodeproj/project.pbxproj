@@ -53,6 +53,8 @@
 		9E391A12207324FB00492F54 /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A11207324FB00492F54 /* Identifiable.swift */; };
 		9E391A1820745ACD00492F54 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E391A1720745ACD00492F54 /* Month.swift */; };
 		9E3CAEFB2151D1AB00E44C8D /* MoodPagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3CAEFA2151D1AB00E44C8D /* MoodPagingViewController.swift */; };
+		9E3CAF392158650E00E44C8D /* CustomPagingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3CAF382158650E00E44C8D /* CustomPagingControl.swift */; };
+		9E3CAF3D21587A8200E44C8D /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3CAF3C21587A8200E44C8D /* RoundedButton.swift */; };
 		9E3D38BC208EC4D900E38BE6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */; };
 		9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */; };
 		9E3EC97F2117981800185D62 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3EC97E2117981800185D62 /* Weekday.swift */; };
@@ -219,6 +221,8 @@
 		9E391A11207324FB00492F54 /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		9E391A1720745ACD00492F54 /* Month.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		9E3CAEFA2151D1AB00E44C8D /* MoodPagingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPagingViewController.swift; sourceTree = "<group>"; };
+		9E3CAF382158650E00E44C8D /* CustomPagingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPagingControl.swift; sourceTree = "<group>"; };
+		9E3CAF3C21587A8200E44C8D /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		9E3D38BB208EC4D900E38BE6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		9E3EC97E2117981800185D62 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
@@ -549,11 +553,13 @@
 				9E391A0F2073153800492F54 /* CalendarWeekView.swift */,
 				9E391A0920730D5D00492F54 /* CalendarWeekView.xib */,
 				9E324FFA207B05F100C7168B /* CreateMoodView.swift */,
+				9E3CAF382158650E00E44C8D /* CustomPagingControl.swift */,
 				9E14130E210E6BB5006CD78D /* LineDrawingView.swift */,
 				9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */,
 				9E453C3520CCBDD10041C219 /* MoodListView.swift */,
 				9E00B28720CCC2E200C2FD17 /* MoodListView.xib */,
 				9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */,
+				9E3CAF3C21587A8200E44C8D /* RoundedButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1061,9 +1067,11 @@
 				9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */,
 				9E49A57E2140B9130045709D /* WeekCalendarCollectionView.swift in Sources */,
 				9E43B3A2212505D20046E4F1 /* UIViewControllerAlertable.swift in Sources */,
+				9E3CAF392158650E00E44C8D /* CustomPagingControl.swift in Sources */,
 				9EB5385B212CF84F00BB6A7A /* Glossary.swift in Sources */,
 				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
+				9E3CAF3D21587A8200E44C8D /* RoundedButton.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
 				9E41DDD120A8CBD300A18E9A /* AnimatedWaveView.swift in Sources */,
 				9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */,

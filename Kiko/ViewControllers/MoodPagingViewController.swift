@@ -6,6 +6,7 @@ struct MoodPageDisplayable {
     let image: UIImage
     let primaryColor: UIColor
     let accessoryColor: UIColor
+    let selectedColor: UIColor
 }
 
 protocol MoodPagingDelegate: class {
@@ -19,7 +20,7 @@ class MoodPagingViewController: BaseViewController {
     private var pages: [MoodPageDisplayable] = []
     private let moodStackView = UIStackView()
     private let moodScrollView = UIScrollView()
-    private let pageControl = UIPageControl()
+    private let pageControl = CustomPagingControl()
 
     func configure(delegate: MoodPagingDelegate) {
         self.delegate = delegate
@@ -35,14 +36,13 @@ class MoodPagingViewController: BaseViewController {
     }
 
     private func setupPageControl() {
-        pageControl.currentPage = 0
-        pageControl.currentPageIndicatorTintColor = pages.first?.accessoryColor
-        pageControl.pageIndicatorTintColor = pages.first?.accessoryColor.faded
-        pageControl.numberOfPages = pages.count
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageControl)
-        pageControl.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 60).isActive = true
+        pageControl.bottomAnchor.constraint(equalTo: moodScrollView.bottomAnchor, constant: 50).isActive = true
         pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        pageControl.layoutIfNeeded()
+        pageControl.setup()
     }
 
     private func setupScrollView() {
@@ -61,10 +61,10 @@ class MoodPagingViewController: BaseViewController {
     }
 
     private func setupPages() {
-        pages.append(MoodPageDisplayable(moodType: .chick, image: #imageLiteral(resourceName: "chick"), primaryColor: .backgroundYellow, accessoryColor: .cornflowerYellow))
-        pages.append(MoodPageDisplayable(moodType: .chickEgg, image: #imageLiteral(resourceName: "chickEgg"), primaryColor: .backgroundPurple, accessoryColor: .tealBlue))
-        pages.append(MoodPageDisplayable(moodType: .egg, image: #imageLiteral(resourceName: "egg"), primaryColor: .backgroundRed, accessoryColor: .salmonPink))
-        pages.append(MoodPageDisplayable(moodType: .rottenEgg, image: #imageLiteral(resourceName: "rottenEgg"), primaryColor: .backgroundGreen, accessoryColor: .mossGreen))
+        pages.append(MoodPageDisplayable(moodType: .chick, image: #imageLiteral(resourceName: "chick"), primaryColor: .backgroundYellow, accessoryColor: .cornflowerYellow, selectedColor: .selectedSalmonPink))
+        pages.append(MoodPageDisplayable(moodType: .chickEgg, image: #imageLiteral(resourceName: "chickEgg"), primaryColor: .backgroundPurple, accessoryColor: .tealBlue, selectedColor: .selectedTeal))
+        pages.append(MoodPageDisplayable(moodType: .egg, image: #imageLiteral(resourceName: "egg"), primaryColor: .backgroundRed, accessoryColor: .salmonPink, selectedColor: .selectedRouge))
+        pages.append(MoodPageDisplayable(moodType: .rottenEgg, image: #imageLiteral(resourceName: "rottenEgg"), primaryColor: .backgroundGreen, accessoryColor: .mossGreen, selectedColor: .selectedGreen))
     }
 
     private func setupMoodStackView() {
@@ -111,9 +111,7 @@ extension MoodPagingViewController: UIScrollViewDelegate {
 
         let page = pages[index]
         UIView.animate(withDuration: 0.4) {
-            self.pageControl.currentPage = index
-            self.pageControl.currentPageIndicatorTintColor = page.accessoryColor
-            self.pageControl.pageIndicatorTintColor = page.accessoryColor.faded
+            self.pageControl.update(selectedIndex: index, color: page.accessoryColor)
         }
     }
 

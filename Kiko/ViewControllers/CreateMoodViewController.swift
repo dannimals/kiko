@@ -8,7 +8,7 @@ class CreateMoodViewController: BaseViewController {
     private var moodNavigationCoordinator: MoodCoordinating!
     private var calendarManager: CalendarManaging!
     private var calendarViewController: CalendarViewController?
-
+    @IBOutlet weak var logButton: RoundedButton!
     func configure(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
 
         self.moodManager = moodManager
@@ -95,6 +95,8 @@ class CreateMoodViewController: BaseViewController {
 
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
+        logButton.setTitle(Glossary.log.rawValue, for: .normal)
+        logButton.backgroundColor = .cornflowerYellow
     }
 }
 
@@ -104,6 +106,8 @@ extension CreateMoodViewController: MoodPagingDelegate {
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = page.primaryColor
+            self.logButton.backgroundColor = page.accessoryColor
+            self.logButton.highlightedBackgroundColor = page.selectedColor
         }
     }
 }

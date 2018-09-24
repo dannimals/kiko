@@ -34,7 +34,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73J-gV-52F">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73J-gV-52F" userLabel="Calendar Container View">
                                 <rect key="frame" x="0.0" y="89" width="375" height="122"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="122" id="PFS-Vt-zOD"/>
@@ -43,16 +43,30 @@
                                     <segue destination="8ci-Wa-UXR" kind="embed" id="MN8-s2-uog"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-ZE-FpR">
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-ZE-FpR" userLabel="Paging Container View">
                                 <rect key="frame" x="0.0" y="236" width="375" height="356"/>
                                 <connections>
                                     <segue destination="SdK-2U-8TD" kind="embed" id="xZC-Bt-yIb"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ue-J9-dA6">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ue-J9-dA6" userLabel="Footer Container View">
                                 <rect key="frame" x="0.0" y="592" width="375" height="75"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiA-d6-mQg" customClass="RoundedButton" customModule="Kiko" customModuleProvider="target">
+                                        <rect key="frame" x="150" y="6.5" width="74" height="32"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="Hel-cZ-QtQ"/>
+                                            <constraint firstAttribute="height" constant="32" id="WBn-k3-vGU"/>
+                                        </constraints>
+                                        <state key="normal" title="Log">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstItem="DiA-d6-mQg" firstAttribute="centerX" secondItem="0Ue-J9-dA6" secondAttribute="centerX" id="7zU-wy-309"/>
                                     <constraint firstAttribute="height" constant="75" id="qHe-wO-R6x"/>
+                                    <constraint firstItem="DiA-d6-mQg" firstAttribute="centerY" secondItem="0Ue-J9-dA6" secondAttribute="centerY" constant="-15" id="xlB-ER-Wfy"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -72,6 +86,9 @@
                         <viewLayoutGuide key="safeArea" id="0xG-XK-012"/>
                     </view>
                     <navigationItem key="navigationItem" id="Nd2-j8-Zqp"/>
+                    <connections>
+                        <outlet property="logButton" destination="DiA-d6-mQg" id="5a1-lI-CxG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNS-3d-7uR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
