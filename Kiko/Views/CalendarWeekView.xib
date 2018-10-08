@@ -23,11 +23,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eae-Tn-AY3" userLabel="Left button" customClass="TappableButton" customModule="KikoUIKit">
-                    <rect key="frame" x="75" y="10" width="12" height="22"/>
+                    <rect key="frame" x="45" y="10" width="12" height="22"/>
                     <state key="normal" image="leftArrow"/>
                 </button>
                 <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B42-Nb-gPu" userLabel="Right button" customClass="TappableButton" customModule="KikoUIKit">
-                    <rect key="frame" x="326" y="10" width="12" height="22"/>
+                    <rect key="frame" x="346" y="10" width="12" height="22"/>
                     <state key="normal" image="rightArrow"/>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-DH-WjH" userLabel="Weekdays stackview">
@@ -93,8 +93,8 @@
                 <constraint firstItem="qgx-Cl-6oi" firstAttribute="centerX" secondItem="hBY-cG-aNN" secondAttribute="centerX" id="39I-Gj-KCd"/>
                 <constraint firstItem="haJ-7i-le1" firstAttribute="bottom" secondItem="hBY-cG-aNN" secondAttribute="bottom" id="6hb-0K-NqA"/>
                 <constraint firstItem="haJ-7i-le1" firstAttribute="top" secondItem="lgG-DH-WjH" secondAttribute="bottom" id="88K-OQ-Yex"/>
-                <constraint firstItem="hBY-cG-aNN" firstAttribute="leading" secondItem="Eae-Tn-AY3" secondAttribute="leading" constant="-75" id="MH1-WW-SAE"/>
-                <constraint firstItem="B42-Nb-gPu" firstAttribute="trailing" secondItem="hBY-cG-aNN" secondAttribute="trailing" constant="-75" id="VJp-w9-cYU"/>
+                <constraint firstItem="hBY-cG-aNN" firstAttribute="leading" secondItem="Eae-Tn-AY3" secondAttribute="leading" constant="-45" id="MH1-WW-SAE"/>
+                <constraint firstItem="B42-Nb-gPu" firstAttribute="trailing" secondItem="hBY-cG-aNN" secondAttribute="trailing" constant="-55" id="VJp-w9-cYU"/>
                 <constraint firstItem="hBY-cG-aNN" firstAttribute="trailing" secondItem="lgG-DH-WjH" secondAttribute="trailing" constant="5" id="Xur-gJ-SRZ"/>
                 <constraint firstItem="qgx-Cl-6oi" firstAttribute="top" secondItem="hBY-cG-aNN" secondAttribute="top" constant="5" id="Yfz-0R-lWK"/>
                 <constraint firstItem="Eae-Tn-AY3" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" constant="10" id="hP9-NG-akI"/>

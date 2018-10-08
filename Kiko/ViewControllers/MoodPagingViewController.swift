@@ -21,6 +21,7 @@ class MoodPagingViewController: BaseViewController {
     private let moodStackView = UIStackView()
     private let moodScrollView = UIScrollView()
     private let pageControl = CustomPagingControl()
+    private let greetingLabel = UILabel()
 
     func configure(delegate: MoodPagingDelegate) {
         self.delegate = delegate
@@ -29,10 +30,30 @@ class MoodPagingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        configureView()
+    }
+
+    private func configureView() {
+        setupLabel()
         setupPages()
         setupScrollView()
         setupMoodStackView()
         setupPageControl()
+    }
+
+    private func setupLabel() {
+        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.cornflowerYellow])
+        let mutableString = NSMutableAttributedString(attributedString: attributedText)
+        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: UIColor.cornflowerYellow])
+        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.cornflowerYellow])
+        mutableString.append(secondAttributedText)
+        mutableString.append(thirdAttributedText)
+        greetingLabel.attributedText = mutableString
+        greetingLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        view.addSubview(greetingLabel)
+        greetingLabel.translatesAutoresizingMaskIntoConstraints = false
+        greetingLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 30).isActive = true
+        greetingLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 
     private func setupPageControl() {
@@ -94,7 +115,9 @@ extension MoodPagingViewController: UIScrollViewDelegate {
 
         delegate?.pagingViewDidScroll(self, page: pages[index])
         scrollToSelectedIndex(index)
-        updatePageControl(forSelectedIndex: index)
+        guard index < pages.count else { return }
+        let color = pages[index].accessoryColor
+        animateChangeFor(color: color, selectedIndex: index)
     }
 
     private func scrollToSelectedIndex(_ index: Int) {
@@ -106,12 +129,10 @@ extension MoodPagingViewController: UIScrollViewDelegate {
         })
     }
 
-    private func updatePageControl(forSelectedIndex index: Int) {
-        guard index < pages.count else { return }
-
-        let page = pages[index]
+    private func animateChangeFor(color: UIColor, selectedIndex: Int) {
         UIView.animate(withDuration: 0.4) {
-            self.pageControl.update(selectedIndex: index, color: page.accessoryColor)
+            self.pageControl.update(selectedIndex: selectedIndex, color: color)
+            self.greetingLabel.textColor = color
         }
     }
 

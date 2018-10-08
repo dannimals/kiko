@@ -113,9 +113,4 @@ class MoodManagerTests: XCTestCase {
         XCTAssertEqual(moodTypes, moodManager.moodTypes(month: .august, year: 2018))
     }
 
-    func testHasMoodForToday() {
-        
-    }
-
 }
-
