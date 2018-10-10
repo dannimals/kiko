@@ -17,12 +17,12 @@ class MoodPagingView: UIView {
     }
 
     func configure(pages: [MoodPageDisplayable], delegate: MoodPagingDelegate) {
-        updateMoodStackView(pages)
+        self.pages = pages
         self.delegate = delegate
+        updateMoodStackView()
     }
 
-    private func updateMoodStackView(_ pages: [MoodPageDisplayable]) {
-        self.pages = pages
+    private func updateMoodStackView() {
         layoutMoodStackView(pageCount: CGFloat(pages.count))
         pages.forEach { moodStackView.addArrangedSubview(imageView($0.image)) }
         func imageView(_ image: UIImage) -> UIImageView {
@@ -37,7 +37,6 @@ class MoodPagingView: UIView {
         scrollView.delegate = self
         setupLabel()
         setupStackView()
-        backgroundColor = .clear
     }
 
     private func setupStackView() {
