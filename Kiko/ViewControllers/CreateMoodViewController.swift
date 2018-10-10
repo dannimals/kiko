@@ -23,8 +23,8 @@ class CreateMoodViewController: BaseViewController {
         case let destination as CalendarViewController:
             destination.configure(calendarManager: calendarManager, moodManager: moodManager)
             calendarViewController = destination
-        case let destination as MoodPagingViewController:
-            destination.configure(delegate: self)
+        case let destination as PagingViewController:
+            destination.configure(delegate: self, viewModel: MoodPageViewModel())
         default: break
         }
     }
@@ -102,7 +102,7 @@ class CreateMoodViewController: BaseViewController {
 
 extension CreateMoodViewController: MoodPagingDelegate {
 
-    func pagingViewDidScroll(_ pagingView: MoodPagingViewController, page: MoodPageDisplayable) {
+    func pagingViewDidScroll(_ pagingView: MoodPagingView, page: MoodPageDisplayable) {
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = page.primaryColor

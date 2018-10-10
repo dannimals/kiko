@@ -43,12 +43,25 @@
                                     <segue destination="8ci-Wa-UXR" kind="embed" id="MN8-s2-uog"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-ZE-FpR" userLabel="Paging Container View">
-                                <rect key="frame" x="0.0" y="236" width="375" height="356"/>
-                                <connections>
-                                    <segue destination="SdK-2U-8TD" kind="embed" id="xZC-Bt-yIb"/>
-                                </connections>
-                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt2-S9-wif">
+                                <rect key="frame" x="0.0" y="211" width="375" height="381"/>
+                                <subviews>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-ZE-FpR" userLabel="Paging Container View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="381"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="381" id="tSU-Qc-j3l"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="SdK-2U-8TD" kind="embed" id="xZC-Bt-yIb"/>
+                                        </connections>
+                                    </containerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="uV4-ZE-FpR" secondAttribute="trailing" id="Esh-JZ-sY0"/>
+                                    <constraint firstItem="uV4-ZE-FpR" firstAttribute="leading" secondItem="rt2-S9-wif" secondAttribute="leading" id="eZP-gL-BCo"/>
+                                    <constraint firstItem="uV4-ZE-FpR" firstAttribute="centerY" secondItem="rt2-S9-wif" secondAttribute="centerY" id="mt9-7v-KgP"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ue-J9-dA6" userLabel="Footer Container View">
                                 <rect key="frame" x="0.0" y="592" width="375" height="75"/>
                                 <subviews>
@@ -75,16 +88,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="0Ue-J9-dA6" firstAttribute="top" secondItem="uV4-ZE-FpR" secondAttribute="bottom" id="05b-DS-io7"/>
                             <constraint firstAttribute="bottom" secondItem="0Ue-J9-dA6" secondAttribute="bottom" id="4DI-Dx-A8N"/>
-                            <constraint firstItem="uV4-ZE-FpR" firstAttribute="top" secondItem="73J-gV-52F" secondAttribute="bottom" constant="25" id="DHd-gs-u2M"/>
+                            <constraint firstItem="0Ue-J9-dA6" firstAttribute="top" secondItem="rt2-S9-wif" secondAttribute="bottom" id="7Q6-pG-bM8"/>
+                            <constraint firstItem="rt2-S9-wif" firstAttribute="top" secondItem="73J-gV-52F" secondAttribute="bottom" id="DUh-5Y-WeU"/>
                             <constraint firstItem="0Ue-J9-dA6" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="IZT-O2-oy1"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="top" secondItem="0xG-XK-012" secondAttribute="top" constant="25" id="Ic4-WO-Cah"/>
-                            <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="uV4-ZE-FpR" secondAttribute="trailing" id="Uen-RA-z0c"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="rt2-S9-wif" secondAttribute="trailing" id="YWo-4c-ZRP"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="0Ue-J9-dA6" secondAttribute="trailing" id="aAD-Ut-FYt"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="aKJ-G7-8ir"/>
+                            <constraint firstItem="rt2-S9-wif" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="kyn-YJ-PXb"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="73J-gV-52F" secondAttribute="trailing" id="laL-Ba-xdE"/>
-                            <constraint firstItem="uV4-ZE-FpR" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="ldI-cy-WPh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0xG-XK-012"/>
                     </view>
@@ -105,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="364" y="-405"/>
         </scene>
-        <!--Mood Paging View Controller-->
+        <!--Paging View Controller-->
         <scene sceneID="sFv-n3-2eh">
             <objects>
-                <viewController id="SdK-2U-8TD" customClass="MoodPagingViewController" customModule="Kiko" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController id="SdK-2U-8TD" customClass="PagingViewController" customModule="Kiko" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UkL-DY-a8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="364" y="-99"/>

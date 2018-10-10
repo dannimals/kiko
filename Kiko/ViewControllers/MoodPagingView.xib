@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="S8Z-eb-dhM" customClass="MoodPagingView" customModule="Kiko" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="537" height="456"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6u-lv-baG">
+                    <rect key="frame" x="247" y="0.0" width="42" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-Hx-MOl">
+                    <rect key="frame" x="0.0" y="45" width="537" height="260"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="260" id="bpw-nI-8ik"/>
+                    </constraints>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dae-ZB-lBJ" customClass="CustomPagingControl" customModule="Kiko" customModuleProvider="target">
+                    <rect key="frame" x="236" y="337" width="65" height="10"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="10" id="H3a-i1-zi7"/>
+                        <constraint firstAttribute="width" constant="65" id="f0z-pc-06H"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Dae-ZB-lBJ" firstAttribute="top" secondItem="7zv-Hx-MOl" secondAttribute="bottom" constant="32" id="GIe-eg-z6F"/>
+                <constraint firstItem="7zv-Hx-MOl" firstAttribute="top" secondItem="U6u-lv-baG" secondAttribute="bottom" constant="24" id="IJR-JV-3hM"/>
+                <constraint firstItem="7zv-Hx-MOl" firstAttribute="leading" secondItem="BuR-MU-Atw" secondAttribute="leading" id="KQH-Iq-AHR"/>
+                <constraint firstItem="U6u-lv-baG" firstAttribute="top" secondItem="BuR-MU-Atw" secondAttribute="top" id="OcX-Wn-iYp"/>
+                <constraint firstItem="BuR-MU-Atw" firstAttribute="trailing" secondItem="7zv-Hx-MOl" secondAttribute="trailing" id="RJT-5z-L8C"/>
+                <constraint firstItem="Dae-ZB-lBJ" firstAttribute="centerX" secondItem="BuR-MU-Atw" secondAttribute="centerX" id="iyk-Wa-B5T"/>
+                <constraint firstItem="U6u-lv-baG" firstAttribute="centerX" secondItem="BuR-MU-Atw" secondAttribute="centerX" id="uLn-7e-xv7"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="BuR-MU-Atw"/>
+            <connections>
+                <outlet property="greetingLabel" destination="U6u-lv-baG" id="H7O-5B-KT9"/>
+                <outlet property="pagingControl" destination="Dae-ZB-lBJ" id="Wfg-uj-shX"/>
+                <outlet property="scrollView" destination="7zv-Hx-MOl" id="kjt-w6-ihn"/>
+            </connections>
+            <point key="canvasLocation" x="-249.5" y="-306"/>
+        </view>
+    </objects>
+</document>
