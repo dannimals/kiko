@@ -66,15 +66,11 @@ class MockCalendarManager: CalendarManaging {
             date(from: "2018-09-01")
         ]
     }()
-    lazy var today: Date = { return date(from: "2018-08-22") }()
 
+    lazy var today: Date = { return date(from: "2018-08-22") }()
 
     func dateForIndexPath(_ indexPath: IndexPath) -> Date {
         return lastWeekDates.first!
-    }
-
-    func index(for date: Date) -> Int? {
-        return datesIndexesDict[date] ?? 0
     }
 
     var isLastWeekLoaded = false

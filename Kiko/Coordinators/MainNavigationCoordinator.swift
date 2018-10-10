@@ -12,10 +12,13 @@ class MainNavigationCoordinator: AppCoordinating {
     let moodManager: MoodManaging
     let window: UIWindow?
 
-    lazy var mainViewController: UINavigationController = {
-        let moodLogViewController = MoodLogViewController(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
-        let navigationController = UINavigationController(rootViewController: moodLogViewController)
+    lazy var mainViewController: UINavigationController? = {
+        let createMoodViewStoryboard = UIStoryboard(name: StoryboardName.createMoodView.rawValue, bundle: nil)
+        guard let navigationController = createMoodViewStoryboard.instantiateInitialViewController() as? UINavigationController,
+            let createMoodViewController = navigationController.childViewControllers.first as? CreateMoodViewController else { return nil }
+        createMoodViewController.configure(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
         moodNavigationCoordinator.configure(rootViewController: navigationController, moodManager: moodManager)
+
         return navigationController
     }()
 
@@ -27,7 +30,7 @@ class MainNavigationCoordinator: AppCoordinating {
     }
 
     func start() {
-        guard let window = window else { return }
+        guard let window = window, let mainViewController = mainViewController else { return }
 
         window.rootViewController = mainViewController
         window.makeKeyAndVisible()

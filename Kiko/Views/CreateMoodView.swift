@@ -1,7 +1,7 @@
 import KikoUIKit
 import KikoModels
 
-class MoodLogView: UIView {
+class CreateMoodView: UIView {
 
     let moodChanged = Channel<MoodUISetting>()
 
@@ -23,7 +23,7 @@ class MoodLogView: UIView {
     private let stackView = UIStackView()
 
     func configure(dataSource: UICollectionViewDataSource & UICollectionViewDelegate) {
-        calendarWeekView.configure(dataSource: dataSource)
+//        calendarWeekView.configure(dataSource: dataSource)
         configure()
     }
 
@@ -228,7 +228,6 @@ class MoodLogView: UIView {
     }
 
     private func configure() {
-        calendarWeekView.datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
         configureRingButton()
         configureWavesButton()
         configureCalendarView()
@@ -248,7 +247,7 @@ class MoodLogView: UIView {
 
 }
 
-extension MoodLogView: UIScrollViewDelegate {
+extension CreateMoodView: UIScrollViewDelegate {
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let index = indexOfCurrentMoodImage()
@@ -292,7 +291,9 @@ extension MoodLogView: UIScrollViewDelegate {
         }
     }
 
+
     class LogButton: UIButton {
+
         var highlightedBackgroundColor: UIColor?
         var normalBackgroundColor: UIColor? {
             didSet {
