@@ -14,14 +14,14 @@ public extension UIView {
         return view
     }
 
-    public func stretchToFill(_ view: UIView) {
-        addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+    public func stretchToFill(parentView: UIView) {
+        parentView.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: topAnchor),
-            view.leftAnchor.constraint(equalTo: leftAnchor),
-            view.rightAnchor.constraint(equalTo: rightAnchor),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor)
+            topAnchor.constraint(equalTo: parentView.topAnchor),
+            leftAnchor.constraint(equalTo: parentView.leftAnchor),
+            rightAnchor.constraint(equalTo: parentView.rightAnchor),
+            bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
         ])
     }
 }
