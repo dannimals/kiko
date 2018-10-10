@@ -24,6 +24,7 @@ class CreateMoodViewController: BaseViewController {
             destination.configure(calendarManager: calendarManager, moodManager: moodManager)
             calendarViewController = destination
         case let destination as PagingViewController:
+            _ = destination.view
             destination.configure(delegate: self, viewModel: MoodPageViewModel())
         default: break
         }

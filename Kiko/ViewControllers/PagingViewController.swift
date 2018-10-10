@@ -16,26 +16,21 @@ protocol MoodPagingDelegate: class {
 
 class PagingViewController: BaseViewController {
 
-    private weak var delegate: MoodPagingDelegate!
-    private var moodPagingView: MoodPagingView = MoodPagingView.loadFromNib()
-    private var viewModel: MoodPageViewModel?
+    private let pagingView: MoodPagingView = MoodPagingView.loadFromNib()
 
     func configure(delegate: MoodPagingDelegate, viewModel: MoodPageViewModel) {
-        self.delegate = delegate
-        self.viewModel = viewModel
+        pagingView.configure(pages: viewModel.pages, delegate: delegate)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configureViews()
-        moodPagingView.configure(pages: viewModel!.pages, delegate: delegate)
-        view.layoutIfNeeded()
     }
 
     private func configureViews() {
-        moodPagingView.stretchToFill(parentView: view)
-        moodPagingView.layoutIfNeeded()
+        pagingView.stretchToFill(parentView: view)
+        pagingView.layoutIfNeeded()
     }
 
 }
