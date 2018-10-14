@@ -1,3 +1,4 @@
+
 import KikoModels
 import KikoUIKit
 
@@ -7,6 +8,32 @@ struct MoodPageDisplayable {
     let primaryColor: UIColor
     let accessoryColor: UIColor
     let selectedColor: UIColor
+
+    init(type: MoodType) {
+        self.moodType = type
+        switch type {
+        case .chick:
+            image = #imageLiteral(resourceName: "chick")
+            primaryColor = .backgroundYellow
+            accessoryColor = .cornflowerYellow
+            selectedColor = .selectedSalmonPink
+        case .chickEgg:
+            image = #imageLiteral(resourceName: "chickEgg")
+            primaryColor = .backgroundPurple
+            accessoryColor = .tealBlue
+            selectedColor = .selectedTeal
+        case .egg:
+            image = #imageLiteral(resourceName: "egg")
+            primaryColor = .backgroundRed
+            accessoryColor = .salmonPink
+            selectedColor = .selectedRouge
+        case .rottenEgg:
+            image = #imageLiteral(resourceName: "rottenEgg")
+            primaryColor = .backgroundGreen
+            accessoryColor = .mossGreen
+            selectedColor = .selectedGreen
+        }
+    }
 }
 
 protocol MoodPagingDelegate: class {
@@ -18,8 +45,9 @@ class PagingViewController: BaseViewController {
 
     private let pagingView: MoodPagingView = MoodPagingView.loadFromNib()
 
-    func configure(delegate: MoodPagingDelegate, viewModel: MoodPageViewModel) {
-        pagingView.configure(pages: viewModel.pages, delegate: delegate)
+    func configure(viewModel: MoodPageViewModel, observer: MoodPagingObserving) {
+        pagingView.configure(viewModel: viewModel)
+        viewModel.addObserver(observer)
     }
 
     override func viewDidLoad() {
@@ -29,7 +57,8 @@ class PagingViewController: BaseViewController {
     }
 
     private func configureViews() {
-        pagingView.stretchToFill(parentView: view)
+        view.addSubview(pagingView)
+        pagingView.stretchToFill()
         pagingView.layoutIfNeeded()
     }
 

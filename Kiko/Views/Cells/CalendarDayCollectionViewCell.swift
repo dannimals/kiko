@@ -15,12 +15,12 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         configure()
     }
 
-    func configure(date: Date, today: Date, moodColor: UIColor?, todayColor: UIColor?) {
+    func configure(date: Date, today: Date, moodColor: UIColor?) {
         let isToday = date ≈≈ today
         self.isToday = isToday
         configureCircleViews(isToday: isToday, moodColor: moodColor)
         if isToday {
-            configureDateLabel(font: .customFont(ofSize: 16, weight: .heavy), textColor: unwrapOrElse(todayColor, fallback: .cornflowerYellow))
+            configureDateLabel(font: .customFont(ofSize: 16, weight: .heavy), textColor: .todayGrey)
         } else if date < today {
             configureDateLabel(font: .customFont(ofSize: 14, weight: .medium), textColor: .textDarkGrey)
         } else {

@@ -2,7 +2,7 @@ import KikoModels
 import KikoUIKit
 @testable import Kiko
 
-class MockMoodNavigationCoodinator: MoodCoordinating {
+class MockMenuNavigationCoodinator: MenuNavigationCoordinating {
 
     var rootViewController: UINavigationController?
     var moodManager: MoodManaging?

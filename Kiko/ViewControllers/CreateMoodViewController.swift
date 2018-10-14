@@ -5,15 +5,16 @@ class CreateMoodViewController: BaseViewController {
 
     private var currentMoodType: MoodType = .chick
     private var moodManager: MoodManaging!
-    private var moodNavigationCoordinator: MoodCoordinating!
+    private var menuNavigationCoordinator: MenuNavigationCoordinating!
     private var calendarManager: CalendarManaging!
     private var calendarViewController: CalendarViewController?
     @IBOutlet weak var logButton: RoundedButton!
 
-    func configure(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
-
+    func configure(menuNavigationCoordinator: MenuNavigationCoordinating,
+                   calendarManager: CalendarManaging,
+                   moodManager: MoodManaging) {
         self.moodManager = moodManager
-        self.moodNavigationCoordinator = moodNavigationCoordinator
+        self.menuNavigationCoordinator = menuNavigationCoordinator
         self.calendarManager = calendarManager
     }
 
@@ -25,7 +26,7 @@ class CreateMoodViewController: BaseViewController {
             calendarViewController = destination
         case let destination as PagingViewController:
             _ = destination.view
-            destination.configure(delegate: self, viewModel: MoodPageViewModel())
+            destination.configure(viewModel: MoodPageViewModel(), observer: self)
         default: break
         }
     }
@@ -35,17 +36,19 @@ class CreateMoodViewController: BaseViewController {
 
         setupViews()
         setupBindings()
-//        updateViewForCurrentMood()
     }
 
-//    private func updateViewForCurrentMood() {
-//        guard let todayMood = moodManager.mood(forDate: Date()) else {
-//            moodLogView.reset()
-//            return
-//        }
-//        moodLogView.updateViewForMood(todayMood)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        updateLogButton()
+    }
+
+    private func updateLogButton() {
+        let hasMoodForToday = moodManager.mood(forDate: Date()) != nil 
+        let logButtonTitle = hasMoodForToday ? Glossary.update.rawValue : Glossary.log.rawValue
+        logButton.title = logButtonTitle
+    }
 
     private func setupBindings() {
 //        moodLogView
@@ -76,19 +79,13 @@ class CreateMoodViewController: BaseViewController {
         return  moodType
     }
 
-//    private func updateViewForSavedMood(_ mood: Mood) {
-//        moodLogView.updateViewForMood(mood)
-//    }
-
     private func saveMood() {
         let mood = Mood(type: currentMoodType, date: Date())
         guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
         do {
             try moodManager.save(mood)
             presentModalForSuccess(imageColor: color)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-//                self.updateViewForSavedMood(mood)
-            }
+            updateLogButton()
         } catch {
             presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage.rawValue)
         }
@@ -96,14 +93,14 @@ class CreateMoodViewController: BaseViewController {
 
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
-        logButton.setTitle(Glossary.log.rawValue, for: .normal)
         logButton.backgroundColor = .cornflowerYellow
     }
 }
 
-extension CreateMoodViewController: MoodPagingDelegate {
+extension CreateMoodViewController: MoodPagingObserving {
 
-    func pagingViewDidScroll(_ pagingView: MoodPagingView, page: MoodPageDisplayable) {
+    func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
+        currentMoodType = page.moodType
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = page.primaryColor

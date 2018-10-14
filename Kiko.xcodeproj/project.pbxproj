@@ -82,7 +82,7 @@
 		9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */; };
 		9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */; };
 		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
-		9EB538492129FE2300BB6A7A /* MoodNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */; };
+		9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */; };
 		9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */; };
 		9EB5384E212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */; };
 		9EB53851212A052B00BB6A7A /* MockCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */; };
@@ -96,6 +96,7 @@
 		9EBE973F216ADA0C00FB54FD /* MoodPagingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EBE973E216ADA0C00FB54FD /* MoodPagingView.xib */; };
 		9EBE9741216ADDA200FB54FD /* MoodPagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE9740216ADDA200FB54FD /* MoodPagingView.swift */; };
 		9EBE9745216AE60100FB54FD /* MoodPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE9744216AE60100FB54FD /* MoodPageViewModel.swift */; };
+		9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE97462173D7DA00FB54FD /* MoodObserver.swift */; };
 		DBDA56C3A0C0E5DF53F4A05B /* Pods_KikoModelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */; };
 		F559DD005182564866BBEA82 /* Pods_KikoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D61D10CEB00794464B027 /* Pods_KikoTests.framework */; };
 /* End PBXBuildFile section */
@@ -253,7 +254,7 @@
 		9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
 		9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
-		9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinator.swift; sourceTree = "<group>"; };
+		9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
 		9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
 		9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCalendarManager.swift; sourceTree = "<group>"; };
@@ -267,6 +268,7 @@
 		9EBE973E216ADA0C00FB54FD /* MoodPagingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodPagingView.xib; sourceTree = "<group>"; };
 		9EBE9740216ADDA200FB54FD /* MoodPagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPagingView.swift; sourceTree = "<group>"; };
 		9EBE9744216AE60100FB54FD /* MoodPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPageViewModel.swift; sourceTree = "<group>"; };
+		9EBE97462173D7DA00FB54FD /* MoodObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodObserver.swift; sourceTree = "<group>"; };
 		ACADB0625A0A637F5BAB649C /* Pods-Kiko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiko.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiko/Pods-Kiko.debug.xcconfig"; sourceTree = "<group>"; };
 		B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B902ED13E324BC87F32E0CCF /* Pods-KikoModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModels.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModels/Pods-KikoModels.release.xcconfig"; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 		9E43B3A0212505990046E4F1 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				9EBE97462173D7DA00FB54FD /* MoodObserver.swift */,
 				9E43B3A1212505D20046E4F1 /* UIViewControllerAlertable.swift */,
 			);
 			path = Protocols;
@@ -638,7 +641,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */,
-				9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */,
+				9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */,
 				9EB53866213DE72E00BB6A7A /* StoryboardName.swift */,
 			);
 			path = Coordinators;
@@ -1060,13 +1063,14 @@
 				9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */,
 				9EB53863213DDC4F00BB6A7A /* CalendarViewController.swift in Sources */,
 				9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */,
+				9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */,
 				9E324FFB207B05F100C7168B /* CreateMoodView.swift in Sources */,
 				9E3919E0207306E400492F54 /* CreateMoodViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,
 				9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */,
 				9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */,
-				9EB538492129FE2300BB6A7A /* MoodNavigationCoordinator.swift in Sources */,
+				9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */,
 				9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */,

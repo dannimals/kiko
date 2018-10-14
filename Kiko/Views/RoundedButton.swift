@@ -8,6 +8,13 @@ class RoundedButton: UIButton {
         }
     }
 
+    @IBInspectable var title: String? {
+        didSet {
+            setTitle(title, for: .normal)
+            setNeedsDisplay()
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
