@@ -36,17 +36,19 @@ class CreateMoodViewController: BaseViewController {
 
         setupViews()
         setupBindings()
-//        updateViewForCurrentMood()
     }
 
-//    private func updateViewForCurrentMood() {
-//        guard let todayMood = moodManager.mood(forDate: Date()) else {
-//            moodLogView.reset()
-//            return
-//        }
-//        moodLogView.updateViewForMood(todayMood)
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
+        updateLogButton()
+    }
+
+    private func updateLogButton() {
+        let hasMoodForToday = moodManager.mood(forDate: Date()) != nil 
+        let logButtonTitle = hasMoodForToday ?  Glossary.log.rawValue : Glossary.update.rawValue
+        logButton.setTitle(logButtonTitle, for: .normal)
+    }
 
     private func setupBindings() {
 //        moodLogView
