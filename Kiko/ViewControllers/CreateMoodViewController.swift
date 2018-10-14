@@ -77,19 +77,13 @@ class CreateMoodViewController: BaseViewController {
         return  moodType
     }
 
-//    private func updateViewForSavedMood(_ mood: Mood) {
-//        moodLogView.updateViewForMood(mood)
-//    }
-
     private func saveMood() {
         let mood = Mood(type: currentMoodType, date: Date())
         guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
         do {
             try moodManager.save(mood)
             presentModalForSuccess(imageColor: color)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-//                self.updateViewForSavedMood(mood)
-            }
+            
         } catch {
             presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage.rawValue)
         }
@@ -105,6 +99,7 @@ class CreateMoodViewController: BaseViewController {
 extension CreateMoodViewController: MoodPagingObserving {
 
     func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
+        currentMoodType = page.moodType
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = page.primaryColor
