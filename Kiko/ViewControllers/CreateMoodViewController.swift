@@ -46,8 +46,8 @@ class CreateMoodViewController: BaseViewController {
 
     private func updateLogButton() {
         let hasMoodForToday = moodManager.mood(forDate: Date()) != nil 
-        let logButtonTitle = hasMoodForToday ?  Glossary.log.rawValue : Glossary.update.rawValue
-        logButton.setTitle(logButtonTitle, for: .normal)
+        let logButtonTitle = hasMoodForToday ? Glossary.update.rawValue : Glossary.log.rawValue
+        logButton.title = logButtonTitle
     }
 
     private func setupBindings() {
@@ -85,7 +85,7 @@ class CreateMoodViewController: BaseViewController {
         do {
             try moodManager.save(mood)
             presentModalForSuccess(imageColor: color)
-            
+            updateLogButton()
         } catch {
             presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage.rawValue)
         }
@@ -93,7 +93,6 @@ class CreateMoodViewController: BaseViewController {
 
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
-        logButton.setTitle(Glossary.log.rawValue, for: .normal)
         logButton.backgroundColor = .cornflowerYellow
     }
 }
