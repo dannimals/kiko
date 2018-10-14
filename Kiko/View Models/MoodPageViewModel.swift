@@ -1,18 +1,48 @@
 
+import KikoModels
 import KikoUIKit
 
 class MoodPageViewModel {
 
-    var pages: [MoodPageDisplayable] = []
+    private var currentPage = MoodPageDisplayable(type: .chick)
+    private(set) var pages: [MoodPageDisplayable] = []
+    private var observations = [ObjectIdentifier: Observation]()
 
     init() {
         setupPages()
     }
 
+    func updateCurrentPage(_ page: MoodPageDisplayable) {
+        currentPage = page
+        notifyObservers()
+    }
+
+    func addObserver(_ observer: MoodPagingObserving) {
+        let identifier = ObjectIdentifier(observer)
+        observations[identifier] = Observation(observer: observer)
+        observer.moodPageViewModel(self, didUpdateMoodPage: currentPage)
+    }
+
+    private func notifyObservers() {
+        observations.forEach { id, observation in
+            guard let observer = observation.observer else {
+                observations.removeValue(forKey: id)
+                return
+            }
+            observer.moodPageViewModel(self, didUpdateMoodPage: currentPage)
+        }
+    }
+
     private func setupPages() {
-    pages.append(MoodPageDisplayable(moodType: .chick, image: #imageLiteral(resourceName: "chick"), primaryColor: .backgroundYellow, accessoryColor: .cornflowerYellow, selectedColor: .selectedSalmonPink))
-    pages.append(MoodPageDisplayable(moodType: .chickEgg, image: #imageLiteral(resourceName: "chickEgg"), primaryColor: .backgroundPurple, accessoryColor: .tealBlue, selectedColor: .selectedTeal))
-    pages.append(MoodPageDisplayable(moodType: .egg, image: #imageLiteral(resourceName: "egg"), primaryColor: .backgroundRed, accessoryColor: .salmonPink, selectedColor: .selectedRouge))
-    pages.append(MoodPageDisplayable(moodType: .rottenEgg, image: #imageLiteral(resourceName: "rottenEgg"), primaryColor: .backgroundGreen, accessoryColor: .mossGreen, selectedColor: .selectedGreen))
+        pages.append(MoodPageDisplayable(type: .chick))
+        pages.append(MoodPageDisplayable(type: .chickEgg))
+        pages.append(MoodPageDisplayable(type: .egg))
+        pages.append(MoodPageDisplayable(type: .rottenEgg))
+    }
+}
+
+extension MoodPageViewModel {
+    struct Observation {
+        weak var observer: MoodPagingObserving?
     }
 }

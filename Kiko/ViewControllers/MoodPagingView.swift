@@ -8,7 +8,7 @@ class MoodPagingView: UIView {
     @IBOutlet weak var pagingControl: CustomPagingControl!
     private let moodStackView = UIStackView()
     private var pages: [MoodPageDisplayable] = []
-    private weak var delegate: MoodPagingDelegate!
+    private var viewModel: MoodPageViewModel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -16,9 +16,9 @@ class MoodPagingView: UIView {
         setup()
     }
 
-    func configure(pages: [MoodPageDisplayable], delegate: MoodPagingDelegate) {
-        self.pages = pages
-        self.delegate = delegate
+    func configure(viewModel: MoodPageViewModel) {
+        self.pages = viewModel.pages
+        self.viewModel = viewModel
         updateMoodStackView()
     }
 
@@ -78,7 +78,7 @@ extension MoodPagingView: UIScrollViewDelegate {
         let index = indexOfCurrentMoodImage()
         guard index < pages.count else { return }
         scrollToSelectedIndex(index)
-        delegate.pagingViewDidScroll(self, page: pages[index])
+        viewModel.updateCurrentPage(pages[index])
         guard index < pages.count else { return }
         let color = pages[index].accessoryColor
         animateChangeFor(color: color, selectedIndex: index)
