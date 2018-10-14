@@ -117,6 +117,10 @@ public extension UIColor {
         return UIColor(hex: 0xACD4F0)
     }
 
+    public static var todayGrey: UIColor {
+        return UIColor(hex: 0x66727A)
+    }
+
     public var faded: UIColor {
         return withAlphaComponent(0.3)
     }

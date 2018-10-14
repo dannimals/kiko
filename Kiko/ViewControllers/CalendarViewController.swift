@@ -6,7 +6,6 @@ class CalendarViewController: BaseViewController {
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private var calendarManager: CalendarManaging!
     private var moodManager: MoodManaging!
-    private var todayColor: UIColor?
 
     func configure(calendarManager: CalendarManaging, moodManager: MoodManaging) {
         self.calendarManager = calendarManager
@@ -15,16 +14,9 @@ class CalendarViewController: BaseViewController {
     }
 
     func updateColor(_ color: UIColor) {
-        todayColor = color
         calendarWeekView.monthLabel.textColor = color
         calendarWeekView.leftButton.tintColor = color
         calendarWeekView.rightButton.tintColor = color
-        let todayCell = calendarWeekView
-            .datesCollectionView.visibleCells
-            .compactMap { $0 as? CalendarDayCollectionViewCell }
-            .filter { $0.isToday }
-            .first
-        todayCell?.dateLabel.textColor = color
     }
 
     override func viewDidLoad() {
@@ -101,7 +93,7 @@ extension CalendarViewController: UICollectionViewDataSource {
         if let mood = moodManager.mood(forDate: date) {
             moodColor = MoodUISetting(rawValue: mood.type)?.accessoryColor
         }
-        dayCell.configure(date: date, today: Date(), moodColor: moodColor, todayColor: todayColor)
+        dayCell.configure(date: date, today: Date(), moodColor: moodColor)
         return dayCell
     }
 }
