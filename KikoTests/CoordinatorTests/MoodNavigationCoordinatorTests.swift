@@ -3,32 +3,32 @@ import Foundation
 import KikoModels
 @testable import Kiko
 
-class MoodNavigationCoordinatorTests: XCTestCase {
+class MenuNavigationCoordinatorTests: XCTestCase {
 
     let rootViewController = UINavigationController(nibName: nil, bundle: nil)
     let mockMoodManager = MockMoodManager()
-    let moodNavigationCoordinator = MoodNavigationCoordinator()
+    let menuNavigationCoordinator = MenuNavigationCoordinator()
 
     override func setUp() {
         super.setUp()
 
-        moodNavigationCoordinator.configure(rootViewController: rootViewController, moodManager: mockMoodManager)
+        menuNavigationCoordinator.configure(rootViewController: rootViewController, moodManager: mockMoodManager)
     }
 
     func testProperties() {
-        XCTAssertNotNil(moodNavigationCoordinator.rootViewController)
-        XCTAssertNotNil(moodNavigationCoordinator.moodManager)
+        XCTAssertNotNil(menuNavigationCoordinator.rootViewController)
+        XCTAssertNotNil(menuNavigationCoordinator.moodManager)
     }
 
     func testShowWavesViewController() {
-        XCTAssertEqual(moodNavigationCoordinator.rootViewController.childViewControllers.count, 0)
-        moodNavigationCoordinator.showWavesViewController()
-        XCTAssertEqual(moodNavigationCoordinator.rootViewController.childViewControllers.count, 1)
+        XCTAssertEqual(menuNavigationCoordinator.rootViewController.childViewControllers.count, 0)
+        menuNavigationCoordinator.showWavesViewController()
+        XCTAssertEqual(menuNavigationCoordinator.rootViewController.childViewControllers.count, 1)
     }
 
     func testStart() {
-        XCTAssertEqual(moodNavigationCoordinator.rootViewController.childViewControllers.count, 0)
-        moodNavigationCoordinator.showWavesViewController()
-        XCTAssertEqual(moodNavigationCoordinator.rootViewController.childViewControllers.count, 1)
+        XCTAssertEqual(menuNavigationCoordinator.rootViewController.childViewControllers.count, 0)
+        menuNavigationCoordinator.showWavesViewController()
+        XCTAssertEqual(menuNavigationCoordinator.rootViewController.childViewControllers.count, 1)
     }
 }
