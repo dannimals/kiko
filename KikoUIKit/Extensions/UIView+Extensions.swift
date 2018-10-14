@@ -24,6 +24,18 @@ public extension UIView {
             bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
         ])
     }
+
+    public func stretchToFill() {
+        guard let parentView = superview else { return }
+        parentView.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: parentView.topAnchor),
+            leftAnchor.constraint(equalTo: parentView.leftAnchor),
+            rightAnchor.constraint(equalTo: parentView.rightAnchor),
+            bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
+            ])
+    }
 }
 
 extension UIView: Identifiable {

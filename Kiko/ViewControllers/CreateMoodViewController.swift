@@ -5,15 +5,16 @@ class CreateMoodViewController: BaseViewController {
 
     private var currentMoodType: MoodType = .chick
     private var moodManager: MoodManaging!
-    private var moodNavigationCoordinator: MoodCoordinating!
+    private var menuNavigationCoordinator: MenuNavigationCoordinating!
     private var calendarManager: CalendarManaging!
     private var calendarViewController: CalendarViewController?
     @IBOutlet weak var logButton: RoundedButton!
 
-    func configure(moodNavigationCoordinator: MoodCoordinating, calendarManager: CalendarManaging, moodManager: MoodManaging) {
-
+    func configure(menuNavigationCoordinator: MenuNavigationCoordinating,
+                   calendarManager: CalendarManaging,
+                   moodManager: MoodManaging) {
         self.moodManager = moodManager
-        self.moodNavigationCoordinator = moodNavigationCoordinator
+        self.menuNavigationCoordinator = menuNavigationCoordinator
         self.calendarManager = calendarManager
     }
 

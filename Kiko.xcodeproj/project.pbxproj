@@ -82,7 +82,7 @@
 		9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */; };
 		9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */; };
 		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
-		9EB538492129FE2300BB6A7A /* MoodNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */; };
+		9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */; };
 		9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */; };
 		9EB5384E212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */; };
 		9EB53851212A052B00BB6A7A /* MockCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */; };
@@ -253,7 +253,7 @@
 		9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
 		9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
-		9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinator.swift; sourceTree = "<group>"; };
+		9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
 		9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
 		9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCalendarManager.swift; sourceTree = "<group>"; };
@@ -638,7 +638,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */,
-				9EB538482129FE2300BB6A7A /* MoodNavigationCoordinator.swift */,
+				9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */,
 				9EB53866213DE72E00BB6A7A /* StoryboardName.swift */,
 			);
 			path = Coordinators;
@@ -1066,7 +1066,7 @@
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,
 				9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */,
 				9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */,
-				9EB538492129FE2300BB6A7A /* MoodNavigationCoordinator.swift in Sources */,
+				9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */,
 				9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */,
 				9E324FF02075BFFD00C7168B /* CalendarDayCollectionViewCell.swift in Sources */,
 				9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */,

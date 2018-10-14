@@ -29,7 +29,8 @@ class PagingViewController: BaseViewController {
     }
 
     private func configureViews() {
-        pagingView.stretchToFill(parentView: view)
+        view.addSubview(pagingView)
+        pagingView.stretchToFill()
         pagingView.layoutIfNeeded()
     }
 
