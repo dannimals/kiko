@@ -21,6 +21,10 @@ class RoundedButton: UIButton {
         setup()
     }
 
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: titleLabel!.bounds.width + bounds.height + 16, height: bounds.height)
+    }
+
     private func setup() {
         layer.cornerRadius = bounds.height / 2
         titleLabel?.font = UIFont.customFont(ofSize: 17, weight: .heavy)

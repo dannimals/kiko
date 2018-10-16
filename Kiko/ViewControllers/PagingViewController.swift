@@ -2,7 +2,15 @@
 import KikoModels
 import KikoUIKit
 
-struct MoodPageDisplayable {
+protocol MoodPageDisplayable {
+    var moodType: MoodType { get }
+    var image: UIImage { get }
+    var primaryColor: UIColor { get }
+    var accessoryColor: UIColor { get }
+    var selectedColor: UIColor { get }
+}
+
+struct MoodPageDisplay: MoodPageDisplayable {
     let moodType: MoodType
     let image: UIImage
     let primaryColor: UIColor

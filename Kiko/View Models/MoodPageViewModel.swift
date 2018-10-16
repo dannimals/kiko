@@ -4,7 +4,7 @@ import KikoUIKit
 
 class MoodPageViewModel {
 
-    private var currentPage = MoodPageDisplayable(type: .chick)
+    private var currentPage: MoodPageDisplayable = MoodPageDisplay(type: .chick)
     private(set) var pages: [MoodPageDisplayable] = []
     private var observations = [ObjectIdentifier: Observation]()
 
@@ -34,10 +34,10 @@ class MoodPageViewModel {
     }
 
     private func setupPages() {
-        pages.append(MoodPageDisplayable(type: .chick))
-        pages.append(MoodPageDisplayable(type: .chickEgg))
-        pages.append(MoodPageDisplayable(type: .egg))
-        pages.append(MoodPageDisplayable(type: .rottenEgg))
+        pages.append(MoodPageDisplay(type: .chick))
+        pages.append(MoodPageDisplay(type: .chickEgg))
+        pages.append(MoodPageDisplay(type: .egg))
+        pages.append(MoodPageDisplay(type: .rottenEgg))
     }
 }
 
