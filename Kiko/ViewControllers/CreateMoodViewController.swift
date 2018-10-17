@@ -9,7 +9,9 @@ class CreateMoodViewController: BaseViewController {
     private var calendarManager: CalendarManaging!
     private var calendarViewController: CalendarViewController?
     @IBOutlet weak var logButton: RoundedButton!
-
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var plusButtonShadow: UIView!
+    
     func configure(menuNavigationCoordinator: MenuNavigationCoordinating,
                    calendarManager: CalendarManaging,
                    moodManager: MoodManaging) {
@@ -74,6 +76,17 @@ class CreateMoodViewController: BaseViewController {
         calendarViewController?.reloadDates(animated: false)
     }
 
+    @IBAction func plusButtonTapped(_ sender: Any) {
+        rotatePlusButton()
+    }
+
+    private var rotated = false
+    private func rotatePlusButton() {
+        let angle: CGFloat = rotated ? -45 : 45
+        plusButton.rotate(by: angle)
+        rotated = !rotated
+    }
+
     private func moodType(from setting: MoodUISetting) -> MoodType {
         guard let moodType = MoodType(rawValue: setting.rawValue) else { return MoodType.chick }
         return  moodType
@@ -94,6 +107,12 @@ class CreateMoodViewController: BaseViewController {
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
         logButton.backgroundColor = .cornflowerYellow
+        plusButton.adjustsImageWhenHighlighted = false
+        plusButtonShadow.layer.shadowRadius = 3.0
+        plusButtonShadow.layer.shadowColor = UIColor.black.cgColor
+        plusButtonShadow.layer.shadowOffset = CGSize(width: 0, height: 8)
+        plusButtonShadow.layer.shadowOpacity = 0.3
+        plusButtonShadow.layer.masksToBounds = false
     }
 }
 

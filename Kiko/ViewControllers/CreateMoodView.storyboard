@@ -44,12 +44,12 @@
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt2-S9-wif">
-                                <rect key="frame" x="0.0" y="211" width="375" height="381"/>
+                                <rect key="frame" x="0.0" y="211" width="375" height="356"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV4-ZE-FpR" userLabel="Paging Container View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="381"/>
+                                        <rect key="frame" x="0.0" y="-2" width="375" height="360"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="381" id="tSU-Qc-j3l"/>
+                                            <constraint firstAttribute="height" constant="360" id="tSU-Qc-j3l"/>
                                         </constraints>
                                         <connections>
                                             <segue destination="SdK-2U-8TD" kind="embed" id="xZC-Bt-yIb"/>
@@ -63,10 +63,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ue-J9-dA6" userLabel="Footer Container View">
-                                <rect key="frame" x="0.0" y="592" width="375" height="75"/>
+                                <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiA-d6-mQg" customClass="RoundedButton" customModule="Kiko" customModuleProvider="target">
-                                        <rect key="frame" x="150" y="6.5" width="74" height="32"/>
+                                        <rect key="frame" x="150" y="34" width="74" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Hel-cZ-QtQ"/>
                                             <constraint firstAttribute="height" constant="32" id="WBn-k3-vGU"/>
@@ -78,17 +78,38 @@
                                             <action selector="logButtonTapped:" destination="aoN-G9-ddO" eventType="touchUpInside" id="rqh-IY-ohy"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uda-EZ-qCp">
+                                        <rect key="frame" x="303" y="16" width="56" height="56"/>
+                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="28"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLn-0p-9cR">
+                                        <rect key="frame" x="303" y="16" width="56" height="56"/>
+                                        <state key="normal" image="plusButton"/>
+                                        <connections>
+                                            <action selector="plusButtonTapped:" destination="aoN-G9-ddO" eventType="touchUpInside" id="qvQ-sq-4BK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="uda-EZ-qCp" firstAttribute="top" secondItem="sLn-0p-9cR" secondAttribute="top" id="0Yg-Ek-1dN"/>
                                     <constraint firstItem="DiA-d6-mQg" firstAttribute="centerX" secondItem="0Ue-J9-dA6" secondAttribute="centerX" id="7zU-wy-309"/>
-                                    <constraint firstAttribute="height" constant="75" id="qHe-wO-R6x"/>
-                                    <constraint firstItem="DiA-d6-mQg" firstAttribute="centerY" secondItem="0Ue-J9-dA6" secondAttribute="centerY" constant="-15" id="xlB-ER-Wfy"/>
+                                    <constraint firstItem="sLn-0p-9cR" firstAttribute="top" secondItem="0Ue-J9-dA6" secondAttribute="top" constant="16" id="BgO-Kg-y24"/>
+                                    <constraint firstAttribute="trailing" secondItem="sLn-0p-9cR" secondAttribute="trailing" constant="16" id="Elg-zJ-PwS"/>
+                                    <constraint firstItem="uda-EZ-qCp" firstAttribute="leading" secondItem="sLn-0p-9cR" secondAttribute="leading" id="dA7-5f-eoa"/>
+                                    <constraint firstItem="uda-EZ-qCp" firstAttribute="bottom" secondItem="sLn-0p-9cR" secondAttribute="bottom" id="gvb-Df-cYZ"/>
+                                    <constraint firstAttribute="height" constant="100" id="qHe-wO-R6x"/>
+                                    <constraint firstItem="uda-EZ-qCp" firstAttribute="trailing" secondItem="sLn-0p-9cR" secondAttribute="trailing" id="wFV-VC-o6e"/>
+                                    <constraint firstItem="DiA-d6-mQg" firstAttribute="centerY" secondItem="0Ue-J9-dA6" secondAttribute="centerY" id="xlB-ER-Wfy"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="0Ue-J9-dA6" secondAttribute="bottom" id="4DI-Dx-A8N"/>
                             <constraint firstItem="0Ue-J9-dA6" firstAttribute="top" secondItem="rt2-S9-wif" secondAttribute="bottom" id="7Q6-pG-bM8"/>
                             <constraint firstItem="rt2-S9-wif" firstAttribute="top" secondItem="73J-gV-52F" secondAttribute="bottom" id="DUh-5Y-WeU"/>
                             <constraint firstItem="0Ue-J9-dA6" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="IZT-O2-oy1"/>
@@ -96,6 +117,7 @@
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="rt2-S9-wif" secondAttribute="trailing" id="YWo-4c-ZRP"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="0Ue-J9-dA6" secondAttribute="trailing" id="aAD-Ut-FYt"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="aKJ-G7-8ir"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="0Ue-J9-dA6" secondAttribute="bottom" id="bQk-oX-IkX"/>
                             <constraint firstItem="rt2-S9-wif" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="kyn-YJ-PXb"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="73J-gV-52F" secondAttribute="trailing" id="laL-Ba-xdE"/>
                         </constraints>
@@ -104,6 +126,8 @@
                     <navigationItem key="navigationItem" id="Nd2-j8-Zqp"/>
                     <connections>
                         <outlet property="logButton" destination="DiA-d6-mQg" id="5a1-lI-CxG"/>
+                        <outlet property="plusButton" destination="sLn-0p-9cR" id="LjS-lr-0Py"/>
+                        <outlet property="plusButtonShadow" destination="uda-EZ-qCp" id="s45-Ob-5RG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VNS-3d-7uR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -127,4 +151,7 @@
             <point key="canvasLocation" x="364" y="-99"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="plusButton" width="56" height="56"/>
+    </resources>
 </document>
