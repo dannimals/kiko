@@ -11,7 +11,9 @@ class CreateMoodViewController: BaseViewController {
     @IBOutlet weak var logButton: RoundedButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var plusButtonShadow: UIView!
-    
+    @IBOutlet weak var blurView: UIView!
+    @IBOutlet weak var plusButtonContainer: UIView!
+
     func configure(menuNavigationCoordinator: MenuNavigationCoordinating,
                    calendarManager: CalendarManaging,
                    moodManager: MoodManaging) {
@@ -78,6 +80,13 @@ class CreateMoodViewController: BaseViewController {
 
     @IBAction func plusButtonTapped(_ sender: Any) {
         rotatePlusButton()
+        toggleBlurView()
+    }
+
+    private func toggleBlurView() {
+        UIView.animate(withDuration: 0.4) {
+            self.blurView.alpha = 0.8 - self.blurView.alpha
+        }
     }
 
     private var rotated = false
@@ -106,6 +115,10 @@ class CreateMoodViewController: BaseViewController {
 
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
+        setupButtons()
+    }
+
+    private func setupButtons() {
         logButton.backgroundColor = .cornflowerYellow
         plusButton.adjustsImageWhenHighlighted = false
         plusButtonShadow.addShadow()
