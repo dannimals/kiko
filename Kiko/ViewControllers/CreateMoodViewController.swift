@@ -108,11 +108,7 @@ class CreateMoodViewController: BaseViewController {
         view.backgroundColor = .backgroundYellow
         logButton.backgroundColor = .cornflowerYellow
         plusButton.adjustsImageWhenHighlighted = false
-        plusButtonShadow.layer.shadowRadius = 3.0
-        plusButtonShadow.layer.shadowColor = UIColor.black.cgColor
-        plusButtonShadow.layer.shadowOffset = CGSize(width: 0, height: 8)
-        plusButtonShadow.layer.shadowOpacity = 0.3
-        plusButtonShadow.layer.masksToBounds = false
+        plusButtonShadow.addShadow()
     }
 }
 

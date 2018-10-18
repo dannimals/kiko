@@ -36,6 +36,14 @@ public extension UIView {
             bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
             ])
     }
+
+    public func addShadow(shadowRadius: CGFloat = 3, shadowColor: CGColor = UIColor.black.cgColor, shadowOffset: CGSize = CGSize(width: 0, height: 8), shadowOpacity: CGFloat = 0.3) {
+        layer.shadowRadius = 3.0
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 8)
+        layer.shadowOpacity = 0.3
+        layer.masksToBounds = false
+    }
 }
 
 extension UIView: Identifiable {

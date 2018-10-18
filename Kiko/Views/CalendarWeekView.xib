@@ -80,7 +80,7 @@
                         <constraint firstAttribute="height" constant="40" id="l0U-cT-94c"/>
                     </constraints>
                 </stackView>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="haJ-7i-le1" userLabel="Date collection view">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="haJ-7i-le1" userLabel="Date collection view">
                     <rect key="frame" x="5" y="73" width="403" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Dl8-nC-r15"/>
