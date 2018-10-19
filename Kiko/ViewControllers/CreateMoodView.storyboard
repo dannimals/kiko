@@ -66,10 +66,10 @@
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="center" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DiA-d6-mQg" customClass="RoundedButton" customModule="Kiko" customModuleProvider="target">
-                                        <rect key="frame" x="150" y="34" width="74" height="32"/>
+                                        <rect key="frame" x="150" y="32" width="74" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="74" id="Hel-cZ-QtQ"/>
-                                            <constraint firstAttribute="height" constant="32" id="WBn-k3-vGU"/>
+                                            <constraint firstAttribute="height" constant="36" id="WBn-k3-vGU"/>
                                         </constraints>
                                         <state key="normal" title="Log">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -86,7 +86,7 @@
                                 </constraints>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfF-t3-aFo">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="4" width="375" height="723"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3j-yq-gUW" userLabel="Plus Button Container">
@@ -146,8 +146,8 @@
                             <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="0Ue-J9-dA6" secondAttribute="bottom" id="bQk-oX-IkX"/>
                             <constraint firstItem="rt2-S9-wif" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="kyn-YJ-PXb"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="73J-gV-52F" secondAttribute="trailing" id="laL-Ba-xdE"/>
-                            <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="mfF-t3-aFo" secondAttribute="bottom" id="o5B-Ss-vGU"/>
-                            <constraint firstItem="0xG-XK-012" firstAttribute="top" secondItem="mfF-t3-aFo" secondAttribute="top" id="wxi-tv-3jg"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="mfF-t3-aFo" secondAttribute="bottom" constant="-60" id="o5B-Ss-vGU"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="top" secondItem="mfF-t3-aFo" secondAttribute="top" constant="60" id="wxi-tv-3jg"/>
                             <constraint firstItem="mfF-t3-aFo" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="xTY-Jh-CCW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0xG-XK-012"/>

@@ -76,7 +76,6 @@ extension CalendarViewController: CalendarWeekViewDelegate {
     func calendarDidScrollRight(_ calendarView: CalendarWeekView) {
         scrollToNextWeek()
     }
-
 }
 
 extension CalendarViewController: UICollectionViewDataSource {

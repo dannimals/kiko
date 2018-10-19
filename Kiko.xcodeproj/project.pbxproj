@@ -98,6 +98,7 @@
 		9EBE9745216AE60100FB54FD /* MoodPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE9744216AE60100FB54FD /* MoodPageViewModel.swift */; };
 		9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE97462173D7DA00FB54FD /* MoodObserver.swift */; };
 		9EBE97492176CF7900FB54FD /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE97482176CF7900FB54FD /* UIButton+Extensions.swift */; };
+		9EBE974B2178278000FB54FD /* ButtonsDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBE974A2178278000FB54FD /* ButtonsDrawerView.swift */; };
 		DBDA56C3A0C0E5DF53F4A05B /* Pods_KikoModelsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B373E5015557E925AD44E40 /* Pods_KikoModelsTests.framework */; };
 		F559DD005182564866BBEA82 /* Pods_KikoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579D61D10CEB00794464B027 /* Pods_KikoTests.framework */; };
 /* End PBXBuildFile section */
@@ -271,6 +272,7 @@
 		9EBE9744216AE60100FB54FD /* MoodPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPageViewModel.swift; sourceTree = "<group>"; };
 		9EBE97462173D7DA00FB54FD /* MoodObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodObserver.swift; sourceTree = "<group>"; };
 		9EBE97482176CF7900FB54FD /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		9EBE974A2178278000FB54FD /* ButtonsDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsDrawerView.swift; sourceTree = "<group>"; };
 		ACADB0625A0A637F5BAB649C /* Pods-Kiko.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kiko.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Kiko/Pods-Kiko.debug.xcconfig"; sourceTree = "<group>"; };
 		B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KikoModels.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B902ED13E324BC87F32E0CCF /* Pods-KikoModels.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModels.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModels/Pods-KikoModels.release.xcconfig"; sourceTree = "<group>"; };
@@ -573,6 +575,7 @@
 				9E00B28720CCC2E200C2FD17 /* MoodListView.xib */,
 				9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */,
 				9E3CAF3C21587A8200E44C8D /* RoundedButton.swift */,
+				9EBE974A2178278000FB54FD /* ButtonsDrawerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1067,6 +1070,7 @@
 				9EB53863213DDC4F00BB6A7A /* CalendarViewController.swift in Sources */,
 				9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */,
 				9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */,
+				9EBE974B2178278000FB54FD /* ButtonsDrawerView.swift in Sources */,
 				9E324FFB207B05F100C7168B /* CreateMoodView.swift in Sources */,
 				9E3919E0207306E400492F54 /* CreateMoodViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,

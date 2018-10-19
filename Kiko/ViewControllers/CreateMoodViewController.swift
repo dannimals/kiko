@@ -8,6 +8,10 @@ class CreateMoodViewController: BaseViewController {
     private var menuNavigationCoordinator: MenuNavigationCoordinating!
     private var calendarManager: CalendarManaging!
     private var calendarViewController: CalendarViewController?
+    private let buttonsDrawerView = ButtonsDrawerView()
+    private let wavesButton = UIButton()
+    private let ringButton = UIButton()
+
     @IBOutlet weak var logButton: RoundedButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var plusButtonShadow: UIView!
@@ -81,6 +85,7 @@ class CreateMoodViewController: BaseViewController {
     @IBAction func plusButtonTapped(_ sender: Any) {
         rotatePlusButton()
         toggleBlurView()
+        buttonsDrawerView.toggle()
     }
 
     private func toggleBlurView() {
@@ -116,9 +121,23 @@ class CreateMoodViewController: BaseViewController {
     private func setupViews() {
         view.backgroundColor = .backgroundYellow
         setupButtons()
+        setupButtonsDrawerView()
+    }
+
+    private func setupButtonsDrawerView() {
+        buttonsDrawerView.configure(buttons: [ringButton, wavesButton], initialOffset: plusButtonContainer.bounds.height)
+        view.addSubview(buttonsDrawerView)
+        buttonsDrawerView.translatesAutoresizingMaskIntoConstraints = false
+        buttonsDrawerView.bottomAnchor.constraint(equalTo: plusButton.bottomAnchor).isActive = true
+        buttonsDrawerView.centerXAnchor.constraint(equalTo: plusButton.centerXAnchor).isActive = true
+        view.insertSubview(plusButtonContainer, aboveSubview: buttonsDrawerView) 
     }
 
     private func setupButtons() {
+        ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
+        ringButton.bounds.size = CGSize(width: 40, height: 40)
+        wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
+        wavesButton.bounds.size = CGSize(width: 40, height: 40)
         logButton.backgroundColor = .cornflowerYellow
         plusButton.adjustsImageWhenHighlighted = false
         plusButtonShadow.addShadow()
