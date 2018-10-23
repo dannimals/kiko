@@ -46,6 +46,8 @@ class ButtonsDrawerView: UIView {
     }
 
     private func close() {
+        guard isOpen else { return }
+
         isOpen = false
         alphaAnimation.fromValue = 1
         alphaAnimation.toValue = 0
@@ -62,6 +64,8 @@ class ButtonsDrawerView: UIView {
     }
 
     private func open() {
+        guard !isOpen else { return }
+
         isOpen = true
         alphaAnimation.fromValue = 0
         alphaAnimation.toValue = 1

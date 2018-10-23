@@ -84,7 +84,7 @@
 		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
 		9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */; };
 		9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */; };
-		9EB5384E212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */; };
+		9EB5384E212A047500BB6A7A /* MenuNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384D212A047500BB6A7A /* MenuNavigationCoordinatorTests.swift */; };
 		9EB53851212A052B00BB6A7A /* MockCalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */; };
 		9EB53853212A053300BB6A7A /* MockDateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53852212A053300BB6A7A /* MockDateManager.swift */; };
 		9EB53855212A055D00BB6A7A /* MockMoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB53854212A055D00BB6A7A /* MockMoodManager.swift */; };
@@ -258,7 +258,7 @@
 		9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
-		9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
+		9EB5384D212A047500BB6A7A /* MenuNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
 		9EB53850212A052B00BB6A7A /* MockCalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCalendarManager.swift; sourceTree = "<group>"; };
 		9EB53852212A053300BB6A7A /* MockDateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDateManager.swift; sourceTree = "<group>"; };
 		9EB53854212A055D00BB6A7A /* MockMoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoodManager.swift; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */,
-				9EB5384D212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift */,
+				9EB5384D212A047500BB6A7A /* MenuNavigationCoordinatorTests.swift */,
 			);
 			path = CoordinatorTests;
 			sourceTree = "<group>";
@@ -1117,7 +1117,7 @@
 			files = (
 				9EB53855212A055D00BB6A7A /* MockMoodManager.swift in Sources */,
 				9E14131D2113EB0E006CD78D /* MoodListViewModelTests.swift in Sources */,
-				9EB5384E212A047500BB6A7A /* MoodNavigationCoordinatorTests.swift in Sources */,
+				9EB5384E212A047500BB6A7A /* MenuNavigationCoordinatorTests.swift in Sources */,
 				9E3919812070856500492F54 /* CalendarManagerTests.swift in Sources */,
 				9EB53853212A053300BB6A7A /* MockDateManager.swift in Sources */,
 				9E43B39D211FCC3A0046E4F1 /* MoodManagerTests.swift in Sources */,

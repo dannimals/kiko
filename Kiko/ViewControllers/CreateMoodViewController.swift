@@ -65,16 +65,15 @@ class CreateMoodViewController: BaseViewController {
 //                self.moodNavigationCoordinator.start()
 //        }
 //        moodLogView
-//            .moodChanged
-//            .subscribe(self) { [unowned self] moodSetting in
-//                self.currentMoodType = self.moodType(from: moodSetting)
-//        }
-//        moodLogView
 //            .wavesButtonTapped
 //            .subscribe(self) { [unowned self] _ in
 //                self.moodNavigationCoordinator.showWavesViewController()
 //        }
-
+        ringButton.addTarget(self, action: #selector(ringButtonTapped), for: .touchUpInside)
+    }
+    @IBAction func ringButtonTapped(_ sender: Any) {
+        toggleMenu()
+        menuNavigationCoordinator.start()
     }
 
     @IBAction func logButtonTapped(_ sender: Any) {
@@ -83,6 +82,10 @@ class CreateMoodViewController: BaseViewController {
     }
 
     @IBAction func plusButtonTapped(_ sender: Any) {
+        toggleMenu()
+    }
+
+    private func toggleMenu() {
         rotatePlusButton()
         toggleBlurView(duration: 0.2)
         buttonsDrawerView.toggle()
