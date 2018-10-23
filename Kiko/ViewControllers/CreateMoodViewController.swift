@@ -84,12 +84,12 @@ class CreateMoodViewController: BaseViewController {
 
     @IBAction func plusButtonTapped(_ sender: Any) {
         rotatePlusButton()
-        toggleBlurView()
+        toggleBlurView(duration: 0.2)
         buttonsDrawerView.toggle()
     }
 
-    private func toggleBlurView() {
-        UIView.animate(withDuration: 0.4) {
+    private func toggleBlurView(duration: Double) {
+        UIView.animate(withDuration: duration) {
             self.blurView.alpha = 0.8 - self.blurView.alpha
         }
     }

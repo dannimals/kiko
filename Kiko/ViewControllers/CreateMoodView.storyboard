@@ -90,7 +90,7 @@
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t3j-yq-gUW" userLabel="Plus Button Container">
-                                <rect key="frame" x="303" y="595" width="56" height="56"/>
+                                <rect key="frame" x="303" y="579" width="56" height="56"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uda-EZ-qCp">
                                         <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
@@ -139,7 +139,7 @@
                             <constraint firstItem="0Ue-J9-dA6" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="IZT-O2-oy1"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="top" secondItem="0xG-XK-012" secondAttribute="top" constant="25" id="Ic4-WO-Cah"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="mfF-t3-aFo" secondAttribute="trailing" id="RSo-gX-OcW"/>
-                            <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="t3j-yq-gUW" secondAttribute="bottom" constant="16" id="UkX-js-lJn"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="t3j-yq-gUW" secondAttribute="bottom" constant="32" id="UkX-js-lJn"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="rt2-S9-wif" secondAttribute="trailing" id="YWo-4c-ZRP"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="0Ue-J9-dA6" secondAttribute="trailing" id="aAD-Ut-FYt"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="aKJ-G7-8ir"/>

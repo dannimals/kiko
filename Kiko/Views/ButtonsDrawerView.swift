@@ -9,12 +9,12 @@ class ButtonsDrawerView: UIView {
     private var isOpen = false
     private lazy var pathAnimation: CABasicAnimation = {
         let pathAnimation = CABasicAnimation(keyPath: "position.y")
-        pathAnimation.duration = 0.4
+        pathAnimation.duration = 0.2
         return pathAnimation
     }()
     private lazy var alphaAnimation: CABasicAnimation = {
         let alphaAnimation = CABasicAnimation(keyPath: "opacity")
-        alphaAnimation.duration = 0.4
+        alphaAnimation.duration = 0.2
         return alphaAnimation
     }()
 
@@ -51,7 +51,7 @@ class ButtonsDrawerView: UIView {
         alphaAnimation.toValue = 0
         for i in 0..<buttons.count {
             let button = buttons[i]
-            let toValue = (button.bounds.height * CGFloat(i) + CGFloat(min(0, i - 1)) * inset + initialOffset)
+            let toValue = bounds.height - button.bounds.height / 2
             pathAnimation.fromValue = button.layer.position.y
             pathAnimation.toValue = toValue
             button.layer.add(pathAnimation, forKey: nil)
@@ -66,9 +66,13 @@ class ButtonsDrawerView: UIView {
         alphaAnimation.fromValue = 0
         alphaAnimation.toValue = 1
         for i in 0..<buttons.count {
+            var buttonOffset: CGFloat = 0
+            for j in 0..<i {
+                buttonOffset += buttons[j].bounds.height
+            }
             let button = buttons[i]
-            let toValue = -(button.bounds.height * CGFloat(i) + CGFloat(min(0, i - 1)) * inset)
-            pathAnimation.fromValue = 0
+            let toValue = button.bounds.height / 2 + buttonOffset + CGFloat(min(0, i - 1)) * inset
+            pathAnimation.fromValue = button.layer.position.y
             pathAnimation.toValue = toValue
             button.layer.add(pathAnimation, forKey: nil)
             button.layer.position.y = toValue
