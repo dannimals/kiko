@@ -75,7 +75,7 @@ class ButtonsDrawerView: UIView {
                 buttonOffset += buttons[j].bounds.height
             }
             let button = buttons[i]
-            let toValue = button.bounds.height / 2 + buttonOffset + CGFloat(min(0, i - 1)) * inset
+            let toValue = button.bounds.height + buttonOffset + CGFloat(min(0, i - 1)) * inset
             pathAnimation.fromValue = button.layer.position.y
             pathAnimation.toValue = toValue
             button.layer.add(pathAnimation, forKey: nil)

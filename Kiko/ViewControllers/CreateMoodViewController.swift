@@ -128,7 +128,7 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func setupButtonsDrawerView() {
-        buttonsDrawerView.configure(buttons: [ringButton, wavesButton], initialOffset: plusButtonContainer.bounds.height)
+        buttonsDrawerView.configure(buttons: [ringButton, wavesButton], initialOffset: plusButtonContainer.bounds.height + 32)
         view.addSubview(buttonsDrawerView)
         buttonsDrawerView.translatesAutoresizingMaskIntoConstraints = false
         buttonsDrawerView.bottomAnchor.constraint(equalTo: plusButton.bottomAnchor).isActive = true
