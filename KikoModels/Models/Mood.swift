@@ -52,6 +52,7 @@ public extension Mood {
         do {
             try realm.write {
                 mood.type = newMood.type
+                realm.add(mood, update: true)
             }
         } catch {
             throw KikoModelError.realm("Failed to update Mood instance to Realm")
