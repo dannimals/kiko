@@ -14,11 +14,20 @@ protocol NotificationHandling: class {
 }
 
 struct NotificationTrigger {
+    enum TriggerType {
+        case timeInterval(TimeInterval, repeats: Bool)
+        case calendar(DateComponents, repeats: Bool)
+    }
 
-    var trigger: UNTimeIntervalNotificationTrigger
+    var trigger: UNNotificationTrigger
 
-    init(timeInterval: TimeInterval, repeats: Bool) {
-        trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: repeats)
+    init(triggerType: TriggerType) {
+        switch triggerType {
+        case let .timeInterval(timeInterval, repeats):
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: timeInterval, repeats: repeats)
+        case let .calendar(dateComponents, repeats):
+            trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: repeats)
+        }
     }
 }
 

@@ -16,21 +16,19 @@ class LineDrawingView: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
-        guard let moodCount = moodCount, moodCount.values.contains(where: { $0 > 0 }) else { return }
+        guard let moodCount = moodCount, moodCount.values.contains(where: { $0 > 0 }), let totalDays = totalDays else { return }
 
         let strokeHeight: CGFloat = bounds.height
-        var currentPercentage: CGFloat = 0
         var x: CGFloat = 0
 
         for i in 0..<4 {
             let moodType = unwrapOrElse(MoodType(rawValue: i), fallback: MoodType.chick)
             let countOfDaysWithMood = unwrapOrEmpty(moodCount[moodType])
-            let dayPercentage = CGFloat(countOfDaysWithMood) / CGFloat(unwrapOrElse(totalDays, fallback: 1))
+            let dayPercentage = CGFloat(countOfDaysWithMood) / CGFloat(totalDays)
             guard dayPercentage > 0 else { continue }
             let strokeColor = unwrapOrElse(MoodUISetting(rawValue: i)?.accessoryColor, fallback: UIColor.backgroundYellow)
-            currentPercentage += dayPercentage
-            drawPath(x: x, width: currentPercentage * bounds.width, height: strokeHeight, strokeColor: strokeColor)
-            x += currentPercentage * bounds.width
+            drawPath(x: x, width: dayPercentage * bounds.width, height: strokeHeight, strokeColor: strokeColor)
+            x += dayPercentage * bounds.width
         }
     }
 
