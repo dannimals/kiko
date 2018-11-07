@@ -23,12 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         mainCoordinator?.start()
         notificationCoordinator.start()
-        let notification = Notification(title: "test", subtitle: "testing notification", body: "this is a test")
-        var dateComponents = DateComponents()
-        dateComponents.calendar = Calendar.current
-        dateComponents.hour = 10
-        let trigger = NotificationTrigger(triggerType: .calendar(dateComponents, repeats: true))
-        notificationCoordinator.add(notification: notification, trigger: trigger)
 
         return true
     }

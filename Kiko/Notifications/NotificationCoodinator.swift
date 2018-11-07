@@ -64,7 +64,17 @@ class NotificationCoordinator: NotificationCoordinating {
                 self?.requestAuthorization()
                 return
             }
+            self?.registerDailyMoodNotification()
         }
+    }
+
+    private func registerDailyMoodNotification() {
+        let notification = Notification(title: "How are you today?", subtitle: "", body: "It's time to log your daily mood!")
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = 10
+        let trigger = NotificationTrigger(triggerType: .calendar(dateComponents, repeats: true))
+        add(notification: notification, trigger: trigger)
     }
 
     private func requestAuthorization() {
