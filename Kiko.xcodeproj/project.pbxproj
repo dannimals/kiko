@@ -81,6 +81,7 @@
 		9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */; };
 		9E88CEA320F2ECA9007C28BF /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */; };
 		9E88CEA720F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */; };
+		9E9234B42187ECF50095C4A5 /* NotificationCoodinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9234B32187ECF50095C4A5 /* NotificationCoodinator.swift */; };
 		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
 		9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */; };
 		9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */; };
@@ -255,6 +256,7 @@
 		9E88CEA020EEBDE0007C28BF /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
 		9E88CEA220F2ECA9007C28BF /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
 		9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		9E9234B32187ECF50095C4A5 /* NotificationCoodinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCoodinator.swift; sourceTree = "<group>"; };
 		9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 		9E39196A2070856500492F54 /* Kiko */ = {
 			isa = PBXGroup;
 			children = (
+				9E9234B22187ECE50095C4A5 /* Notifications */,
 				9EB538452129F54F00BB6A7A /* Coordinators */,
 				9E43B3A0212505990046E4F1 /* Protocols */,
 				9E3D38BA208EC47A00E38BE6 /* View Models */,
@@ -641,6 +644,14 @@
 				9E88CEA620F2F8C9007C28BF /* HalfModalTransitioningDelegate.swift */,
 			);
 			path = AnimationControllers;
+			sourceTree = "<group>";
+		};
+		9E9234B22187ECE50095C4A5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				9E9234B32187ECF50095C4A5 /* NotificationCoodinator.swift */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		9EB538452129F54F00BB6A7A /* Coordinators */ = {
@@ -1069,6 +1080,7 @@
 				9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */,
 				9EB53863213DDC4F00BB6A7A /* CalendarViewController.swift in Sources */,
 				9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */,
+				9E9234B42187ECF50095C4A5 /* NotificationCoodinator.swift in Sources */,
 				9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */,
 				9EBE974B2178278000FB54FD /* ButtonsDrawerView.swift in Sources */,
 				9E324FFB207B05F100C7168B /* CreateMoodView.swift in Sources */,
