@@ -29,7 +29,6 @@
 		9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FF2207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift */; };
 		9E324FF7207ACCE900C7168B /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */; };
 		9E324FF9207ACCF500C7168B /* UICollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */; };
-		9E324FFB207B05F100C7168B /* CreateMoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E324FFA207B05F100C7168B /* CreateMoodView.swift */; };
 		9E39196C2070856500492F54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E39196B2070856500492F54 /* AppDelegate.swift */; };
 		9E3919732070856500492F54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919722070856500492F54 /* Assets.xcassets */; };
 		9E3919762070856500492F54 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E3919742070856500492F54 /* LaunchScreen.storyboard */; };
@@ -64,6 +63,7 @@
 		9E41DDD520A8DEF700A18E9A /* MoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */; };
 		9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */; };
 		9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD920AA71CF00A18E9A /* Mood.swift */; };
+		9E4261EE21AF9AC8000E372E /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4261ED21AF9AC8000E372E /* ImageName.swift */; };
 		9E435E7520B24328003822BB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7420B24328003822BB /* Error.swift */; };
 		9E435E7720B4F35D003822BB /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7620B4F35D003822BB /* MoodManager.swift */; };
 		9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */; };
@@ -198,7 +198,6 @@
 		9E324FF2207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarWeekCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9E324FF6207ACCE900C7168B /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		9E324FF8207ACCF500C7168B /* UICollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extensions.swift"; sourceTree = "<group>"; };
-		9E324FFA207B05F100C7168B /* CreateMoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateMoodView.swift; sourceTree = "<group>"; };
 		9E3919682070856500492F54 /* Kiko.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kiko.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E39196B2070856500492F54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E3919722070856500492F54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -239,6 +238,7 @@
 		9E41DDD420A8DEF700A18E9A /* MoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewModel.swift; sourceTree = "<group>"; };
 		9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		9E41DDD920AA71CF00A18E9A /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		9E4261ED21AF9AC8000E372E /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
 		9E435E7420B24328003822BB /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		9E435E7620B4F35D003822BB /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListEmptyStateView.swift; sourceTree = "<group>"; };
@@ -368,6 +368,8 @@
 			children = (
 				9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */,
 				9EB5385A212CF84F00BB6A7A /* Glossary.swift */,
+				9EB53866213DE72E00BB6A7A /* StoryboardName.swift */,
+				9E4261ED21AF9AC8000E372E /* ImageName.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -570,7 +572,6 @@
 				9E324FF2207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift */,
 				9E391A0F2073153800492F54 /* CalendarWeekView.swift */,
 				9E391A0920730D5D00492F54 /* CalendarWeekView.xib */,
-				9E324FFA207B05F100C7168B /* CreateMoodView.swift */,
 				9E3CAF382158650E00E44C8D /* CustomPagingControl.swift */,
 				9E14130E210E6BB5006CD78D /* LineDrawingView.swift */,
 				9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */,
@@ -659,7 +660,6 @@
 			children = (
 				9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */,
 				9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */,
-				9EB53866213DE72E00BB6A7A /* StoryboardName.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -1078,12 +1078,12 @@
 			files = (
 				9E10A1112086D87000CC5444 /* Protected.swift in Sources */,
 				9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */,
+				9E4261EE21AF9AC8000E372E /* ImageName.swift in Sources */,
 				9EB53863213DDC4F00BB6A7A /* CalendarViewController.swift in Sources */,
 				9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */,
 				9E9234B42187ECF50095C4A5 /* NotificationCoodinator.swift in Sources */,
 				9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */,
 				9EBE974B2178278000FB54FD /* ButtonsDrawerView.swift in Sources */,
-				9E324FFB207B05F100C7168B /* CreateMoodView.swift in Sources */,
 				9E3919E0207306E400492F54 /* CreateMoodViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,

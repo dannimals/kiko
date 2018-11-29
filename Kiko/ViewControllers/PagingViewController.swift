@@ -3,16 +3,17 @@ import KikoModels
 import KikoUIKit
 
 protocol MoodPageDisplayable {
+    var images: [UIImage] { get }
     var moodType: MoodType { get }
-    var image: UIImage { get }
     var primaryColor: UIColor { get }
     var accessoryColor: UIColor { get }
     var selectedColor: UIColor { get }
 }
 
 struct MoodPageDisplay: MoodPageDisplayable {
+
+    var images: [UIImage] = []
     let moodType: MoodType
-    let image: UIImage
     let primaryColor: UIColor
     let accessoryColor: UIColor
     let selectedColor: UIColor
@@ -21,25 +22,32 @@ struct MoodPageDisplay: MoodPageDisplayable {
         self.moodType = type
         switch type {
         case .chick:
-            image = #imageLiteral(resourceName: "chick")
             primaryColor = .backgroundYellow
             accessoryColor = .cornflowerYellow
             selectedColor = .selectedSalmonPink
+            images = images(forPrefix: ImageName.chick, totalCount: 2)
         case .chickEgg:
-            image = #imageLiteral(resourceName: "chickEgg")
             primaryColor = .backgroundPurple
             accessoryColor = .tealBlue
             selectedColor = .selectedTeal
+            images = images(forPrefix: ImageName.chickEgg, totalCount: 4)
         case .egg:
-            image = #imageLiteral(resourceName: "egg")
             primaryColor = .backgroundRed
             accessoryColor = .salmonPink
             selectedColor = .selectedRouge
+            images = images(forPrefix: ImageName.egg, totalCount: 2)
         case .rottenEgg:
-            image = #imageLiteral(resourceName: "rottenEgg")
             primaryColor = .backgroundGreen
             accessoryColor = .mossGreen
             selectedColor = .selectedGreen
+            images = images(forPrefix: ImageName.rottenEgg, totalCount: 2)
+        }
+    }
+
+    private func images(forPrefix prefix: String, totalCount: Int) -> [UIImage] {
+        return Array(1...totalCount).compactMap { index in
+            let imageName = "\(prefix)\(index)"
+            return UIImage(named: imageName)
         }
     }
 }
