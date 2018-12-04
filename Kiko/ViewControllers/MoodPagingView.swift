@@ -6,6 +6,7 @@ class MoodPagingView: UIView {
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagingControl: CustomPagingControl!
+
     private let moodStackView = UIStackView()
     private var pages: [MoodPageDisplayable] = []
     private var viewModel: MoodPageViewModel!
@@ -24,8 +25,13 @@ class MoodPagingView: UIView {
 
     private func updateMoodStackView() {
         layoutMoodStackView(pageCount: CGFloat(pages.count))
-        pages.forEach { moodStackView.addArrangedSubview(imageView($0.image)) }
-        func imageView(_ image: UIImage) -> UIImageView {
+        pages.forEach {
+            
+            
+            guard let animatedImages = UIImage.animatedImage(with: $0.images, duration: 1.5) else { return }
+            moodStackView.addArrangedSubview(createImageView(animatedImages))
+        }
+        func createImageView(_ image: UIImage) -> UIImageView {
             let imageView = UIImageView(image: image)
             imageView.contentMode = .center
             imageView.bounds = scrollView.bounds

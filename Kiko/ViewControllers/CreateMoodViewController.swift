@@ -60,11 +60,6 @@ class CreateMoodViewController: BaseViewController {
 
     private func setupBindings() {
 //        moodLogView
-//            .ringButtonTapped
-//            .subscribe(self) { [unowned self] _ in
-//                self.moodNavigationCoordinator.start()
-//        }
-//        moodLogView
 //            .wavesButtonTapped
 //            .subscribe(self) { [unowned self] _ in
 //                self.moodNavigationCoordinator.showWavesViewController()
