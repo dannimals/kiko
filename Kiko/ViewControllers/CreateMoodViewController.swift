@@ -133,7 +133,7 @@ class CreateMoodViewController: BaseViewController {
         ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
         ringButton.bounds.size = CGSize(width: 40, height: 40)
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
-        wavesButton.tintColor = .darkBackgroundBlue
+        wavesButton.tintColor = .purple02
         wavesButton.bounds.size = CGSize(width: 40, height: 40)
         logButton.backgroundColor = .cornflowerYellow
         plusButton.adjustsImageWhenHighlighted = false

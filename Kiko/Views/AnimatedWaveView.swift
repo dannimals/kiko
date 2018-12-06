@@ -50,11 +50,13 @@ final class AnimatedWaveView: UIView {
         gradientLayer.frame = frame
         gradientLayer.startPoint = .zero
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.colors = [UIColor.lightBackgroundBlue.cgColor, UIColor.darkBackgroundBlue.cgColor]
-        gradientLayer.locations = [0.3, 1]
+        gradientLayer.colors = [UIColor.purple01.cgColor,
+                                UIColor.purple02.cgColor,
+                                UIColor.purple03.cgColor]
+        gradientLayer.locations = [0.0, 0.35, 0.65]
         layer.addSublayer(gradientLayer)
-        let gradientAnimation = CABasicAnimation(keyPath: "colors")
-        gradientAnimation.toValue = [UIColor.darkBackgroundBlue.cgColor, UIColor.lightBackgroundBlue.cgColor]
+        let gradientAnimation = CABasicAnimation(keyPath: "endPoint")
+        gradientAnimation.toValue = CGPoint(x: 1, y: 0.15)
         gradientAnimation.duration = 5.0
         gradientAnimation.autoreverses = true
         gradientAnimation.repeatCount = .infinity
@@ -62,7 +64,7 @@ final class AnimatedWaveView: UIView {
     }
 
     @objc func animateCurves() {
-        let duration = 2.0
+        let duration = 2.5
         let waveCount = waveLayers.count
         let div = duration / Double(waveCount)
         for (i, wave) in waveLayers.enumerated() {
@@ -73,53 +75,53 @@ final class AnimatedWaveView: UIView {
     }
 
     private func addAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
+
         let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
         fadeOutAnimation.fromValue = 1
         fadeOutAnimation.toValue = 0
-        fadeOutAnimation.duration = max(duration - fadeOutDelay, 0.1)
+        fadeOutAnimation.duration = max(duration - fadeOutDelay, 0.2)
         fadeOutAnimation.beginTime = fadeOutDelay
         fadeOutAnimation.fillMode = kCAFillModeForwards
-        fadeOutAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        fadeOutAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
 
         let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
         fadeInAnimation.fromValue = 0
         fadeInAnimation.toValue = 1
-        fadeInAnimation.duration = 2
+        fadeInAnimation.duration = max(duration - fadeInDelay, 0.2)
         fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay
-        fadeInAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        fadeInAnimation.fillMode = kCAFillModeForwards
+        fadeInAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
 
         let groupAnimation = CAAnimationGroup()
         groupAnimation.duration = fadeInAnimation.beginTime + fadeInAnimation.duration
-
         groupAnimation.animations = [fadeOutAnimation, fadeInAnimation]
+
         wave.add(groupAnimation, forKey: "animateOpacity")
     }
 
     private func setupWaves() {
         layer.masksToBounds = true
-        var i = 1.0
-        let baseDiameter = 150.0
-        var rect = CGRect(x: 0, y: 0, width: baseDiameter, height: baseDiameter)
-        while i < 40 {
-            let waveLayer = addWaveLayer(rect: rect)
-            waveLayer.masksToBounds = true
+        let waveCount = 10
+        let baseDiameter: Double = 50
+        let offset: Double = 25
+        Array(1...waveCount).forEach {
+            let width = Double($0) * offset + baseDiameter
+            let rect = CGRect(x: 0, y: 0, width: width, height: width)
+            let alpha = CGFloat($0) / CGFloat(waveCount)
+            let waveLayer = createWaveLayer(rect: rect, alphaComponent: alpha)
             layer.addSublayer(waveLayer)
             waveLayers.append(waveLayer)
-            i += 1
-            rect = CGRect(x: 0, y: 0, width: baseDiameter + i * 10, height: baseDiameter + 10 * i)
         }
     }
 
-    private func addWaveLayer(rect: CGRect) -> CAShapeLayer {
+    private func createWaveLayer(rect: CGRect, alphaComponent: CGFloat) -> CAShapeLayer {
         let circlePath = UIBezierPath(ovalIn: rect)
         let waveLayer = CAShapeLayer()
         waveLayer.bounds = rect
         waveLayer.frame = rect
         waveLayer.position = center
-        waveLayer.strokeColor = UIColor.waveBlue.cgColor
+        waveLayer.strokeColor = UIColor.waveBlue.withAlphaComponent(alphaComponent).cgColor
         waveLayer.fillColor = UIColor.clear.cgColor
-        waveLayer.lineWidth = 1.5
+        waveLayer.lineWidth = 4
         waveLayer.path = circlePath.cgPath
         waveLayer.strokeStart = 0
         waveLayer.strokeEnd = 1
