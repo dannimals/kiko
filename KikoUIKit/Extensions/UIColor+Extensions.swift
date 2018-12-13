@@ -122,13 +122,13 @@ public extension UIColor {
     }
 
     public static var purple01: UIColor {
-        return UIColor(hex: 0xC7B4F5)
+        return UIColor(hex: 0x9EB8F2)
     }
     public static var purple02: UIColor {
-        return UIColor(hex: 0x8F7AD6)
+        return UIColor(hex: 0x9A81EC)
     }
     public static var purple03: UIColor {
-        return UIColor(hex: 0x7056CC)
+        return UIColor(hex: 0xA775CD)
     }
 
     public var faded: UIColor {
