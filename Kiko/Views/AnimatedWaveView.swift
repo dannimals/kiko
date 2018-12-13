@@ -17,8 +17,7 @@ final class AnimatedWaveView: UIView {
         setupWaves()
         animateCurves()
 //        animateBlurredCircle()
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(animateCurves),
-                             userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(animateCurves), userInfo: nil, repeats: true)
     }
 
     private func setupBlurredCircle() {
@@ -49,9 +48,17 @@ final class AnimatedWaveView: UIView {
 
     private func setupGradientLayer() {
         gradientLayer.frame = frame
-        gradientLayer.colors = [UIColor.lightBackgroundBlue.cgColor, UIColor.darkBackgroundBlue.cgColor, UIColor.lightBackgroundBlue.cgColor]
-        gradientLayer.locations = [0.0, 0.5, 0.8]
+        gradientLayer.startPoint = .zero
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.colors = [UIColor.lightBackgroundBlue.cgColor, UIColor.darkBackgroundBlue.cgColor]
+        gradientLayer.locations = [0.3, 1]
         layer.addSublayer(gradientLayer)
+        let gradientAnimation = CABasicAnimation(keyPath: "colors")
+        gradientAnimation.toValue = [UIColor.darkBackgroundBlue.cgColor, UIColor.lightBackgroundBlue.cgColor]
+        gradientAnimation.duration = 5.0
+        gradientAnimation.autoreverses = true
+        gradientAnimation.repeatCount = .infinity
+        gradientLayer.add(gradientAnimation, forKey: nil)
     }
 
     @objc func animateCurves() {
