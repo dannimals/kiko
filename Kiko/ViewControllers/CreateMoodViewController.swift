@@ -59,23 +59,21 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func setupBindings() {
-//        moodLogView
-//            .wavesButtonTapped
-//            .subscribe(self) { [unowned self] _ in
-//                self.moodNavigationCoordinator.showWavesViewController()
-//        }
+        wavesButton.addTarget(self, action: #selector(wavesButtonTapped), for: .touchUpInside)
         ringButton.addTarget(self, action: #selector(ringButtonTapped), for: .touchUpInside)
     }
     @IBAction func ringButtonTapped(_ sender: Any) {
         toggleMenu()
         menuNavigationCoordinator.start()
     }
-
+    @IBAction func wavesButtonTapped(_ sender: Any) {
+        toggleMenu()
+        menuNavigationCoordinator.showWavesViewController()
+    }
     @IBAction func logButtonTapped(_ sender: Any) {
         saveMood()
         calendarViewController?.reloadDates(animated: false)
     }
-
     @IBAction func plusButtonTapped(_ sender: Any) {
         toggleMenu()
     }
@@ -128,13 +126,14 @@ class CreateMoodViewController: BaseViewController {
         buttonsDrawerView.translatesAutoresizingMaskIntoConstraints = false
         buttonsDrawerView.bottomAnchor.constraint(equalTo: plusButton.bottomAnchor).isActive = true
         buttonsDrawerView.centerXAnchor.constraint(equalTo: plusButton.centerXAnchor).isActive = true
-        view.insertSubview(plusButtonContainer, aboveSubview: buttonsDrawerView) 
+        view.insertSubview(plusButtonContainer, aboveSubview: buttonsDrawerView)
     }
 
     private func setupButtons() {
         ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
         ringButton.bounds.size = CGSize(width: 40, height: 40)
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
+        wavesButton.tintColor = .purple02
         wavesButton.bounds.size = CGSize(width: 40, height: 40)
         logButton.backgroundColor = .cornflowerYellow
         plusButton.adjustsImageWhenHighlighted = false

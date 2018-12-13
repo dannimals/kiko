@@ -64,6 +64,7 @@
 		9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */; };
 		9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD920AA71CF00A18E9A /* Mood.swift */; };
 		9E4261EE21AF9AC8000E372E /* ImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4261ED21AF9AC8000E372E /* ImageName.swift */; };
+		9E4261F121C0BD1F000E372E /* ViewStylePreparing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4261F021C0BD1F000E372E /* ViewStylePreparing.swift */; };
 		9E435E7520B24328003822BB /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7420B24328003822BB /* Error.swift */; };
 		9E435E7720B4F35D003822BB /* MoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7620B4F35D003822BB /* MoodManager.swift */; };
 		9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */; };
@@ -239,6 +240,7 @@
 		9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		9E41DDD920AA71CF00A18E9A /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		9E4261ED21AF9AC8000E372E /* ImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageName.swift; sourceTree = "<group>"; };
+		9E4261F021C0BD1F000E372E /* ViewStylePreparing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewStylePreparing.swift; sourceTree = "<group>"; };
 		9E435E7420B24328003822BB /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		9E435E7620B4F35D003822BB /* MoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodManager.swift; sourceTree = "<group>"; };
 		9E435E7820B505DB003822BB /* MoodListEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListEmptyStateView.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 			isa = PBXGroup;
 			children = (
 				9E391A11207324FB00492F54 /* Identifiable.swift */,
+				9E4261F021C0BD1F000E372E /* ViewStylePreparing.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1170,6 +1173,7 @@
 			files = (
 				9E324FF7207ACCE900C7168B /* UITableView+Extensions.swift in Sources */,
 				9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */,
+				9E4261F121C0BD1F000E372E /* ViewStylePreparing.swift in Sources */,
 				9E324FEE2075B8F300C7168B /* UIFont+Extensions.swift in Sources */,
 				9EBE97492176CF7900FB54FD /* UIButton+Extensions.swift in Sources */,
 				9E324FF9207ACCF500C7168B /* UICollectionView+Extensions.swift in Sources */,
