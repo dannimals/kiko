@@ -26,6 +26,15 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
         static let animationDuration: CFTimeInterval = 7
     }
 
+    private enum WaveConstant {
+        static let lineWidth: CGFloat = 4
+        static let strokeColor = UIColor.waveBlue
+        static let fillColor = UIColor.clear.cgColor
+        static let waveCount = 10
+        static let diameter: Double = 50
+        static let offset: Double = 25
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -105,13 +114,10 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
 
     private func setupWaves() {
         layer.masksToBounds = true
-        let waveCount = 10
-        let baseDiameter: Double = 50
-        let offset: Double = 25
-        Array(1...waveCount).forEach {
-            let width = Double($0) * offset + baseDiameter
+        Array(1...WaveConstant.waveCount).forEach {
+            let width = Double($0) * WaveConstant.offset + WaveConstant.diameter
             let rect = CGRect(x: 0, y: 0, width: width, height: width)
-            let alpha = CGFloat($0) / CGFloat(waveCount)
+            let alpha = CGFloat($0) / CGFloat(WaveConstant.waveCount)
             let waveLayer = createWaveLayer(rect: rect, alphaComponent: alpha)
             layer.addSublayer(waveLayer)
             waveLayers.append(waveLayer)
@@ -124,9 +130,9 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
         waveLayer.bounds = rect
         waveLayer.frame = rect
         waveLayer.position = center
-        waveLayer.strokeColor = UIColor.waveBlue.withAlphaComponent(alphaComponent).cgColor
-        waveLayer.fillColor = UIColor.clear.cgColor
-        waveLayer.lineWidth = 4
+        waveLayer.strokeColor = WaveConstant.strokeColor.withAlphaComponent(alphaComponent).cgColor
+        waveLayer.fillColor = WaveConstant.fillColor
+        waveLayer.lineWidth = WaveConstant.lineWidth
         waveLayer.path = circlePath.cgPath
         waveLayer.strokeStart = 0
         waveLayer.strokeEnd = 1
