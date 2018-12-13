@@ -1,6 +1,7 @@
+
 import KikoUIKit
 
-final class AnimatedWaveView: UIView {
+final class AnimatedWaveView: UIView, ViewStylePreparing {
 
     private let gradientLayer = CAGradientLayer()
     private let baseRect = CGRect(x: 0, y: 0, width: 25, height: 25)
@@ -12,11 +13,21 @@ final class AnimatedWaveView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        setup()
+    }
+
+    func setupViews() {
         setupGradientLayer()
-//        setupBlurredCircle()
         setupWaves()
+    }
+
+    func setupAnimations() {
+        animateGradientLayer()
         animateCurves()
-//        animateBlurredCircle()
+        setupTimer()
+    }
+
+    private func setupTimer() {
         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(animateCurves), userInfo: nil, repeats: true)
     }
 
@@ -49,15 +60,26 @@ final class AnimatedWaveView: UIView {
     private func setupGradientLayer() {
         gradientLayer.frame = frame
         gradientLayer.startPoint = .zero
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.colors = [UIColor.purple01.cgColor,
-                                UIColor.purple02.cgColor,
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        gradientLayer.colors = [UIColor.purple03.withAlphaComponent(0.3).cgColor,
+                                UIColor.purple03.withAlphaComponent(0.6).cgColor,
                                 UIColor.purple03.cgColor]
-        gradientLayer.locations = [0.0, 0.35, 0.65]
+        gradientLayer.locations = [0.0, 0.25, 0.65]
         layer.addSublayer(gradientLayer)
-        let gradientAnimation = CABasicAnimation(keyPath: "endPoint")
-        gradientAnimation.toValue = CGPoint(x: 1, y: 0.15)
-        gradientAnimation.duration = 5.0
+    }
+
+    private func animateGradientLayer() {
+        let animationDuration: CFTimeInterval = 30
+
+        let endPointAnimation = CABasicAnimation(keyPath: "endPoint")
+        endPointAnimation.toValue = CGPoint(x: 1.0, y: 0.25)
+
+        let startPointAnimation = CABasicAnimation(keyPath: "startPoint")
+        startPointAnimation.toValue = CGPoint(x: 0.0, y: 0.5)
+
+        let gradientAnimation = CAAnimationGroup()
+        gradientAnimation.duration = animationDuration
+        gradientAnimation.animations = [startPointAnimation, endPointAnimation]
         gradientAnimation.autoreverses = true
         gradientAnimation.repeatCount = .infinity
         gradientLayer.add(gradientAnimation, forKey: nil)
