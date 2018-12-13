@@ -22,6 +22,10 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
                              UIColor.purple03.cgColor]
     }
 
+    private enum WaveAnimationConstant {
+        static let animationDuration: CFTimeInterval = 7
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -36,37 +40,6 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
     func setupAnimations() {
         animateGradientLayer()
         animateCurves()
-        setupTimer()
-    }
-
-    private func setupTimer() {
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(animateCurves), userInfo: nil, repeats: true)
-    }
-
-    private func setupBlurredCircle() {
-        let diameter: CGFloat = 130
-        let rect = CGRect(origin: center, size: CGSize(width: diameter, height: diameter))
-        blurredCircle.frame = rect
-        blurredCircle.cornerRadius = diameter / 2
-        blurredCircle.center = center
-        blurredCircle.backgroundColor = UIColor.waveBlue
-        blurredCircle.alpha = 0.5
-        blurredCircle.layer.shadowColor = UIColor.backgroundBlue.cgColor
-        blurredCircle.layer.shadowOffset = CGSize(width: 0, height: 1)
-        blurredCircle.layer.shadowOpacity = 1
-        blurredCircle.layer.shadowPath = UIBezierPath(roundedRect: rect, cornerRadius: diameter / 2).cgPath
-        addSubview(blurredCircle)
-    }
-
-    private func animateBlurredCircle() {
-        let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeOutAnimation.fromValue = 1
-        fadeOutAnimation.toValue = 0
-        fadeOutAnimation.duration = 4
-        fadeOutAnimation.autoreverses = true
-        fadeOutAnimation.repeatCount = .infinity
-        fadeOutAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        blurredCircle.layer.add(fadeOutAnimation, forKey: "opacity")
     }
 
     private func setupGradientLayer() {
@@ -93,18 +66,19 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
         gradientLayer.add(gradientAnimation, forKey: nil)
     }
 
-    @objc func animateCurves() {
-        let duration = 2.5
+    private func animateCurves() {
+        let duration = WaveAnimationConstant.animationDuration / 2
         let waveCount = waveLayers.count
         let div = duration / Double(waveCount)
+
         for (i, wave) in waveLayers.enumerated() {
             let fadeOutDelay = div * Double(i)
             let fadeInDelay = duration - fadeOutDelay
-            addAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
+            addWaveAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
         }
     }
 
-    private func addAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
+    private func addWaveAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
 
         let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
         fadeOutAnimation.fromValue = 1
@@ -124,6 +98,7 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
         let groupAnimation = CAAnimationGroup()
         groupAnimation.duration = fadeInAnimation.beginTime + fadeInAnimation.duration
         groupAnimation.animations = [fadeOutAnimation, fadeInAnimation]
+        groupAnimation.repeatCount = .infinity
 
         wave.add(groupAnimation, forKey: "animateOpacity")
     }
@@ -158,5 +133,9 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
         return waveLayer
     }
 
-    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        setup()
+    }
 }
