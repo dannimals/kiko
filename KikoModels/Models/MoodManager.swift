@@ -17,7 +17,11 @@ public class MoodManager: MoodManaging {
     public private(set) var moods: Results<Mood>
 
     public func save(_ mood: Mood) throws {
-        try Mood.create(mood)
+        if let existingMood = self.mood(forDate: mood.date) {
+            try Mood.update(existingMood, withNewMood: mood)
+        } else {
+            try Mood.create(mood)
+        }
     }
 
     public func deleteAll() throws {

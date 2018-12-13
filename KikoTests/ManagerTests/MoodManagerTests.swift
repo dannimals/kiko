@@ -20,6 +20,9 @@ class MoodManagerTests: XCTestCase {
     lazy var testMood5: Mood = {
         Mood(type: MoodType.chick, date: date(from: "2016-08-04"))
     }()
+    lazy var testMood6: Mood = {
+        Mood(type: MoodType.egg, date: date(from: "2016-08-04"))
+    }()
 
     func date(from dateString: String) -> Date {
         let dateFormatter = DateFormatter()
@@ -49,6 +52,11 @@ class MoodManagerTests: XCTestCase {
 
     func testSave() {
         XCTAssertNotNil(moodManager)
+        XCTAssertEqual(moodManager.moods.count, 5)
+    }
+
+    func testUpdate() {
+        try? moodManager.save(testMood6)
         XCTAssertEqual(moodManager.moods.count, 5)
     }
 
@@ -113,9 +121,4 @@ class MoodManagerTests: XCTestCase {
         XCTAssertEqual(moodTypes, moodManager.moodTypes(month: .august, year: 2018))
     }
 
-    func testHasMoodForToday() {
-        
-    }
-
 }
-

@@ -8,26 +8,29 @@ public protocol AppCoordinating {
 class MainNavigationCoordinator: AppCoordinating {
 
     let calendarManager: CalendarManaging
-    let moodNavigationCoordinator: MoodCoordinating
+    let menuNavigationCoordinator: MenuNavigationCoordinating
     let moodManager: MoodManaging
     let window: UIWindow?
 
-    lazy var mainViewController: UINavigationController = {
-        let moodLogViewController = MoodLogViewController(moodNavigationCoordinator: moodNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
-        let navigationController = UINavigationController(rootViewController: moodLogViewController)
-        moodNavigationCoordinator.configure(rootViewController: navigationController, moodManager: moodManager)
+    lazy var mainViewController: UINavigationController? = {
+        let createMoodViewStoryboard = UIStoryboard(name: StoryboardName.createMoodView, bundle: nil)
+        guard let navigationController = createMoodViewStoryboard.instantiateInitialViewController() as? UINavigationController,
+            let createMoodViewController = navigationController.childViewControllers.first as? CreateMoodViewController else { return nil }
+        createMoodViewController.configure(menuNavigationCoordinator: menuNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)
+        menuNavigationCoordinator.configure(rootViewController: navigationController, moodManager: moodManager)
+
         return navigationController
     }()
 
-    init(window: UIWindow?, calendarManager: CalendarManaging, moodManager: MoodManaging, moodNavigationCoordinator: MoodCoordinating = MoodNavigationCoordinator()) {
+    init(window: UIWindow?, calendarManager: CalendarManaging, moodManager: MoodManaging, menuNavigationCoordinator: MenuNavigationCoordinating = MenuNavigationCoordinator()) {
         self.window = window
         self.calendarManager = calendarManager
         self.moodManager = moodManager
-        self.moodNavigationCoordinator = moodNavigationCoordinator
+        self.menuNavigationCoordinator = menuNavigationCoordinator
     }
 
     func start() {
-        guard let window = window else { return }
+        guard let window = window, let mainViewController = mainViewController else { return }
 
         window.rootViewController = mainViewController
         window.makeKeyAndVisible()

@@ -32,7 +32,6 @@ class MonthResultCollectionViewCell: UICollectionViewCell {
     private func setup() {
         backgroundColor = .monthResultBackground
         circleView.backgroundColor = .clear
-        monthLabel.textColor = .lightGreyBlue
     }
 
     func configure(with monthData: MonthData) {

@@ -25,7 +25,7 @@ class MoodListViewModel {
     func monthOfItem(at indexPath: IndexPath) -> Month? {
         let year = distinctYears[indexPath.section]
         let moodsWithYear = moodManager.moods.filter("year == %@", year)
-        let moodsWithDistinctMonth = moodsWithYear.distinct(by: ["month"])
+        let moodsWithDistinctMonth = moodsWithYear.distinct(by: ["month"]).sorted(by: { $0.month > $1.month })
         let monthValue = moodsWithDistinctMonth[indexPath.row].month
         return Month(rawValue: unwrapOrElse(monthValue, fallback: 1))
     }

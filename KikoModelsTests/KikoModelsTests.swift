@@ -24,9 +24,16 @@ class MoodTests: XCTestCase {
     }
 
     func testAdd() {
-        guard let otherMood = try? Mood.create(type: type, date: date) else { XCTFail(); return }
-        XCTAssertEqual(otherMood.date, date)
-        XCTAssertEqual(otherMood.type, type.rawValue)
+        guard let expectedMood = try? Mood.create(type: type, date: date) else { XCTFail(); return }
+        XCTAssertEqual(expectedMood.date, date)
+        XCTAssertEqual(expectedMood.type, type.rawValue)
+    }
+
+    func testUpdate() {
+        guard let _ = try? Mood.create(type: .egg, date: date) else { XCTFail(); return }
+        guard let expectedMood = try? Mood.create(type: .rottenEgg, date: date) else { XCTFail(); return }
+        XCTAssertEqual(expectedMood.date, date)
+        XCTAssertEqual(expectedMood.type, MoodType.rottenEgg.rawValue)
     }
 
     func testAll() {

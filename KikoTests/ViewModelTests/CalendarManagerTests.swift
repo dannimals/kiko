@@ -44,60 +44,58 @@ class CalendarManagerTests: XCTestCase {
         XCTAssertEqual(calendarManager!.lastWeekDates, lastWeekDates)
         XCTAssertEqual(calendarManager!.currentWeekDates, currentWeekDates)
         XCTAssertEqual(nextWeekDates, calendarManager!.nextWeekDates)
-        XCTAssertEqual(calendarManager?.earliestDate, lastWeekDates.first!)
         XCTAssertEqual(currentWeekDates.first!, calendarManager!.currentWeekDates.first!)
         XCTAssertEqual(calendarManager!.lastWeekDates.count, 7)
         XCTAssertEqual(calendarManager!.currentWeekDates.count, 7)
         XCTAssertEqual(calendarManager!.nextWeekDates.count, 7)
-        XCTAssertFalse(calendarManager!.hasNewDates)
     }
 
     func testComputedDates() {
-        XCTAssertEqual(Month.august, calendarManager!.displayedMonth)
-    }
-
-    func testSetupDatesIndexes() {
-        let datesIndexesDict = calendarManager!.datesIndexesDict
-        XCTAssertEqual(datesIndexesDict[calendarManager!.earliestDate], -7)
-        XCTAssertEqual(datesIndexesDict[calendarManager!.lastWeekDates.first!], -7)
-        XCTAssertEqual(datesIndexesDict[calendarManager!.currentWeekDates.first!], 0)
-        XCTAssertEqual(datesIndexesDict[calendarManager!.nextWeekDates.last!], 13)
-        XCTAssertEqual(datesIndexesDict.count, 21)
+        XCTAssertEqual(Month.july, calendarManager!.displayedMonth)
     }
 
     func testLoadNextWeek() {
-        let currentEarliestDate = calendarManager!.earliestDate
-        let originalDatesIndexesCount = calendarManager!.datesIndexesDict.count
-        let originalDateIndex = calendarManager!.datesIndexesDict[date]!
+        guard let calendarManager = calendarManager else { XCTFail(); return }
+        calendarManager.loadNextWeek()
+        XCTAssertEqual(calendarManager.displayedMonth, Month.august)
 
-        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
-        XCTAssertEqual(calendarManager!.lastWeekDates.first!, currentEarliestDate)
-        calendarManager!.loadNextWeek()
-        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
-        XCTAssertEqual(calendarManager!.lastWeekDates.last!.lastStartOfWeek, currentEarliestDate)
-        XCTAssertEqual(calendarManager!.datesIndexesDict.count, originalDatesIndexesCount + 7)
-        XCTAssertEqual(calendarManager!.lastWeekDates.count, 7)
-        XCTAssertEqual(calendarManager!.currentWeekDates.count, 7)
-        XCTAssertEqual(calendarManager!.nextWeekDates.count, 7)
-        XCTAssertEqual(calendarManager!.datesIndexesDict[date], originalDateIndex)
-        XCTAssertTrue(calendarManager!.hasNewDates)
+        let newLastStartOfWeek = calendarManager.lastWeekDates.first
+        XCTAssertEqual(newLastStartOfWeek?.day, 29)
+        XCTAssertEqual(newLastStartOfWeek?.month, Month.july)
+
+        let newCurrentStartOfWeek = calendarManager.currentWeekDates.first
+        XCTAssertEqual(newCurrentStartOfWeek?.day, 5)
+        XCTAssertEqual(newCurrentStartOfWeek?.month, Month.august)
+
+        let newNextStartOfWeek = calendarManager.nextWeekDates.first
+        XCTAssertEqual(newNextStartOfWeek?.day, 12)
+        XCTAssertEqual(newNextStartOfWeek?.month, Month.august)
+
+        XCTAssertEqual(calendarManager.lastWeekDates.count, 7)
+        XCTAssertEqual(calendarManager.currentWeekDates.count, 7)
+        XCTAssertEqual(calendarManager.nextWeekDates.count, 7)
     }
 
     func testLoadLastWeek() {
-        let currentEarliestDate = calendarManager!.earliestDate
-        let originalDatesIndexesCount = calendarManager!.datesIndexesDict.count
-        let originalDateIndex = calendarManager!.datesIndexesDict[date]!
+        guard let calendarManager = calendarManager else { XCTFail(); return }
 
-        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
-        XCTAssertEqual(calendarManager!.lastWeekDates.first!, currentEarliestDate)
-        calendarManager!.loadLastWeek()
-        XCTAssertEqual(calendarManager!.currentWeekDates.first!, calendarManager!.displayedStartOfWeekDate)
-        XCTAssertEqual(calendarManager!.lastWeekDates.last!.startOfWeek, calendarManager!.earliestDate)
-        XCTAssertEqual(calendarManager!.datesIndexesDict.count, originalDatesIndexesCount + 7)
-        XCTAssertEqual(calendarManager!.datesIndexesDict[date], originalDateIndex)
-        XCTAssertEqual(calendarManager!.lastWeekDates.count, 7)
-        XCTAssertEqual(calendarManager!.currentWeekDates.count, 7)
-        XCTAssertEqual(calendarManager!.nextWeekDates.count, 7)
-        XCTAssertTrue(calendarManager!.hasNewDates)
+        calendarManager.loadLastWeek()
+        XCTAssertEqual(calendarManager.displayedMonth, Month.july)
+
+        let newLastStartOfWeek = calendarManager.lastWeekDates.first
+        XCTAssertEqual(newLastStartOfWeek?.day, 15)
+        XCTAssertEqual(newLastStartOfWeek?.month, Month.july)
+
+        let newCurrentStartOfWeek = calendarManager.currentWeekDates.first
+        XCTAssertEqual(newCurrentStartOfWeek?.day, 22)
+        XCTAssertEqual(newCurrentStartOfWeek?.month, Month.july)
+
+        let newNextStartOfWeek = calendarManager.nextWeekDates.first
+        XCTAssertEqual(newNextStartOfWeek?.day, 29)
+        XCTAssertEqual(newNextStartOfWeek?.month, Month.july)
+
+        XCTAssertEqual(calendarManager.lastWeekDates.count, 7)
+        XCTAssertEqual(calendarManager.currentWeekDates.count, 7)
+        XCTAssertEqual(calendarManager.nextWeekDates.count, 7)
     }
 }

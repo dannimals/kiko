@@ -7,7 +7,7 @@ class MainNavigationCoordinatorTests: XCTestCase {
 
     let mockCalendarManager = MockCalendarManager()
     let mockMoodManager = MockMoodManager()
-    let mockMoodCoordinator = MockMoodNavigationCoodinator()
+    let mockMenuCoordinator = MockMenuNavigationCoodinator()
     let window = UIWindow()
 
     lazy var mainCoordinator: MainNavigationCoordinator = {
@@ -17,7 +17,7 @@ class MainNavigationCoordinatorTests: XCTestCase {
     func testProperties() {
         XCTAssertEqual(window, mainCoordinator.window)
         XCTAssertNotNil(mainCoordinator.moodManager)
-        XCTAssertNotNil(mainCoordinator.moodNavigationCoordinator)
+        XCTAssertNotNil(mainCoordinator.menuNavigationCoordinator)
         XCTAssertEqual(mockCalendarManager.currentWeekDates, mainCoordinator.calendarManager.currentWeekDates)
         XCTAssertNotNil(mainCoordinator.mainViewController)
     }

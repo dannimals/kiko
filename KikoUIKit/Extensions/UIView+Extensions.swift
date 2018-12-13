@@ -14,15 +14,35 @@ public extension UIView {
         return view
     }
 
-    public func stretchToFill(_ view: UIView) {
-        addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+    public func stretchToFill(parentView: UIView) {
+        parentView.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.topAnchor.constraint(equalTo: topAnchor),
-            view.leftAnchor.constraint(equalTo: leftAnchor),
-            view.rightAnchor.constraint(equalTo: rightAnchor),
-            view.bottomAnchor.constraint(equalTo: bottomAnchor)
+            topAnchor.constraint(equalTo: parentView.topAnchor),
+            leftAnchor.constraint(equalTo: parentView.leftAnchor),
+            rightAnchor.constraint(equalTo: parentView.rightAnchor),
+            bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
         ])
+    }
+
+    public func stretchToFill() {
+        guard let parentView = superview else { return }
+        parentView.addSubview(self)
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: parentView.topAnchor),
+            leftAnchor.constraint(equalTo: parentView.leftAnchor),
+            rightAnchor.constraint(equalTo: parentView.rightAnchor),
+            bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
+            ])
+    }
+
+    public func addShadow(shadowRadius: CGFloat = 3, shadowColor: CGColor = UIColor.black.cgColor, shadowOffset: CGSize = CGSize(width: 0, height: 8), shadowOpacity: CGFloat = 0.3) {
+        layer.shadowRadius = 3.0
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 8)
+        layer.shadowOpacity = 0.3
+        layer.masksToBounds = false
     }
 }
 

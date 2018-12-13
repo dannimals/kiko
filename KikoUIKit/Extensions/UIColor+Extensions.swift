@@ -30,7 +30,7 @@ public extension UIColor {
     }
 
     public static var waveBlue: UIColor {
-        return UIColor(hex: 0xBBE3FF)
+        return UIColor(hex: 0xC0A1FF)
     }
 
     public static var backgroundYellow: UIColor {
@@ -115,6 +115,20 @@ public extension UIColor {
 
     public static var lightBlue: UIColor {
         return UIColor(hex: 0xACD4F0)
+    }
+
+    public static var todayGrey: UIColor {
+        return UIColor(hex: 0x66727A)
+    }
+
+    public static var purple01: UIColor {
+        return UIColor(hex: 0x9EB8F2)
+    }
+    public static var purple02: UIColor {
+        return UIColor(hex: 0x9A81EC)
+    }
+    public static var purple03: UIColor {
+        return UIColor(hex: 0xA775CD)
     }
 
     public var faded: UIColor {
