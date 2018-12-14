@@ -1,7 +1,7 @@
 
 import KikoUIKit
 
-final class AnimatedWaveView: UIView, ViewStylePreparing {
+final class WavesView: UIView, ViewStylePreparing {
 
     private let gradientLayer = CAGradientLayer()
     private let baseRect = CGRect(x: 0, y: 0, width: 25, height: 25)
@@ -46,7 +46,7 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
         setupWaves()
     }
 
-    func setupAnimations() {
+    func animate() {
         animateGradientLayer()
         animateCurves()
     }
@@ -77,8 +77,7 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
 
     private func animateCurves() {
         let duration = WaveAnimationConstant.animationDuration / 2
-        let waveCount = waveLayers.count
-        let div = duration / Double(waveCount)
+        let div = duration / Double(WaveConstant.waveCount)
 
         for (i, wave) in waveLayers.enumerated() {
             let fadeOutDelay = div * Double(i)
@@ -114,7 +113,7 @@ final class AnimatedWaveView: UIView, ViewStylePreparing {
 
     private func setupWaves() {
         layer.masksToBounds = true
-        Array(1...WaveConstant.waveCount).forEach {
+        Array(0..<WaveConstant.waveCount).forEach {
             let width = Double($0) * WaveConstant.offset + WaveConstant.diameter
             let rect = CGRect(x: 0, y: 0, width: width, height: width)
             let alpha = CGFloat($0) / CGFloat(WaveConstant.waveCount)
