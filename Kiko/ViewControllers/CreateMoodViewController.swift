@@ -6,10 +6,7 @@ struct CreateMoodViewState {
         case moodChanged(MoodType)
     }
 
-    var moodType: MoodType {
-        return moodPage.moodType
-    }
-
+    var moodType: MoodType { return moodPage.moodType }
     private var moodPage: MoodPageDisplay = MoodPageDisplay(type: .chick)
 
     mutating func send(_ message: Message) {
@@ -23,9 +20,7 @@ struct CreateMoodViewState {
 class CreateMoodViewController: BaseViewController {
 
     private var state = CreateMoodViewState() {
-        didSet {
-            updateViews()
-        }
+        didSet { updateViews() }
     }
     private var moodManager: MoodManaging!
     private var menuNavigationCoordinator: MenuNavigationCoordinating!
@@ -34,8 +29,8 @@ class CreateMoodViewController: BaseViewController {
     private let buttonsDrawerView = ButtonsDrawerView()
     private let wavesButton = UIButton()
     private let ringButton = UIButton()
-    private let gradientLayer = CAGradientLayer()
 
+    @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var logButton: RoundedButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var plusButtonShadow: UIView!
@@ -138,19 +133,9 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func setupViews() {
-        setupGradient()
-        view.backgroundColor = .backgroundYellow
         setupButtons()
         setupButtonsDrawerView()
-    }
-
-    private func setupGradient() {
-        gradientLayer.frame = view.frame
-        gradientLayer.startPoint = .zero
-        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
-        gradientLayer.colors = [UIColor.cornflowerYellow.withAlphaComponent(0.6).cgColor, UIColor.cornflowerYellow]
-        gradientLayer.locations = [0, 0.6]
-        view.layer.addSublayer(gradientLayer)
+        updateViews()
     }
 
     private func setupButtonsDrawerView() {
@@ -177,9 +162,9 @@ class CreateMoodViewController: BaseViewController {
         let page = MoodPageDisplay(type: state.moodType)
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = page.primaryColor
             self.logButton.backgroundColor = page.accessoryColor
             self.logButton.highlightedBackgroundColor = page.selectedColor
+            self.gradientView.colors = page.gradientColors
         }
     }
 

@@ -13,6 +13,7 @@ protocol MoodPageDisplayable {
 struct MoodPageDisplay: MoodPageDisplayable {
 
     var images: [UIImage] = []
+    var gradientColors: [CGColor] = []
     let moodType: MoodType
     let primaryColor: UIColor
     let accessoryColor: UIColor
@@ -26,6 +27,7 @@ struct MoodPageDisplay: MoodPageDisplayable {
             accessoryColor = .cornflowerYellow
             selectedColor = .selectedSalmonPink
             images = images(forPrefix: ImageName.chick, totalCount: 2)
+            gradientColors = [UIColor.yellow01.cgColor, UIColor.yellow02.cgColor, UIColor.yellow03.cgColor]
         case .chickEgg:
             primaryColor = .backgroundPurple
             accessoryColor = .tealBlue

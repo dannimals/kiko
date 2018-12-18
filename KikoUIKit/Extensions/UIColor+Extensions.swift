@@ -130,6 +130,15 @@ public extension UIColor {
     public static var purple03: UIColor {
         return UIColor(hex: 0xA775CD)
     }
+    public static var yellow01: UIColor {
+        return UIColor(hex: 0xF5D351)
+    }
+    public static var yellow02: UIColor {
+        return UIColor(hex: 0xF0CA6A)
+    }
+    public static var yellow03: UIColor {
+        return UIColor(hex: 0xED7A33)
+    }
 
     public var faded: UIColor {
         return withAlphaComponent(0.3)
