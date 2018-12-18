@@ -1,9 +1,32 @@
 import KikoModels
 import KikoUIKit
 
+struct CreateMoodViewState {
+    enum Message {
+        case moodChanged(MoodType)
+    }
+
+    var moodType: MoodType {
+        return moodPage.moodType
+    }
+
+    private var moodPage: MoodPageDisplay = MoodPageDisplay(type: .chick)
+
+    mutating func send(_ message: Message) {
+        switch message {
+        case let .moodChanged(moodType):
+            moodPage = MoodPageDisplay(type: moodType)
+        }
+    }
+}
+
 class CreateMoodViewController: BaseViewController {
 
-    private var currentMoodType: MoodType = .chick
+    private var state = CreateMoodViewState() {
+        didSet {
+            updateViews()
+        }
+    }
     private var moodManager: MoodManaging!
     private var menuNavigationCoordinator: MenuNavigationCoordinating!
     private var calendarManager: CalendarManaging!
@@ -11,6 +34,7 @@ class CreateMoodViewController: BaseViewController {
     private let buttonsDrawerView = ButtonsDrawerView()
     private let wavesButton = UIButton()
     private let ringButton = UIButton()
+    private let gradientLayer = CAGradientLayer()
 
     @IBOutlet weak var logButton: RoundedButton!
     @IBOutlet weak var plusButton: UIButton!
@@ -90,11 +114,10 @@ class CreateMoodViewController: BaseViewController {
         }
     }
 
-    private var rotated = false
     private func rotatePlusButton() {
-        let angle: CGFloat = rotated ? -45 : 45
+        let rotation = plusButton.transform.rotation
+        let angle: CGFloat = rotation == 45 ? -45 : 45
         plusButton.rotate(by: angle)
-        rotated = !rotated
     }
 
     private func moodType(from setting: MoodUISetting) -> MoodType {
@@ -103,7 +126,7 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func saveMood() {
-        let mood = Mood(type: currentMoodType, date: Date())
+        let mood = Mood(type: state.moodType, date: Date())
         guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
         do {
             try moodManager.save(mood)
@@ -115,9 +138,19 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func setupViews() {
+        setupGradient()
         view.backgroundColor = .backgroundYellow
         setupButtons()
         setupButtonsDrawerView()
+    }
+
+    private func setupGradient() {
+        gradientLayer.frame = view.frame
+        gradientLayer.startPoint = .zero
+        gradientLayer.endPoint = CGPoint(x: 1, y: 1)
+        gradientLayer.colors = [UIColor.cornflowerYellow.withAlphaComponent(0.6).cgColor, UIColor.cornflowerYellow]
+        gradientLayer.locations = [0, 0.6]
+        view.layer.addSublayer(gradientLayer)
     }
 
     private func setupButtonsDrawerView() {
@@ -139,17 +172,22 @@ class CreateMoodViewController: BaseViewController {
         plusButton.adjustsImageWhenHighlighted = false
         plusButtonShadow.addShadow()
     }
-}
 
-extension CreateMoodViewController: MoodPagingObserving {
-
-    func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
-        currentMoodType = page.moodType
+    private func updateViews() {
+        let page = MoodPageDisplay(type: state.moodType)
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
             self.view.backgroundColor = page.primaryColor
             self.logButton.backgroundColor = page.accessoryColor
             self.logButton.highlightedBackgroundColor = page.selectedColor
         }
+    }
+
+}
+
+extension CreateMoodViewController: MoodPagingObserving {
+
+    func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
+        state.send(.moodChanged(page.moodType))
     }
 }
