@@ -5,9 +5,7 @@ import KikoUIKit
 protocol MoodPageDisplayable {
     var images: [UIImage] { get }
     var moodType: MoodType { get }
-    var primaryColor: UIColor { get }
     var accessoryColor: UIColor { get }
-    var selectedColor: UIColor { get }
 }
 
 struct MoodPageDisplay: MoodPageDisplayable {
@@ -15,34 +13,27 @@ struct MoodPageDisplay: MoodPageDisplayable {
     var images: [UIImage] = []
     var gradientColors: [CGColor] = []
     let moodType: MoodType
-    let primaryColor: UIColor
     let accessoryColor: UIColor
-    let selectedColor: UIColor
 
     init(type: MoodType) {
         self.moodType = type
         switch type {
         case .chick:
-            primaryColor = .backgroundYellow
-            accessoryColor = .cornflowerYellow
-            selectedColor = .selectedSalmonPink
+            accessoryColor = .yellow04
             images = images(forPrefix: ImageName.chick, totalCount: 2)
             gradientColors = [UIColor.yellow01.cgColor, UIColor.yellow02.cgColor, UIColor.yellow03.cgColor]
         case .chickEgg:
-            primaryColor = .backgroundPurple
-            accessoryColor = .tealBlue
-            selectedColor = .selectedTeal
+            accessoryColor = .blue04
             images = images(forPrefix: ImageName.chickEgg, totalCount: 4)
+            gradientColors = [UIColor.blue01.cgColor, UIColor.blue02.cgColor, UIColor.blue03.cgColor]
         case .egg:
-            primaryColor = .backgroundRed
-            accessoryColor = .salmonPink
-            selectedColor = .selectedRouge
+            accessoryColor = .red04
             images = images(forPrefix: ImageName.egg, totalCount: 2)
+            gradientColors = [UIColor.red01.cgColor, UIColor.red02.cgColor, UIColor.red03.cgColor]
         case .rottenEgg:
-            primaryColor = .backgroundGreen
-            accessoryColor = .mossGreen
-            selectedColor = .selectedGreen
+            accessoryColor = .green04
             images = images(forPrefix: ImageName.rottenEgg, totalCount: 2)
+            gradientColors = [UIColor.green01.cgColor, UIColor.green02.cgColor, UIColor.green03.cgColor]
         }
     }
 

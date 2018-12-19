@@ -5,11 +5,11 @@ class GradientView: UIView {
 
     private enum GradientAnimationConstant {
         static let animationDuration: CFTimeInterval = 8
-        static let locations: [NSNumber] = [0, 0.3, 0.7]
-        static let endPoint = CGPoint(x: 0.75, y: 1)
+        static let locations: [NSNumber] = [0, 0.4, 0.9]
         static let startPoint = CGPoint(x: 0.25, y: 0)
-        static let startPointAnimationToValue = CGPoint(x: 1, y: 0.0)
-        static let endPointAnimationToValue = CGPoint(x: 0.0, y: 1.2)
+        static let endPoint = CGPoint(x: 0.75, y: 1)
+        static let startPointAnimationToValue = CGPoint(x: 0.75, y: 0.0)
+        static let endPointAnimationToValue = CGPoint(x: 0.0, y: 1)
     }
 
     var gradientLayer: CAGradientLayer? {

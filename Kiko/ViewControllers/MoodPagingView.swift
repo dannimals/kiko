@@ -1,12 +1,13 @@
 
 import KikoUIKit
 
-class MoodPagingView: UIView {
+class MoodPagingView: UIView, ViewStylePreparing {
 
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagingControl: CustomPagingControl!
 
+    private let defaultTextColor = UIColor.yellow04
     private let moodStackView = UIStackView()
     private var pages: [MoodPageDisplayable] = []
     private var viewModel: MoodPageViewModel!
@@ -39,7 +40,7 @@ class MoodPagingView: UIView {
         }
     }
 
-    private func setup() {
+    func setupViews() {
         scrollView.delegate = self
         setupLabel()
         setupStackView()
@@ -66,10 +67,10 @@ class MoodPagingView: UIView {
     }
 
     private func setupLabel() {
-        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.cornflowerYellow])
+        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: defaultTextColor])
         let mutableString = NSMutableAttributedString(attributedString: attributedText)
-        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: UIColor.cornflowerYellow])
-        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: UIColor.cornflowerYellow])
+        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: defaultTextColor])
+        let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: defaultTextColor])
         mutableString.append(secondAttributedText)
         mutableString.append(thirdAttributedText)
         greetingLabel.attributedText = mutableString

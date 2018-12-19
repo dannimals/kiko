@@ -12,7 +12,6 @@
 		9E00B28820CCC2E200C2FD17 /* MoodListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E00B28720CCC2E200C2FD17 /* MoodListView.xib */; };
 		9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1072085969800CC5444 /* Date+Extensions.swift */; };
 		9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1092086D72000CC5444 /* WavesViewController.swift */; };
-		9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */; };
 		9E10A10F2086D86300CC5444 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10E2086D86300CC5444 /* Channel.swift */; };
 		9E10A1112086D87000CC5444 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1102086D87000CC5444 /* Protected.swift */; };
 		9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E14130C2109594D006CD78D /* ArcDrawingView.swift */; };
@@ -184,7 +183,6 @@
 		9E00B28720CCC2E200C2FD17 /* MoodListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodListView.xib; sourceTree = "<group>"; };
 		9E10A1072085969800CC5444 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		9E10A1092086D72000CC5444 /* WavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewController.swift; sourceTree = "<group>"; };
-		9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodUISetting.swift; sourceTree = "<group>"; };
 		9E10A10E2086D86300CC5444 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		9E10A1102086D87000CC5444 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		9E14130C2109594D006CD78D /* ArcDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcDrawingView.swift; sourceTree = "<group>"; };
@@ -372,7 +370,6 @@
 		9E10A10D2086D84700CC5444 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				9E10A10B2086D7B500CC5444 /* MoodUISetting.swift */,
 				9EB5385A212CF84F00BB6A7A /* Glossary.swift */,
 				9EB53866213DE72E00BB6A7A /* StoryboardName.swift */,
 				9E4261ED21AF9AC8000E372E /* ImageName.swift */,
@@ -1125,7 +1122,6 @@
 				9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */,
 				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
 				9E3CAEFB2151D1AB00E44C8D /* PagingViewController.swift in Sources */,
-				9E10A10C2086D7B500CC5444 /* MoodUISetting.swift in Sources */,
 				9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */,
 				9E141311210E6E52006CD78D /* MonthData.swift in Sources */,
 				9E141313210E7196006CD78D /* DateManager.swift in Sources */,

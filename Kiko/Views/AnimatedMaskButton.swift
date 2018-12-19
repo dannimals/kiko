@@ -21,9 +21,9 @@ class AnimatedMaskButton: UIButton {
     func needsUpdate() {
         guard let image = imageView?.image else { return }
         let colors = [
-            unwrapOrElse(mainColor, fallback: UIColor.lightBlue).cgColor,
+            unwrapOrElse(mainColor, fallback: UIColor.blue05).cgColor,
             UIColor.white.cgColor,
-            unwrapOrElse(mainColor, fallback: UIColor.lightBlue).cgColor
+            unwrapOrElse(mainColor, fallback: UIColor.blue05).cgColor
         ]
         gradientLayer.colors = colors
         gradientLayer.colors = colors

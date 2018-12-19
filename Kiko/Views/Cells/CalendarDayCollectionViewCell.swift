@@ -20,11 +20,11 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         self.isToday = isToday
         configureCircleViews(isToday: isToday, moodColor: moodColor)
         if isToday {
-            configureDateLabel(font: .customFont(ofSize: 16, weight: .heavy), textColor: .todayGrey)
+            configureDateLabel(font: .customFont(ofSize: 16, weight: .heavy), textColor: .grey03)
         } else if date < today {
-            configureDateLabel(font: .customFont(ofSize: 14, weight: .medium), textColor: .textDarkGrey)
+            configureDateLabel(font: .customFont(ofSize: 15, weight: .medium), textColor: .grey02)
         } else {
-            configureDateLabel(font: .customFont(ofSize: 14, weight: .light), textColor: .textLightGrey)
+            configureDateLabel(font: .customFont(ofSize: 15, weight: .light), textColor: .grey01)
         }
         dateLabel.text = date.day.description
     }
@@ -64,7 +64,7 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
     private func configureDateLabel() {
         dateLabel.textAlignment = .center
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.textColor = UIColor.textDarkGrey
+        dateLabel.textColor = UIColor.grey02
         dateLabel.font = UIFont.customFont(ofSize: 14, weight: .medium)
         contentView.addSubview(dateLabel)
         NSLayoutConstraint.activate([
@@ -77,7 +77,7 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         backgroundCircleView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(backgroundCircleView)
         backgroundCircleView.layer.cornerRadius = 17
-        backgroundCircleView.backgroundColor = UIColor.indicatorGrey
+        backgroundCircleView.backgroundColor = UIColor.grey04
         NSLayoutConstraint.activate([
             backgroundCircleView.heightAnchor.constraint(equalToConstant: 34),
             backgroundCircleView.widthAnchor.constraint(equalToConstant: 34),
@@ -102,6 +102,6 @@ class CalendarDayCollectionViewCell: UICollectionViewCell {
         moodIndicatorCircle.isHidden = true
         backgroundCircleView.isHidden = true
         dateLabel.font = UIFont.customFont(ofSize: 14, weight: .medium)
-        dateLabel.textColor = UIColor.textDarkGrey
+        dateLabel.textColor = UIColor.grey02
     }
 }

@@ -89,8 +89,8 @@ extension CalendarViewController: UICollectionViewDataSource {
             else { return UICollectionViewCell() }
         let date = calendarManager.dateForIndexPath(indexPath)
         var moodColor: UIColor?
-        if let mood = moodManager.mood(forDate: date) {
-            moodColor = MoodUISetting(rawValue: mood.type)?.accessoryColor
+        if let mood = moodManager.mood(forDate: date), let moodType = MoodType(rawValue: mood.type) {
+            moodColor = MoodPageDisplay(type: moodType).accessoryColor
         }
         dayCell.configure(date: date, today: Date(), moodColor: moodColor)
         return dayCell

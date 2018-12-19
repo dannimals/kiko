@@ -115,14 +115,9 @@ class CreateMoodViewController: BaseViewController {
         plusButton.rotate(by: angle)
     }
 
-    private func moodType(from setting: MoodUISetting) -> MoodType {
-        guard let moodType = MoodType(rawValue: setting.rawValue) else { return MoodType.chick }
-        return  moodType
-    }
-
     private func saveMood() {
         let mood = Mood(type: state.moodType, date: Date())
-        guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
+        let color = MoodPageDisplay(type: state.moodType).accessoryColor
         do {
             try moodManager.save(mood)
             presentModalForSuccess(imageColor: color)
@@ -153,7 +148,7 @@ class CreateMoodViewController: BaseViewController {
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
         wavesButton.tintColor = .purple02
         wavesButton.bounds.size = CGSize(width: 40, height: 40)
-        logButton.backgroundColor = .cornflowerYellow
+        logButton.backgroundColor = .yellow04
         plusButton.adjustsImageWhenHighlighted = false
         plusButtonShadow.addShadow()
     }
@@ -163,7 +158,7 @@ class CreateMoodViewController: BaseViewController {
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
             self.logButton.backgroundColor = page.accessoryColor
-            self.logButton.highlightedBackgroundColor = page.selectedColor
+            self.logButton.highlightedBackgroundColor = page.accessoryColor.faded
             self.gradientView.colors = page.gradientColors
         }
     }
