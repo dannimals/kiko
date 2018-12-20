@@ -65,7 +65,7 @@ public extension UIColor {
         return UIColor(hex: 0x8EC9F2)
     }
     public static var blue03: UIColor {
-        return UIColor(hex: 0x849CE6)
+        return UIColor(hex: 0x8491E1)
     }
     public static var blue04: UIColor {
         return UIColor(hex: 0x6094E2)
