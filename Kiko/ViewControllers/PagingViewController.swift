@@ -20,19 +20,19 @@ struct MoodPageDisplay: MoodPageDisplayable {
         switch type {
         case .chick:
             accessoryColor = .yellow04
-            images = images(forPrefix: ImageName.chick, totalCount: 2)
+            images = [#imageLiteral(resourceName: "chick")]
             gradientColors = [UIColor.yellow01.cgColor, UIColor.yellow02.cgColor, UIColor.yellow03.cgColor]
         case .chickEgg:
             accessoryColor = .blue04
-            images = images(forPrefix: ImageName.chickEgg, totalCount: 4)
+            images = [#imageLiteral(resourceName: "chickEgg")]
             gradientColors = [UIColor.blue01.cgColor, UIColor.blue02.cgColor, UIColor.blue03.cgColor]
         case .egg:
             accessoryColor = .red04
-            images = images(forPrefix: ImageName.egg, totalCount: 2)
+            images = images(forPrefix: ImageName.egg, totalCount: 1)
             gradientColors = [UIColor.red01.cgColor, UIColor.red02.cgColor, UIColor.red03.cgColor]
         case .rottenEgg:
             accessoryColor = .green04
-            images = images(forPrefix: ImageName.rottenEgg, totalCount: 2)
+            images = images(forPrefix: ImageName.rottenEgg, totalCount: 1)
             gradientColors = [UIColor.green01.cgColor, UIColor.green02.cgColor, UIColor.green03.cgColor]
         }
     }

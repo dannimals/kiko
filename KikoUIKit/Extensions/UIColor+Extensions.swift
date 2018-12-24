@@ -47,10 +47,10 @@ public extension UIColor {
         return UIColor(hex: 0xA775CD)
     }
     public static var yellow01: UIColor {
-        return UIColor(hex: 0xFAD96C)
+        return UIColor(hex: 0xF0CA6A)
     }
     public static var yellow02: UIColor {
-        return UIColor(hex: 0xF0CA6A)
+        return UIColor(hex: 0xF3C768)
     }
     public static var yellow03: UIColor {
         return UIColor(hex: 0xF99D65)

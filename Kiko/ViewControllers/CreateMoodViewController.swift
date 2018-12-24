@@ -97,7 +97,7 @@ class CreateMoodViewController: BaseViewController {
         toggleMenu()
     }
 
-    private func toggleMenu() {
+    @objc private func toggleMenu() {
         rotatePlusButton()
         toggleBlurView(duration: 0.2)
         buttonsDrawerView.toggle()
@@ -131,6 +131,12 @@ class CreateMoodViewController: BaseViewController {
         setupButtons()
         setupButtonsDrawerView()
         updateViews()
+        setupBlurView()
+    }
+
+    private func setupBlurView() {
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
+        blurView.addGestureRecognizer(tapGR)
     }
 
     private func setupButtonsDrawerView() {
