@@ -26,7 +26,7 @@ class LineDrawingView: UIView {
             let countOfDaysWithMood = unwrapOrEmpty(moodCount[moodType])
             let dayPercentage = CGFloat(countOfDaysWithMood) / CGFloat(totalDays)
             guard dayPercentage > 0 else { continue }
-            let strokeColor = unwrapOrElse(MoodUISetting(rawValue: i)?.accessoryColor, fallback: UIColor.backgroundYellow)
+            let strokeColor = MoodPageDisplay(type: moodType).accessoryColor
             drawPath(x: x, width: dayPercentage * bounds.width, height: strokeHeight, strokeColor: strokeColor)
             x += dayPercentage * bounds.width
         }

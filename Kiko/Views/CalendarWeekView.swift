@@ -43,7 +43,7 @@ class CalendarWeekView: UIView {
         rightButton.addTarget(self, action: #selector(notifyRightButtonTappedEvent), for: .touchUpInside)
     }
 
-    func updateViewColor(_ color: UIColor = .cornflowerYellow) {
+    func updateViewColor(_ color: UIColor = .yellow03) {
         UIView.animate(withDuration: 0.4) {
             self.monthLabel.textColor = color
             self.leftButton.tintColor = color

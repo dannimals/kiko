@@ -34,6 +34,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="McH-WO-Jeb" userLabel="Gradient Layer" customClass="GradientView" customModule="Kiko" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="4" width="375" height="723"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73J-gV-52F" userLabel="Calendar Container View">
                                 <rect key="frame" x="0.0" y="89" width="375" height="122"/>
                                 <constraints>
@@ -133,6 +137,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="McH-WO-Jeb" secondAttribute="trailing" id="0zL-sq-Uhs"/>
                             <constraint firstItem="0Ue-J9-dA6" firstAttribute="top" secondItem="rt2-S9-wif" secondAttribute="bottom" id="7Q6-pG-bM8"/>
                             <constraint firstItem="rt2-S9-wif" firstAttribute="top" secondItem="73J-gV-52F" secondAttribute="bottom" id="DUh-5Y-WeU"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="t3j-yq-gUW" secondAttribute="trailing" constant="16" id="IGN-UF-UJV"/>
@@ -140,13 +145,16 @@
                             <constraint firstItem="73J-gV-52F" firstAttribute="top" secondItem="0xG-XK-012" secondAttribute="top" constant="25" id="Ic4-WO-Cah"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="mfF-t3-aFo" secondAttribute="trailing" id="RSo-gX-OcW"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="t3j-yq-gUW" secondAttribute="bottom" constant="32" id="UkX-js-lJn"/>
+                            <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="McH-WO-Jeb" secondAttribute="bottom" constant="-60" id="WoN-V0-mrQ"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="rt2-S9-wif" secondAttribute="trailing" id="YWo-4c-ZRP"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="0Ue-J9-dA6" secondAttribute="trailing" id="aAD-Ut-FYt"/>
                             <constraint firstItem="73J-gV-52F" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="aKJ-G7-8ir"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="0Ue-J9-dA6" secondAttribute="bottom" id="bQk-oX-IkX"/>
+                            <constraint firstItem="McH-WO-Jeb" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="dRq-N6-mM4"/>
                             <constraint firstItem="rt2-S9-wif" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="kyn-YJ-PXb"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="trailing" secondItem="73J-gV-52F" secondAttribute="trailing" id="laL-Ba-xdE"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="bottom" secondItem="mfF-t3-aFo" secondAttribute="bottom" constant="-60" id="o5B-Ss-vGU"/>
+                            <constraint firstItem="McH-WO-Jeb" firstAttribute="top" secondItem="0xG-XK-012" secondAttribute="top" constant="-60" id="qux-uF-x4e"/>
                             <constraint firstItem="0xG-XK-012" firstAttribute="top" secondItem="mfF-t3-aFo" secondAttribute="top" constant="60" id="wxi-tv-3jg"/>
                             <constraint firstItem="mfF-t3-aFo" firstAttribute="leading" secondItem="0xG-XK-012" secondAttribute="leading" id="xTY-Jh-CCW"/>
                         </constraints>
@@ -155,6 +163,7 @@
                     <navigationItem key="navigationItem" id="Nd2-j8-Zqp"/>
                     <connections>
                         <outlet property="blurView" destination="mfF-t3-aFo" id="lsC-bc-b15"/>
+                        <outlet property="gradientView" destination="McH-WO-Jeb" id="XDG-im-I3q"/>
                         <outlet property="logButton" destination="DiA-d6-mQg" id="5a1-lI-CxG"/>
                         <outlet property="plusButton" destination="sLn-0p-9cR" id="LjS-lr-0Py"/>
                         <outlet property="plusButtonContainer" destination="t3j-yq-gUW" id="sEO-Zl-Thf"/>

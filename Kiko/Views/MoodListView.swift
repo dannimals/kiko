@@ -17,8 +17,8 @@ class MoodListView: UIView {
 
     private func setupColors() {
         backgroundColor = .clear
-        collectionView.backgroundColor = .lightBlue
-        headerView.backgroundColor = .lightBlue
+        collectionView.backgroundColor = .blue05
+        headerView.backgroundColor = .blue05
     }
 
     private func setupCloseButton() {

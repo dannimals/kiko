@@ -3,7 +3,7 @@ import KikoUIKit
 
 class CustomPagingControl: UIView {
 
-    private let defaultSelectedColor = UIColor.cornflowerYellow
+    private let defaultSelectedColor = UIColor.yellow04
     private let circleStackView = UIStackView()
     private(set) var selectedIndex: Int = 0
 

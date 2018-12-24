@@ -1,9 +1,27 @@
 import KikoModels
 import KikoUIKit
 
+struct CreateMoodViewState {
+    enum Message {
+        case moodChanged(MoodType)
+    }
+
+    var moodType: MoodType { return moodPage.moodType }
+    private var moodPage: MoodPageDisplay = MoodPageDisplay(type: .chick)
+
+    mutating func send(_ message: Message) {
+        switch message {
+        case let .moodChanged(moodType):
+            moodPage = MoodPageDisplay(type: moodType)
+        }
+    }
+}
+
 class CreateMoodViewController: BaseViewController {
 
-    private var currentMoodType: MoodType = .chick
+    private var state = CreateMoodViewState() {
+        didSet { updateViews() }
+    }
     private var moodManager: MoodManaging!
     private var menuNavigationCoordinator: MenuNavigationCoordinating!
     private var calendarManager: CalendarManaging!
@@ -12,6 +30,7 @@ class CreateMoodViewController: BaseViewController {
     private let wavesButton = UIButton()
     private let ringButton = UIButton()
 
+    @IBOutlet weak var gradientView: GradientView!
     @IBOutlet weak var logButton: RoundedButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var plusButtonShadow: UIView!
@@ -78,7 +97,7 @@ class CreateMoodViewController: BaseViewController {
         toggleMenu()
     }
 
-    private func toggleMenu() {
+    @objc private func toggleMenu() {
         rotatePlusButton()
         toggleBlurView(duration: 0.2)
         buttonsDrawerView.toggle()
@@ -90,21 +109,15 @@ class CreateMoodViewController: BaseViewController {
         }
     }
 
-    private var rotated = false
     private func rotatePlusButton() {
-        let angle: CGFloat = rotated ? -45 : 45
+        let rotation = plusButton.transform.rotation
+        let angle: CGFloat = rotation == 45 ? -45 : 45
         plusButton.rotate(by: angle)
-        rotated = !rotated
-    }
-
-    private func moodType(from setting: MoodUISetting) -> MoodType {
-        guard let moodType = MoodType(rawValue: setting.rawValue) else { return MoodType.chick }
-        return  moodType
     }
 
     private func saveMood() {
-        let mood = Mood(type: currentMoodType, date: Date())
-        guard let color = MoodUISetting(rawValue: mood.type)?.accessoryColor else { return }
+        let mood = Mood(type: state.moodType, date: Date())
+        let color = MoodPageDisplay(type: state.moodType).accessoryColor
         do {
             try moodManager.save(mood)
             presentModalForSuccess(imageColor: color)
@@ -115,9 +128,15 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = .backgroundYellow
         setupButtons()
         setupButtonsDrawerView()
+        updateViews()
+        setupBlurView()
+    }
+
+    private func setupBlurView() {
+        let tapGR = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
+        blurView.addGestureRecognizer(tapGR)
     }
 
     private func setupButtonsDrawerView() {
@@ -135,21 +154,26 @@ class CreateMoodViewController: BaseViewController {
         wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
         wavesButton.tintColor = .purple02
         wavesButton.bounds.size = CGSize(width: 40, height: 40)
-        logButton.backgroundColor = .cornflowerYellow
+        logButton.backgroundColor = .yellow04
         plusButton.adjustsImageWhenHighlighted = false
         plusButtonShadow.addShadow()
     }
+
+    private func updateViews() {
+        let page = MoodPageDisplay(type: state.moodType)
+        calendarViewController?.updateColor(page.accessoryColor)
+        UIView.animate(withDuration: 0.4) {
+            self.logButton.backgroundColor = page.accessoryColor
+            self.logButton.highlightedBackgroundColor = page.accessoryColor.faded
+            self.gradientView.colors = page.gradientColors
+        }
+    }
+
 }
 
 extension CreateMoodViewController: MoodPagingObserving {
 
     func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
-        currentMoodType = page.moodType
-        calendarViewController?.updateColor(page.accessoryColor)
-        UIView.animate(withDuration: 0.4) {
-            self.view.backgroundColor = page.primaryColor
-            self.logButton.backgroundColor = page.accessoryColor
-            self.logButton.highlightedBackgroundColor = page.selectedColor
-        }
+        state.send(.moodChanged(page.moodType))
     }
 }
