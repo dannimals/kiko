@@ -13,7 +13,7 @@ class MainNavigationCoordinator: AppCoordinating {
     let window: UIWindow?
 
     lazy var mainViewController: UINavigationController? = {
-        let createMoodViewStoryboard = UIStoryboard(name: StoryboardName.createMoodView, bundle: nil)
+        let createMoodViewStoryboard = UIStoryboard(name: StoryboardName.createMood, bundle: nil)
         guard let navigationController = createMoodViewStoryboard.instantiateInitialViewController() as? UINavigationController,
             let createMoodViewController = navigationController.childViewControllers.first as? CreateMoodViewController else { return nil }
         createMoodViewController.configure(menuNavigationCoordinator: menuNavigationCoordinator, calendarManager: calendarManager, moodManager: moodManager)

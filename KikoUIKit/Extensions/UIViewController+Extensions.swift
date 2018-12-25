@@ -7,6 +7,7 @@ extension UIViewController: NibIdentifiable {
 }
 
 extension UIViewController {
+
     public static func loadFromNib<T: UIViewController>() -> T {
         guard let viewController = Bundle.main.loadNibNamed(T.identifier, owner: self, options: nil)?.first as? T else { fatalError("Error loading nib with name \(identifier)") }
 

@@ -50,7 +50,7 @@ protocol MoodPagingDelegate: class {
     func pagingViewDidScroll(_ pagingView: MoodPagingView, page: MoodPageDisplayable)
 }
 
-class PagingViewController: BaseViewController {
+class PagingViewController: BaseViewController, StoryboardLoadable {
 
     private let pagingView: MoodPagingView = MoodPagingView.loadFromNib()
 

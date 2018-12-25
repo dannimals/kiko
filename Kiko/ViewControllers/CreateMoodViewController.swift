@@ -19,23 +19,14 @@ struct CreateMoodViewState {
 
 class CreateMoodViewController: BaseViewController {
 
+    @IBOutlet weak var contentView: CreateMoodView!
     private var state = CreateMoodViewState() {
         didSet { updateViews() }
     }
     private var moodManager: MoodManaging!
     private var menuNavigationCoordinator: MenuNavigationCoordinating!
     private var calendarManager: CalendarManaging!
-    private var calendarViewController: CalendarViewController?
-    private let buttonsDrawerView = ButtonsDrawerView()
-    private let wavesButton = UIButton()
-    private let ringButton = UIButton()
-
-    @IBOutlet weak var gradientView: GradientView!
-    @IBOutlet weak var logButton: RoundedButton!
-    @IBOutlet weak var plusButton: UIButton!
-    @IBOutlet weak var plusButtonShadow: UIView!
-    @IBOutlet weak var blurView: UIView!
-    @IBOutlet weak var plusButtonContainer: UIView!
+    private var calendarViewController: CalendarViewController!
 
     func configure(menuNavigationCoordinator: MenuNavigationCoordinating,
                    calendarManager: CalendarManaging,
@@ -45,24 +36,32 @@ class CreateMoodViewController: BaseViewController {
         self.calendarManager = calendarManager
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destination = segue.destination
-        switch destination {
-        case let destination as CalendarViewController:
-            destination.configure(calendarManager: calendarManager, moodManager: moodManager)
-            calendarViewController = destination
-        case let destination as PagingViewController:
-            _ = destination.view
-            destination.configure(viewModel: MoodPageViewModel(), observer: self)
-        default: break
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupViews()
-        setupBindings()
+        setup()
+    }
+
+    private func setup() {
+        updateViews()
+        contentView.delegate = self
+        setupChildViewControllers()
+    }
+
+    private func setupChildViewControllers() {
+        calendarViewController = CalendarViewController.initFromStoryboard(StoryboardName.createMood)
+        calendarViewController.configure(calendarManager: calendarManager, moodManager: moodManager)
+        calendarViewController.willMove(toParentViewController: self)
+        calendarViewController.view.stretchToFill(parentView: contentView.calendarContainerView)
+        addChildViewController(calendarViewController)
+        calendarViewController.didMove(toParentViewController: self)
+
+        let pagingViewController = PagingViewController.initFromStoryboard(StoryboardName.createMood)
+        pagingViewController.configure(viewModel: MoodPageViewModel(), observer: self)
+        pagingViewController.view.stretchToFill(parentView: contentView.pagingContainerView)
+        pagingViewController.willMove(toParentViewController: self)
+        addChildViewController(pagingViewController)
+        pagingViewController.didMove(toParentViewController: self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -72,47 +71,8 @@ class CreateMoodViewController: BaseViewController {
     }
 
     private func updateLogButton() {
-        let hasMoodForToday = moodManager.mood(forDate: Date()) != nil 
-        let logButtonTitle = hasMoodForToday ? Glossary.update.rawValue : Glossary.log.rawValue
-        logButton.title = logButtonTitle
-    }
-
-    private func setupBindings() {
-        wavesButton.addTarget(self, action: #selector(wavesButtonTapped), for: .touchUpInside)
-        ringButton.addTarget(self, action: #selector(ringButtonTapped), for: .touchUpInside)
-    }
-    @IBAction func ringButtonTapped(_ sender: Any) {
-        toggleMenu()
-        menuNavigationCoordinator.start()
-    }
-    @IBAction func wavesButtonTapped(_ sender: Any) {
-        toggleMenu()
-        menuNavigationCoordinator.showWavesViewController()
-    }
-    @IBAction func logButtonTapped(_ sender: Any) {
-        saveMood()
-        calendarViewController?.reloadDates(animated: false)
-    }
-    @IBAction func plusButtonTapped(_ sender: Any) {
-        toggleMenu()
-    }
-
-    @objc private func toggleMenu() {
-        rotatePlusButton()
-        toggleBlurView(duration: 0.2)
-        buttonsDrawerView.toggle()
-    }
-
-    private func toggleBlurView(duration: Double) {
-        UIView.animate(withDuration: duration) {
-            self.blurView.alpha = 0.8 - self.blurView.alpha
-        }
-    }
-
-    private func rotatePlusButton() {
-        let rotation = plusButton.transform.rotation
-        let angle: CGFloat = rotation == 45 ? -45 : 45
-        plusButton.rotate(by: angle)
+        let hasMoodForToday = moodManager.mood(forDate: Date()) != nil
+        contentView.updateLogButton(hasMoodForToday: hasMoodForToday)
     }
 
     private func saveMood() {
@@ -127,45 +87,11 @@ class CreateMoodViewController: BaseViewController {
         }
     }
 
-    private func setupViews() {
-        setupButtons()
-        setupButtonsDrawerView()
-        updateViews()
-        setupBlurView()
-    }
-
-    private func setupBlurView() {
-        let tapGR = UITapGestureRecognizer(target: self, action: #selector(toggleMenu))
-        blurView.addGestureRecognizer(tapGR)
-    }
-
-    private func setupButtonsDrawerView() {
-        buttonsDrawerView.configure(buttons: [ringButton, wavesButton], initialOffset: plusButtonContainer.bounds.height + 32)
-        view.addSubview(buttonsDrawerView)
-        buttonsDrawerView.translatesAutoresizingMaskIntoConstraints = false
-        buttonsDrawerView.bottomAnchor.constraint(equalTo: plusButton.bottomAnchor).isActive = true
-        buttonsDrawerView.centerXAnchor.constraint(equalTo: plusButton.centerXAnchor).isActive = true
-        view.insertSubview(plusButtonContainer, aboveSubview: buttonsDrawerView)
-    }
-
-    private func setupButtons() {
-        ringButton.setImage(#imageLiteral(resourceName: "moodRing"), for: .normal)
-        ringButton.bounds.size = CGSize(width: 40, height: 40)
-        wavesButton.setImage(#imageLiteral(resourceName: "waves"), for: .normal)
-        wavesButton.tintColor = .purple02
-        wavesButton.bounds.size = CGSize(width: 40, height: 40)
-        logButton.backgroundColor = .yellow04
-        plusButton.adjustsImageWhenHighlighted = false
-        plusButtonShadow.addShadow()
-    }
-
     private func updateViews() {
         let page = MoodPageDisplay(type: state.moodType)
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
-            self.logButton.backgroundColor = page.accessoryColor
-            self.logButton.highlightedBackgroundColor = page.accessoryColor.faded
-            self.gradientView.colors = page.gradientColors
+            self.contentView.updateColorsForPage(page)
         }
     }
 
@@ -175,5 +101,19 @@ extension CreateMoodViewController: MoodPagingObserving {
 
     func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
         state.send(.moodChanged(page.moodType))
+    }
+}
+
+extension CreateMoodViewController: CreateMoodViewDelegate {
+
+    func ringButtonTapped(_ button: UIButton) {
+        menuNavigationCoordinator.start()
+    }
+    func wavesButtonTapped(_ button: UIButton) {
+        menuNavigationCoordinator.showWavesViewController()
+    }
+    func logButtonTapped(_ button: UIButton) {
+        saveMood()
+        calendarViewController?.reloadDates(animated: false)
     }
 }
