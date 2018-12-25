@@ -58,7 +58,20 @@
         <!--Paging View Controller-->
         <scene sceneID="sFv-n3-2eh">
             <objects>
-                <viewController storyboardIdentifier="PagingViewController" id="SdK-2U-8TD" customClass="PagingViewController" customModule="Kiko" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController storyboardIdentifier="PagingViewController" id="SdK-2U-8TD" customClass="PagingViewController" customModule="Kiko" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7ye-Pr-zxF"/>
+                        <viewControllerLayoutGuide type="bottom" id="mcR-Uo-CN9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TBE-Tn-pbU" customClass="MoodPagingView" customModule="Kiko" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="TBE-Tn-pbU" id="aX9-LT-3ZD"/>
+                    </connections>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UkL-DY-a8T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="364" y="301"/>

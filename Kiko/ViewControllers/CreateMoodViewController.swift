@@ -57,8 +57,8 @@ class CreateMoodViewController: BaseViewController {
         calendarViewController.didMove(toParentViewController: self)
 
         let pagingViewController = PagingViewController.initFromStoryboard(StoryboardName.createMood)
-        pagingViewController.configure(viewModel: MoodPageViewModel(), observer: self)
         pagingViewController.view.stretchToFill(parentView: contentView.pagingContainerView)
+        pagingViewController.configure(viewModel: MoodPageViewModel(), observer: self)
         pagingViewController.willMove(toParentViewController: self)
         addChildViewController(pagingViewController)
         pagingViewController.didMove(toParentViewController: self)

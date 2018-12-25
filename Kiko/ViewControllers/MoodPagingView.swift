@@ -1,8 +1,9 @@
 
 import KikoUIKit
 
-class MoodPagingView: UIView, ViewStylePreparing {
+class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
 
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var greetingLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagingControl: CustomPagingControl!
@@ -11,6 +12,12 @@ class MoodPagingView: UIView, ViewStylePreparing {
     private let moodStackView = UIStackView()
     private var pages: [MoodPageDisplayable] = []
     private var viewModel: MoodPageViewModel!
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+
+        loadViewFromNib()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,8 +34,6 @@ class MoodPagingView: UIView, ViewStylePreparing {
     private func updateMoodStackView() {
         layoutMoodStackView(pageCount: CGFloat(pages.count))
         pages.forEach {
-            
-            
             guard let animatedImages = UIImage.animatedImage(with: $0.images, duration: 1.5) else { return }
             moodStackView.addArrangedSubview(createImageView(animatedImages))
         }
@@ -38,6 +43,10 @@ class MoodPagingView: UIView, ViewStylePreparing {
             imageView.bounds = scrollView.bounds
             return imageView
         }
+    }
+
+    func setupColors() {
+        backgroundColor = .clear
     }
 
     func setupViews() {
@@ -63,7 +72,7 @@ class MoodPagingView: UIView, ViewStylePreparing {
         let width = pageCount * bounds.width
         moodStackView.widthAnchor.constraint(equalToConstant: width).isActive = true
         moodStackView.layoutIfNeeded()
-        scrollView.contentSize = CGSize(width: width, height: scrollView.bounds.height)
+        scrollView.layoutIfNeeded()
     }
 
     private func setupLabel() {

@@ -52,23 +52,20 @@ protocol MoodPagingDelegate: class {
 
 class PagingViewController: BaseViewController, StoryboardLoadable {
 
-    private let pagingView: MoodPagingView = MoodPagingView.loadFromNib()
+    @IBOutlet weak var contentView: MoodPagingView!
+    private var viewModel: MoodPageViewModel?
 
     func configure(viewModel: MoodPageViewModel, observer: MoodPagingObserving) {
-        pagingView.configure(viewModel: viewModel)
+        self.viewModel = viewModel
+        contentView.configure(viewModel: viewModel)
         viewModel.addObserver(observer)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-        configureViews()
-    }
-
-    private func configureViews() {
-        view.addSubview(pagingView)
-        pagingView.stretchToFill()
-        pagingView.layoutIfNeeded()
+        let width = CGFloat(viewModel?.pages.count ?? 0) * view.bounds.width
+        contentView.scrollView.contentSize = CGSize(width: width, height: contentView.scrollView.bounds.height)
     }
 
 }
