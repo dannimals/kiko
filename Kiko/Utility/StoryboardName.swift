@@ -1,6 +1,7 @@
 
 struct StoryboardName {
 
-    static let createMoodView = "CreateMoodView"
+    static let createMood = "CreateMood"
+    static let main = "Main"
     
 }

@@ -1,7 +1,7 @@
 import KikoModels
 import KikoUIKit
 
-class CalendarViewController: BaseViewController {
+class CalendarViewController: BaseViewController, StoryboardLoadable {
 
     private let calendarWeekView: CalendarWeekView = CalendarWeekView.loadFromNib()
     private var calendarManager: CalendarManaging!
