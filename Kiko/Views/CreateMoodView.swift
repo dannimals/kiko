@@ -91,7 +91,7 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
 
     private func rotatePlusButton() {
         let rotation = plusButton.transform.rotation
-        let angle: CGFloat = rotation == 45 ? -45 : 45
+        let angle: CGFloat = rotation == 0 ? 45 : -45
         plusButton.rotate(by: angle)
     }
 
