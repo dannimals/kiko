@@ -16,7 +16,6 @@ class MoodListViewController: BaseViewController {
         super.loadView()
 
         view = moodListView
-        moodListView.collectionView.contentInset.bottom = 100
         moodListView.configure(dataSource: self)
     }
 
@@ -55,9 +54,7 @@ class MoodListViewController: BaseViewController {
 extension MoodListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let monthCell = collectionView.dequeueReusableCell(withReuseIdentifier: MonthResultCollectionViewCell.identifier, for: indexPath) as? MonthResultCollectionViewCell
-            else { fatalError("Could not dequeue MonthResultsCollectionViewCell") }
-
+        let monthCell = collectionView.dequeueReusableCell(MonthResultCollectionViewCell.self, for: indexPath)
         let monthData = viewModel.dataForItemAt(indexPath)
         monthCell.configure(with: monthData)
         return monthCell

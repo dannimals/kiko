@@ -1,6 +1,6 @@
 import KikoUIKit
 
-class MoodListView: UIView {
+class MoodListView: UIView, ViewStylePreparing {
 
     let closeButtonTapped = Channel<UIControlEvents>()
 
@@ -10,15 +10,23 @@ class MoodListView: UIView {
 
     func configure(dataSource: UICollectionViewDataSource) {
         collectionView.dataSource = dataSource
-        setupCollectionView()
-        setupCloseButton()
-        setupColors()
     }
 
-    private func setupColors() {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        setup()
+    }
+
+    func setupViews() {
+        setupCollectionView()
+        setupCloseButton()
+    }
+
+    func setupColors() {
         backgroundColor = .clear
-        collectionView.backgroundColor = .blue05
-        headerView.backgroundColor = .blue05
+        collectionView.backgroundColor = .blue01
+        headerView.backgroundColor = .blue01
     }
 
     private func setupCloseButton() {
@@ -36,8 +44,9 @@ class MoodListView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 18, left: 25, bottom: 18, right: 25)
         layout.sectionHeadersPinToVisibleBounds = true
         collectionView.collectionViewLayout = layout
-        collectionView.register(UINib(nibName: MonthResultCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: MonthResultCollectionViewCell.identifier)
-        collectionView.register(MonthResultHeaderCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: MonthResultHeaderCell.identifier)
+        collectionView.registerNibCell(MonthResultCollectionViewCell.self)
+        collectionView.registerViewClass(MonthResultHeaderCell.self)
+        collectionView.contentInset.bottom = 100
     }
 
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }

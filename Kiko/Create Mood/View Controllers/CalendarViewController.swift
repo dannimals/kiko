@@ -85,8 +85,7 @@ extension CalendarViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let dayCell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarDayCollectionViewCell.identifier, for: indexPath) as? CalendarDayCollectionViewCell
-            else { return UICollectionViewCell() }
+        let dayCell = collectionView.dequeueReusableCell(CalendarDayCollectionViewCell.self, for: indexPath)
         let date = calendarManager.dateForIndexPath(indexPath)
         var moodColor: UIColor?
         if let mood = moodManager.mood(forDate: date), let moodType = MoodType(rawValue: mood.type) {

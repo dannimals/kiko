@@ -32,7 +32,7 @@ class CalendarWeekView: UIView {
     func configure(dataSource: UICollectionViewDataSource, delegate: CalendarWeekViewDelegate) {
         datesCollectionView.dataSource = dataSource
         datesCollectionView.delegate = self
-        datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
+        datesCollectionView.registerCellClass(CalendarDayCollectionViewCell.self)
         datesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         calendarDelegate = delegate
         setupEvents()
