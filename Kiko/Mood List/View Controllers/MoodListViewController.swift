@@ -54,7 +54,7 @@ class MoodListViewController: BaseViewController {
 extension MoodListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let monthCell = collectionView.dequeueReusableCell(MonthResultCollectionViewCell.self, for: indexPath)
+        let monthCell = collectionView.dequeueReusableCell(MoodListCollectionViewCell.self, for: indexPath)
         let monthData = viewModel.dataForItemAt(indexPath)
         monthCell.configure(with: monthData)
         return monthCell
@@ -71,16 +71,13 @@ extension MoodListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: MonthResultHeaderCell.reuseIdentifier,
-                                                                             for: indexPath) as? MonthResultHeaderCell else { fatalError("Could not dequeue MonthResultHeaderCell") }
+            let headerView = collectionView.dequeueSupplementaryView(MoodListHeaderCell.self, indexPath: indexPath)
             headerView.configure(year: 2018)
             return headerView
-        default:
-            assertionFailure("Unexpected MoodList collection view error")
+        default: break
         }
 
-        return MonthResultHeaderCell()
+        return MoodListHeaderCell()
     }
 
 }

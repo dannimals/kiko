@@ -19,6 +19,8 @@ class ArcDrawingView: UIView {
         let strokeWidth: CGFloat = 10.0
         var currentEndAngle: CGFloat = 0
 
+        drawPath(arcCenter: arcCenter, radius: radius, startAngle: 0, endAngle: 2 * CGFloat.pi, strokeWidth: strokeWidth, strokeColor: .defaultLineColor)
+
         for i in 0..<4 {
             let oldAngle = currentEndAngle
             let moodType = unwrapOrElse(MoodType(rawValue: i), fallback: MoodType.chick)

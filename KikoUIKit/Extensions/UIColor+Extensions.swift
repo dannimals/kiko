@@ -16,6 +16,9 @@ public extension UIColor {
     public static var monthResultBackground: UIColor {
         return UIColor(hex: 0xFFFFFF).withAlphaComponent(0.46)
     }
+    public static var defaultLineColor: UIColor {
+        return UIColor.white.withAlphaComponent(0.2)
+    }
     public static var paleBlue: UIColor {
         return UIColor(hex: 0xE3F4FF)
     }
@@ -46,6 +49,9 @@ public extension UIColor {
     public static var purple03: UIColor {
         return UIColor(hex: 0xA775CD)
     }
+    public static var purple04: UIColor {
+        return UIColor(hex: 0x4A4885)
+    }
     public static var yellow01: UIColor {
         return UIColor(hex: 0xF0CA6A)
     }
@@ -71,7 +77,10 @@ public extension UIColor {
         return UIColor(hex: 0x6094E2)
     }
     public static var blue05: UIColor {
-        return UIColor(hex: 0xACD4F0)
+        return UIColor(hex: 0x9EA6F2)
+    }
+    public static var blue06: UIColor {
+        return UIColor(hex: 0xDFE2FA)
     }
     public static var red01: UIColor {
         return UIColor(hex: 0xF9C3BA)

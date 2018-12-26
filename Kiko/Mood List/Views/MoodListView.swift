@@ -25,8 +25,8 @@ class MoodListView: UIView, ViewStylePreparing {
 
     func setupColors() {
         backgroundColor = .clear
-        collectionView.backgroundColor = .blue01
-        headerView.backgroundColor = .blue01
+        collectionView.backgroundColor = .blue05
+        headerView.backgroundColor = .blue05
     }
 
     private func setupCloseButton() {
@@ -44,8 +44,8 @@ class MoodListView: UIView, ViewStylePreparing {
         layout.sectionInset = UIEdgeInsets(top: 18, left: 25, bottom: 18, right: 25)
         layout.sectionHeadersPinToVisibleBounds = true
         collectionView.collectionViewLayout = layout
-        collectionView.registerNibCell(MonthResultCollectionViewCell.self)
-        collectionView.registerViewClass(MonthResultHeaderCell.self)
+        collectionView.registerNibCell(MoodListCollectionViewCell.self)
+        collectionView.registerViewClass(MoodListHeaderCell.self)
         collectionView.contentInset.bottom = 100
     }
 

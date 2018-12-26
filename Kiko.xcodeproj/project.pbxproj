@@ -68,9 +68,9 @@
 		9E43B3A4212506F60046E4F1 /* MoodLogCompletionStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B3A3212506F60046E4F1 /* MoodLogCompletionStateViewController.swift */; };
 		9E43B3A62125081C0046E4F1 /* MoodLogCompletionStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E43B3A52125081C0046E4F1 /* MoodLogCompletionStateViewController.xib */; };
 		9E43B3A821250CF20046E4F1 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43B3A721250CF20046E4F1 /* UIViewController+Extensions.swift */; };
-		9E453C2C20C0D3580041C219 /* MonthResultCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */; };
-		9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */; };
-		9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */; };
+		9E453C2C20C0D3580041C219 /* MoodListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E453C2B20C0D3580041C219 /* MoodListCollectionViewCell.xib */; };
+		9E453C2E20C0D3B60041C219 /* MoodListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2D20C0D3B60041C219 /* MoodListCollectionViewCell.swift */; };
+		9E453C3020C0DE8D0041C219 /* MoodListHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C2F20C0DE8D0041C219 /* MoodListHeaderCell.swift */; };
 		9E453C3220C76AB60041C219 /* MoodListCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */; };
 		9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E453C3520CCBDD10041C219 /* MoodListView.swift */; };
 		9E49A57E2140B9130045709D /* WeekCalendarCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */; };
@@ -249,9 +249,9 @@
 		9E43B3A3212506F60046E4F1 /* MoodLogCompletionStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodLogCompletionStateViewController.swift; sourceTree = "<group>"; };
 		9E43B3A52125081C0046E4F1 /* MoodLogCompletionStateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodLogCompletionStateViewController.xib; sourceTree = "<group>"; };
 		9E43B3A721250CF20046E4F1 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MonthResultCollectionViewCell.xib; sourceTree = "<group>"; };
-		9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultCollectionViewCell.swift; sourceTree = "<group>"; };
-		9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthResultsHeaderCell.swift; sourceTree = "<group>"; };
+		9E453C2B20C0D3580041C219 /* MoodListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodListCollectionViewCell.xib; sourceTree = "<group>"; };
+		9E453C2D20C0D3B60041C219 /* MoodListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E453C2F20C0DE8D0041C219 /* MoodListHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListHeaderCell.swift; sourceTree = "<group>"; };
 		9E453C3120C76AB60041C219 /* MoodListCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListCollectionViewLayout.swift; sourceTree = "<group>"; };
 		9E453C3520CCBDD10041C219 /* MoodListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListView.swift; sourceTree = "<group>"; };
 		9E49A57D2140B9130045709D /* WeekCalendarCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekCalendarCollectionView.swift; sourceTree = "<group>"; };
@@ -755,9 +755,9 @@
 		9EA9593421D42991005AD789 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				9E453C2D20C0D3B60041C219 /* MonthResultCollectionViewCell.swift */,
-				9E453C2B20C0D3580041C219 /* MonthResultCollectionViewCell.xib */,
-				9E453C2F20C0DE8D0041C219 /* MonthResultsHeaderCell.swift */,
+				9E453C2D20C0D3B60041C219 /* MoodListCollectionViewCell.swift */,
+				9E453C2B20C0D3580041C219 /* MoodListCollectionViewCell.xib */,
+				9E453C2F20C0DE8D0041C219 /* MoodListHeaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1015,7 +1015,7 @@
 				9E00B28820CCC2E200C2FD17 /* MoodListView.xib in Resources */,
 				9EBE973F216ADA0C00FB54FD /* MoodPagingView.xib in Resources */,
 				9E391A0A20730D5D00492F54 /* CalendarWeekView.xib in Resources */,
-				9E453C2C20C0D3580041C219 /* MonthResultCollectionViewCell.xib in Resources */,
+				9E453C2C20C0D3580041C219 /* MoodListCollectionViewCell.xib in Resources */,
 				9E43B3A62125081C0046E4F1 /* MoodLogCompletionStateViewController.xib in Resources */,
 				9EA9593721D42A23005AD789 /* Info.plist in Resources */,
 				9E3919732070856500492F54 /* Assets.xcassets in Resources */,
@@ -1197,7 +1197,7 @@
 				9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */,
 				9E4261EE21AF9AC8000E372E /* ImageName.swift in Sources */,
 				9EB53863213DDC4F00BB6A7A /* CalendarViewController.swift in Sources */,
-				9E453C2E20C0D3B60041C219 /* MonthResultCollectionViewCell.swift in Sources */,
+				9E453C2E20C0D3B60041C219 /* MoodListCollectionViewCell.swift in Sources */,
 				9E9234B42187ECF50095C4A5 /* NotificationCoodinator.swift in Sources */,
 				9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */,
 				9EBE974B2178278000FB54FD /* ButtonsDrawerView.swift in Sources */,
@@ -1221,7 +1221,7 @@
 				9EA9592821D427F9005AD789 /* MoodListViewModel.swift in Sources */,
 				9E3CAF392158650E00E44C8D /* CustomPagingControl.swift in Sources */,
 				9EB5385B212CF84F00BB6A7A /* Glossary.swift in Sources */,
-				9E453C3020C0DE8D0041C219 /* MonthResultsHeaderCell.swift in Sources */,
+				9E453C3020C0DE8D0041C219 /* MoodListHeaderCell.swift in Sources */,
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
 				9EA9592721D427F9005AD789 /* MonthData.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
