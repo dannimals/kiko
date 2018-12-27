@@ -11,7 +11,7 @@
 		926F1986B38428F4AA6ECCD5 /* Pods_KikoModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B30D3B814434A53A05F90D91 /* Pods_KikoModels.framework */; };
 		9E00B28820CCC2E200C2FD17 /* MoodListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E00B28720CCC2E200C2FD17 /* MoodListView.xib */; };
 		9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1072085969800CC5444 /* Date+Extensions.swift */; };
-		9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1092086D72000CC5444 /* WavesViewController.swift */; };
+		9E10A10A2086D72000CC5444 /* AnimatedWavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1092086D72000CC5444 /* AnimatedWavesViewController.swift */; };
 		9E10A10F2086D86300CC5444 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10E2086D86300CC5444 /* Channel.swift */; };
 		9E10A1112086D87000CC5444 /* Protected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1102086D87000CC5444 /* Protected.swift */; };
 		9E14130D2109594D006CD78D /* ArcDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E14130C2109594D006CD78D /* ArcDrawingView.swift */; };
@@ -54,7 +54,7 @@
 		9E3D38BE20A1414000E38BE6 /* AlmostEquatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */; };
 		9E3EC97F2117981800185D62 /* Weekday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3EC97E2117981800185D62 /* Weekday.swift */; };
 		9E41DDCF20A8C27E00A18E9A /* TappableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */; };
-		9E41DDD120A8CBD300A18E9A /* WavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD020A8CBD200A18E9A /* WavesView.swift */; };
+		9E41DDD120A8CBD300A18E9A /* AnimatedWavesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD020A8CBD200A18E9A /* AnimatedWavesView.swift */; };
 		9E41DDD320A8DECB00A18E9A /* MoodListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */; };
 		9E41DDD720A8DF8A00A18E9A /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */; };
 		9E41DDDA20AA71CF00A18E9A /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E41DDD920AA71CF00A18E9A /* Mood.swift */; };
@@ -87,6 +87,8 @@
 		9EA9592F21D428A0005AD789 /* CreateMoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9592C21D4289F005AD789 /* CreateMoodView.swift */; };
 		9EA9593021D428A0005AD789 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9592D21D428A0005AD789 /* RoundedButton.swift */; };
 		9EA9593721D42A23005AD789 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EA9593621D42A22005AD789 /* Info.plist */; };
+		9EA9593921D5407F005AD789 /* AnimatedWavesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EA9593821D5407F005AD789 /* AnimatedWavesView.xib */; };
+		9EA9593B21D54120005AD789 /* AnimatedWavesGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9593A21D54120005AD789 /* AnimatedWavesGradientLayer.swift */; };
 		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
 		9EB538492129FE2300BB6A7A /* MenuNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */; };
 		9EB5384C212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */; };
@@ -187,7 +189,7 @@
 		6AEB12078975DC02B78CB8FF /* Pods-KikoModelsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KikoModelsTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-KikoModelsTests/Pods-KikoModelsTests.release.xcconfig"; sourceTree = "<group>"; };
 		9E00B28720CCC2E200C2FD17 /* MoodListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoodListView.xib; sourceTree = "<group>"; };
 		9E10A1072085969800CC5444 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
-		9E10A1092086D72000CC5444 /* WavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewController.swift; sourceTree = "<group>"; };
+		9E10A1092086D72000CC5444 /* AnimatedWavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWavesViewController.swift; sourceTree = "<group>"; };
 		9E10A10E2086D86300CC5444 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		9E10A1102086D87000CC5444 /* Protected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protected.swift; sourceTree = "<group>"; };
 		9E14130C2109594D006CD78D /* ArcDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcDrawingView.swift; sourceTree = "<group>"; };
@@ -235,7 +237,7 @@
 		9E3D38BD20A1414000E38BE6 /* AlmostEquatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlmostEquatable.swift; sourceTree = "<group>"; };
 		9E3EC97E2117981800185D62 /* Weekday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekday.swift; sourceTree = "<group>"; };
 		9E41DDCE20A8C27E00A18E9A /* TappableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TappableButton.swift; sourceTree = "<group>"; };
-		9E41DDD020A8CBD200A18E9A /* WavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesView.swift; sourceTree = "<group>"; };
+		9E41DDD020A8CBD200A18E9A /* AnimatedWavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWavesView.swift; sourceTree = "<group>"; };
 		9E41DDD220A8DECB00A18E9A /* MoodListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodListViewController.swift; sourceTree = "<group>"; };
 		9E41DDD620A8DF8A00A18E9A /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		9E41DDD920AA71CF00A18E9A /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
@@ -270,6 +272,8 @@
 		9EA9592C21D4289F005AD789 /* CreateMoodView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMoodView.swift; sourceTree = "<group>"; };
 		9EA9592D21D428A0005AD789 /* RoundedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		9EA9593621D42A22005AD789 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9EA9593821D5407F005AD789 /* AnimatedWavesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimatedWavesView.xib; sourceTree = "<group>"; };
+		9EA9593A21D54120005AD789 /* AnimatedWavesGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWavesGradientLayer.swift; sourceTree = "<group>"; };
 		9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuNavigationCoordinator.swift; sourceTree = "<group>"; };
 		9EB5384B212A046C00BB6A7A /* MainNavigationCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationCoordinatorTests.swift; sourceTree = "<group>"; };
@@ -717,7 +721,9 @@
 		9EA9592921D42830005AD789 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9E41DDD020A8CBD200A18E9A /* WavesView.swift */,
+				9EA9593821D5407F005AD789 /* AnimatedWavesView.xib */,
+				9E41DDD020A8CBD200A18E9A /* AnimatedWavesView.swift */,
+				9EA9593A21D54120005AD789 /* AnimatedWavesGradientLayer.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -747,7 +753,7 @@
 		9EA9593321D42970005AD789 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E10A1092086D72000CC5444 /* WavesViewController.swift */,
+				9E10A1092086D72000CC5444 /* AnimatedWavesViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1019,6 +1025,7 @@
 				9E43B3A62125081C0046E4F1 /* MoodLogCompletionStateViewController.xib in Resources */,
 				9EA9593721D42A23005AD789 /* Info.plist in Resources */,
 				9E3919732070856500492F54 /* Assets.xcassets in Resources */,
+				9EA9593921D5407F005AD789 /* AnimatedWavesView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1201,6 +1208,7 @@
 				9E9234B42187ECF50095C4A5 /* NotificationCoodinator.swift in Sources */,
 				9EBE97472173D7DA00FB54FD /* MoodObserver.swift in Sources */,
 				9EBE974B2178278000FB54FD /* ButtonsDrawerView.swift in Sources */,
+				9EA9593B21D54120005AD789 /* AnimatedWavesGradientLayer.swift in Sources */,
 				9E3919E0207306E400492F54 /* CreateMoodViewController.swift in Sources */,
 				9E10A10F2086D86300CC5444 /* Channel.swift in Sources */,
 				9E453C3620CCBDD10041C219 /* MoodListView.swift in Sources */,
@@ -1225,14 +1233,14 @@
 				9E39196C2070856500492F54 /* AppDelegate.swift in Sources */,
 				9EA9592721D427F9005AD789 /* MonthData.swift in Sources */,
 				9E391A102073153800492F54 /* CalendarWeekView.swift in Sources */,
-				9E41DDD120A8CBD300A18E9A /* WavesView.swift in Sources */,
+				9E41DDD120A8CBD300A18E9A /* AnimatedWavesView.swift in Sources */,
 				9E324FF3207AB3EF00C7168B /* CalendarWeekCollectionViewLayout.swift in Sources */,
 				9E3D38BC208EC4D900E38BE6 /* CalendarManager.swift in Sources */,
 				9EBE9745216AE60100FB54FD /* MoodPageViewModel.swift in Sources */,
 				9E391A0720730A3B00492F54 /* BaseViewController.swift in Sources */,
 				9EBE9741216ADDA200FB54FD /* MoodPagingView.swift in Sources */,
 				9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */,
-				9E10A10A2086D72000CC5444 /* WavesViewController.swift in Sources */,
+				9E10A10A2086D72000CC5444 /* AnimatedWavesViewController.swift in Sources */,
 				9EA9593021D428A0005AD789 /* RoundedButton.swift in Sources */,
 				9E3CAEFB2151D1AB00E44C8D /* PagingViewController.swift in Sources */,
 				9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */,

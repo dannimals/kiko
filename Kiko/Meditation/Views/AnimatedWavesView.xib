@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14113"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimatedWavesView" customModule="Kiko" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="U0V-Rd-Wcl"/>
+                <outlet property="footerBottomConstraint" destination="eYx-Id-DaA" id="wcJ-8I-GZd"/>
+                <outlet property="footerView" destination="VvJ-FD-8gf" id="WPA-Iv-h7a"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Content View">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VvJ-FD-8gf">
+                    <rect key="frame" x="0.0" y="603" width="375" height="64"/>
+                    <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="jPR-bO-3ku"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="VvJ-FD-8gf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8Ea-bb-TsP"/>
+                <constraint firstAttribute="trailing" secondItem="VvJ-FD-8gf" secondAttribute="trailing" id="adX-u0-kQG"/>
+                <constraint firstAttribute="bottom" secondItem="VvJ-FD-8gf" secondAttribute="bottom" id="eYx-Id-DaA"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

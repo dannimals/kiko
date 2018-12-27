@@ -1,22 +1,14 @@
 import KikoUIKit
 
-class WavesViewController: UIViewController {
-    var wavesView: WavesView!
+class AnimatedWavesViewController: BaseViewController {
+
+    var contentView: AnimatedWavesView!
 
     override func loadView() {
         super.loadView()
 
-        let customView = UIView()
-        customView.backgroundColor = UIColor.backgroundBlue
-        wavesView = WavesView(frame: view.frame)
-        customView.addSubview(wavesView)
-        self.view = customView
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        wavesView.animate()
+        contentView = AnimatedWavesView(frame: view.frame)
+        self.view = contentView
     }
 
     override func viewDidLoad() {

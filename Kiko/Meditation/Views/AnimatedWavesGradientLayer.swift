@@ -1,14 +1,10 @@
 
 import KikoUIKit
 
-final class WavesView: UIView, ViewStylePreparing {
+final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
 
-    private let gradientLayer = CAGradientLayer()
-    private let baseRect = CGRect(x: 0, y: 0, width: 25, height: 25)
-    private let scaleFactor: CGFloat = 1.25
     private var waveLayers: [CAShapeLayer] = []
     private var totalDuration: CGFloat = 2.0
-    private let blurredCircle = UIView()
 
     private enum GradientAnimationConstant {
         static let animationDuration: CFTimeInterval = 10
@@ -35,8 +31,14 @@ final class WavesView: UIView, ViewStylePreparing {
         static let offset: Double = 25
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init() {
+        super.init()
+
+        setup()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
 
         setup()
     }
@@ -47,17 +49,19 @@ final class WavesView: UIView, ViewStylePreparing {
     }
 
     func animate() {
-        animateGradientLayer()
         animateCurves()
+        animateGradientLayer()
     }
 
-    private func setupGradientLayer() {
-        gradientLayer.frame = frame
-        gradientLayer.startPoint = GradientAnimationConstant.startPoint
-        gradientLayer.endPoint = GradientAnimationConstant.endPoint
-        gradientLayer.colors = GradientAnimationConstant.colors
-        gradientLayer.locations = GradientAnimationConstant.locations
-        layer.addSublayer(gradientLayer)
+    private func animateCurves() {
+        let duration = WaveAnimationConstant.animationDuration / 2
+        let div = duration / Double(WaveConstant.waveCount)
+
+        for (i, wave) in waveLayers.enumerated() {
+            let fadeOutDelay = div * Double(i)
+            let fadeInDelay = duration - fadeOutDelay
+            addWaveAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
+        }
     }
 
     private func animateGradientLayer() {
@@ -72,18 +76,7 @@ final class WavesView: UIView, ViewStylePreparing {
         gradientAnimation.animations = [startPointAnimation, endPointAnimation]
         gradientAnimation.autoreverses = true
         gradientAnimation.repeatCount = .infinity
-        gradientLayer.add(gradientAnimation, forKey: nil)
-    }
-
-    private func animateCurves() {
-        let duration = WaveAnimationConstant.animationDuration / 2
-        let div = duration / Double(WaveConstant.waveCount)
-
-        for (i, wave) in waveLayers.enumerated() {
-            let fadeOutDelay = div * Double(i)
-            let fadeInDelay = duration - fadeOutDelay
-            addWaveAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
-        }
+        add(gradientAnimation, forKey: nil)
     }
 
     private func addWaveAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
@@ -112,15 +105,22 @@ final class WavesView: UIView, ViewStylePreparing {
     }
 
     private func setupWaves() {
-        layer.masksToBounds = true
+        masksToBounds = true
         Array(0..<WaveConstant.waveCount).forEach {
             let width = Double($0) * WaveConstant.offset + WaveConstant.diameter
             let rect = CGRect(x: 0, y: 0, width: width, height: width)
             let alpha = CGFloat($0) / CGFloat(WaveConstant.waveCount)
             let waveLayer = createWaveLayer(rect: rect, alphaComponent: alpha)
-            layer.addSublayer(waveLayer)
+            addSublayer(waveLayer)
             waveLayers.append(waveLayer)
         }
+    }
+
+    private func setupGradientLayer() {
+        startPoint = GradientAnimationConstant.startPoint
+        endPoint = GradientAnimationConstant.endPoint
+        colors = GradientAnimationConstant.colors
+        locations = GradientAnimationConstant.locations
     }
 
     private func createWaveLayer(rect: CGRect, alphaComponent: CGFloat) -> CAShapeLayer {
@@ -128,7 +128,7 @@ final class WavesView: UIView, ViewStylePreparing {
         let waveLayer = CAShapeLayer()
         waveLayer.bounds = rect
         waveLayer.frame = rect
-        waveLayer.position = center
+        waveLayer.position = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
         waveLayer.strokeColor = WaveConstant.strokeColor.withAlphaComponent(alphaComponent).cgColor
         waveLayer.fillColor = WaveConstant.fillColor
         waveLayer.lineWidth = WaveConstant.lineWidth
@@ -138,9 +138,4 @@ final class WavesView: UIView, ViewStylePreparing {
         return waveLayer
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-
-        setup()
-    }
 }
