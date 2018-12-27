@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LQB-fu-dvJ" customClass="MonthResultCollectionViewCell" customModule="Kiko" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="LQB-fu-dvJ" customClass="MoodListCollectionViewCell" customModule="Kiko" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="370" height="132"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -20,16 +20,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" text="June" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEd-Ca-bja">
-                        <rect key="frame" x="51" y="16" width="42.5" height="26"/>
+                        <rect key="frame" x="51" y="8" width="42.5" height="26"/>
                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
                         <color key="textColor" red="0.5725490196078431" green="0.72156862745098038" blue="0.82352941176470584" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYp-Rn-MvR" userLabel="Circle Container View">
-                        <rect key="frame" x="0.0" y="52" width="156" height="80"/>
+                        <rect key="frame" x="0.0" y="44" width="156" height="88"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kSo-s4-LZl" customClass="ArcDrawingView" customModule="Kiko" customModuleProvider="target">
-                                <rect key="frame" x="32" y="-16" width="80" height="80"/>
+                                <rect key="frame" x="32" y="-8" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="VAJ-Wx-XbZ"/>
                                     <constraint firstAttribute="width" constant="80" id="YXj-xY-Ys4"/>
@@ -168,7 +168,7 @@
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="bottom" secondItem="zOb-RX-Sla" secondAttribute="bottom" constant="5" id="GJs-ZQ-h6W"/>
                 <constraint firstItem="JYp-Rn-MvR" firstAttribute="trailing" secondItem="cur-zb-Pkd" secondAttribute="trailing" id="JiF-H3-cIe"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="trailing" secondItem="9k4-8V-X7J" secondAttribute="trailing" constant="15" id="Msv-sL-y2s"/>
-                <constraint firstItem="PEd-Ca-bja" firstAttribute="top" secondItem="Ll7-Ta-Ge6" secondAttribute="top" constant="16" id="PBT-fx-fKT"/>
+                <constraint firstItem="PEd-Ca-bja" firstAttribute="top" secondItem="Ll7-Ta-Ge6" secondAttribute="top" constant="8" id="PBT-fx-fKT"/>
                 <constraint firstItem="Ll7-Ta-Ge6" firstAttribute="top" secondItem="cur-zb-Pkd" secondAttribute="top" id="TsT-MQ-p8n"/>
                 <constraint firstItem="7FY-Zd-uD1" firstAttribute="centerX" secondItem="9k4-8V-X7J" secondAttribute="centerX" id="U7h-s8-e0W"/>
                 <constraint firstItem="zOb-RX-Sla" firstAttribute="leading" secondItem="cur-zb-Pkd" secondAttribute="trailing" constant="20" id="V7O-OZ-HMb"/>
@@ -189,14 +189,21 @@
             <connections>
                 <outlet property="circleView" destination="kSo-s4-LZl" id="qeW-o0-gPS"/>
                 <outlet property="fridayBar" destination="PVY-RQ-N7T" id="Rjt-t2-YEO"/>
+                <outlet property="fridayLabel" destination="7CZ-cN-O4r" id="9AA-73-nJU"/>
                 <outlet property="meditationCount" destination="7FY-Zd-uD1" id="zBw-qt-iV0"/>
                 <outlet property="mondayBar" destination="xq7-vS-DQq" id="wsO-LM-2DO"/>
+                <outlet property="mondayLabel" destination="cpq-QE-wQa" id="HF1-fY-2ha"/>
                 <outlet property="monthLabel" destination="PEd-Ca-bja" id="82H-D4-Z9i"/>
                 <outlet property="saturdayBar" destination="2DA-ej-6GM" id="fGR-Mh-NhG"/>
+                <outlet property="saturdayLabel" destination="taV-xJ-uY3" id="ptI-Js-ebP"/>
                 <outlet property="sundayBar" destination="yuO-mc-uN6" id="Aok-o8-S0D"/>
+                <outlet property="sundayLabel" destination="dkY-tX-vdt" id="7nx-GZ-NJa"/>
                 <outlet property="thursdayBar" destination="GqS-Lr-7JJ" id="l0C-XE-ADc"/>
+                <outlet property="thursdayLabel" destination="dLQ-F1-rgx" id="yXW-nC-JZ9"/>
                 <outlet property="tuesdayBar" destination="laD-X5-3Rq" id="nCG-MT-IPf"/>
+                <outlet property="tuesdayLabel" destination="qJY-oT-dnb" id="TTY-Tp-M5E"/>
                 <outlet property="wednesdayBar" destination="W6x-e0-zXZ" id="zqf-j8-R6h"/>
+                <outlet property="wednesdayLabel" destination="Rka-re-A21" id="laO-hN-R2R"/>
             </connections>
             <point key="canvasLocation" x="-22" y="72"/>
         </collectionViewCell>

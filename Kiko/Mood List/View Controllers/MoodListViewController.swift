@@ -16,7 +16,6 @@ class MoodListViewController: BaseViewController {
         super.loadView()
 
         view = moodListView
-        moodListView.collectionView.contentInset.bottom = 100
         moodListView.configure(dataSource: self)
     }
 
@@ -55,9 +54,7 @@ class MoodListViewController: BaseViewController {
 extension MoodListViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let monthCell = collectionView.dequeueReusableCell(withReuseIdentifier: MonthResultCollectionViewCell.identifier, for: indexPath) as? MonthResultCollectionViewCell
-            else { fatalError("Could not dequeue MonthResultsCollectionViewCell") }
-
+        let monthCell = collectionView.dequeueReusableCell(MoodListCollectionViewCell.self, for: indexPath)
         let monthData = viewModel.dataForItemAt(indexPath)
         monthCell.configure(with: monthData)
         return monthCell
@@ -74,16 +71,13 @@ extension MoodListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionElementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: MonthResultHeaderCell.reuseIdentifier,
-                                                                             for: indexPath) as? MonthResultHeaderCell else { fatalError("Could not dequeue MonthResultHeaderCell") }
+            let headerView = collectionView.dequeueSupplementaryView(MoodListHeaderCell.self, indexPath: indexPath)
             headerView.configure(year: 2018)
             return headerView
-        default:
-            assertionFailure("Unexpected MoodList collection view error")
+        default: break
         }
 
-        return MonthResultHeaderCell()
+        return MoodListHeaderCell()
     }
 
 }

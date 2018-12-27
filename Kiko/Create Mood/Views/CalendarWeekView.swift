@@ -10,7 +10,7 @@ protocol CalendarWeekViewDelegate: class {
     func calendarDidScrollRight(_ calendarView: CalendarWeekView)
 }
 
-class CalendarWeekView: UIView {
+class CalendarWeekView: UIView, ViewStylePreparing {
 
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var leftButton: UIButton!
@@ -31,19 +31,18 @@ class CalendarWeekView: UIView {
 
     func configure(dataSource: UICollectionViewDataSource, delegate: CalendarWeekViewDelegate) {
         datesCollectionView.dataSource = dataSource
-        datesCollectionView.delegate = self
-        datesCollectionView.registerCell(CalendarDayCollectionViewCell.self)
-        datesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         calendarDelegate = delegate
-        setupEvents()
     }
 
-    private func setupEvents() {
+    func setupViews() {
         leftButton.addTarget(self, action: #selector(notifyLeftButtonTappedEvent), for: .touchUpInside)
         rightButton.addTarget(self, action: #selector(notifyRightButtonTappedEvent), for: .touchUpInside)
+        datesCollectionView.registerCellClass(CalendarDayCollectionViewCell.self)
+        datesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        datesCollectionView.delegate = self
     }
 
-    func updateViewColor(_ color: UIColor = .yellow03) {
+    private func updateViewColor(_ color: UIColor = .yellow03) {
         UIView.animate(withDuration: 0.4) {
             self.monthLabel.textColor = color
             self.leftButton.tintColor = color
@@ -51,11 +50,19 @@ class CalendarWeekView: UIView {
         }
     }
 
+    func setupColors() {
+        updateViewColor()
+        datesCollectionView.backgroundColor = backgroundColor
+    }
+
+    func setupFonts() {
+        monthLabel.font = UIFont.customFont(ofSize: 22, weight: .semibold)
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        updateViewColor()
-        datesCollectionView.backgroundColor = backgroundColor
+        setup()
     }
 }
 

@@ -1,9 +1,7 @@
 import KikoModels
 import KikoUIKit
 
-class MonthResultHeaderCell: UICollectionReusableView {
-
-    static let reuseIdentifier = "MonthResultHeaderCell"
+class MoodListHeaderCell: UICollectionReusableView {
 
     let yearLabel = UILabel()
 
@@ -18,11 +16,11 @@ class MonthResultHeaderCell: UICollectionReusableView {
     }
 
     private func setup() {
-        yearLabel.font = UIFont.customFont(ofSize: 25, weight: .medium)
-        yearLabel.textColor = .white
+        yearLabel.font = UIFont.customFont(ofSize: 24, weight: .heavy)
+        yearLabel.textColor = .blue06
         addSubview(yearLabel)
         yearLabel.translatesAutoresizingMaskIntoConstraints = false
-        yearLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18).isActive = true
+        yearLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
         yearLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
 

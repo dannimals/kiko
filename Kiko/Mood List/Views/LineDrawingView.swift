@@ -6,10 +6,15 @@ class LineDrawingView: UIView {
     private var totalDays: Int?
     private var moodCount: MonthData.MoodCount?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        backgroundColor = .defaultLineColor
+    }
+
     func update(monthData: MonthData, day: Day) {
         self.totalDays = monthData.countOf(day: day)
         self.moodCount = monthData.moodCountOf(day: day)
-        backgroundColor = .clear
         setNeedsDisplay()
     }
 
