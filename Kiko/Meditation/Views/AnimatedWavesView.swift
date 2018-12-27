@@ -7,6 +7,9 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBOutlet weak var footerView: UIView!
     private let gradientLayer = AnimatedWavesGradientLayer()
     private let footerViewAlpha: CGFloat = 0.6
+    private var footerViewTimer: Timer?
+    private let defaultFadeOutDelay: TimeInterval = 3
+    private let defaultFadeOutDuration: TimeInterval = 0.3
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +39,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         setupGradientLayer()
         setupFooterView()
         setupTapGesture()
+        fireTimer()
     }
 
     private func setupFooterView() {
@@ -57,19 +61,29 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         footerView.alpha == 0 ? showFooter() : hideFooter()
     }
 
-    private func hideFooter() {
-//        cancelTimer()
-        UIView.animate(withDuration: 0.4, animations: {
+    @objc private func hideFooter() {
+        cancelTimer()
+        UIView.animate(withDuration: defaultFadeOutDuration, animations: {
             self.footerView.frame.origin = CGPoint(x: 0, y: self.frame.maxY)
         }, completion: { _ in self.footerView.alpha = 0.0 })
     }
 
     private func showFooter() {
-//        startTimer()
         self.footerView.alpha = footerViewAlpha
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: defaultFadeOutDuration) {
             self.footerView.frame.origin = CGPoint(x: 0, y: self.frame.maxY - self.footerView.bounds.height)
         }
+        fireTimer()
+    }
+
+    func fireTimer() {
+        cancelTimer()
+        footerViewTimer = Timer.scheduledTimer(timeInterval: defaultFadeOutDelay, target: self, selector: #selector(hideFooter), userInfo: nil, repeats: false)
+    }
+
+    private func cancelTimer() {
+        footerViewTimer?.invalidate()
+        footerViewTimer = nil
     }
 
     private func setupGradientLayer() {
