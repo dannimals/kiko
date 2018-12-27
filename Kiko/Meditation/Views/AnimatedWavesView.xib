@@ -12,7 +12,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimatedWavesView" customModule="Kiko" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="U0V-Rd-Wcl"/>
-                <outlet property="footerBottomConstraint" destination="eYx-Id-DaA" id="wcJ-8I-GZd"/>
                 <outlet property="footerView" destination="VvJ-FD-8gf" id="WPA-Iv-h7a"/>
             </connections>
         </placeholder>
@@ -22,10 +21,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VvJ-FD-8gf">
-                    <rect key="frame" x="0.0" y="603" width="375" height="64"/>
+                    <rect key="frame" x="0.0" y="599" width="375" height="68"/>
                     <color key="backgroundColor" red="0.57254901960000004" green="0.72156862749999995" blue="0.82352941180000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="jPR-bO-3ku"/>
+                        <constraint firstAttribute="height" constant="68" id="jPR-bO-3ku"/>
                     </constraints>
                 </view>
             </subviews>
