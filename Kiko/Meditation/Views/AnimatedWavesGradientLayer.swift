@@ -19,7 +19,7 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
     }
 
     private enum WaveAnimationConstant {
-        static let animationDuration: CFTimeInterval = 7
+        static let animationDuration: CFTimeInterval = 6
     }
 
     private enum WaveConstant {
