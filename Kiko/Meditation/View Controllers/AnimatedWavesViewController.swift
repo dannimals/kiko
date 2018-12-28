@@ -29,5 +29,10 @@ class AnimatedWavesViewController: BaseViewController {
         backButton.addTarget(self, action: #selector(dismissViewController), for: .touchUpInside)
     }
 
-    @objc private func dismissViewController() { navigationController?.popViewController(animated: true) }
+    @objc private func dismissViewController() { navigationController?.popViewController(animated: true)
+    }
+
+    deinit {
+        contentView.reset()
+    }
 }

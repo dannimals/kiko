@@ -11,6 +11,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBOutlet weak var buttonContainerView: UIStackView!
 
     private let gradientLayer = AnimatedWavesGradientLayer()
+    private let feedbackGenerator = AnimatedWavesFeedbackGenerator()
     private let footerViewAlpha: CGFloat = 0.6
     private var footerViewTimer: Timer?
     private let defaultFadeOutDelay: TimeInterval = 4
@@ -39,17 +40,23 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         let image = halfMinButton.imageView?.image == #imageLiteral(resourceName: "30s") ? #imageLiteral(resourceName: "30sSelected") : #imageLiteral(resourceName: "30s")
         halfMinButton.setImage(image, for: .normal)
         fullMinButton.setImage(#imageLiteral(resourceName: "60s"), for: .normal)
+        halfMinButton.imageView?.image == #imageLiteral(resourceName: "30s") ? feedbackGenerator.cancelHalfMinTimer() : feedbackGenerator.fireHalfMinTimer()
     }
 
     @IBAction func fullMinButtonTapped(_ sender: Any) {
         let image = fullMinButton.imageView?.image == #imageLiteral(resourceName: "60s") ? #imageLiteral(resourceName: "60sSelected") : #imageLiteral(resourceName: "60s")
         fullMinButton.setImage(image, for: .normal)
         halfMinButton.setImage(#imageLiteral(resourceName: "30s"), for: .normal)
+        fullMinButton.imageView?.image == #imageLiteral(resourceName: "60s") ? feedbackGenerator.cancelFullMinTimer() :         feedbackGenerator.fireFullMinTimer()
     }
 
     @IBAction func modeButtonTapped(_ sender: Any) {
         let image = modeButton.imageView?.image == #imageLiteral(resourceName: "478") ? #imageLiteral(resourceName: "478Selected") : #imageLiteral(resourceName: "478")
         modeButton.setImage(image, for: .normal)
+    }
+
+    func reset() {
+        feedbackGenerator.reset()
     }
 
     func setupColors() {
