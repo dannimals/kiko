@@ -3,6 +3,14 @@ import KikoUIKit
 
 final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
 
+    enum Mode: String {
+        case normal
+        case meditation
+
+        static let waveAnimation = "waveAnimation"
+    }
+
+    private var mode: Mode = .normal { didSet { updateCurveAnimation() } }
     private var waveLayers: [CAShapeLayer] = []
     private var totalDuration: CGFloat = 2.0
 
@@ -19,7 +27,11 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
     }
 
     private enum WaveAnimationConstant {
-        static let animationDuration: CFTimeInterval = 6
+        static let normalAnimationDuration: CFTimeInterval = 6
+        static let fadeOutDuration: CFTimeInterval = 4
+        static let pulseDuration: CFTimeInterval = 1// TESTTEST 7
+        static let fadeInDuration: CFTimeInterval = 8
+        static let pulseKey = "layerForPulseAnimation"
     }
 
     private enum WaveConstant {
@@ -43,25 +55,93 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         setup()
     }
 
+    func toggleMode() {
+        mode = mode == .normal ? .meditation : .normal
+    }
+
+    func updateCurveAnimation() {
+        removeCurveAnimations()
+        switch mode {
+        case .normal: animateCurvesForNormalMode()
+        case .meditation: animateCurvesForMeditationMode()
+        }
+    }
+
     func setupViews() {
         setupGradientLayer()
         setupWaves()
     }
 
     func animate() {
-        animateCurves()
+        updateCurveAnimation()
         animateGradientLayer()
     }
 
-    private func animateCurves() {
-        let duration = WaveAnimationConstant.animationDuration / 2
+    private func animateCurvesForMeditationMode() {
+        let waves = waveLayers.dropLast()
+        let fadeOutDuration = WaveAnimationConstant.fadeOutDuration
+        let fadeInDuration = WaveAnimationConstant.fadeInDuration
+        let fadeOutDiv = fadeOutDuration / Double(WaveConstant.waveCount - 1)
+        let fadeInDiv = fadeInDuration / Double(WaveConstant.waveCount - 1)
+        for (i, wave) in waves.enumerated() {
+            let fadeOutDelay = fadeOutDiv * Double(i)
+            let fadeInDelay = fadeInDiv * Double(WaveConstant.waveCount - 1 - i) + WaveAnimationConstant.pulseDuration
+            addWaveMeditationAnimation(to: wave, fadeInDuration: fadeInDuration, fadeInDelay: fadeInDelay, fadeOutDuration: fadeOutDuration, fadeOutDelay: fadeOutDelay)
+        }
+        let lastWave = self.waveLayers.last!
+//        addPulseAnimation(to: lastWave, duration: WaveAnimationConstant.pulseDuration)
+    }
+
+    private func addPulseAnimation(to wave: CAShapeLayer, duration: Double) {
+        let pulse = CABasicAnimation(keyPath: "transform.scale")
+        pulse.duration = 7
+        pulse.fromValue = 0.98
+        pulse.toValue = 1.02
+        pulse.autoreverses = true
+//        pulse.fillMode = kCAFillModeForwards
+        pulse.beginTime = 4
+        pulse.delegate = self
+//        pulse.setValue(wave, forKey: WaveAnimationConstant.pulseKey)
+        wave.add(pulse, forKey: "pulse")
+    }
+
+    private func addWaveMeditationAnimation(to wave: CAShapeLayer, fadeInDuration: Double, fadeInDelay: Double, fadeOutDuration: Double, fadeOutDelay: Double) {
+        let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeOutAnimation.fromValue = 1
+        fadeOutAnimation.toValue = 0
+        fadeOutAnimation.duration = max(fadeOutDuration - fadeOutDelay, 0.01)
+        fadeOutAnimation.beginTime = fadeOutDelay
+        fadeOutAnimation.fillMode = kCAFillModeForwards
+        fadeOutAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+
+        let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
+        fadeInAnimation.fromValue = 0
+        fadeInAnimation.toValue = 1
+        fadeInAnimation.duration = max(fadeInDuration - fadeInDelay, 0.01)
+        fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay
+        fadeInAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+
+        let groupAnimation = CAAnimationGroup()
+        groupAnimation.duration = fadeInAnimation.beginTime + fadeInAnimation.duration
+        groupAnimation.animations = [fadeOutAnimation, fadeInAnimation]
+        groupAnimation.repeatCount = .infinity
+
+        wave.add(groupAnimation, forKey: Mode.waveAnimation)
+    }
+
+    private func animateCurvesForNormalMode() {
+        let duration = WaveAnimationConstant.normalAnimationDuration / 2
         let div = duration / Double(WaveConstant.waveCount)
 
         for (i, wave) in waveLayers.enumerated() {
             let fadeOutDelay = div * Double(i)
             let fadeInDelay = duration - fadeOutDelay
-            addWaveAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
+            addWaveNormalAnimation(to: wave, duration: duration, fadeOutDelay: fadeOutDelay, fadeInDelay: fadeInDelay)
         }
+    }
+
+    private func removeCurveAnimations() {
+        waveLayers.forEach { $0.removeAnimation(forKey: Mode.waveAnimation)}
     }
 
     private func animateGradientLayer() {
@@ -79,12 +159,12 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         add(gradientAnimation, forKey: nil)
     }
 
-    private func addWaveAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
+    private func addWaveNormalAnimation(to wave: CAShapeLayer, duration: Double, fadeOutDelay: Double, fadeInDelay: Double) {
 
         let fadeOutAnimation = CABasicAnimation(keyPath: "opacity")
         fadeOutAnimation.fromValue = 1
         fadeOutAnimation.toValue = 0
-        fadeOutAnimation.duration = max(duration - fadeOutDelay, 0.2)
+        fadeOutAnimation.duration = max(duration - fadeOutDelay, 0.01)
         fadeOutAnimation.beginTime = fadeOutDelay
         fadeOutAnimation.fillMode = kCAFillModeForwards
         fadeOutAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
@@ -92,7 +172,7 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         let fadeInAnimation = CABasicAnimation(keyPath: "opacity")
         fadeInAnimation.fromValue = 0
         fadeInAnimation.toValue = 1
-        fadeInAnimation.duration = max(duration - fadeInDelay, 0.2)
+        fadeInAnimation.duration = max(duration - fadeInDelay, 0.01)
         fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay
         fadeInAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
 
@@ -101,7 +181,7 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         groupAnimation.animations = [fadeOutAnimation, fadeInAnimation]
         groupAnimation.repeatCount = .infinity
 
-        wave.add(groupAnimation, forKey: "animateOpacity")
+        wave.add(groupAnimation, forKey: Mode.waveAnimation)
     }
 
     private func setupWaves() {
@@ -137,5 +217,13 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         waveLayer.strokeEnd = 1
         return waveLayer
     }
+}
 
+extension AnimatedWavesGradientLayer: CAAnimationDelegate {
+
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        guard let layer = anim.value(forKey: WaveAnimationConstant.pulseKey) as? CAShapeLayer else { return }
+        layer.removeAllAnimations()
+
+    }
 }
