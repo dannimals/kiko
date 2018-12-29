@@ -29,7 +29,7 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
     private enum WaveAnimationConstant {
         static let normalAnimationDuration: CFTimeInterval = 6
         static let fadeOutDuration: CFTimeInterval = 4
-        static let pulseDuration: CFTimeInterval = 1// TESTTEST 7
+        static let pulseDuration: CFTimeInterval = 1
         static let fadeInDuration: CFTimeInterval = 8
         static let pulseKey = "layerForPulseAnimation"
     }
@@ -89,20 +89,28 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
             addWaveMeditationAnimation(to: wave, fadeInDuration: fadeInDuration, fadeInDelay: fadeInDelay, fadeOutDuration: fadeOutDuration, fadeOutDelay: fadeOutDelay)
         }
         let lastWave = self.waveLayers.last!
-//        addPulseAnimation(to: lastWave, duration: WaveAnimationConstant.pulseDuration)
+        let pulseTimer1 = Timer.scheduledTimer(withTimeInterval: 4, repeats: false) { (_) in
+            self.addPulseAnimation(to: lastWave, key: "pulse")
+            let secondPulseTimer = Timer.scheduledTimer(withTimeInterval: 8 + 4 + 3, repeats: true, block: { (_) in
+                lastWave.removeAnimation(forKey: "pulse")
+                self.addPulseAnimation(to: lastWave, key: "pulse")
+            })
+            self.pulseTimers.append(secondPulseTimer)
+        }
+        self.pulseTimers.append(pulseTimer1)
     }
 
-    private func addPulseAnimation(to wave: CAShapeLayer, duration: Double) {
+    private var pulseTimers: [Timer] = []
+
+    private func addPulseAnimation(to wave: CAShapeLayer, key: String) {
         let pulse = CABasicAnimation(keyPath: "transform.scale")
-        pulse.duration = 7
-        pulse.fromValue = 0.98
+        pulse.duration = 1
+        pulse.fromValue = 1
         pulse.toValue = 1.02
         pulse.autoreverses = true
-//        pulse.fillMode = kCAFillModeForwards
-        pulse.beginTime = 4
-        pulse.delegate = self
-//        pulse.setValue(wave, forKey: WaveAnimationConstant.pulseKey)
-        wave.add(pulse, forKey: "pulse")
+        pulse.repeatCount = 3.5
+
+        wave.add(pulse, forKey: key)
     }
 
     private func addWaveMeditationAnimation(to wave: CAShapeLayer, fadeInDuration: Double, fadeInDelay: Double, fadeOutDuration: Double, fadeOutDelay: Double) {
@@ -118,7 +126,7 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         fadeInAnimation.fromValue = 0
         fadeInAnimation.toValue = 1
         fadeInAnimation.duration = max(fadeInDuration - fadeInDelay, 0.01)
-        fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay
+        fadeInAnimation.beginTime = fadeOutAnimation.beginTime + fadeOutAnimation.duration + fadeInDelay + 3.5
         fadeInAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
 
         let groupAnimation = CAAnimationGroup()
@@ -142,6 +150,9 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
 
     private func removeCurveAnimations() {
         waveLayers.forEach { $0.removeAnimation(forKey: Mode.waveAnimation)}
+        waveLayers.last?.removeAnimation(forKey: "pulse")
+        pulseTimers.forEach { $0.invalidate() }
+        pulseTimers = []
     }
 
     private func animateGradientLayer() {
@@ -216,14 +227,5 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         waveLayer.strokeStart = 0
         waveLayer.strokeEnd = 1
         return waveLayer
-    }
-}
-
-extension AnimatedWavesGradientLayer: CAAnimationDelegate {
-
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        guard let layer = anim.value(forKey: WaveAnimationConstant.pulseKey) as? CAShapeLayer else { return }
-        layer.removeAllAnimations()
-
     }
 }
