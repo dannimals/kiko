@@ -34,7 +34,7 @@ public extension StoryboardNestable where Self: UIView {
     public func loadViewFromNib() {
         let bundle = Bundle(for: type(of: self))
         bundle.loadNibNamed(Self.nibName, owner: self, options: [:])
-        addSubview(contentView)
+        contentView.stretchToFill()
         let contentConstraints = contentView.constraints
         contentView.subviews.forEach({ addSubview($0) })
 

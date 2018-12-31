@@ -31,7 +31,7 @@ class MenuNavigationCoordinator: MenuNavigationCoordinating {
     func showWavesViewController() {
         guard let rootViewController = rootViewController else { return }
 
-        let wavesViewController = WavesViewController()
+        let wavesViewController = AnimatedWavesViewController()
         rootViewController.pushViewController(wavesViewController, animated: true)
     }
 }
