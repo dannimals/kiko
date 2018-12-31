@@ -87,7 +87,6 @@
 		9EA9592E21D428A0005AD789 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9592B21D4289F005AD789 /* GradientView.swift */; };
 		9EA9592F21D428A0005AD789 /* CreateMoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9592C21D4289F005AD789 /* CreateMoodView.swift */; };
 		9EA9593021D428A0005AD789 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9592D21D428A0005AD789 /* RoundedButton.swift */; };
-		9EA9593721D42A23005AD789 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EA9593621D42A22005AD789 /* Info.plist */; };
 		9EA9593921D5407F005AD789 /* AnimatedWavesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EA9593821D5407F005AD789 /* AnimatedWavesView.xib */; };
 		9EA9593B21D54120005AD789 /* AnimatedWavesGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA9593A21D54120005AD789 /* AnimatedWavesGradientLayer.swift */; };
 		9EB538472129F55A00BB6A7A /* MainNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */; };
@@ -1026,7 +1025,6 @@
 				9E391A0A20730D5D00492F54 /* CalendarWeekView.xib in Resources */,
 				9E453C2C20C0D3580041C219 /* MoodListCollectionViewCell.xib in Resources */,
 				9E43B3A62125081C0046E4F1 /* MoodLogCompletionStateViewController.xib in Resources */,
-				9EA9593721D42A23005AD789 /* Info.plist in Resources */,
 				9E3919732070856500492F54 /* Assets.xcassets in Resources */,
 				9EA9593921D5407F005AD789 /* AnimatedWavesView.xib in Resources */,
 			);
@@ -1498,6 +1496,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s arm64e";
 			};
 			name = Debug;
 		};
@@ -1517,6 +1516,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s arm64e";
 			};
 			name = Release;
 		};
