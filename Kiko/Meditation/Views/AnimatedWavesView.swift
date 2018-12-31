@@ -53,6 +53,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBAction func modeButtonTapped(_ sender: Any) {
         let image = modeButton.imageView?.image == #imageLiteral(resourceName: "478") ? #imageLiteral(resourceName: "478Selected") : #imageLiteral(resourceName: "478")
         modeButton.setImage(image, for: .normal)
+        gradientLayer.toggleMode()
     }
 
     func reset() {
