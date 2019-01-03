@@ -12,6 +12,7 @@ protocol CreateMoodViewDelegate: class {
 
 class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var blurView: UIView!
     @IBOutlet weak var calendarContainerView: UIView!
     @IBOutlet weak var contentView: UIView!
@@ -56,6 +57,7 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
     }
 
     func setupViews() {
+        setupScrollView()
         setupButtons()
         setupButtonsDrawerView()
         setupBlurView()
@@ -81,6 +83,13 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
         rotatePlusButton()
         toggleBlurView(duration: 0.2)
         buttonsDrawerView.toggle()
+    }
+
+    private func setupScrollView() {
+        let animatedWavesView = AnimatedWavesView(frame: CGRect(origin: CGPoint(x: bounds.width, y: 0), size: bounds.size))
+        scrollView.addSubview(animatedWavesView)
+        scrollView.contentSize = CGSize(width: bounds.width * 2, height: bounds.height)
+        scrollView.setContentOffset(CGPoint(x: bounds.width, y: 0), animated: false)
     }
 
     private func toggleBlurView(duration: Double) {
