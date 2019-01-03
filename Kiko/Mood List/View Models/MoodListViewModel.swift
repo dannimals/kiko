@@ -12,9 +12,9 @@ class MoodListViewModel {
         return moodManager.countOfDistinctYears
     }
 
-    lazy var distinctYears: [Int] = {
+    var distinctYears: [Int] {
         return moodManager.distinctYears.sorted()
-    }()
+    }
 
     func numberOfItemsInSection(_ section: Int) -> Int {
         let moodsWithYear = moodManager.moods.filter("year == %@", distinctYears[section])

@@ -61,7 +61,7 @@ extension MoodListViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numberOfItemsInSection(section) // count of dates sorted by year, sorted by month
+        return viewModel.numberOfItemsInSection(section)
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -72,7 +72,8 @@ extension MoodListViewController: UICollectionViewDataSource {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueSupplementaryView(MoodListHeaderCell.self, indexPath: indexPath)
-            headerView.configure(year: 2018)
+            let year = viewModel.distinctYears[indexPath.section]
+            headerView.configure(year: year)
             return headerView
         default: break
         }
