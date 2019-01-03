@@ -1,7 +1,7 @@
 
 import KikoUIKit
 
-final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
+final class AnimatedGradientLayer: CAGradientLayer, ViewStylePreparing {
 
     enum Mode: String {
         case normal
@@ -13,6 +13,7 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
     private var mode: Mode = .normal { didSet { updateCurveAnimation() } }
     private var waveLayers: [CAShapeLayer] = []
     private var totalDuration: CGFloat = 2.0
+    private let animatedWaveView = AnimatedImageView()
 
     private enum GradientAnimationConstant {
         static let animationDuration: CFTimeInterval = 10
@@ -73,7 +74,6 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
     }
 
     func animate() {
-        updateCurveAnimation()
         animateGradientLayer()
     }
 
@@ -196,15 +196,18 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
     }
 
     private func setupWaves() {
-        masksToBounds = true
-        Array(0..<WaveConstant.waveCount).forEach {
-            let width = Double($0) * WaveConstant.offset + WaveConstant.diameter
-            let rect = CGRect(x: 0, y: 0, width: width, height: width)
-            let alpha = CGFloat($0) / CGFloat(WaveConstant.waveCount)
-            let waveLayer = createWaveLayer(rect: rect, alphaComponent: alpha)
-            addSublayer(waveLayer)
-            waveLayers.append(waveLayer)
-        }
+        animatedWaveView.frame = frame
+        addSublayer(animatedWaveView.layer)
+
+//        masksToBounds = true
+//        Array(0..<WaveConstant.waveCount).forEach {
+//            let width = Double($0) * WaveConstant.offset + WaveConstant.diameter
+//            let rect = CGRect(x: 0, y: 0, width: width, height: width)
+//            let alpha = CGFloat($0) / CGFloat(WaveConstant.waveCount)
+//            let waveLayer = createWaveLayer(rect: rect, alphaComponent: alpha)
+//            addSublayer(waveLayer)
+//            waveLayers.append(waveLayer)
+//        }
     }
 
     private func setupGradientLayer() {
@@ -227,5 +230,51 @@ final class AnimatedWavesGradientLayer: CAGradientLayer, ViewStylePreparing {
         waveLayer.strokeStart = 0
         waveLayer.strokeEnd = 1
         return waveLayer
+    }
+}
+
+class AnimatedImageView: UIImageView {
+
+    private(set) var imageSequence: [UIImage] = []
+    private let animationkey = "contents"
+
+    func startAnimating(duration: TimeInterval, repeatCount: Float = .infinity) {
+        animateImages(duration: duration, repeatCount: repeatCount)
+        image = nil
+    }
+
+    func stopAnimation() {
+        removeImageAnimation()
+        image = imageSequence.first
+    }
+
+    func configure(resourcePrefix prefix: String, resourceType: String, imageCount: Int) {
+        imageSequence = Array(0...imageCount).compactMap { index in
+            let bundle = Bundle(for: AnimatedImageView.self)
+            let imagePath = bundle.path(forResource: prefix + "\(index)", ofType: resourceType) ?? ""
+            return UIImage(contentsOfFile: imagePath)
+        }
+        image = imageSequence.first
+    }
+
+    private func animateImages(duration: TimeInterval, repeatCount: Float) {
+        layer.removeAnimation(forKey: animationkey)
+        let animation = CAKeyframeAnimation(keyPath: animationkey)
+        animation.repeatCount = repeatCount
+        animation.calculationMode = kCAAnimationDiscrete
+        animation.values = imageSequence.map { $0.cgImage as Any }
+        animation.duration = duration
+        animation.fillMode = kCAFillModeForwards
+        animation.isRemovedOnCompletion = false
+        layer.contentsGravity = kCAGravityResizeAspect
+        layer.masksToBounds = true
+        layer.minificationFilter = kCAFilterTrilinear
+        layer.magnificationFilter = kCAFilterTrilinear
+        layer.add(animation, forKey: animationkey)
+        image = imageSequence.first
+    }
+
+    private func removeImageAnimation() {
+        layer.removeAnimation(forKey: animationkey)
     }
 }
