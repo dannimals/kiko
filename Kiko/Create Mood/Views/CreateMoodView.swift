@@ -76,6 +76,7 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
         scrollView.backgroundColor = .clear
         scrollView.isPagingEnabled = true
         scrollView.delegate = self
+        scrollView.bounces = false
     }
 
     private func setupButtons() {
