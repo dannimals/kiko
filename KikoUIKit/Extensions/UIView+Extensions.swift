@@ -18,10 +18,10 @@ public extension UIView {
         parentView.addSubview(self)
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            topAnchor.constraint(equalTo: parentView.topAnchor),
+            topAnchor.constraint(equalTo: parentView.safeTopAnchor),
             leftAnchor.constraint(equalTo: parentView.leftAnchor),
             rightAnchor.constraint(equalTo: parentView.rightAnchor),
-            bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
+            bottomAnchor.constraint(equalTo: parentView.safeBottomAnchor)
         ])
     }
 
@@ -30,10 +30,10 @@ public extension UIView {
         parentView.addSubview(self)
         translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            topAnchor.constraint(equalTo: parentView.topAnchor),
+            topAnchor.constraint(equalTo: parentView.safeTopAnchor),
             leftAnchor.constraint(equalTo: parentView.leftAnchor),
             rightAnchor.constraint(equalTo: parentView.rightAnchor),
-            bottomAnchor.constraint(equalTo: parentView.bottomAnchor)
+            bottomAnchor.constraint(equalTo: parentView.safeBottomAnchor)
             ])
     }
 
