@@ -117,7 +117,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     }
 
     private func setupGradientLayer() {
-        gradientLayer.frame = frame
+        gradientLayer.frame = bounds
         layer.addSublayer(gradientLayer)
         gradientLayer.animate()
     }

@@ -46,6 +46,7 @@ class CreateMoodViewController: BaseViewController {
         updateViews()
         contentView.delegate = self
         setupChildViewControllers()
+        setupGestureRecognizers()
     }
 
     private func setupChildViewControllers() {
@@ -95,6 +96,11 @@ class CreateMoodViewController: BaseViewController {
         }
     }
 
+    private func setupGestureRecognizers() {
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: nil)
+        swipeGesture.direction = .left
+        contentView.addGestureRecognizer(swipeGesture)
+    }
 }
 
 extension CreateMoodViewController: MoodPagingObserving {
