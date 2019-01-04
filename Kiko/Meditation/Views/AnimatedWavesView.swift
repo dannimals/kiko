@@ -37,6 +37,14 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         setup()
     }
 
+    func stopAnimating() {
+        animatedImageView.stopAnimation()
+    }
+
+    func startAnimating() {
+        animatedImageView.startAnimating(duration: 5)
+    }
+
     @IBAction func halfMinButtonTapped(_ sender: Any) {
         let image = halfMinButton.imageView?.image == #imageLiteral(resourceName: "30s") ? #imageLiteral(resourceName: "30sSelected") : #imageLiteral(resourceName: "30s")
         halfMinButton.setImage(image, for: .normal)
@@ -128,7 +136,6 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     private func setupWavesView() {
         bringSubview(toFront: animatedImageView)
         animatedImageView.configure(resourcePrefix: "Waves_", resourceType: "png", imageCount: 99)
-        animatedImageView.startAnimating(duration: 5)
         animatedImageView.image = animatedImageView.imageSequence.first
     }
 }

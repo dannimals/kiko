@@ -96,9 +96,11 @@ extension CreateMoodView: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.x >= bounds.width {
             animatedWavesView?.showFooter()
+            animatedWavesView?.startAnimating()
         }
         if scrollView.contentOffset.x == 0 {
             animatedWavesView?.hideFooter()
+            animatedWavesView?.stopAnimating()
         }
     }
 }
