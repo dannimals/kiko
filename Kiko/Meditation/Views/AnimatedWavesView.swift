@@ -91,17 +91,17 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         footerView.alpha == 0 ? showFooter() : hideFooter()
     }
 
-    @objc private func hideFooter() {
+    @objc func hideFooter() {
         cancelFooterTimer()
         UIView.animate(withDuration: defaultFadeOutDuration, animations: {
             self.footerView.frame.origin = CGPoint(x: 0, y: self.frame.maxY)
         }, completion: { _ in self.footerView.alpha = 0.0 })
     }
 
-    private func showFooter() {
-        self.footerView.alpha = footerViewAlpha
+    func showFooter() {
+        footerView.alpha = footerViewAlpha
         UIView.animate(withDuration: defaultFadeOutDuration) {
-            self.footerView.frame.origin = CGPoint(x: 0, y: self.frame.maxY - self.footerView.bounds.height)
+            self.footerView.frame.origin = CGPoint(x: 0, y: (self.superview?.bounds.height ?? 0) - self.footerView.bounds.height - (self.superview?.layoutMargins.bottom ?? 0) + self.layoutMargins.top)
         }
         fireFooterTimer()
     }
@@ -117,7 +117,8 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     }
 
     private func setupGradientLayer() {
-        gradientLayer.frame = bounds
+        let gradientFrame = CGRect(x: bounds.minX, y: bounds.minY, width: bounds.width, height: bounds.height + layoutMargins.top + layoutMargins.bottom + 8)
+        gradientLayer.frame = gradientFrame
         layer.addSublayer(gradientLayer)
         gradientLayer.animate()
     }

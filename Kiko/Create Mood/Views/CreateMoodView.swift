@@ -20,6 +20,8 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBOutlet weak var pagingContainerView: UIView!
     @IBOutlet weak var ringButton: UIButton!
 
+    private var animatedWavesView: AnimatedWavesView?
+
     weak var delegate: CreateMoodViewDelegate!
 
     required init?(coder aDecoder: NSCoder) {
@@ -63,8 +65,8 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
 
         if !scrollView.subviews.contains(where: { $0 is AnimatedWavesView }) {
             let animatedWavesFrame = CGRect(origin: CGPoint(x: bounds.width, y: -layoutMargins.top), size: CGSize(width: bounds.width, height: bounds.height + layoutMargins.top + layoutMargins.bottom))
-            let animatedWavesView = AnimatedWavesView(frame: animatedWavesFrame)
-            scrollView.addSubview(animatedWavesView)
+            animatedWavesView = AnimatedWavesView(frame: animatedWavesFrame)
+            scrollView.addSubview(animatedWavesView!)
         }
         scrollView.contentSize = CGSize(width: bounds.width * 2, height: 0)
     }
@@ -73,10 +75,23 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
         scrollView.isDirectionalLockEnabled = true
         scrollView.backgroundColor = .clear
         scrollView.isPagingEnabled = true
+        scrollView.delegate = self
     }
 
     private func setupButtons() {
         logButton.setTitleColor(.white, for: .normal)
         logButton.backgroundColor = .yellow04
+    }
+}
+
+extension CreateMoodView: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x >= bounds.width {
+            animatedWavesView?.showFooter()
+        }
+        if scrollView.contentOffset.x == 0 {
+            animatedWavesView?.hideFooter()
+        }
     }
 }
