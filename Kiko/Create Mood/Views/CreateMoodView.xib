@@ -92,7 +92,6 @@
                             </constraints>
                         </scrollView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="geW-6u-mnj" secondAttribute="bottom" id="KSk-j9-MVC"/>
                         <constraint firstItem="geW-6u-mnj" firstAttribute="leading" secondItem="4dj-80-SKB" secondAttribute="leading" id="Wj0-sW-ciU"/>
@@ -102,7 +101,6 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="4dj-80-SKB" firstAttribute="leading" secondItem="QTN-Ma-Sdt" secondAttribute="leading" id="95F-nt-D2x"/>
                 <constraint firstAttribute="bottom" secondItem="4dj-80-SKB" secondAttribute="bottom" id="JRB-WR-Xsa"/>

@@ -82,6 +82,12 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
         logButton.setTitleColor(.white, for: .normal)
         logButton.backgroundColor = .yellow04
     }
+
+    func setupColors() {
+        backgroundColor = .clear
+        scrollView.backgroundColor = .clear
+        gradientView.backgroundColor = .clear
+    }
 }
 
 extension CreateMoodView: UIScrollViewDelegate {
