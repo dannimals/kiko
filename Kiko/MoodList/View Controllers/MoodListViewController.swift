@@ -1,7 +1,7 @@
 import KikoUIKit
 import KikoModels
 
-class MoodListViewController: BaseViewController {
+class MoodListViewController: BaseViewController, ViewStylePreparing {
     private let viewModel: MoodListViewModel
     private var emptyStateView: MoodListEmptyStateView?
     private let moodListView: MoodListView = MoodListView.loadFromNib()
@@ -22,10 +22,10 @@ class MoodListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupBindings()
+        setup()
     }
 
-    private func setupBindings() {
+    func setupBindings() {
         moodListView
             .closeButtonTapped
             .subscribe(self) { [unowned self] _ in
@@ -33,15 +33,18 @@ class MoodListViewController: BaseViewController {
         }
     }
 
+    func setupViews() {
+        setupEmptyStateView()
+    }
+
+    func hideEmptyStateView() {
+        emptyStateView?.isHidden = true
+    }
+
     private func setupEmptyStateView() {
         let frame = CGRect(x: 0, y: 40, width: view.bounds.width, height: view.bounds.height)
         emptyStateView = MoodListEmptyStateView(frame: frame)
         view.addSubview(emptyStateView!)
-        emptyStateView?
-            .logButtonTapped
-            .subscribe(self) { [unowned self] _ in
-                self.dismissViewController()
-        }     
     }
 
     @objc private func dismissViewController() {
@@ -65,7 +68,9 @@ extension MoodListViewController: UICollectionViewDataSource {
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewModel.numberOfSections()
+        let numberOfSections = viewModel.numberOfSections()
+        if numberOfSections > 0 { hideEmptyStateView() }
+        return numberOfSections
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

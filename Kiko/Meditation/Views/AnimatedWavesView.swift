@@ -65,10 +65,6 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
 //        gradientLayer.toggleMode()
     }
 
-    func reset() {
-        feedbackGenerator.reset()
-    }
-
     func setupColors() {
         backgroundColor = .backgroundBlue
     }
@@ -99,6 +95,14 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
 
     @objc func toggleFooter() {
         footerView.alpha == 0 ? showFooter() : hideFooter()
+    }
+
+    func reset() {
+        hideFooter()
+        stopAnimating()
+        feedbackGenerator.reset()
+        halfMinButton.setImage(#imageLiteral(resourceName: "30s"), for: .normal)
+        fullMinButton.setImage(#imageLiteral(resourceName: "60s"), for: .normal)
     }
 
     @objc func hideFooter() {

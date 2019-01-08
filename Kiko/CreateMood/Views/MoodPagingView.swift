@@ -37,12 +37,13 @@ class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
             guard let animatedImages = UIImage.animatedImage(with: $0.images, duration: 1.5) else { return }
             moodStackView.addArrangedSubview(createImageView(animatedImages))
         }
-        func createImageView(_ image: UIImage) -> UIImageView {
-            let imageView = UIImageView(image: image)
-            imageView.contentMode = .center
-            imageView.bounds = scrollView.bounds
-            return imageView
-        }
+    }
+
+    private func createImageView(_ image: UIImage) -> UIImageView {
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .center
+        imageView.bounds = scrollView.bounds
+        return imageView
     }
 
     func setupColors() {
@@ -72,6 +73,12 @@ class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
         let width = pageCount * bounds.width
         moodStackView.widthAnchor.constraint(equalToConstant: width).isActive = true
         moodStackView.layoutIfNeeded()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        scrollView.contentSize = CGSize(width: moodStackView.bounds.width, height: scrollView.bounds.height)
         scrollView.layoutIfNeeded()
     }
 

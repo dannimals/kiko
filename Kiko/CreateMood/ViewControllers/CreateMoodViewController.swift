@@ -46,7 +46,6 @@ class CreateMoodViewController: BaseViewController {
         updateViews()
         contentView.delegate = self
         setupChildViewControllers()
-        setupGestureRecognizers()
     }
 
     private func setupChildViewControllers() {
@@ -65,12 +64,6 @@ class CreateMoodViewController: BaseViewController {
         pagingViewController.didMove(toParentViewController: self)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        updateLogButton()
-    }
-
     private func updateLogButton() {
         let hasMoodForToday = moodManager.mood(forDate: Date()) != nil
         contentView.updateLogButton(hasMoodForToday: hasMoodForToday)
@@ -84,11 +77,12 @@ class CreateMoodViewController: BaseViewController {
             presentModalForSuccess(imageColor: color)
             updateLogButton()
         } catch {
-            presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage.rawValue)
+            presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage)
         }
     }
 
     private func updateViews() {
+        updateLogButton()
         let page = MoodPageDisplay(type: state.moodType)
         calendarViewController?.updateColor(page.accessoryColor)
         UIView.animate(withDuration: 0.4) {
@@ -96,11 +90,6 @@ class CreateMoodViewController: BaseViewController {
         }
     }
 
-    private func setupGestureRecognizers() {
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: nil)
-        swipeGesture.direction = .left
-        contentView.addGestureRecognizer(swipeGesture)
-    }
 }
 
 extension CreateMoodViewController: MoodPagingObserving {

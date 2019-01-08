@@ -769,10 +769,10 @@
 				9EA9593621D42A22005AD789 /* Info.plist */,
 				9E39196B2070856500492F54 /* AppDelegate.swift */,
 				9EC539B521DD6BC0001DFF15 /* Resources */,
-				9EB538452129F54F00BB6A7A /* Coordinators */,
-				9EA9591C21D42743005AD789 /* Create Mood */,
+				9EB538452129F54F00BB6A7A /* AppCoordinators */,
+				9EA9591C21D42743005AD789 /* CreateMood */,
 				9EA9592321D42782005AD789 /* Meditation */,
-				9EA9592221D42778005AD789 /* Mood List */,
+				9EA9592221D42778005AD789 /* MoodList */,
 				9E9234B22187ECE50095C4A5 /* Notifications */,
 				9E43B3A0212505990046E4F1 /* Protocols */,
 				9E10A10D2086D84700CC5444 /* Utility */,
@@ -934,17 +934,17 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		9EA9591C21D42743005AD789 /* Create Mood */ = {
+		9EA9591C21D42743005AD789 /* CreateMood */ = {
 			isa = PBXGroup;
 			children = (
 				9EA9592121D42771005AD789 /* Views */,
 				9EA9591F21D4275E005AD789 /* Coordinators */,
-				9EA9591E21D42753005AD789 /* View Controllers */,
+				9EA9591E21D42753005AD789 /* ViewControllers */,
 			);
-			path = "Create Mood";
+			path = CreateMood;
 			sourceTree = "<group>";
 		};
-		9EA9591E21D42753005AD789 /* View Controllers */ = {
+		9EA9591E21D42753005AD789 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				9EB53862213DDC4F00BB6A7A /* CalendarViewController.swift */,
@@ -954,7 +954,7 @@
 				9E3CAEFA2151D1AB00E44C8D /* PagingViewController.swift */,
 				9EA9592021D42765005AD789 /* View Models */,
 			);
-			path = "View Controllers";
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9EA9591F21D4275E005AD789 /* Coordinators */ = {
@@ -996,7 +996,7 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		9EA9592221D42778005AD789 /* Mood List */ = {
+		9EA9592221D42778005AD789 /* MoodList */ = {
 			isa = PBXGroup;
 			children = (
 				9EA9593221D4295F005AD789 /* View Controllers */,
@@ -1005,7 +1005,7 @@
 				9EA9592A21D4283A005AD789 /* Views */,
 				9EA9592421D427F9005AD789 /* View Models */,
 			);
-			path = "Mood List";
+			path = MoodList;
 			sourceTree = "<group>";
 		};
 		9EA9592321D42782005AD789 /* Meditation */ = {
@@ -1085,13 +1085,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		9EB538452129F54F00BB6A7A /* Coordinators */ = {
+		9EB538452129F54F00BB6A7A /* AppCoordinators */ = {
 			isa = PBXGroup;
 			children = (
 				9EB538462129F55A00BB6A7A /* MainNavigationCoordinator.swift */,
 				9EB538482129FE2300BB6A7A /* MenuNavigationCoordinator.swift */,
 			);
-			path = Coordinators;
+			path = AppCoordinators;
 			sourceTree = "<group>";
 		};
 		9EB5384A212A045D00BB6A7A /* CoordinatorTests */ = {

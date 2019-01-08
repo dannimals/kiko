@@ -50,7 +50,7 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
     }
 
     func updateLogButton(hasMoodForToday: Bool) {
-        let logButtonTitle = hasMoodForToday ? Glossary.update.rawValue : Glossary.log.rawValue
+        let logButtonTitle = hasMoodForToday ? Glossary.update : Glossary.log
         logButton.title = logButtonTitle
     }
 
@@ -82,6 +82,7 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
     private func setupButtons() {
         logButton.setTitleColor(.white, for: .normal)
         logButton.backgroundColor = .yellow04
+        logButton.setTitle(Glossary.log, for: .normal)
     }
 
     func setupColors() {
@@ -99,8 +100,7 @@ extension CreateMoodView: UIScrollViewDelegate {
             animatedWavesView?.startAnimating()
         }
         if scrollView.contentOffset.x == 0 {
-            animatedWavesView?.hideFooter()
-            animatedWavesView?.stopAnimating()
+            animatedWavesView?.reset()
         }
     }
 }

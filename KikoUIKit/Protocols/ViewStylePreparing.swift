@@ -7,11 +7,13 @@ public protocol ViewStylePreparing {
     func setupColors()
     func setupAnimations()
     func setupFonts()
+    func setupBindings()
 }
 
 public extension ViewStylePreparing {
 
     func setup() {
+        setupBindings()
         setupViews()
         setupText()
         setupColors()
@@ -24,4 +26,5 @@ public extension ViewStylePreparing {
     func setupColors() {}
     func setupAnimations() {}
     func setupFonts() {}
+    func setupBindings() {}
 }

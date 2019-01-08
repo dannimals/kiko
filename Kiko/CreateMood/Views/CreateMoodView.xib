@@ -42,10 +42,10 @@
                                     </constraints>
                                 </containerView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUL-dw-Ahu">
-                                    <rect key="frame" x="0.0" y="180" width="375" height="355"/>
+                                    <rect key="frame" x="0.0" y="170" width="375" height="373"/>
                                     <subviews>
                                         <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7D1-na-MuS" userLabel="Paging Container View">
-                                            <rect key="frame" x="0.0" y="-2.5" width="375" height="360"/>
+                                            <rect key="frame" x="0.0" y="6.5" width="375" height="360"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="360" identifier="pagingContainerViewHeight" id="cE5-Vm-eg0"/>
                                             </constraints>
@@ -55,18 +55,17 @@
                                         <constraint firstItem="7D1-na-MuS" firstAttribute="leading" secondItem="IUL-dw-Ahu" secondAttribute="leading" id="U8c-F1-lJp"/>
                                         <constraint firstAttribute="trailing" secondItem="7D1-na-MuS" secondAttribute="trailing" id="bPp-jd-L0F"/>
                                         <constraint firstItem="7D1-na-MuS" firstAttribute="centerY" secondItem="IUL-dw-Ahu" secondAttribute="centerY" id="k8y-HT-xaQ"/>
-                                        <constraint firstAttribute="height" constant="355" id="qtM-4S-lAd"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u5R-Np-sx4">
-                                    <rect key="frame" x="325" y="593" width="34" height="34"/>
+                                    <rect key="frame" x="299" y="567" width="60" height="60"/>
                                     <state key="normal" image="moodRing"/>
                                     <connections>
                                         <action selector="ringButtonTapped:" destination="-1" eventType="touchUpInside" id="dyR-p6-Pci"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLM-jV-5Uc" customClass="RoundedButton" customModule="Kiko" customModuleProvider="target">
-                                    <rect key="frame" x="164.5" y="629" width="46" height="30"/>
+                                    <rect key="frame" x="164.5" y="621" width="46" height="30"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="logButtonTapped:" destination="-1" eventType="touchUpInside" id="Y9C-6i-JrW"/>
@@ -82,9 +81,10 @@
                                 <constraint firstAttribute="trailing" secondItem="UFA-RZ-03d" secondAttribute="trailing" id="IRw-b6-kGP"/>
                                 <constraint firstItem="qkB-ha-2de" firstAttribute="leading" secondItem="geW-6u-mnj" secondAttribute="leading" id="NEt-oo-f6U"/>
                                 <constraint firstItem="pLM-jV-5Uc" firstAttribute="centerX" secondItem="geW-6u-mnj" secondAttribute="centerX" id="OLF-cA-I2r"/>
-                                <constraint firstItem="pLM-jV-5Uc" firstAttribute="bottom" secondItem="u5R-Np-sx4" secondAttribute="bottom" constant="32" id="PQV-yq-Nhc"/>
+                                <constraint firstItem="u5R-Np-sx4" firstAttribute="top" secondItem="IUL-dw-Ahu" secondAttribute="bottom" constant="24" id="OwG-hU-K6B"/>
+                                <constraint firstItem="pLM-jV-5Uc" firstAttribute="bottom" secondItem="u5R-Np-sx4" secondAttribute="bottom" constant="24" id="PQV-yq-Nhc"/>
                                 <constraint firstAttribute="bottom" secondItem="qkB-ha-2de" secondAttribute="bottom" id="Rem-Jd-RL3"/>
-                                <constraint firstItem="IUL-dw-Ahu" firstAttribute="top" secondItem="UFA-RZ-03d" secondAttribute="bottom" constant="18" id="V7C-Es-Qg3"/>
+                                <constraint firstItem="IUL-dw-Ahu" firstAttribute="top" secondItem="UFA-RZ-03d" secondAttribute="bottom" constant="8" id="V7C-Es-Qg3"/>
                                 <constraint firstItem="UFA-RZ-03d" firstAttribute="top" secondItem="geW-6u-mnj" secondAttribute="top" constant="40" id="azi-EU-9HR"/>
                                 <constraint firstItem="qkB-ha-2de" firstAttribute="centerX" secondItem="geW-6u-mnj" secondAttribute="centerX" id="eLn-SU-jxe"/>
                                 <constraint firstAttribute="trailing" secondItem="u5R-Np-sx4" secondAttribute="trailing" constant="16" id="q6k-Db-XUr"/>
@@ -112,6 +112,6 @@
         </view>
     </objects>
     <resources>
-        <image name="moodRing" width="34" height="34"/>
+        <image name="moodRing" width="60" height="60"/>
     </resources>
 </document>
