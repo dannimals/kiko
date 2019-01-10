@@ -62,6 +62,10 @@ class HalfModalPresentationController: UIPresentationController {
             switch state {
             case .halfScreen:
                 presentedView.frame.origin.y = touchPoint.y + containerView.frame.height / 2
+                if let moodListView = presentedView as? MoodListView {
+                    let previousOffset = moodListView.downwardArrow.centerYOffset
+                    moodListView.downwardArrow.centerYOffset = velocity.y < 0 ? previousOffset - 0.1 : previousOffset + 0.1
+                }
             case .fullScreen:
                 presentedView.frame.origin.y = touchPoint.y
             }

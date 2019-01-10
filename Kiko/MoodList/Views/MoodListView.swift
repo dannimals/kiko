@@ -7,6 +7,7 @@ class MoodListView: UIView, ViewStylePreparing {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var downwardArrow: AnimatedDownwardArrow!
 
     func configure(dataSource: UICollectionViewDataSource) {
         collectionView.dataSource = dataSource
@@ -51,4 +52,13 @@ class MoodListView: UIView, ViewStylePreparing {
 
     required init?(coder aDecoder: NSCoder) { super.init(coder: aDecoder) }
 
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let location = touches.first?.location(in: self)
+//        print("touches began: \(location!)")
+//    }
+//
+//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let location = touches.first?.location(in: self)
+//        print("touches moved: \(location!)")
+//    }
 }

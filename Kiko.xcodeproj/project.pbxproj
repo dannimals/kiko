@@ -110,6 +110,7 @@
 		9E0267A921DE9B4600488DA6 /* Waves_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E02674521DE9B4600488DA6 /* Waves_58.png */; };
 		9E0267AA21DE9B4600488DA6 /* Waves_64.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E02674621DE9B4600488DA6 /* Waves_64.png */; };
 		9E0267AB21DE9B4600488DA6 /* Waves_70.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E02674721DE9B4600488DA6 /* Waves_70.png */; };
+		9E0267AD21E6E40800488DA6 /* AnimatedDownwardArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0267AC21E6E40800488DA6 /* AnimatedDownwardArrow.swift */; };
 		9E10A1082085969800CC5444 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1072085969800CC5444 /* Date+Extensions.swift */; };
 		9E10A10A2086D72000CC5444 /* AnimatedWavesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A1092086D72000CC5444 /* AnimatedWavesViewController.swift */; };
 		9E10A10F2086D86300CC5444 /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E10A10E2086D86300CC5444 /* Channel.swift */; };
@@ -388,6 +389,7 @@
 		9E02674521DE9B4600488DA6 /* Waves_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waves_58.png; sourceTree = "<group>"; };
 		9E02674621DE9B4600488DA6 /* Waves_64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waves_64.png; sourceTree = "<group>"; };
 		9E02674721DE9B4600488DA6 /* Waves_70.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Waves_70.png; sourceTree = "<group>"; };
+		9E0267AC21E6E40800488DA6 /* AnimatedDownwardArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedDownwardArrow.swift; sourceTree = "<group>"; };
 		9E10A1072085969800CC5444 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		9E10A1092086D72000CC5444 /* AnimatedWavesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedWavesViewController.swift; sourceTree = "<group>"; };
 		9E10A10E2086D86300CC5444 /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 			isa = PBXGroup;
 			children = (
 				9E1413182111324D006CD78D /* AnimatedMaskButton.swift */,
+				9E0267AC21E6E40800488DA6 /* AnimatedDownwardArrow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1659,6 +1662,7 @@
 				9EBE9741216ADDA200FB54FD /* MoodPagingView.swift in Sources */,
 				9E435E7920B505DB003822BB /* MoodListEmptyStateView.swift in Sources */,
 				9E10A10A2086D72000CC5444 /* AnimatedWavesViewController.swift in Sources */,
+				9E0267AD21E6E40800488DA6 /* AnimatedDownwardArrow.swift in Sources */,
 				9EA9593021D428A0005AD789 /* RoundedButton.swift in Sources */,
 				9E3CAEFB2151D1AB00E44C8D /* PagingViewController.swift in Sources */,
 				9E88CEA120EEBDE0007C28BF /* HalfModalPresentationController.swift in Sources */,
