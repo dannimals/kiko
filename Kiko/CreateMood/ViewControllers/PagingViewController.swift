@@ -28,11 +28,11 @@ struct MoodPageDisplay: MoodPageDisplayable {
             gradientColors = [UIColor.blue01.cgColor, UIColor.blue02.cgColor, UIColor.blue03.cgColor]
         case .egg:
             accessoryColor = .red04
-            images = images(forPrefix: ImageName.egg, totalCount: 1)
+            images = [#imageLiteral(resourceName: "egg")]
             gradientColors = [UIColor.red01.cgColor, UIColor.red02.cgColor, UIColor.red03.cgColor]
         case .rottenEgg:
             accessoryColor = .green04
-            images = images(forPrefix: ImageName.rottenEgg, totalCount: 1)
+            images = [#imageLiteral(resourceName: "rottenEgg2")]
             gradientColors = [UIColor.green01.cgColor, UIColor.green02.cgColor, UIColor.green03.cgColor]
         }
     }
