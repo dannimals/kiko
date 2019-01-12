@@ -1,3 +1,4 @@
+
 import RealmSwift
 
 @objc public enum MoodType: Int, Codable {
