@@ -9,8 +9,9 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBOutlet weak var fullMinButton: UIButton!
     @IBOutlet weak var halfMinButton: UIButton!
     @IBOutlet weak var buttonContainerView: UIStackView!
+    @IBOutlet weak var animatedImageView: AnimatedImageView!
 
-    private let gradientLayer = AnimatedWavesGradientLayer()
+    private let gradientLayer = AnimatedGradientLayer()
     private let feedbackGenerator = AnimatedWavesFeedbackGenerator()
     private let footerViewAlpha: CGFloat = 0.6
     private var footerViewTimer: Timer?
@@ -36,6 +37,14 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         setup()
     }
 
+    func stopAnimating() {
+        animatedImageView.stopAnimation()
+    }
+
+    func startAnimating() {
+        animatedImageView.startAnimating(duration: 6)
+    }
+
     @IBAction func halfMinButtonTapped(_ sender: Any) {
         let image = halfMinButton.imageView?.image == #imageLiteral(resourceName: "30s") ? #imageLiteral(resourceName: "30sSelected") : #imageLiteral(resourceName: "30s")
         halfMinButton.setImage(image, for: .normal)
@@ -53,11 +62,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBAction func modeButtonTapped(_ sender: Any) {
         let image = modeButton.imageView?.image == #imageLiteral(resourceName: "478") ? #imageLiteral(resourceName: "478Selected") : #imageLiteral(resourceName: "478")
         modeButton.setImage(image, for: .normal)
-        gradientLayer.toggleMode()
-    }
-
-    func reset() {
-        feedbackGenerator.reset()
+//        gradientLayer.toggleMode()
     }
 
     func setupColors() {
@@ -66,6 +71,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
 
     func setupViews() {
         setupGradientLayer()
+        setupWavesView()
         setupFooterView()
         setupTapGesture()
         fireFooterTimer()
@@ -89,6 +95,14 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
 
     @objc func toggleFooter() {
         footerView.alpha == 0 ? showFooter() : hideFooter()
+    }
+
+    func reset() {
+        hideFooter()
+        stopAnimating()
+        feedbackGenerator.reset()
+        halfMinButton.setImage(#imageLiteral(resourceName: "30s"), for: .normal)
+        fullMinButton.setImage(#imageLiteral(resourceName: "60s"), for: .normal)
     }
 
     @objc func hideFooter() {
@@ -121,5 +135,11 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         gradientLayer.frame = gradientFrame
         layer.addSublayer(gradientLayer)
         gradientLayer.animate()
+    }
+
+    private func setupWavesView() {
+        bringSubview(toFront: animatedImageView)
+        animatedImageView.configure(resourcePrefix: "Waves_", resourceType: "png", imageCount: 99)
+        animatedImageView.image = animatedImageView.imageSequence.first
     }
 }
