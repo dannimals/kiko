@@ -42,7 +42,7 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     }
 
     func startAnimating() {
-        animatedImageView.startAnimating(duration: 5)
+        animatedImageView.startAnimating(duration: 6)
     }
 
     @IBAction func halfMinButtonTapped(_ sender: Any) {
