@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,7 +81,7 @@
                     </constraints>
                 </stackView>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="haJ-7i-le1" userLabel="Date collection view">
-                    <rect key="frame" x="5" y="73" width="403" height="40"/>
+                    <rect key="frame" x="0.0" y="73" width="413" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="Dl8-nC-r15"/>
                     </constraints>
@@ -100,8 +100,8 @@
                 <constraint firstItem="Eae-Tn-AY3" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" constant="10" id="hP9-NG-akI"/>
                 <constraint firstItem="B42-Nb-gPu" firstAttribute="baseline" secondItem="qgx-Cl-6oi" secondAttribute="baseline" constant="10" id="oYJ-Pl-QBl"/>
                 <constraint firstItem="lgG-DH-WjH" firstAttribute="top" secondItem="qgx-Cl-6oi" secondAttribute="bottom" constant="5" id="qmP-od-wZL"/>
-                <constraint firstItem="hBY-cG-aNN" firstAttribute="trailing" secondItem="haJ-7i-le1" secondAttribute="trailing" constant="5" id="xbK-K2-M90"/>
-                <constraint firstItem="haJ-7i-le1" firstAttribute="leading" secondItem="hBY-cG-aNN" secondAttribute="leading" constant="5" id="zr2-lX-O0c"/>
+                <constraint firstItem="hBY-cG-aNN" firstAttribute="trailing" secondItem="haJ-7i-le1" secondAttribute="trailing" id="xbK-K2-M90"/>
+                <constraint firstItem="haJ-7i-le1" firstAttribute="leading" secondItem="hBY-cG-aNN" secondAttribute="leading" id="zr2-lX-O0c"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="hBY-cG-aNN"/>
