@@ -41,20 +41,33 @@ class CalendarViewController: BaseViewController, StoryboardLoadable {
     func reloadDates(animated: Bool = true) {
         calendarWeekView.userDidScroll = false
         let width = view.bounds.width
-        calendarWeekView.setContentOffset(CGPoint(x: -width, y: 0))
         calendarWeekView.datesCollectionView.reloadData()
-        calendarWeekView.setContentOffset(CGPoint(x: width, y: 0), animated: animated)
+        calendarWeekView.setContentOffset(CGPoint(x: width, y: 0))
         calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
     private func scrollToNextWeek() {
         calendarManager.loadNextWeek()
-        reloadDates()
+        updateWeekViewForNextWeek()
     }
 
     private func scrollToLastWeek() {
         calendarManager.loadLastWeek()
-        reloadDates()
+        updateWeekViewForLastWeek()
+    }
+
+    private func updateWeekViewForLastWeek() {
+        let datesCollectionView = calendarWeekView.datesCollectionView
+        datesCollectionView?.reloadData()
+        calendarWeekView.setContentOffset(CGPoint(x: view.bounds.width, y: 0))
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
+    }
+
+    private func updateWeekViewForNextWeek() {
+        let datesCollectionView = calendarWeekView.datesCollectionView
+        datesCollectionView?.reloadData()
+        calendarWeekView.setContentOffset(CGPoint(x: view.bounds.width, y: 0))
+        calendarWeekView.monthLabel.text = calendarManager.displayedMonth.description
     }
 
     private func configureViews() {
