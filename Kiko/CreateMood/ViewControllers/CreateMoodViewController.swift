@@ -74,7 +74,7 @@ class CreateMoodViewController: BaseViewController {
         let color = MoodPageDisplay(type: state.moodType).accessoryColor
         do {
             try moodManager.save(mood)
-            presentModalForSuccess(imageColor: color)
+            contentView.showConfettiView(color: color)
             updateLogButton()
         } catch {
             presentModalForFailure(withError: nil, message: Glossary.moodSaveFailureMessage)
