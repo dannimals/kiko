@@ -5,6 +5,8 @@ class CalendarWeekCollectionViewLayout: UICollectionViewLayout {
     private var contentSize = CGSize.zero
     private var numberOfColumns = 7
     private var layoutAttributes = [UICollectionViewLayoutAttributes]()
+    private var itemSpacing: CGFloat = 8
+    private var gutterSpacing: CGFloat = 4
 
     override var collectionViewContentSize: CGSize {
         return contentSize
@@ -16,8 +18,8 @@ class CalendarWeekCollectionViewLayout: UICollectionViewLayout {
         layoutAttributes.removeAll()
         guard let collectionView = collectionView else { return }
 
-        let itemWidth = collectionView.bounds.width / CGFloat(numberOfColumns)
-        var xOffset: CGFloat = 10
+        var xOffset: CGFloat = gutterSpacing
+        let itemWidth = (collectionView.bounds.width - 2 * gutterSpacing - 6 * itemSpacing) / CGFloat(numberOfColumns)
         let itemHeight = collectionView.bounds.height
         for section in 0..<collectionView.numberOfSections {
             let numberOfItems = collectionView.numberOfItems(inSection: section)
@@ -27,7 +29,7 @@ class CalendarWeekCollectionViewLayout: UICollectionViewLayout {
                 let itemSize = CGSize(width: itemWidth, height: itemHeight)
                 attributes.frame = CGRect(x: xOffset, y: 0, width: itemWidth, height: itemHeight)
                 layoutAttributes.append(attributes)
-                xOffset += itemSize.width
+                xOffset += itemSize.width + itemSpacing
             }
         }
 
