@@ -21,6 +21,9 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
     @IBOutlet weak var ringButton: UIButton!
 
     private var animatedWavesView: AnimatedWavesView?
+    private lazy var confettiView: ConfettiView = {
+        return ConfettiView(frame: frame)
+    }()
 
     weak var delegate: CreateMoodViewDelegate!
 
@@ -47,6 +50,22 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
     func setupViews() {
         setupScrollView()
         setupButtons()
+        setupConfettiView()
+    }
+
+    private func setupConfettiView() {
+        addSubview(confettiView)
+        confettiView.alpha = 0
+    }
+
+    func showConfettiView(color: UIColor) {
+        confettiView.alpha = 1
+        let delayTime = DispatchTime.now() + 0.8
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            UIView.animate(withDuration: 0.6, animations: {
+                self.confettiView.alpha = 0
+            })
+        }
     }
 
     func updateLogButton(hasMoodForToday: Bool) {

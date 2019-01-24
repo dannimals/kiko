@@ -62,7 +62,7 @@ public extension UIColor {
         return UIColor(hex: 0xF99D65)
     }
     public static var yellow04: UIColor {
-        return UIColor(hex: 0xE48145)
+        return UIColor(hex: 0xF8A00F)
     }
     public static var blue01: UIColor {
         return UIColor(hex: 0xB5DEFB)
