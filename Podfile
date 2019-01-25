@@ -17,7 +17,7 @@ target 'KikoModels' do
   use_frameworks!
 
   common_pods
-  pod 'RealmSwift'
+  pod 'RealmSwift', '3.13.0'
 
   target 'KikoModelsTests' do
     inherit! :search_paths
