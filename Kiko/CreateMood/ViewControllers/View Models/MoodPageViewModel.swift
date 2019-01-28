@@ -2,6 +2,11 @@
 import KikoModels
 import KikoUIKit
 
+enum ObserverEvent {
+    case didUpdatePage
+    case didSelectToday
+}
+
 class MoodPageViewModel {
 
     private var currentPage: MoodPageDisplayable = MoodPageDisplay(type: .chick)
@@ -14,7 +19,11 @@ class MoodPageViewModel {
 
     func updateCurrentPage(_ page: MoodPageDisplayable) {
         currentPage = page
-        notifyObservers()
+        notifyObservers(.didUpdatePage)
+    }
+
+    func didSelectToday() {
+        notifyObservers(.didSelectToday)
     }
 
     func addObserver(_ observer: MoodPagingObserving) {
@@ -23,13 +32,18 @@ class MoodPageViewModel {
         observer.moodPageViewModel(self, didUpdateMoodPage: currentPage)
     }
 
-    private func notifyObservers() {
+    private func notifyObservers(_ event: ObserverEvent) {
         observations.forEach { id, observation in
             guard let observer = observation.observer else {
                 observations.removeValue(forKey: id)
                 return
             }
-            observer.moodPageViewModel(self, didUpdateMoodPage: currentPage)
+            switch event {
+            case .didUpdatePage:
+                observer.moodPageViewModel(self, didUpdateMoodPage: currentPage)
+            case .didSelectToday:
+                observer.moodPageViewDidSelectToday(self)
+            }
         }
     }
 

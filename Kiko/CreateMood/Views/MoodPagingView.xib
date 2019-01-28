@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoodPagingView" customModule="Kiko" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="S8Z-eb-dhM" id="APS-H8-TBV"/>
-                <outlet property="greetingLabel" destination="U6u-lv-baG" id="lrH-Id-Dll"/>
+                <outlet property="greetingLabel" destination="qIw-5o-zVZ" id="xFL-EI-Tkb"/>
                 <outlet property="pagingControl" destination="Dae-ZB-lBJ" id="e1Y-kR-b2l"/>
                 <outlet property="scrollView" destination="7zv-Hx-MOl" id="Vb4-Nb-aXM"/>
             </connections>
@@ -22,20 +22,23 @@
             <rect key="frame" x="0.0" y="0.0" width="490" height="536"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6u-lv-baG">
-                    <rect key="frame" x="224" y="8" width="42" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-Hx-MOl">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qIw-5o-zVZ">
+                    <rect key="frame" x="95" y="8" width="300" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="Ntd-Rx-nHi"/>
+                        <constraint firstAttribute="height" constant="40" id="naB-dQ-KLw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7zv-Hx-MOl">
                     <rect key="frame" x="0.0" y="52.5" width="490" height="260"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="260" id="bpw-nI-8ik"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dae-ZB-lBJ" customClass="CustomPagingControl" customModule="Kiko" customModuleProvider="target">
-                    <rect key="frame" x="212.5" y="352.5" width="65" height="10"/>
+                    <rect key="frame" x="212.5" y="372" width="65" height="10"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="H3a-i1-zi7"/>
                         <constraint firstAttribute="width" constant="65" id="f0z-pc-06H"/>
@@ -43,13 +46,13 @@
                 </view>
             </subviews>
             <constraints>
+                <constraint firstItem="qIw-5o-zVZ" firstAttribute="top" secondItem="S8Z-eb-dhM" secondAttribute="top" constant="8" id="3AH-WM-a4B"/>
+                <constraint firstItem="qIw-5o-zVZ" firstAttribute="centerX" secondItem="S8Z-eb-dhM" secondAttribute="centerX" id="6wk-py-LZX"/>
                 <constraint firstItem="Dae-ZB-lBJ" firstAttribute="top" secondItem="7zv-Hx-MOl" secondAttribute="bottom" constant="40" id="GIe-eg-z6F"/>
-                <constraint firstItem="7zv-Hx-MOl" firstAttribute="top" secondItem="U6u-lv-baG" secondAttribute="bottom" constant="24" id="IJR-JV-3hM"/>
                 <constraint firstItem="7zv-Hx-MOl" firstAttribute="leading" secondItem="S8Z-eb-dhM" secondAttribute="leading" id="KQH-Iq-AHR"/>
-                <constraint firstItem="U6u-lv-baG" firstAttribute="top" secondItem="S8Z-eb-dhM" secondAttribute="top" constant="8" id="OcX-Wn-iYp"/>
                 <constraint firstItem="7zv-Hx-MOl" firstAttribute="trailing" secondItem="S8Z-eb-dhM" secondAttribute="trailing" id="RJT-5z-L8C"/>
                 <constraint firstItem="Dae-ZB-lBJ" firstAttribute="centerX" secondItem="S8Z-eb-dhM" secondAttribute="centerX" id="iyk-Wa-B5T"/>
-                <constraint firstItem="U6u-lv-baG" firstAttribute="centerX" secondItem="S8Z-eb-dhM" secondAttribute="centerX" id="uLn-7e-xv7"/>
+                <constraint firstItem="7zv-Hx-MOl" firstAttribute="top" secondItem="qIw-5o-zVZ" secondAttribute="bottom" constant="24" id="oYo-x2-axs"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-273" y="-266"/>

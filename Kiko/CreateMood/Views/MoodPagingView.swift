@@ -4,7 +4,7 @@ import KikoUIKit
 class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
 
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var greetingLabel: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagingControl: CustomPagingControl!
 
@@ -85,14 +85,30 @@ class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
     private func setupLabel() {
         let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: defaultTextColor])
         let mutableString = NSMutableAttributedString(attributedString: attributedText)
-        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: defaultTextColor])
+        let secondAttributedText = NSMutableAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: defaultTextColor])
+        secondAttributedText.addAttribute(NSAttributedStringKey.link,
+                                      value: "SignInPseudoLink",
+                                      range: NSRange(location: 0, length: secondAttributedText.length))
         let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: defaultTextColor])
         mutableString.append(secondAttributedText)
         mutableString.append(thirdAttributedText)
+        greetingLabel.isEditable = false
+        greetingLabel.delegate = self
+        greetingLabel.isSelectable = true
         greetingLabel.attributedText = mutableString
         greetingLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        greetingLabel.textAlignment = .center
     }
 
+}
+
+extension MoodPagingView: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        viewModel.didSelectToday()
+
+        return false
+    }
 }
 
 extension MoodPagingView: UIScrollViewDelegate {
