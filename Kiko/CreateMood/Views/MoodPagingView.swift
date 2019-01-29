@@ -4,7 +4,7 @@ import KikoUIKit
 class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
 
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var greetingLabel: UILabel!
+    @IBOutlet weak var greetingLabel: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pagingControl: CustomPagingControl!
 
@@ -83,16 +83,32 @@ class MoodPagingView: UIView, ViewStylePreparing, StoryboardNestable {
     }
 
     private func setupLabel() {
-        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: defaultTextColor])
+        let attributedText = NSAttributedString(string: "How are you ", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .regular), .foregroundColor: defaultTextColor])
         let mutableString = NSMutableAttributedString(attributedString: attributedText)
-        let secondAttributedText = NSAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .heavy), .foregroundColor: defaultTextColor])
+        let secondAttributedText = NSMutableAttributedString(string: "today", attributes: [.font: UIFont.customFont(ofSize: 26, weight: .heavy), .foregroundColor: UIColor.white])
+        secondAttributedText.addAttribute(NSAttributedStringKey.link, value: "", range: NSRange(location: 0, length: secondAttributedText.length))
         let thirdAttributedText = NSAttributedString(string: "?", attributes: [.font: UIFont.customFont(ofSize: 24, weight: .light), .foregroundColor: defaultTextColor])
         mutableString.append(secondAttributedText)
         mutableString.append(thirdAttributedText)
+        greetingLabel.isEditable = false
+        greetingLabel.delegate = self
+        greetingLabel.isSelectable = true
         greetingLabel.attributedText = mutableString
         greetingLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        greetingLabel.textAlignment = .center
+        greetingLabel.linkTextAttributes = [NSAttributedString.Key.foregroundColor.rawValue: defaultTextColor,
+                                            NSAttributedString.Key.underlineColor.rawValue: defaultTextColor,
+                                            NSAttributedString.Key.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue]
     }
 
+}
+
+extension MoodPagingView: UITextViewDelegate {
+
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        viewModel.didSelectToday()
+        return false
+    }
 }
 
 extension MoodPagingView: UIScrollViewDelegate {
@@ -120,6 +136,9 @@ extension MoodPagingView: UIScrollViewDelegate {
         UIView.animate(withDuration: 0.4) {
             self.pagingControl.update(selectedIndex: selectedIndex, color: color)
             self.greetingLabel.textColor = color
+            self.greetingLabel.linkTextAttributes = [NSAttributedString.Key.foregroundColor.rawValue: color,
+                                                NSAttributedString.Key.underlineColor.rawValue: color,
+                                                NSAttributedString.Key.underlineStyle.rawValue: NSUnderlineStyle.styleSingle.rawValue]
         }
     }
 

@@ -94,6 +94,10 @@ class CreateMoodViewController: BaseViewController {
 
 extension CreateMoodViewController: MoodPagingObserving {
 
+    func moodPageViewDidSelectToday(_ viewModel: MoodPageViewModel) {
+        calendarViewController.reloadDates(animated: true)
+    }
+
     func moodPageViewModel(_ viewModel: MoodPageViewModel, didUpdateMoodPage page: MoodPageDisplayable) {
         state.send(.moodChanged(page.moodType))
     }
@@ -109,6 +113,6 @@ extension CreateMoodViewController: CreateMoodViewDelegate {
     }
     func logButtonTapped(_ button: UIButton) {
         saveMood()
-        calendarViewController?.reloadDates(animated: false)
+        calendarViewController?.reloadDates(animated: true)
     }
 }

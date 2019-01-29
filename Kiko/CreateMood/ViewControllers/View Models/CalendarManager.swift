@@ -1,6 +1,7 @@
 import KikoModels
 
 public protocol CalendarManaging {
+
     var displayedMonth: Month { get }
     var currentWeekDates: [Date] { get }
     var lastWeekDates: [Date] { get }
@@ -10,6 +11,8 @@ public protocol CalendarManaging {
     func dateForIndexPath(_ indexPath: IndexPath) -> Date
     func loadLastWeek()
     func loadNextWeek()
+    func loadThisWeek()
+
 }
 
 class CalendarManager: CalendarManaging {
@@ -31,6 +34,10 @@ class CalendarManager: CalendarManaging {
     func dateForIndexPath(_ indexPath: IndexPath) -> Date {
         let allDates = lastWeekDates + currentWeekDates + nextWeekDates
         return allDates[indexPath.row]
+    }
+
+    func loadThisWeek() {
+        updateDatesFor(today)
     }
 
     func loadNextWeek() {
