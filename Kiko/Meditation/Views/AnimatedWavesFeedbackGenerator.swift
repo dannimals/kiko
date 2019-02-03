@@ -2,6 +2,11 @@
 import AVFoundation
 import KikoUIKit
 
+protocol AnimatedWavesFeedbackGeneratorDelegate: class {
+
+    func feedbackGeneratorDidNotify(_ feedbackGenerator: AnimatedWavesFeedbackGenerator)
+}
+
 class AnimatedWavesFeedbackGenerator {
 
     private var halfMinTimer: Timer?
@@ -11,6 +16,8 @@ class AnimatedWavesFeedbackGenerator {
     private let fullMinDuration: TimeInterval = 60
     private let halfMinDuration: TimeInterval = 30
     private let systemSoundID: SystemSoundID = 1008
+
+    weak var delegate: AnimatedWavesFeedbackGeneratorDelegate?
 
     func fireHalfMinTimer() {
         cancelFullMinTimer()
@@ -40,6 +47,7 @@ class AnimatedWavesFeedbackGenerator {
     @objc private func notifyTime() {
         AudioServicesPlaySystemSound(systemSoundID)
         feedbackGenerator.notificationOccurred(.success)
+        delegate?.feedbackGeneratorDidNotify(self)
     }
 }
 

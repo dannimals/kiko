@@ -1,9 +1,15 @@
 
 import KikoUIKit
 
+protocol AnimatedWavesViewDelegate: class {
+
+    func animatedWavesViewDidSelectBackButton(_ view: AnimatedWavesView)
+}
+
 final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
 
     @IBOutlet weak var contentView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var modeButton: UIButton!
     @IBOutlet weak var fullMinButton: UIButton!
@@ -17,6 +23,8 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
     private var footerViewTimer: Timer?
     private let defaultFadeOutDelay: TimeInterval = 4
     private let defaultFadeOutDuration: TimeInterval = 0.3
+
+    weak var delegate: AnimatedWavesViewDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,6 +53,10 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         animatedImageView.startAnimating(duration: 6)
     }
 
+    @IBAction func backButtonTapped(_ sender: Any) {
+        delegate?.animatedWavesViewDidSelectBackButton(self)
+    }
+
     @IBAction func halfMinButtonTapped(_ sender: Any) {
         let image = halfMinButton.imageView?.image == #imageLiteral(resourceName: "30s") ? #imageLiteral(resourceName: "30sSelected") : #imageLiteral(resourceName: "30s")
         halfMinButton.setImage(image, for: .normal)
@@ -67,6 +79,8 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
 
     func setupColors() {
         backgroundColor = .backgroundBlue
+        backButton.imageView?.image = #imageLiteral(resourceName: "leftArrow").withRenderingMode(.alwaysTemplate)
+        backButton.tintColor = .white
     }
 
     func setupViews() {
@@ -75,6 +89,16 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         setupFooterView()
         setupTapGesture()
         fireFooterTimer()
+        feedbackGenerator.delegate = self
+    }
+
+    private func setupBackButton() {
+        bringSubview(toFront: backButton)
+        var frame = backButton.frame
+        let safeAreaTop: CGFloat = superview?.safeAreaInsets.top ?? 0
+        let offset: CGFloat = safeAreaTop == 0 ? 32 : 16
+        frame.origin = CGPoint(x: 16, y: safeAreaTop + offset)
+        backButton.frame = frame
     }
 
     private func setupFooterView() {
@@ -84,6 +108,12 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.stretchToFill(parentView: footerView)
         footerView.insertSubview(blurView, belowSubview: buttonContainerView)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        setupBackButton()
     }
 
     private func setupTapGesture() {
@@ -101,6 +131,10 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         hideFooter()
         stopAnimating()
         feedbackGenerator.reset()
+        resetButtonImages()
+    }
+
+    private func resetButtonImages() {
         halfMinButton.setImage(#imageLiteral(resourceName: "30s"), for: .normal)
         fullMinButton.setImage(#imageLiteral(resourceName: "60s"), for: .normal)
     }
@@ -141,5 +175,12 @@ final class AnimatedWavesView: UIView, ViewStylePreparing, StoryboardNestable {
         bringSubview(toFront: animatedImageView)
         animatedImageView.configure(resourcePrefix: "Waves_", resourceType: "png", imageCount: 99)
         animatedImageView.image = animatedImageView.imageSequence.first
+    }
+}
+
+extension AnimatedWavesView: AnimatedWavesFeedbackGeneratorDelegate {
+
+    func feedbackGeneratorDidNotify(_ feedbackGenerator: AnimatedWavesFeedbackGenerator) {
+        resetButtonImages()
     }
 }

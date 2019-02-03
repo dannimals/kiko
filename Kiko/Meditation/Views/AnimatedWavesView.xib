@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnimatedWavesView" customModule="Kiko" customModuleProvider="target">
             <connections>
                 <outlet property="animatedImageView" destination="erg-mz-vRe" id="CrH-sg-18z"/>
+                <outlet property="backButton" destination="gE6-tU-E3J" id="1wt-2C-dwS"/>
                 <outlet property="buttonContainerView" destination="WS3-b6-xY4" id="vbv-SY-EeI"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="U0V-Rd-Wcl"/>
                 <outlet property="footerView" destination="VvJ-FD-8gf" id="WPA-Iv-h7a"/>
@@ -70,6 +71,13 @@
                         <constraint firstAttribute="height" constant="300" id="E3e-LI-L5E"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gE6-tU-E3J">
+                    <rect key="frame" x="16" y="16" width="14" height="23"/>
+                    <state key="normal" image="back"/>
+                    <connections>
+                        <action selector="backButtonTapped:" destination="-1" eventType="touchUpInside" id="hJ1-oi-Csh"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="VvJ-FD-8gf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8Ea-bb-TsP"/>
@@ -77,6 +85,8 @@
                 <constraint firstItem="erg-mz-vRe" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JQb-Ur-WHG"/>
                 <constraint firstAttribute="trailing" secondItem="VvJ-FD-8gf" secondAttribute="trailing" id="adX-u0-kQG"/>
                 <constraint firstAttribute="bottom" secondItem="VvJ-FD-8gf" secondAttribute="bottom" id="eYx-Id-DaA"/>
+                <constraint firstItem="gE6-tU-E3J" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="qXw-xd-65E"/>
+                <constraint firstItem="gE6-tU-E3J" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="uFM-Q4-a0K"/>
             </constraints>
         </view>
     </objects>
@@ -84,5 +94,6 @@
         <image name="30s" width="42" height="42"/>
         <image name="478" width="67" height="42"/>
         <image name="60s" width="42" height="42"/>
+        <image name="back" width="14" height="23"/>
     </resources>
 </document>

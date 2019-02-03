@@ -85,6 +85,7 @@ class CreateMoodView: UIView, ViewStylePreparing, StoryboardNestable {
         if !scrollView.subviews.contains(where: { $0 is AnimatedWavesView }) {
             let animatedWavesFrame = CGRect(origin: CGPoint(x: bounds.width, y: -layoutMargins.top), size: CGSize(width: bounds.width, height: bounds.height + layoutMargins.top + layoutMargins.bottom))
             animatedWavesView = AnimatedWavesView(frame: animatedWavesFrame)
+            animatedWavesView?.delegate = self
             scrollView.addSubview(animatedWavesView!)
         }
         scrollView.contentSize = CGSize(width: bounds.width * 2, height: 0)
@@ -121,5 +122,12 @@ extension CreateMoodView: UIScrollViewDelegate {
         if scrollView.contentOffset.x == 0 {
             animatedWavesView?.reset()
         }
+    }
+}
+
+extension CreateMoodView: AnimatedWavesViewDelegate {
+
+    func animatedWavesViewDidSelectBackButton(_ view: AnimatedWavesView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true)
     }
 }
